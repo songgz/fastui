@@ -10,5 +10,5 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require extjs4/ext-debug
-//= require fastui
+//= require ./extjs4/ext-debug
+//= require ./fastui

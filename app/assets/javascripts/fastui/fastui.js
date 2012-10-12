@@ -8,7 +8,7 @@ Ext.application({
 
   appFolder: '/assets/fastui/app',
 
-  controllers: ['Users'],
+  //controllers: [],
 
   autoCreateViewport: true
 });
