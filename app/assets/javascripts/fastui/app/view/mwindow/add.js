@@ -7,8 +7,10 @@
  */
 Ext.define('FastUI.view.mwindow.Add', {
     extend: 'Ext.window.Window',
-    alias: 'widget.useradd',
-    title: 'Add User',
+//    alias: 'widget.useradd',
+    alias: 'widget.mwidowadd',
+//    title: 'Add User',
+    title: 'Add MWindow',
     layout: 'fit',
     autoShow: true,
     initComponent: function () {
