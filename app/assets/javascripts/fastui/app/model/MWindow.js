@@ -7,5 +7,6 @@
  */
 Ext.define('FastUI.model.MWindow', {
     extend: 'Ext.data.Model',
-    fields: ['id', 'title', 'note']
+    fields: ['name', 'email']
+//    fields: ['id', 'title', 'note']
 });
