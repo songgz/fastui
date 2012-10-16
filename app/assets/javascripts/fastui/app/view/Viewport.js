@@ -42,8 +42,9 @@ Ext.define('FastUI.view.Viewport', {
         activeTab: 0,
         // First tab active by default
         items: {
-            title: 'Default Tab',
-            html: 'The first tab\'s content. Others may be added dynamically'
+//            title: 'Default Tab',
+//            html: 'The first tab\'s content. Others may be added dynamically'
+            xtype: 'mwindowlist'
         }
     }]
 });

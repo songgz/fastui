@@ -12,18 +12,18 @@ Ext.application({
     controllers: [
         'MWindows'
     ],
-//  autoCreateViewport: true
-    launch: function() {
-        Ext.create('Ext.container.Viewport', {
-            layout: 'fit',
-            items: [
-                {
-//                    xtype: 'panel',
-//                    title: 'Users',
-//                    html : 'List of users will go here'
-                    xtype: 'mwindowlist'
-                }
-            ]
-        });
-    }
+  autoCreateViewport: true
+//    launch: function() {
+//        Ext.create('Ext.container.Viewport', {
+//            layout: 'fit',
+//            items: [
+//                {
+////                    xtype: 'panel',
+////                    title: 'Users',
+////                    html : 'List of users will go here'
+//                    xtype: 'mwindowlist'
+//                }
+//            ]
+//        });
+//    }
 });
