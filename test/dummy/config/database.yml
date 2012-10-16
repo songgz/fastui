@@ -12,8 +12,8 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-#  datebase: eduschool_development
-  database: dummy_development
+  datebase: eduschool_development
+#  database: dummy_development
   pool: 5
   username: root
   password: root
