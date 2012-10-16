@@ -3,6 +3,7 @@ class CreateFastuiMWindows < ActiveRecord::Migration
     create_table :fastui_m_windows do |t|
       t.string :title
       t.string :note
+      t.string :help
 
       t.timestamps
     end
