@@ -35,16 +35,7 @@ Ext.define('FastUI.view.Viewport', {
         collapsible: true,
         split: true,
         width: 150
-    }, {
-        region: 'center',
-        xtype: 'tabpanel',
-        // TabPanel itself has no title
-        activeTab: 0,
-        // First tab active by default
-        items: {
-//            title: 'Default Tab',
-//            html: 'The first tab\'s content. Others may be added dynamically'
-            xtype: 'mwindowlist'
-        }
-    }]
+    }, Ext.create('FastUI.view.VWindow')
+        ]
 });
+

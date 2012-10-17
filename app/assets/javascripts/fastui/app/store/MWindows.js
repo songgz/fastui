@@ -9,18 +9,17 @@
 Ext.define('FastUI.store.MWindows', {
     extend:'Ext.data.Store',
     model:'FastUI.model.MWindow',
-//    fields: ['name', 'email'],
-//    data: [
-//        {name: 'Ed',    email: 'ed@sencha.com'},
-//        {name: 'Tommy', email: 'tommy@sencha.com'}
-//    ]
     autoLoad:true,
 //    autoSync: true,
     proxy:{
         type:'ajax',
         api:{
-            read:'/assets/fastui/data/mwindows.json',
-            update:'/assets/fastui/data/updateMWindows.json'
+//            read:'/assets/fastui/data/mwindows.json',
+//            update:'/assets/fastui/data/updateMWindows.json'
+            create: '/fastui/m_windows/new',
+            read: '/fastui/m_windows',
+            update: '/fastui/mwindows/',
+            destroy: '/fastui/mwindows/delete'
         },
         reader:{
             type:'json',

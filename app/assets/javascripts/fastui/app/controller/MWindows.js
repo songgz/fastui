@@ -11,8 +11,8 @@ Ext.define('FastUI.controller.MWindows', {
     stores: [ 'MWindows'],
     models: [ 'MWindow'],
     views: [
-        'mwindow.List',
-        'mwindow.Edit'
+        'VWindow'
+//        'mwindow.Edit'
 //        'mwindow.Add',
 //        'mwindow.Edit'
     ],
