@@ -7,8 +7,8 @@ module Fastui
       @model = model
     end
 
-    def model_class
-      @model.class
+    def name
+      @model.to_s
     end
 
     def columns
