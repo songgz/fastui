@@ -1,16 +1,15 @@
-class CreateFastuiMWindows < ActiveRecord::Migration
+class CreateFastuiMMenuItems < ActiveRecord::Migration
   def change
-    create_table :fastui_m_windows do |t|
+    create_table :fastui_m_menu_items do |t|
       t.string :title, :limit => 60, :null => false
-      t.string :note
-      t.string :help
+      t.references :m_window
       t.boolean :actived
       t.integer :org_id, :default => 0
       t.integer :createdby, :default => 0
       t.integer :updatedby, :default => 0
 
-
       t.timestamps
     end
+    add_index :fastui_m_menu_items, :m_window_id
   end
 end
