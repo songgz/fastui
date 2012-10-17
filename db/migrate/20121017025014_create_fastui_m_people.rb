@@ -1,7 +1,7 @@
-class CreateFastuiMMenus < ActiveRecord::Migration
+class CreateFastuiMPeople < ActiveRecord::Migration
   def change
-    create_table :fastui_m_menus do |t|
-      t.string :title, :limit => 60, :null => false
+    create_table :fastui_m_people do |t|
+      t.string :name, :limit => 60, :null => false
 
       t.boolean :actived
       t.integer :org_id, :default => 0
