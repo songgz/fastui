@@ -1,6 +1,6 @@
 #encoding: utf-8
 #desc "Explaining what the task does"
-#namespace :fastui do
+
 task :fastui do
   w = MWindow.create(:title => 'FastUI')
 
