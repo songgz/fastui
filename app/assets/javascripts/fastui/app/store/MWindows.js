@@ -8,8 +8,9 @@
 
 Ext.define('FastUI.store.MWindows', {
     extend:'Ext.data.Store',
-    model:'FastUI.model.MWindow',
-    autoLoad:true,
+    storeId:'MWindowStore',
+    model:'FastUI.model.MWindow'
+//    autoLoad:true,
 //    autoSync: true,
 //    proxy:{
 //        type:'ajax',

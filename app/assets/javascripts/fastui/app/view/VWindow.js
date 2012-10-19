@@ -12,9 +12,11 @@ Ext.define('FastUI.view.VWindow', {
     alias: 'widget.vwindow',
     title: 'The VWindow',
     region: 'center',
-    models: ['FastUI.model.MWindow'],
-//    store: 'MWindows',
+    store: Ext.data.StoreManager.lookup('MWindowStore'),
     initComponent: function () {
+//        var m_window = Ext.ModelManager.getModel('FastUI.model.MWindow');
+//        alert(m_window);
+//        alert(Ext.ModelManager.getModel('FastUI.model.MWindow'));
 //        Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
 //            success: function(user) {
 //                alert(user.get('title')); //outputs 123

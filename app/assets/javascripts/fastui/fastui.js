@@ -8,7 +8,7 @@ Ext.application({
 
   appFolder: '/assets/fastui/app',
 
-    models: ['FastUI.model.MWindow'],
+//    models: ['FastUI.model.MWindow'],
   //controllers: [],
     controllers: [
         'MWindows'
@@ -26,6 +26,6 @@ Ext.application({
 //                alert(user.get('title')); //outputs 123
 //            }
 //        });
-
+//
 //    }
 });
