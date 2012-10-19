@@ -26,13 +26,12 @@ Ext.define('FastUI.view.Viewport', {
                 {
                     xtype:'button',
                     text:'My Button',
-                    handler:function () {
-                        alert('You clicked the button!')
-                    }
+//                    scope:this,
+                    handler:loadVWindow
+//                        loadVWindow();
+//                    }
                 }
-            ]
-
-            // could use a TreePanel or AccordionLayout for navigational items
+            ]            // could use a TreePanel or AccordionLayout for navigational items
         },
         {
             region:'south',
@@ -62,11 +61,11 @@ Ext.define('FastUI.view.Viewport', {
     ],
     loadVWindow:function(){
         //this.id
+        alert('sf');
         Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
                     success: function(mwindow) {
                        alert(mwindow.get('title')); //outputs 123
                         var win = Ext.create('FastUI.view.VWindow',{title:mwindow.get('title')});
-
                         this.center().add(win);
                     }
         });
@@ -74,4 +73,16 @@ Ext.define('FastUI.view.Viewport', {
 
     }
 });
+//var loadVWindow = function(){
+//    //this.id
+//    alert('sf');
+//    Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
+//        success: function(mwindow) {
+//            alert(mwindow.get('title')); //outputs 123
+//            var win = Ext.create('FastUI.view.VWindow',{title:mwindow.get('title')});
+//            this.center().add(win);
+//        }
+//    });
+//}
+
 

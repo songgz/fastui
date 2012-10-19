@@ -11,9 +11,9 @@ Ext.application({
 
 //    models: ['FastUI.model.MWindow'],
   //controllers: [],
-    controllers: [
-        'MWindows'
-    ],
+//    controllers: [
+//        'MWindows'
+//    ],
 
   autoCreateViewport: true
 //    launch: function() {
