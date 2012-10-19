@@ -8,7 +8,7 @@
 
 Ext.define('FastUI.view.Viewport', {
     extend:'Ext.container.Viewport',
-
+    id:'port',
     layout:'border',
     items:[
         {
@@ -17,22 +17,7 @@ Ext.define('FastUI.view.Viewport', {
             border:false,
             margins:'0 0 5 0'
         },
-        {
-            region:'west',
-            collapsible:true,
-            title:'Navigation',
-            width:150,
-            items:[
-                {
-                    xtype:'button',
-                    text:'My Button',
-//                    scope:this,
-                    handler:loadVWindow
-//                        loadVWindow();
-//                    }
-                }
-            ]            // could use a TreePanel or AccordionLayout for navigational items
-        },
+        Ext.create('FastUI.view.VNavigation'),
         {
             region:'south',
             title:'South Panel',
@@ -50,6 +35,7 @@ Ext.define('FastUI.view.Viewport', {
             width:150
         },
         {
+            id:'mycenter',
                region: 'center',
                xtype: 'tabpanel', // TabPanel itself has no title
                activeTab: 0,      // First tab active by default
@@ -58,31 +44,7 @@ Ext.define('FastUI.view.Viewport', {
                    html: 'The first tab\'s content. Others may be added dynamically'
                }
         }
-    ],
-    loadVWindow:function(){
-        //this.id
-        alert('sf');
-        Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
-                    success: function(mwindow) {
-                       alert(mwindow.get('title')); //outputs 123
-                        var win = Ext.create('FastUI.view.VWindow',{title:mwindow.get('title')});
-                        this.center().add(win);
-                    }
-        });
+    ]
 
-
-    }
 });
-//var loadVWindow = function(){
-//    //this.id
-//    alert('sf');
-//    Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
-//        success: function(mwindow) {
-//            alert(mwindow.get('title')); //outputs 123
-//            var win = Ext.create('FastUI.view.VWindow',{title:mwindow.get('title')});
-//            this.center().add(win);
-//        }
-//    });
-//}
-
 
