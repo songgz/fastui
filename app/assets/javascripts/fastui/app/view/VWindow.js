@@ -15,11 +15,11 @@ Ext.define('FastUI.view.VWindow', {
     models: ['FastUI.model.MWindow'],
 //    store: 'MWindows',
     initComponent: function () {
-        Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
-            success: function(user) {
-                alert(user.get('title')); //outputs 123
-            }
-        });
+//        Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
+//            success: function(user) {
+//                alert(user.get('title')); //outputs 123
+//            }
+//        });
 //        this.m_windows = Ext.create('FastUI.store.MWindows', {
 //            model: 'MWindow'
 //        });
