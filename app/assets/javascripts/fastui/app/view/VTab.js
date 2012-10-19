@@ -11,7 +11,7 @@ Ext.define('FastUI.view.VTab', {
     title:'All VTabs',
     mtab:null,
     listeners:{
-        activate:this.loadGrid
+        //activate:this.loadGrid
     },
     loadGrid:function (tab, opts) {
         tab.add(Ext.create('FastUI.view.VGrid', {}));

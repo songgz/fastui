@@ -1,19 +1,23 @@
+Ext.Loader.setConfig({enabled: true});
 // Set valid ExtJS loading path (/vendor/assets/extjs4/src)
 Ext.Loader.setPath('Ext', '/assets/fastui/extjs4/src');
+//Ext.require('FastUI.model.MWindow');
+
 //FastUI.model.MWindow
 // create a new instance of Application class
-Ext.Loader.setConfig({enabled: true});
+
 Ext.application({
   // the global namespace
   name: 'FastUI',
 
   appFolder: '/assets/fastui/app',
 
-    models: ['FastUI.model.MWindow'],
+  requires: ['FastUI.model.MWindow','FastUI.view.VWindow'],
+  //models: ['FastUI.model.MWindow'],
   //controllers: [],
-    controllers: [
-        'MWindows'
-    ],
+    //controllers: [
+    //    'MWindows'
+    //],
 
   autoCreateViewport: true
 //    launch: function() {
