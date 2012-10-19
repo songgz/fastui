@@ -6,19 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 Ext.define('FastUI.view.VTab', {
-    extend: 'Ext.Panel',
-    alias: 'widget.vtab',
-    title: 'All VTabs',
-    store: 'MTabs',
-    initComponent: function(){
-        Ext.apply(this,{
-            layout: "card",
-            deferredRender: false
-//            title: this.mTab.getName(),
-//            model: this.mTab.getModel(),
-//            tabTip: this.mTab.getDesc(),
-//            tbar: this.getTbar()
-        });
-//        Rib.vp.VTab.superclass.initComponent.call(this);
+    extend:'Ext.Panel',
+    alias:'widget.vtab',
+    title:'All VTabs',
+    mtab:null,
+    listeners:{
+        activate:this.loadGrid
+    },
+    loadGrid:function (tab, opts) {
+        tab.add(Ext.create('FastUI.view.VGrid', {}));
+    },
+    loadForm:function(tab,opts){
+        tab.add(Ext.create('FastUI.view.VForm', {}));
     }
 });

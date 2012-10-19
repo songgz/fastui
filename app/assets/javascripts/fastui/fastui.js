@@ -2,6 +2,7 @@
 Ext.Loader.setPath('Ext', '/assets/fastui/extjs4/src');
 //FastUI.model.MWindow
 // create a new instance of Application class
+Ext.Loader.setConfig({enabled: true});
 Ext.application({
   // the global namespace
   name: 'FastUI',
