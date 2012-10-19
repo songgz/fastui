@@ -35,7 +35,7 @@ Ext.define('FastUI.view.Viewport', {
         collapsible: true,
         split: true,
         width: 150
-    }, Ext.create('FastUI.view.VWindow')
+    }, Ext.create('FastUI.view.VWindow')  //VWindowFactory.create(1)
         ]
 });
 

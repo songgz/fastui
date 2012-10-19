@@ -1,6 +1,8 @@
 Fastui::Engine.routes.draw do
-  #namespace :fastui do
-    resources :m_windows
-  #end
+
+  resources :m_windows do
+    resources :m_tabs
+  end
+
   root :to => "admin#index"
 end

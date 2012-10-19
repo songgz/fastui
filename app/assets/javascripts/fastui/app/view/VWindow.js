@@ -12,14 +12,28 @@ Ext.define('FastUI.view.VWindow', {
     alias: 'widget.vwindow',
     title: 'The VWindow',
     region: 'center',
-    store: 'MWindows',
+    models: ['FastUI.model.MWindow'],
+//    store: 'MWindows',
     initComponent: function () {
-        Ext.create('FastUI.store.MWindows', {
-            model: 'MWindow'
-        });
+//        Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
+//            success: function(user) {
+//                alert(user.get('title')); //outputs 123
+//            }
+//        });
+//        this.m_windows = Ext.create('FastUI.store.MWindows', {
+//            model: 'MWindow'
+//        });
+//        this.m_windows.load({
+//            scope   : this,
+//            callback: function(records,operation, success) {
+//                //the operation object contains all of the details of the load operation
+////                console.log(records);
+//                alert(records);
+//            }
+//        });
 //        this.columns = [
-//            {header: 'Name',  dataIndex: 'name',  flex: 1},
-//            {header: 'Email', dataIndex: 'email', flex: 1}
+//            {header: '标题',  dataIndex: 'title',  flex: 1},
+//            {header: '描述', dataIndex: 'note', flex: 1}
 //        ];
 //        this.callParent(arguments);
 //        this.tbar = [{

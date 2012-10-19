@@ -2,7 +2,8 @@
 #desc "Explaining what the task does"
 namespace :fastui do
   namespace :init do
-    task :load_window do
+    desc "the window data."
+    task :load_window => :environment do
       w = Fastui::MWindow.create(:title => 'FastUI')
 
       t1 = w.m_tabs.create(:title => '窗口')
