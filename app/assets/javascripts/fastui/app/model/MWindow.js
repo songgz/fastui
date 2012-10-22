@@ -8,7 +8,7 @@
 Ext.define('FastUI.model.MWindow', {
     extend: 'Ext.data.Model',
     fields: ['title', 'note'],
-    hasMany: { model:'FastUI.model.MTab',name:'MTabs'},
+    hasMany: { model:'FastUI.model.MTab',name:'m_tabs'},
     proxy: {
         type: 'rest',
         url : '/fastui/m_windows',

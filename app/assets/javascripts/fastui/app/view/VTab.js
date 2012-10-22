@@ -12,11 +12,7 @@ Ext.define('FastUI.view.VTab', {
     mtab:null,
     scope: this,
     listeners:{
-        activate:function(){
-//            var me = this;
-//            me.loadGrid();
-            this.loadGrid(this,'');
-        }
+        activate:this.loadGrid
     },
     loadGrid:function(tab, opts){
       alert('sf');
