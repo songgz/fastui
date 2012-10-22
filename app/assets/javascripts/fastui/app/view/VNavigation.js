@@ -4,20 +4,10 @@ Ext.define('FastUI.view.VNavigation', {
     collapsible:true,
     title:'菜单',
     width:150,
+    scope: this,
     listeners:{
         itemclick:function (self, record, item, index, e, eOpts) {
-            Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
-                success:function (mwindow) {
-                    //alert(mwindow.get('title')); //outputs 123
-
-                    var win = Ext.create('FastUI.view.VWindow',{mwindow:mwindow,title:mwindow.get('title')});
-                    //var win = Ext.create('Ext.Panel', {title:'myss'});
-                    var c = Ext.getCmp('mycenter');
-                    c.add(win);
-                    c.setActiveTab(win);
-
-                }
-            })
+            this.loadVWindow(self, record, item, index, e, eOpts);
         }
 
     },
@@ -46,22 +36,14 @@ Ext.define('FastUI.view.VNavigation', {
         ]
     },
     loadVWindow:function (self, record, item, index, e, eOpts) {
-        //this.id
-        var self = this;
-        alert(self);
         Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
             success:function (mwindow) {
-                //alert(mwindow.get('title')); //outputs 123
-
-                //var win = Ext.create('FastUI.view.VWindow',{title:mwindow.get('title')});
-                var win = Ext.create('Ext.Panel', {title:'myss'});
-                var c = self.center()
+                var win = Ext.create('FastUI.view.VWindow', {mwindow:mwindow,title:mwindow.get('title')});
+                var c = Ext.getCmp('mycenter');
                 c.add(win);
-                c.show();
+                c.setActiveTab(win);
             }
         });
-
-
     }
 
 

@@ -45,6 +45,5 @@ Ext.define('FastUI.view.Viewport', {
                }
         }
     ]
-
 });
 

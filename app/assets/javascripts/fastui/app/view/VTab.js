@@ -10,10 +10,16 @@ Ext.define('FastUI.view.VTab', {
     alias:'widget.vtab',
     title:'All VTabs',
     mtab:null,
+    scope: this,
     listeners:{
-        //activate:this.loadGrid
+        activate:function(){
+//            var me = this;
+//            me.loadGrid();
+            this.loadGrid(this,'');
+        }
     },
-    loadGrid:function (tab, opts) {
+    loadGrid:function(tab, opts){
+      alert('sf');
         tab.add(Ext.create('FastUI.view.VGrid', {}));
     },
     loadForm:function(tab,opts){
