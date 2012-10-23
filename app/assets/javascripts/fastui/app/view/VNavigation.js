@@ -36,6 +36,18 @@ Ext.define('FastUI.view.VNavigation', {
         ]
     },
     loadVWindow:function (self, record, item, index, e, eOpts) {
+//        var store = Ext.create('Ext.data.Store', {
+//            model: "FastUI.model.MWindow"
+//        });
+//        store.load({
+//            callback:function(){
+//               alert(store.count());
+//                store.each(function(st){
+//                    alert(st.get('title'));
+//                });
+//            }
+//        });
+
         Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
             success:function (mwindow) {
                 var win = Ext.create('FastUI.view.VWindow', {mwindow:mwindow,title:mwindow.get('title')});
