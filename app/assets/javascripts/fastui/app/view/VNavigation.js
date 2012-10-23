@@ -4,7 +4,7 @@ Ext.define('FastUI.view.VNavigation', {
     collapsible:true,
     title:'菜单',
     width:150,
-    scope: this,
+    //scope: this,
     listeners:{
         itemclick:function (self, record, item, index, e, eOpts) {
             this.loadVWindow(self, record, item, index, e, eOpts);
@@ -36,8 +36,9 @@ Ext.define('FastUI.view.VNavigation', {
         ]
     },
     loadVWindow:function (self, record, item, index, e, eOpts) {
-        Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
+        Ext.ModelManager.getModel('FastUI.model.MWindow').load(2, {
             success:function (mwindow) {
+                //alert(mwindow.mtabs().first());
                 var win = Ext.create('FastUI.view.VWindow', {mwindow:mwindow,title:mwindow.get('title')});
 
                 var c = Ext.getCmp('mycenter');
