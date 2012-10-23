@@ -39,10 +39,12 @@ Ext.define('FastUI.view.VNavigation', {
         Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
             success:function (mwindow) {
                 var win = Ext.create('FastUI.view.VWindow', {mwindow:mwindow,title:mwindow.get('title')});
-
                 var c = Ext.getCmp('mycenter');
                 c.add(win);
                 c.setActiveTab(win);
+            },
+            failure:function(){
+                alert('failure');
             }
         });
     }

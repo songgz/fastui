@@ -10,9 +10,9 @@ module Fastui
 
     def show
       @m_window = MWindow.includes(:m_tabs).find(params[:id])
-      #p 'dsf'
-      #p @m_window.m_tabs
-      respond_with(@m_window)
+      p 'dsf'
+      p @m_window.m_tabs
+      respond_with(@m_window.to_json(:include => :m_tabs))
     end
   end
 end
