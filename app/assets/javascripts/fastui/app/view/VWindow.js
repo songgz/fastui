@@ -11,7 +11,7 @@ Ext.define('FastUI.view.VWindow', {
         }
     },
     loadTabs:function (vwindow, opts) {
-        vwindow.mwindow.m_tabs().each(function (mtab) {
+        vwindow.mwindow.mtabs().each(function (mtab) {
             var vTab =  Ext.create('FastUI.view.VTab', {title:mtab.get('title')});
             vwindow.add(vTab);
         });
