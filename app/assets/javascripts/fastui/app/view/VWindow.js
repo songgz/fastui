@@ -1,23 +1,21 @@
-
 Ext.define('FastUI.view.VWindow', {
     extend:'Ext.TabPanel',
     alias:'widget.vwindow',
     title:'The VWindow',
     mwindow:null,
-    scope: this,
+    //scope:this,
     listeners:{
         beforerender:function (vwindow, opts) {
-            this.loadTabs(vwindow,opts);
-            vwindow.mwindow.mtabs = [{title:'ksksk'}]
-            Ext.Array.each(vwindow.mwindow.mtabs, function(mtab, index, mtabs) {
-                vwindow.add(Ext.create('FastUI.view.VTab', {title:mtab.title}));
-            });
+            this.loadTabs(vwindow, opts)
         }
     },
     loadTabs:function (vwindow, opts) {
-        alert(vwindow);
-        vwindow.mwindow.mtabs.each(function (mtab) {
-            vwindow.add(Ext.create('FastUI.view.VTab', {title:mtab.get('title')}));
+        vwindow.mwindow.mtabs().load({
+            callback:function (mtabs, operation) {
+                Ext.each(mtabs, function (mtab) {
+                    vwindow.add(Ext.create('FastUI.view.VTab', {title:mtab.get('title')}));
+                });
+            }
         });
     }
 });

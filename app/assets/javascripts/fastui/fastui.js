@@ -12,7 +12,9 @@ Ext.application({
 
   appFolder: '/assets/fastui/app',
 
-  requires: ['FastUI.model.MWindow','FastUI.view.VWindow'],
+  requires: ['FastUI.model.MWindow'],
+
+  //requires: ['FastUI.model.MWindow','FastUI.model.MTab','FastUI.view.VWindow', 'FastUI.view.VTab'],
   //models: ['FastUI.model.MWindow'],
   //controllers: [],
     //controllers: [
@@ -24,13 +26,18 @@ Ext.application({
 //        var store = Ext.create('Ext.data.Store', {
 //            model: 'FastUI.model.MWindow'
 //        });
-
-//        alert(store.load()); //GET /users
+//        store.load({
+//            callback: function(records, operation, success) {
+//                //the operation object contains all of the details of the load operation
+//               // alert(records[1].get('title'));
+//            }
+//        });
+//       alert(store.count()); //GET /users
 //        Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
 //            success: function(user) {
 //                alert(user.get('title')); //outputs 123
 //            }
 //        });
 
-//    }
+   // }
 });
