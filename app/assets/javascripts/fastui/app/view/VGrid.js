@@ -1,7 +1,30 @@
-/**
- * Created with JetBrains RubyMine.
- * User: Administrator
- * Date: 12-10-16
- * Time: 下午4:25
- * To change this template use File | Settings | File Templates.
- */
+Ext.create('Ext.data.Store', {
+    storeId:'simpsonsStore',
+    fields:['name', 'email', 'phone'],
+    data:{'items':[
+        { 'name': 'Lisa',  "email":"lisa@simpsons.com",  "phone":"555-111-1224"  },
+        { 'name': 'Bart',  "email":"bart@simpsons.com",  "phone":"555-222-1234" },
+        { 'name': 'Homer', "email":"home@simpsons.com",  "phone":"555-222-1244"  },
+        { 'name': 'Marge', "email":"marge@simpsons.com", "phone":"555-222-1254"  }
+    ]},
+    proxy: {
+        type: 'memory',
+        reader: {
+            type: 'json',
+            root: 'items'
+        }
+    }
+});
+
+Ext.define('FastUI.view.VGrid', {
+    extend: 'Ext.grid.Panel',
+    title: 'Simpsons',
+    store: Ext.data.StoreManager.lookup('simpsonsStore'),
+    columns: [
+        { header: 'Name',  dataIndex: 'name' },
+        { header: 'Email', dataIndex: 'email', flex: 1 },
+        { header: 'Phone', dataIndex: 'phone' }
+    ],
+    height: 200,
+    width: 400
+});

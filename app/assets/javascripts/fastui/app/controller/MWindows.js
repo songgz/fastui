@@ -1,10 +1,3 @@
-/**
-* Created with JetBrains RubyMine.
-* User: Administrator
-* Date: 12-10-12
-* Time: 下午4:49
-* To change this template use File | Settings | File Templates.
-*/
 
 Ext.define('FastUI.controller.MWindows', {
     extend: 'Ext.app.Controller',
