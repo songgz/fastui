@@ -6,14 +6,16 @@ module Fastui
     def index
         @m_windows = MWindow.all
         #@m_windows[:success] = true
-        respond_with( {:success => true,:m_windows =>@m_windows})
+        #respond_with( {:success => true,:m_windows =>@m_windows})
+      respond_with(@m_windows)
     end
 
     def show
       @m_window = MWindow.includes(:m_tabs).find(params[:id])
       #p 'dsf'
       #p @m_window.m_tabs
-      respond_with({:success => true,:m_windows =>@m_window})
+      #respond_with({:success => true,:m_windows =>@m_window})
+      respond_with(@m_window.to_json(:include => :m_tabs))
     end
   end
 end
