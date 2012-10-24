@@ -1,8 +1,7 @@
 Ext.define('FastUI.model.MTab', {
     extend:'Ext.data.Model',
-
+    requires:['FastUI.model.MField','FastUI.model.MColumn'],
     fields:['id', 'title', 'm_window_id'],
-
     associations:[
         {
             type:'belongsTo',
@@ -11,6 +10,16 @@ Ext.define('FastUI.model.MTab', {
 //            primaryKey:'id',
 //            foreignKey:'m_window_id'
             //associationKey: 'parent_group' // read parent data from parent_group
+        },
+        {
+            type: 'hasMany',
+            model: 'FastUI.model.MField',
+            name: 'mfields'
+        },
+        {
+            type: 'hasMany',
+            model: 'FastUI.model.MColumn',
+            name: 'mcolumns'
         }
     ],
 
