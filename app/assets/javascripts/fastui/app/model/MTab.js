@@ -14,12 +14,14 @@ Ext.define('FastUI.model.MTab', {
         {
             type: 'hasMany',
             model: 'FastUI.model.MField',
-            name: 'mfields'
+            name: 'mfields',
+            associationKey: 'm_fields'
         },
         {
             type: 'hasMany',
             model: 'FastUI.model.MColumn',
-            name: 'mcolumns'
+            name: 'mcolumns',
+            associationKey: 'm_columns'
         }
     ],
 
