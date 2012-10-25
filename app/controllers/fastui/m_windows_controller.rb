@@ -11,11 +11,13 @@ module Fastui
     end
 
     def show
-      @m_window = MWindow.includes(:m_tabs).find(params[:id])
+      @m_window = MWindow.find(params[:id])
       #p 'dsf'
       #p @m_window.m_tabs
       #respond_with({:success => true,:m_windows =>@m_window})
-      respond_with(@m_window.to_json(:include => :m_tabs))
+      #respond_with(@m_window.to_json(:include => :m_tabs))
+      p @m_window.to_json(:include =>{:m_tabs =>{:include =>{:m_fields=>{},:m_columns=>{}}}})
+      respond_with(@m_window.to_json(:include =>{:m_tabs =>{:include =>{:m_fields=>{},:m_columns=>{}}}}))
     end
   end
 end

@@ -10,7 +10,10 @@ module Fastui
 
     def show
       @m_tab = MTab.find(params[:id])
-      respond_with(@m_tab)
+
+      p @m_tab.to_json(:include => [:m_columns,:m_fields])
+
+      respond_with(@m_tab.to_json(:include => [:m_columns,:m_fields]))
     end
 
   end

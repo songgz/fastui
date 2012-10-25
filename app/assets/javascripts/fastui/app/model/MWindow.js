@@ -1,8 +1,6 @@
 Ext.define('FastUI.model.MWindow', {
     extend:'Ext.data.Model',
-
     requires:['FastUI.model.MTab'],
-
     fields:['id', 'title', 'note'],
     associations:[
         {
