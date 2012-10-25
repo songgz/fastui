@@ -23,6 +23,9 @@ namespace :fastui do
       t4 = w.m_tabs.create(:title => '标签Action')
       t4.m_fields.create(:title => '标题')
 
+      t1.m_columns.create([{:title => 'ID',:data_index => 'id',:xtype => 'VDefaultColumn',:sortable => true,:width => 35},
+                            {:title => '窗口名称',:data_index => 'title',:xtype => 'VDefaultColumn',:sortable => true,:width => 75}])
+
     end
   end
 end

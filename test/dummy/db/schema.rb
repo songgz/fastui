@@ -31,10 +31,8 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.boolean  "sortable"
     t.integer  "width"
     t.integer  "m_tab_id"
-    t.string   "association"
-    t.string   "association_name"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "fastui_m_columns", ["m_tab_id"], :name => "index_fastui_m_columns_on_m_tab_id"

@@ -4,7 +4,6 @@ Ext.define('FastUI.model.MWindow', {
     requires:['FastUI.model.MTab'],
 
     fields:['id', 'title', 'note'],
-
     associations:[
         {
             type:'hasMany',

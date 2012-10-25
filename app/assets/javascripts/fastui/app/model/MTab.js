@@ -1,7 +1,7 @@
 Ext.define('FastUI.model.MTab', {
     extend:'Ext.data.Model',
     requires:['FastUI.model.MField','FastUI.model.MColumn'],
-    fields:['id', 'title', 'm_window_id'],
+    fields:['id', 'title', 'm_window_id','model_class','note','help','actived','org_id','createdby','updatedby'],
     associations:[
         {
             type:'belongsTo',

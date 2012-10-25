@@ -7,8 +7,8 @@ class CreateFastuiMColumns < ActiveRecord::Migration
       t.boolean :sortable
       t.integer :width
       t.references :m_tab
-      t.string :association
-      t.string :association_name
+      #t.string :association
+      #t.string :association_name
 
       t.timestamps
     end

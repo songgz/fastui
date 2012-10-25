@@ -5,13 +5,21 @@ Ext.define('FastUI.view.VTab', {
     title:'All VTabs',
     mtab:null,
     listeners:{
-        activate: function(tab, opts){
-            this.createToolBar(tab);
-//            this.loadGrid(tab, opts);
+        activate: function(tab,opts){
+            this.loadGrid(tab, opts);
         }
     },
     loadGrid:function(tab, opts){
-        tab.add(Ext.create('FastUI.view.VGrid'));
+        if(!this.grid){
+            this.createToolBar(tab);
+//            var gStore = Ext.create('Ext.data.Store', {
+//                model: "FastUI.model.MWindow"
+//            });
+            this.grid = new Ext.create('FastUI.view.VGrid',{mtab:this.mtab});
+            this.add(this.grid);
+        }
+        this.getLayout();
+//        tab.add(Ext.create('FastUI.view.VGrid'));
     },
     loadForm:function(tab,opts){
         tab.add(Ext.create('FastUI.view.VForm', {}));
