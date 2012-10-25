@@ -1,6 +1,7 @@
 Ext.Loader.setConfig({enabled: true});
 // Set valid ExtJS loading path (/vendor/assets/extjs4/src)
 Ext.Loader.setPath('Ext', '/assets/fastui/extjs4/src');
+Ext.Loader.setPath('Ext.ux', '/assets/fastui/extjs4/ux');
 //Ext.require('FastUI.model.MWindow');
 
 //FastUI.model.MWindow
@@ -12,7 +13,7 @@ Ext.application({
 
   appFolder: '/assets/fastui/app',
 
-  requires: ['FastUI.model.MWindow'],
+  requires: ['FastUI.model.MWindow','FastUI.view.VVWindow'],
   //models: ['FastUI.model.MWindow'],
   //controllers: [],
     //controllers: [

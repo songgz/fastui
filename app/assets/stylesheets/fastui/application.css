@@ -9,4 +9,5 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require ./extjs4/resources/css/ext-all
+ *= require ./extjs4/ux/tab/VerticalTabPanel
  */
