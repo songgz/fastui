@@ -4,7 +4,7 @@ Ext.define('FastUI.view.VGrid', {
     initComponent:function(){
 //        this.model_class = this.mtab.get('model_class');
         this.model_class = 'm_tab';
-        alert(this.model_class);
+//        alert(this.model_class);
         if(this.model_class){
             this.columns = this.gridColumns();
             this.store = this.gridStore();
@@ -14,7 +14,7 @@ Ext.define('FastUI.view.VGrid', {
     gridStore:function(){
 //        alert(this.mtab.get('model_class'));
 //        alert(this.model_class);
-        alert(this.constructModelName());
+//        alert(this.constructModelName());
       return Ext.create('Ext.data.Store', {
 //           model: 'FastUI.model.MWindow',
            model:'FastUI.model.'+this.constructModelName(),
