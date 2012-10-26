@@ -3,7 +3,7 @@ Ext.define('FastUI.view.VFactory', {
 
     constructor:function (vdata) {
         this._vdata = vdata;
-        this._vdata.model_class = 'Fastui::MWindow'
+        this._vdata.model_class = 'm_window'
     },
 
     getVData:function () {
@@ -54,10 +54,12 @@ Ext.define('FastUI.view.VFactory', {
 
     getFormFields:function () {
         var fields = [];
+        var fieldName = this._vdata.model_class + '[title]';
         Ext.each(this._vdata.m_fields, function (field) {
+//            alert(field.m_attr);
             fields.push({
                 fieldLabel:field.title,
-                name:field.m_attr,
+                name:fieldName,
                 allowBlank:true
             });
         });
