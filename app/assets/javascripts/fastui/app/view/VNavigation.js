@@ -36,18 +36,39 @@ Ext.define('FastUI.view.VNavigation', {
         ]
     },
     loadVWindow:function (self, record, item, index, e, eOpts) {
-        Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
-            success:function (mwindow) {
-                var win = Ext.create('FastUI.view.VWindow', {mwindow:mwindow,title:mwindow.get('title')});
-                var c = Ext.getCmp('mycenter');
-                c.add(win);
-                c.setActiveTab(win);
-            },
-            failure:function(){
-               alert('failure');
-            }
+        Ext.Ajax.request({
+                    url: '/fastui/' +  'm_windows/1.json',
+                    params: {
+                    },
+                    success: function(response){
+                        var win = Ext.create('FastUI.view.VWindow', {
+                            vfactory: Ext.create('FastUI.view.VFactory',Ext.JSON.decode(response.responseText))
+                        });
+                        var c = Ext.getCmp('mycenter');
+                        c.add(win);
+                        c.setActiveTab(win);
+                    }
         });
     }
+
+
+
+//
+//        var w = Ext.create('FastUI.view.VFactory','m_windows/1.json');
+//        w.getTitle();
+
+//        Ext.ModelManager.getModel('FastUI.model.MWindow').load(1, {
+//            success:function (mwindow) {
+//                var win = Ext.create('FastUI.view.VWindow', {mwindow:mwindow,title:mwindow.get('title')});
+//                var c = Ext.getCmp('mycenter');
+//                c.add(win);
+//                c.setActiveTab(win);
+//            },
+//            failure:function(){
+//               alert('failure');
+//            }
+//        });
+
 
 
 });

@@ -13,7 +13,7 @@ Ext.application({
 
   appFolder: '/assets/fastui/app',
 
-  requires: ['FastUI.model.MWindow','FastUI.view.VVWindow'],
+  requires: ['FastUI.model.MWindow','FastUI.view.VVWindow','FastUI.view.VFactory'],
   //models: ['FastUI.model.MWindow'],
   //controllers: [],
     //controllers: [
