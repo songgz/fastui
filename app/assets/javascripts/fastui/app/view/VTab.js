@@ -16,8 +16,8 @@ Ext.define('FastUI.view.VTab', {
                         },
                         { text:'编辑',
                             handler:function () {
-                                alert('编辑');
-                            }},
+                                this.editForm();
+                            },scope:this},
                         { text:'列表',
                             handler:function () {
                                 this.loadGrid();
@@ -40,18 +40,31 @@ Ext.define('FastUI.view.VTab', {
         },
     listeners:{
         activate:function (tab, opts) {
-            this.loadGrid(tab, opts);
+            this.loadGrid();
         }
     },
-    loadGrid:function (tab, opts) {
+    loadGrid:function () {
         this.grid = this.grid || Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory});
         this.add(this.grid);
         this.getLayout().setActiveItem(this.grid.id);
     },
-    loadForm:function (tab, opts) {
-        this.form = this.form || Ext.create('FastUI.view.VForm', {vfactory:this.vfactory})
+    loadForm:function () {
+        this.form = this.form || Ext.create('FastUI.view.VForm', {vfactory:this.vfactory});
         this.add(this.form);
         this.getLayout().setActiveItem(this.form.id);
+    },
+    editForm: function(){
+        var record = this.grid.getSelectionModel().getSelection();
+        if(record) this.currentRecord = record;
+        alert(this.currentRecord.id);
+        this.form = Ext.create('FastUI.view.VForm', {vfactory:this.vfactory,title:'编辑'})
+        if(this.form && this.currentRecord){
+//            this.form.getComponent(0).setValue("PUT");
+//            this.form.url = "/fastui/m_windows/"+4+".json";
+            this.form.getForm().load({url:"/fastui/m_windows/"+4+"/edit.json",method:'GET'});
+
+
+        }
     },
     save:function () {
                     var form = this.form.getForm();

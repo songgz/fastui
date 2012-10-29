@@ -10,10 +10,16 @@ Ext.define('FastUI.view.VForm', {
     defaultType:'textfield',
 
     initComponent:function () {
-        this.title = this.vfactory.getVData().title;
-        this.url = '/fastui/m_windows.json'
-        this.items = this.vfactory.getFormFields(),
+//        this.title = this.vfactory.getVData().title;
+        this.url = '/fastui/m_windows.json';
+        this.items = this.vfactory.getFormFields();
+        this.reader = this.getReader();
         this.callParent();
+
+    },
+    getReader: function(){
+        var data = this.vfactory.getVData();
+        alert(data.title);
 
     },
 

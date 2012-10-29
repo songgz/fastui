@@ -20,8 +20,8 @@ Ext.define('FastUI.view.VFactory', {
                 url:'/fastui/m_windows.json', //model_class
                 reader:{
                     type:'json',
-                    root:'',
-                    idProperty:'id'
+                    root:'m_windows'
+//                    idProperty:'id'
                 }
             },
 
