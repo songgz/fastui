@@ -10,46 +10,60 @@ Ext.define('FastUI.view.VForm', {
     defaultType:'textfield',
 
     initComponent:function () {
+
 //        this.title = this.vfactory.getVData().title;
         this.url = '/fastui/m_windows.json';
         this.items = this.vfactory.getFormFields();
-        this.reader = this.getReader();
+//        this.reader = this.getReader();
         this.callParent();
 
     },
     getReader: function(){
-        var data = this.vfactory.getVData();
-        alert(data.title);
-
-    },
+//        var fields = [];
+//        var m = this.mTab.getModel();
+//        Ext.each(this.mTab.getMFields(),function(item){
+//            fields.push({
+//                name: m+"["+item.getAttr()+"]",
+//                mapping: m+"."+item.getAttr()
+//            });
+//        });
+//        var fields = [];
+//        fields.push({
+//            name:'title',mapping:'m_window[title]'
+//        });
+        var r = new Ext.data.reader.Json({
+            successProperty: 'success',
+          root:'data'
+        },[{name:'m_window[title]',mapping:'m_window[title]'}]);
+        return r;
+    }
 
     // Reset and Submit buttons
-    buttons:[
-        {
-            text:'Reset',
-            handler:function () {
-                this.up('form').getForm().reset();
-            }
-        },
-        {
-            text:'Submit',
-            formBind:true, //only enabled once the form is valid
-            disabled:true,
-            handler:function () {
-                var form = this.up('form').getForm();
-//                if (form.isValid()) {
-                    form.submit({
-                        success:function (form, action) {
-                            Ext.Msg.alert('Success', action.result.msg);
-                        },
-                        failure:function (form, action) {
-                            Ext.Msg.alert('Failed', action.result.msg);
-                        }
-                    });
-//                }
-            }
-        }
-    ]
+//    buttons:[
+//        {
+//            text:'Reset',
+//            handler:function () {
+//                this.up('form').getForm().reset();
+//            }
+//        },
+//        {
+//            text:'Submit',
+//            formBind:true, //only enabled once the form is valid
+//            disabled:true,
+//            handler:function () {
+//                var form = this.up('form').getForm();
+//                    form.submit({
+//                        success:function (form, action) {
+//                            Ext.Msg.alert('Success', action.result.msg);
+//                        },
+//                        failure:function (form, action) {
+//                            Ext.Msg.alert('Failed', action.result.msg);
+//                        }
+//                    });
+////                }
+//            }
+//        }
+//    ]
 //    submitForm: function(){
 //        Ext.MessageBox.show({
 //            title: '\u8bf7\u7a0d\u7b49',//请稍等
