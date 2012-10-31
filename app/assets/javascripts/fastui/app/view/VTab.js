@@ -114,17 +114,33 @@ Ext.define('FastUI.view.VTab', {
         if (this.form) {
             var form = this.form.getForm();
             if (form.isValid()) {
-                form.submit({
-                    scope:this,
-                    success:function (form, action) {
-                        Ext.Msg.alert('Success', action.result.msg);
+//                form.submit({
+//                    scope:this,
+//                    success:function (form, action) {
+//                        Ext.Msg.alert('Success', action.result.msg);
+//                        this.cmdList();
+//                    },
+//                    failure:function (form, action) {
+//                        Ext.Msg.alert('Failed', action.result.msg);
+//                    }
+//                });
+                Ext.Ajax.request({
+                    url:form.url,
+                    method:form.method,
+                    params:form.getValues(false, false,false),
+                    success:function () {
                         this.cmdList();
+                        Ext.MessageBox.alert("提示", "操作成功！")
                     },
-                    failure:function (form, action) {
-                        Ext.Msg.alert('Failed', action.result.msg);
-                    }
+                    failure:function () {
+                        Ext.MessageBox.alert("提示", "操作失败！")
+                    },
+                    scope:this
                 });
             }
         }
+    },
+    constructAjaxRequest:function(){
+
     }
 });
