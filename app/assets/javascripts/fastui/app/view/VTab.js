@@ -67,7 +67,7 @@ Ext.define('FastUI.view.VTab', {
             this.form = Ext.create('FastUI.view.VForm', {vfactory:this.vfactory, title:'编辑'});
             this.add(this.form);
         }
-        alert(this.currentRecord.get('id'));
+//        alert(this.currentRecord.get('id'));
 //        this.form.url = "/fastui/m_windows/" + this.currentRecord.get('id') + ".json";
         this.form.url = this.get_url('update');
         this.form.method = 'PUT';
