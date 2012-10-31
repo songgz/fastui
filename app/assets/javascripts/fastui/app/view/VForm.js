@@ -20,6 +20,19 @@ Ext.define('FastUI.view.VForm', {
     getReader: function(){
         var data = this.vfactory.getVData();
         alert(data.title);
+        return new Ext.data.reader.Json({
+            fields: [
+                        { "name": "userId", "type": "int" },
+                        { "name": "name", "type": "string" },
+                        { "name": "birthday", "type": "date", "dateFormat": "Y-j-m" }
+                    ],
+            columns: [
+                        { "text": "User ID", "dataIndex": "userId", "width": 40 },
+                        { "text": "User Name", "dataIndex": "name", "flex": 1 },
+                        { "text": "Birthday", "dataIndex": "birthday", "flex": 1, "format": 'Y-j-m', "xtype": "datecolumn" }
+                    ]
+
+        });
 
     },
 
