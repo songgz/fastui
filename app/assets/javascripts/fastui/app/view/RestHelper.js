@@ -32,8 +32,6 @@ Ext.define('FastUI.view.RestHelper', {
                }
     },
     getName:function(){
-        this.model_class;
+        return this.model_class;
     }
-
-
 });
