@@ -6,6 +6,7 @@ Ext.define('FastUI.view.VTab', {
     layout:"card",
     initComponent:function () {
         this.title = this.vfactory.getVData().title;
+        this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getVData().model_class)
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             items:[
                 {   text:'新建',
@@ -64,23 +65,23 @@ Ext.define('FastUI.view.VTab', {
         var record = this.grid.getSelectionModel().getSelection();
         if (record) this.currentRecord = record[0];
         if (!this.form) {
-            this.form = Ext.create('FastUI.view.VForm', {vfactory:this.vfactory, title:'编辑'});
+            this.form = Ext.create('FastUI.view.VForm', {vfactory:this.vfactory});
             this.add(this.form);
         }
-//        alert(this.currentRecord.get('id'));
-//        this.form.url = "/fastui/m_windows/" + this.currentRecord.get('id') + ".json";
-        this.form.url = this.get_url('update');
-        this.form.method = 'PUT';
+
+        var form = this.form.getForm();
+        form.url = this.restHelper('update', this.currentRecord.get('id'));
+        form.method = 'PUT';
+
         Ext.Ajax.request({
-//            url:"/fastui/m_windows/" + this.currentRecord.get('id') + "/edit.json",
-            url:this.get_url('edit'),
+            url:this.restHelper('edit', this.currentRecord.get('id')),
             success:function (response) {
                 var data = Ext.decode(response.responseText);
                 var k, o = {};
                 for (k in data) {
-                    o['m_window[' + k + ']'] = data[k];
+                    o[this.restHelper.getName() + '[' + k + ']'] = data[k];
                 }
-                this.form.getForm().setValues(o);
+                form.setValues(o);
             }, scope:this
         });
         this.getLayout().setActiveItem(this.form.id);
@@ -88,14 +89,11 @@ Ext.define('FastUI.view.VTab', {
     cmdDelete:function () {
         var record = this.grid.getSelectionModel().getSelection();
         if (record) this.currentRecord = record[0];
-        var opt = {msg:'确定要删除%吗?', method:'DELETE'}
-        var msg = (opt.msg || "确定要" + opt.getName() + "%吗?").replace(new RegExp('%'), "tt")
-        Ext.MessageBox.confirm('提示', msg, function (btn) {
+        Ext.MessageBox.confirm('提示', '确定要删除此记录吗?', function (btn) {
             if (btn == 'yes') {
                 Ext.Ajax.request({
-//                    url:"/fastui/m_windows/" + this.currentRecord.get('id') + ".json",
-                    url:this.get_url('delete'),
-                    method:opt.method || 'GET',
+                    url:this.restHelper('delete', this.currentRecord.get('id')),
+                    method:'DELETE',
                     success:function () {
                         this.loadGrid();
                         Ext.MessageBox.alert("提示", "操作成功！")
@@ -114,8 +112,6 @@ Ext.define('FastUI.view.VTab', {
             var form = this.form.getForm();
             if (form.isValid()) {
                 form.submit({
-                    url:this.form.url,
-                    method:this.form.method,
                     scope:this,
                     success:function (form, action) {
                         Ext.Msg.alert('Success', action.result.msg);
@@ -126,30 +122,6 @@ Ext.define('FastUI.view.VTab', {
                     }
                 });
             }
-        }
-    },
-    get_url:function (action, event_name, record) {
-        var url = '/fastui/m_windows';
-        if (record) this.currentRecord = record;
-        switch (action) {
-            case "index":
-                return url + ".json";
-                break;
-            case "create":
-                return url + ".json";
-                break;
-            case "update":
-                return url + "/" + this.currentRecord.get('id') + ".json";
-                break;
-            case "edit":
-                return url + "/" + this.currentRecord.get('id')  + "/edit.json";
-                break;
-            case "delete":
-                return url + "/" + this.currentRecord.get('id')  + ".json";
-                break;
-            case "special":
-                return url + "/" + this.currentRecord.get('id')  + "/" + event_name + ".json";
-                break;
         }
     }
 });

@@ -11,4 +11,5 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require ./extjs4/ext-all
+//= require ./inflector
 //= require ./fastui
