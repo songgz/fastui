@@ -9,7 +9,9 @@ Ext.define('FastUI.view.VFactory', {
     getVData:function () {
         return this._vdata;
     },
+    getModel:function(){
 
+    },
     getStore:function () {
         return new Ext.data.JsonStore({
             // store configs
@@ -20,7 +22,7 @@ Ext.define('FastUI.view.VFactory', {
                 url:'/fastui/m_windows.json', //model_class
                 reader:{
                     type:'json',
-                    root:'m_windows'
+                    root:''
 //                    idProperty:'id'
                 }
             },
@@ -56,10 +58,10 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
         var fieldName = this._vdata.model_class + '[title]';
         Ext.each(this._vdata.m_fields, function (field) {
-//            alert(field.m_attr);
             fields.push({
                 fieldLabel:field.title,
                 name:fieldName,
+//                value:record.get('title'),
                 allowBlank:true
             });
         });
