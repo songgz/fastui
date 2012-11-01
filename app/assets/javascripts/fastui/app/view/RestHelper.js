@@ -10,6 +10,17 @@ Ext.define('FastUI.view.RestHelper', {
         this.ext = '.json';
     },
     getPath:function(action, id){
+//        var url = Inflector.pluralize(this.mTab.getModel());
+//        var parent_tab = this.mTab.getIncludedTab();
+//        if(parent_tab){
+//            var id = 0;
+//            var include_tab = this.findParentByType(Ext.TabPanel).find("model",parent_tab.getModel());
+//            if(include_tab[0] && include_tab[0].grid){
+//                var selectedRow = include_tab[0].grid.getSelectionModel().getSelected();
+//                id = selectedRow ? selectedRow.id : 0;
+//                url = Inflector.pluralize(include_tab[0].model)+"/"+id+"/"+url;
+//            }
+//        }
                switch (action) {
                    case "index":
                        return this.root + "/" + this.resource + this.ext;
