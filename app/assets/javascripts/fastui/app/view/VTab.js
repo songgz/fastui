@@ -124,7 +124,20 @@ Ext.define('FastUI.view.VTab', {
 //                        Ext.Msg.alert('Failed', action.result.msg);
 //                    }
 //                });
-                Ext.Ajax.request({
+//                Ext.Ajax.request({
+//                    url:form.url,
+//                    method:form.method,
+//                    params:form.getValues(false, false,false),
+//                    success:function () {
+//                        this.cmdList();
+//                        Ext.MessageBox.alert("提示", "操作成功！")
+//                    },
+//                    failure:function () {
+//                        Ext.MessageBox.alert("提示", "操作失败！")
+//                    },
+//                    scope:this
+//                });
+                this.constructAjaxRequest({
                     url:form.url,
                     method:form.method,
                     params:form.getValues(false, false,false),
@@ -136,11 +149,18 @@ Ext.define('FastUI.view.VTab', {
                         Ext.MessageBox.alert("提示", "操作失败！")
                     },
                     scope:this
-                });
+                })
             }
         }
     },
-    constructAjaxRequest:function(){
-
+    constructAjaxRequest:function(options){
+        return Ext.Ajax.request({
+            url: options.url,
+            method: options.method,
+            params: options.params,
+            success: options.success,
+            failure: options.failure,
+            scope: options.scope
+        });
     }
 });
