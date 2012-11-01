@@ -16,8 +16,9 @@ Ext.define('FastUI.view.VNavigation', {
         expanded:true,
         children:[
             {
-                text:'Child 1',
-                leaf:true
+                text:'FastUI',
+                leaf:true,
+                id:1
             },
             {
                 text:'Child 2',
@@ -36,18 +37,19 @@ Ext.define('FastUI.view.VNavigation', {
         ]
     },
     loadVWindow:function (self, record, item, index, e, eOpts) {
+
         Ext.Ajax.request({
-                    url: '/fastui/' +  'm_windows/1.json',
-                    params: {
-                    },
-                    success: function(response){
-                        var win = Ext.create('FastUI.view.VWindow', {
-                            vfactory: Ext.create('FastUI.view.VFactory',Ext.JSON.decode(response.responseText))
-                        });
-                        var c = Ext.getCmp('mycenter');
-                        c.add(win);
-                        c.setActiveTab(win);
-                    }
+            url:'/fastui/' + 'm_windows/1.json',
+            params:{
+            },
+            success:function (response) {
+                var win = Ext.create('FastUI.view.VVWindow', {
+                    vfactory:Ext.create('FastUI.view.VFactory', Ext.JSON.decode(response.responseText))
+                });
+                var c = Ext.getCmp('mycenter');
+                c.add(win);
+                c.setActiveTab(win);
+            }
         });
     }
 
