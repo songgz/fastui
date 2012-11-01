@@ -10,14 +10,14 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             VLongComboBox:"VLongComboBox",
             VTextArea:"VTextArea",
             VNumber:"VNumber",
-            VCheckBox:"VCheckBox"
-//            VCheckboxGroup:"VCheckboxGroup",
-//            VSexSelect:"VSexSelect",
-//            VByte:"VByte",
-//            VYesOrNo:"VYesOrNo",
+            VCheckBox:"VCheckBox",
+            VCheckboxGroup:"VCheckboxGroup",
+            VSexSelect:"VSexSelect",
+            VFile:"VFile",
+            VYesOrNo:"VYesOrNo",
 //            VFieldCombobox:"VFieldCombobox",
 //            VIncludedTabsCombo:"VIncludedTabsCombo",
-//            VGridColumnXtypeCombo:"VGridColumnXtypeCombo"
+            VGridColumnXtypeCombo:"VGridColumnXtypeCombo"
         }
     },
     buildField:function (field) {
@@ -46,6 +46,18 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
                 break;
             case this.VType.VCheckBox:
                 return Ext.create('FastUI.view.vfield.VCheckBox', opt);
+                break;
+            case this.VType.VCheckboxGroup:
+                return Ext.create('FastUI.view.vfield.VCheckboxGroup', opt);
+                break;
+            case this.VType.VSexSelect:
+                return Ext.create('FastUI.view.vfield.VSexSelect', opt);
+                break;
+            case this.VType.VFile:
+                return Ext.create('FastUI.view.vfield.VFile', opt);
+                break;
+            case this.VType.VYesOrNo:
+                return Ext.create('FastUI.view.vfield.VYesOrNo', opt);
                 break;
         }
     }
