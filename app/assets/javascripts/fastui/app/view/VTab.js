@@ -6,7 +6,7 @@ Ext.define('FastUI.view.VTab', {
     layout:"card",
     initComponent:function () {
         this.title = this.vfactory.getVData().title;
-        this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getVData().model_class);
+        this.restHelper = Ext.create('FastUI.view.RestHelper',this.vfactory.getVData().model_class);
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             items:[
                 {   text:'新建',
@@ -50,7 +50,7 @@ Ext.define('FastUI.view.VTab', {
             this.add(this.grid);
         }
 
-        this.grid.getStore().reload(); // 不一定每次都要刷新 需修改
+        this.grid.getStore(this.model_class).reload(); // 不一定每次都要刷新 需修改
         this.getLayout().setActiveItem(this.grid.id);
     },
     cmdCreate:function () {
