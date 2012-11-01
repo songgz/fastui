@@ -56,15 +56,19 @@ Ext.define('FastUI.view.VFactory', {
 
     getFormFields:function () {
         var fields = [];
-        var fieldName = this._vdata.model_class + '[title]';
+//        var fieldName = this._vdata.model_class + '[title]';
         Ext.each(this._vdata.m_fields, function (field) {
-            fields.push({
-                fieldLabel:field.title,
-                name:fieldName,
-//                value:record.get('title'),
-                allowBlank:true
-            });
-        });
+            field.vfield = 'VDate';
+            field.m_attr ='title';
+            field.name = this._vdata.model_class +'['+field.m_attr + ']';
+            fields.push(Ext.create('FastUI.view.vfield.VFieldFactory').buildField(field));
+//            fields.push({
+//                fieldLabel:field.title,
+//                name:fieldName,
+////                value:record.get('title'),
+//                allowBlank:true
+//            });
+        },this);
         return fields;
     },
 
