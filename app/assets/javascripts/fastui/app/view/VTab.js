@@ -6,12 +6,12 @@ Ext.define('FastUI.view.VTab', {
     layout:"card",
     initComponent:function () {
         this.title = this.vfactory.getVData().title;
-        this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getVData().model_class)
+        this.restHelper = Ext.create('FastUI.view.RestHelper',this.vfactory.getVData().model_class);
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             items:[
                 {   text:'新建',
                     handler:function () {
-                        this.loadForm();
+                        this.cmdCreate();
                     },
                     scope:this
                 },
@@ -21,7 +21,7 @@ Ext.define('FastUI.view.VTab', {
                     }, scope:this},
                 { text:'列表',
                     handler:function () {
-                        this.loadGrid();
+                        this.cmdList();
                     }, scope:this},
                 { text:'保存',
                     handler:function () {
@@ -41,25 +41,28 @@ Ext.define('FastUI.view.VTab', {
     },
     listeners:{
         activate:function (tab, opts) {
-            this.loadGrid();
+            this.cmdList();
         }
     },
-    loadGrid:function () {
+    cmdList:function () {
         if (!this.grid) {
             this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory});
             this.add(this.grid);
         }
 
-        this.grid.getStore().reload(); // 不一定每次都要刷新 需修改
+        this.grid.getStore(this.model_class).reload(); // 不一定每次都要刷新 需修改
         this.getLayout().setActiveItem(this.grid.id);
     },
-    loadForm:function () {
+    cmdCreate:function () {
         if (!this.form) {
             this.form = Ext.create('FastUI.view.VForm', {vfactory:this.vfactory});
             this.add(this.form);
         }
         this.getLayout().setActiveItem(this.form.id);
-        this.form.getForm().reset();
+        var form = this.form.getForm();
+        form.url = this.restHelper.getPath('create');
+        form.method = 'POST';
+        form.reset();
     },
     cmdEdit:function () {
         var record = this.grid.getSelectionModel().getSelection();
@@ -70,11 +73,11 @@ Ext.define('FastUI.view.VTab', {
         }
 
         var form = this.form.getForm();
-        form.url = this.restHelper('update', this.currentRecord.get('id'));
+        form.url = this.restHelper.getPath('update', this.currentRecord.get('id'));
         form.method = 'PUT';
 
         Ext.Ajax.request({
-            url:this.restHelper('edit', this.currentRecord.get('id')),
+            url:this.restHelper.getPath('edit', this.currentRecord.get('id')),
             success:function (response) {
                 var data = Ext.decode(response.responseText);
                 var k, o = {};
@@ -92,10 +95,10 @@ Ext.define('FastUI.view.VTab', {
         Ext.MessageBox.confirm('提示', '确定要删除此记录吗?', function (btn) {
             if (btn == 'yes') {
                 Ext.Ajax.request({
-                    url:this.restHelper('delete', this.currentRecord.get('id')),
+                    url:this.restHelper.getPath('delete', this.currentRecord.get('id')),
                     method:'DELETE',
                     success:function () {
-                        this.loadGrid();
+                        this.cmdList();
                         Ext.MessageBox.alert("提示", "操作成功！")
                     },
                     failure:function () {
@@ -111,17 +114,53 @@ Ext.define('FastUI.view.VTab', {
         if (this.form) {
             var form = this.form.getForm();
             if (form.isValid()) {
-                form.submit({
-                    scope:this,
-                    success:function (form, action) {
-                        Ext.Msg.alert('Success', action.result.msg);
-                        this.loadGrid();
+//                form.submit({
+//                    scope:this,
+//                    success:function (form, action) {
+//                        Ext.Msg.alert('Success', action.result.msg);
+//                        this.cmdList();
+//                    },
+//                    failure:function (form, action) {
+//                        Ext.Msg.alert('Failed', action.result.msg);
+//                    }
+//                });
+//                Ext.Ajax.request({
+//                    url:form.url,
+//                    method:form.method,
+//                    params:form.getValues(false, false,false),
+//                    success:function () {
+//                        this.cmdList();
+//                        Ext.MessageBox.alert("提示", "操作成功！")
+//                    },
+//                    failure:function () {
+//                        Ext.MessageBox.alert("提示", "操作失败！")
+//                    },
+//                    scope:this
+//                });
+                this.constructAjaxRequest({
+                    url:form.url,
+                    method:form.method,
+                    params:form.getValues(false, false,false),
+                    success:function () {
+                        this.cmdList();
+                        Ext.MessageBox.alert("提示", "操作成功！")
                     },
-                    failure:function (form, action) {
-                        Ext.Msg.alert('Failed', action.result.msg);
-                    }
-                });
+                    failure:function () {
+                        Ext.MessageBox.alert("提示", "操作失败！")
+                    },
+                    scope:this
+                })
             }
         }
+    },
+    constructAjaxRequest:function(options){
+        return Ext.Ajax.request({
+            url: options.url,
+            method: options.method,
+            params: options.params,
+            success: options.success,
+            failure: options.failure,
+            scope: options.scope
+        });
     }
 });

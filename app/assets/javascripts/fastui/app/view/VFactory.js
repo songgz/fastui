@@ -3,7 +3,11 @@ Ext.define('FastUI.view.VFactory', {
 
     constructor:function (vdata) {
         this._vdata = vdata;
-        this._vdata.model_class = 'm_window'
+        this.model_class = this._vdata.model_class;
+        if(this.model_class){
+            this.resource = Inflector.pluralize(this._vdata.model_class.toLowerCase());
+        }
+//        this._vdata.model_class = 'm_window'
     },
 
     getVData:function () {
@@ -19,7 +23,7 @@ Ext.define('FastUI.view.VFactory', {
             autoLoad:true,
             proxy:{
                 type:'ajax',
-                url:'/fastui/m_windows.json', //model_class
+                url:'/fastui/'+this.resource+'.json', //model_class
                 reader:{
                     type:'json',
                     root:''
@@ -56,15 +60,16 @@ Ext.define('FastUI.view.VFactory', {
 
     getFormFields:function () {
         var fields = [];
-        var fieldName = this._vdata.model_class + '[title]';
         Ext.each(this._vdata.m_fields, function (field) {
-            fields.push({
-                fieldLabel:field.title,
-                name:fieldName,
-//                value:record.get('title'),
-                allowBlank:true
-            });
-        });
+            field.name = this.model_class +'['+field.m_attr + ']';
+            fields.push(Ext.create('FastUI.view.vfield.VFieldFactory').buildField(field));
+//            fields.push({
+//                fieldLabel:field.title,
+//                name:fieldName,
+////                value:record.get('title'),
+//                allowBlank:true
+//            });
+        },this);
         return fields;
     },
 
