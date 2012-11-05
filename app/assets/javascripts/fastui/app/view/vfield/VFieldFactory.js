@@ -1,24 +1,23 @@
 Ext.define('FastUI.view.vfield.VFieldFactory', {
     name:'vfieldFactory',
-
-    constructor:function () {
-        this.VType = {
-            VText:"VText",
-            VDate:"VDate",
-            VHtmlEditor:"VHtmlEditor",
-            VComboBox:"VComboBox",
-            VLongComboBox:"VLongComboBox",
-            VTextArea:"VTextArea",
-            VNumber:"VNumber",
-            VCheckBox:"VCheckBox",
-            VCheckboxGroup:"VCheckboxGroup",
-            VSexSelect:"VSexSelect",
-            VFile:"VFile",
-            VYesOrNo:"VYesOrNo",
+//        singleton: true,
+        constructor:function () {
+         this.VType =  {
+        VText:"VText",
+        VDate:"VDate",
+        VHtmlEditor:"VHtmlEditor",
+        VComboBox:"VComboBox",
+        VLongComboBox:"VLongComboBox",
+        VTextArea:"VTextArea",
+        VNumber:"VNumber",
+        VCheckBox:"VCheckBox",
+        VCheckboxGroup:"VCheckboxGroup",
+        VSexSelect:"VSexSelect",
+        VFile:"VFile",
+        VYesOrNo:"VYesOrNo",
 //            VFieldCombobox:"VFieldCombobox",
 //            VIncludedTabsCombo:"VIncludedTabsCombo",
-            VGridColumnXtypeCombo:"VGridColumnXtypeCombo"
-        }
+        VGridColumnXtypeCombo:"VGridColumnXtypeCombo"   }
     },
     buildField:function (field) {
         var opt = {fieldLabel:field.title, name:field.name, allowBlank:true};
