@@ -5,7 +5,8 @@ Ext.define('FastUI.view.VFactory', {
         this._vdata = vdata;
         this.model_class = this._vdata.model_class;
         if(this.model_class){
-            this.resource = Inflector.pluralize(this._vdata.model_class.toLowerCase());
+            this.resource =  Ext.util.Inflector.pluralize(this._vdata.model_class.toLowerCase());
+//            this.resource = Inflector.pluralize(this._vdata.model_class.toLowerCase());
         }
 //        this._vdata.model_class = 'm_window'
     },
