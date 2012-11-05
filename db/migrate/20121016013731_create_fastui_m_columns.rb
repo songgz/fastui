@@ -1,11 +1,14 @@
-class CreateFastuiMTabs < ActiveRecord::Migration
+class CreateFastuiMColumns < ActiveRecord::Migration
   def change
-    create_table :fastui_m_tabs do |t|
-      t.references :m_window
+    create_table :fastui_m_columns do |t|
+      t.references :m_tab
       t.string :title, :limit => 60, :null => false
       t.string :note
-      t.boolean :readonly
-      t.references :m_entity
+      t.string :name, :limit => 20, :null => false           #entity名
+
+      t.references :m_property_id
+      t.integer :width
+
 
       t.string :entity_kind, :limit => 20                     #sys,app
       t.integer :seq, :default => 0
@@ -17,5 +20,6 @@ class CreateFastuiMTabs < ActiveRecord::Migration
 
       t.timestamps
     end
+
   end
 end

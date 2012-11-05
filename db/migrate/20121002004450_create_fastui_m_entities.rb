@@ -1,13 +1,12 @@
-class CreateFastuiMTabs < ActiveRecord::Migration
+class CreateFastuiMEntities < ActiveRecord::Migration
   def change
-    create_table :fastui_m_tabs do |t|
-      t.references :m_window
+    create_table :fastui_m_entities do |t|
       t.string :title, :limit => 60, :null => false
       t.string :note
-      t.boolean :readonly
-      t.references :m_entity
+      t.string :name, :limit => 20, :null => false           #entity名
+      t.integer :access_level                                #:system,:org,:dept
 
-      t.string :entity_kind, :limit => 20                     #sys,app
+      t.string :entity_kind, :limit => 20                   #:sys,:app
       t.integer :seq, :default => 0
       t.boolean :actived
       t.integer :org_id, :default => 0

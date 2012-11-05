@@ -1,14 +1,13 @@
-class CreateFastuiMFields < ActiveRecord::Migration
+class CreateFastuiMProperties < ActiveRecord::Migration
   def change
-    create_table :fastui_m_fields do |t|
-      t.references :m_tab
+    create_table :fastui_m_properties do |t|
+      t.references :m_entity
       t.string :title, :limit => 60, :null => false
       t.string :note, :default => ""
       t.string :name, :limit => 20, :null => false            #entity名
 
-      t.references :m_property_id
-      t.boolean :displayed
-      t.boolean :readonly
+      t.string :ref_type, :limit => 20                        #data_type, glossary, entity
+      t.integer :ref_id
 
       t.string :entity_kind, :limit => 20                     #sys,app
       t.integer :seq, :default => 0
