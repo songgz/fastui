@@ -3,7 +3,7 @@ class CreateFastuiMWindows < ActiveRecord::Migration
     create_table :fastui_m_windows do |t|
       t.string :title, :limit => 60, :null => false
       t.string :note
-      t.string :name, :limit => 20, :null => false           #entity名
+
       t.string :kind                                 #maintain, transaction or query
 
       t.string :entity_kind, :limit => 20                     #sys,app

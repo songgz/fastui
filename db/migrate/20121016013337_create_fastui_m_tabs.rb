@@ -4,7 +4,6 @@ class CreateFastuiMTabs < ActiveRecord::Migration
       t.references :m_window
       t.string :title, :limit => 60, :null => false
       t.string :note
-      t.string :name, :limit => 20, :null => false           #entity名
       t.boolean :readonly
       t.references :m_entity
 

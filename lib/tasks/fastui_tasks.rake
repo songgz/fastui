@@ -30,7 +30,6 @@ namespace :fastui do
                                          ])
 
     Fastui::MEntity.create({:name => 'm_window', :title => '窗口',:entity_kind => 'sys'
-
                            }).m_properties.create([
         {:name => 'title', :title => '标题'},
         {:name => 'note', :title => '备注'},
