@@ -33,14 +33,14 @@ namespace :fastui do
                            }).m_properties.create([
         {:name => 'title', :title => '标题'},
         {:name => 'note', :title => '备注'},
-        {:name => 'entity_kind', :title => '实体种类',:m_ref_type => sys}
+        {:name => 'entity_kind', :title => '实体种类',:ref_type => sys}
                                                                                       ])
-    Fastui::MEntity.create({:name => 'm_tab',:title => '标签页',:entity_kind => 'sys'
+    Fastui::MEntity.create({:name => 'm_tab',:title => '标签',:entity_kind => 'sys'
                            }).m_properties.create([
         {:name=> 'title', :title => '标题'},
         {:name => 'note',:title => '备注'},
-        {:name => 'readonly',:title => '只读情况',:m_ref_type => b1},
-        {:name => 'entity_kind' ,:title => '实体种类',:m_ref_type => sys}
+        {:name => 'readonly',:title => '只读',:ref_type => bl},
+        {:name => 'entity_kind' ,:title => '实体种类',:ref_type => sys}
                                                   ])
 
 
