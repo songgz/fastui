@@ -6,9 +6,9 @@ class CreateFastuiMFields < ActiveRecord::Migration
       t.string :note, :default => ""
       t.string :name, :limit => 20, :null => false            #entity名
 
-      t.references :m_property_id
+      t.references :m_property
       t.boolean :displayed
-      t.boolean :readonly
+      t.boolean :read
 
       t.string :entity_kind, :limit => 20                     #sys,app
       t.integer :seq, :default => 0

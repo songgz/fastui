@@ -3,54 +3,60 @@
 namespace :fastui do
   desc "init fastui system data"
   task :system_data => :environment do
-    bl = Fastui::MGlossary.create({:name => 'boolean_value', :title => '布尔值'
-                                  }).m_glossary_items.create([
-                                                                 {:name => 'false', :title => '否'},
-                                                                 {:name => 'true', :title => '是'}
-                                                             ])
+    boolean = Fastui::MGlossary.create({:name => 'boolean_value', :title => '布尔值'})
+    boolean.m_glossary_items = Fastui::MGlossaryItem.create([
+                                                                {:name => 'false', :title => '否'},
+                                                                {:name => 'true', :title => '是'}
+                                                            ])
 
-    al = Fastui::MGlossary.create({:name => 'access_level', :title => '访问级别'
-                                  }).m_glossary_items.create([
-                                                                 {:name => 'system', :title => '系统级别'},
-                                                                 {:name => 'org', :title => '组织级别'},
-                                                                 {:name => 'dept', :title => '部门级别'}
-                                                             ])
+    access_level = Fastui::MGlossary.create({:name => 'access_level', :title => '访问级别'})
+    access_level.m_glossary_items = Fastui::MGlossaryItem.create([
+                                                                     {:name => 'system', :title => '系统级别'},
+                                                                     {:name => 'org', :title => '组织级别'},
+                                                                     {:name => 'dept', :title => '部门级别'}
+                                                                 ])
 
-    sys = Fastui::MGlossary.create({:name => 'entity_kind', :title => '实体种类'
-                                   }).m_glossary_items.create([
-                                                                  {:name => 'sys', :title => '系统实体'},
-                                                                  {:name => 'app', :title => '应用实体'}
-                                                              ])
+    entity_kind = Fastui::MGlossary.create({:name => 'entity_kind', :title => '实体种类'})
+    entity_kind.m_glossary_items = Fastui::MGlossaryItem.create([
+                                                                    {:name => 'sys', :title => '系统实体'},
+                                                                    {:name => 'app', :title => '应用实体'}
+                                                                ])
+
+    v_number = Fastui::MDataType.create({:name => 'VNumber', :title => '整型'})
+    v_text = Fastui::MDataType.create({:name => 'VText', :title => '字符串'})
+    v_textarea = Fastui::MDataType.create({:name => 'VTextArea', :title => '文本'})
+    v_defaultColumn = Fastui::MDataType.create({:name => 'VDefaultColumn', :title => 'grid默认列'})
+
+    entity_m_window = Fastui::MEntity.create({:name => 'm_window', :title => '窗口', :entity_kind => 'sys'
+                                             })
+    window_property0 = Fastui::MProperty.create({:name => 'id', :title => 'ID',:refable => v_number})
+    window_property1 = Fastui::MProperty.create({:name => 'title', :title => '标题',:refable => v_text})
+    window_property2 = Fastui::MProperty.create({:name => 'note', :title => '备注',:refable => v_text})
+    window_property3 = Fastui::MProperty.create({:name => 'entity_kind', :title => '实体种类', :refable => entity_kind})
+    entity_m_window.m_properties = [window_property0,window_property1,window_property2,window_property3]
+    entity_m_window.save
+    #.m_properties.create([
+    #                                                                    {:name => 'title', :title => '标题',:refable => v_text},
+    #                                                                    {:name => 'note', :title => '备注',:refable => v_text},
+    #                                                                    {:name => 'entity_kind', :title => '实体种类', :refable => entity_kind}])
+
+    entity_m_tab = Fastui::MEntity.create({:name => 'm_tab', :title => '标签', :entity_kind => 'sys'
+                                          }).m_properties.create([
+                                                                     {:name => 'title', :title => '标题',:refable => v_text},
+                                                                     {:name => 'note', :title => '备注',:refable => v_text},
+                                                                     {:name => 'read', :title => '只读', :refable => boolean},
+                                                                     {:name => 'entity_kind', :title => '实体种类', :refable => entity_kind}
+                                                                 ])
 
 
-    Fastui::MDataType.create([
-                                             {:name => 'integer', :title => '整型'},
-                                             {:name => 'string', :title => '字符串'},
-                                             {:name => 'text', :title => '文本'}
-                                         ])
+    w = Fastui::MWindow.create(:title => 'FastUI')
 
-    Fastui::MEntity.create({:name => 'm_window', :title => '窗口',:entity_kind => 'sys'
-                           }).m_properties.create([
-        {:name => 'title', :title => '标题'},
-        {:name => 'note', :title => '备注'},
-        {:name => 'entity_kind', :title => '实体种类',:ref_type => sys}
-                                                                                      ])
-    Fastui::MEntity.create({:name => 'm_tab',:title => '标签',:entity_kind => 'sys'
-                           }).m_properties.create([
-        {:name=> 'title', :title => '标题'},
-        {:name => 'note',:title => '备注'},
-        {:name => 'readonly',:title => '只读',:ref_type => bl},
-        {:name => 'entity_kind' ,:title => '实体种类',:ref_type => sys}
-                                                  ])
-
-
-
-    #w = Fastui::MWindow.create(:title => 'FastUI')
+    t1 = w.m_tabs.create(:title => '窗口')
+    #t1.m_entity = entity_m_window
+    #t1.m_fields.create(:title => '标题')
     #
-    #t1 = w.m_tabs.create(:title => '窗口', :model_class => 'm_window')
-    ##t1.m_fields.create(:title => '标题')
-    #
-    #t2 = w.m_tabs.create(:title => '标签', :model_class => 'm_tab')
+    t2 = w.m_tabs.create(:title => '标签')
+    #t2.m_entity = entity_m_tab
     ##t2.m_fields.create(:title => '标题')
     #
     #t3 = w.m_tabs.create(:title => '字段')
@@ -61,12 +67,18 @@ namespace :fastui do
     #
     #t4 = w.m_tabs.create(:title => '标签Action')
     #t4.m_fields.create(:title => '标题')
-    #
-    #t1.m_columns.create([{:title => 'ID', :data_index => 'id', :xtype => 'VDefaultColumn', :sortable => true, :width => 35},
-    #                     {:title => '窗口名称', :data_index => 'title', :xtype => 'VDefaultColumn', :sortable => true, :width => 75}])
-    #
-    #t1.m_fields.create([{:title => 'ID', :m_attr => 'id', :vfield => 'VNumber'},
-    #                    {:title => '窗口名称', :m_attr => 'title', :vfield => 'VText'}])
+
+    #col1 = Fastui::MColumn.create({:title => 'ID', :name => 'id',:width => 35})
+    #col1.m_property = window_property0
+    #col2= Fastui::MColumn.create({:title => '窗口名称', :name => 'title',:width => 75})
+    #col2.m_property = window_property1
+    #t1.m_columns = [col1,col2]
+    p window_property0
+    t1.m_columns.create([{:title => 'ID', :name => 'id', :m_property => window_property0, :width => 35},
+                         {:title => '窗口名称', :name => 'title', :m_property => window_property1, :width => 75}])
+
+    t1.m_fields.create([{:title => 'ID', :name => 'id', :m_property => window_property0},
+                        {:title => '窗口名称', :name => 'title', :m_property => window_property1}])
     #
     #t2.m_columns.create([{:title => 'ID', :data_index => 'id', :xtype => 'VDefaultColumn', :width => 35},
     #                     {:title => '标签名称', :data_index => 'title', :xtype => 'VDefaultColumn', :width => 75},

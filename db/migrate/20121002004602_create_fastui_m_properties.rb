@@ -6,9 +6,7 @@ class CreateFastuiMProperties < ActiveRecord::Migration
       t.string :note, :default => ""
       t.string :name, :limit => 20, :null => false            #entity名
 
-      t.string :ref_type, :limit => 20                        #data_type, glossary, entity
-      t.integer :ref_id
-      #t.references :ref_type,:limit => 20 , :polymorphic => true      #data_type, glossary, entity
+      t.references :refable, :polymorphic => true      #data_type, glossary, entity
 
       t.string :entity_kind, :limit => 20                     #sys,app
       t.integer :seq, :default => 0

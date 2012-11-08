@@ -6,7 +6,7 @@ class CreateFastuiMColumns < ActiveRecord::Migration
       t.string :note
       t.string :name, :limit => 20, :null => false           #entity名
 
-      t.references :m_property_id
+      t.references :m_property
       t.integer :width
 
 
