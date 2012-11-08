@@ -6,7 +6,7 @@ Ext.define('FastUI.view.VTab', {
     layout:"card",
     initComponent:function () {
         this.title = this.vfactory.getVData().title;
-        this.restHelper = Ext.create('FastUI.view.RestHelper',this.vfactory.getVData().model_class);
+        this.restHelper = Ext.create('FastUI.view.RestHelper',this.vfactory.getModelClass());
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             items:[
                 {   text:'新建',

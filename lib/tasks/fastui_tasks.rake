@@ -34,28 +34,27 @@ namespace :fastui do
     window_property2 = Fastui::MProperty.create({:name => 'note', :title => '备注',:refable => v_text})
     window_property3 = Fastui::MProperty.create({:name => 'entity_kind', :title => '实体种类', :refable => entity_kind})
     entity_m_window.m_properties = [window_property0,window_property1,window_property2,window_property3]
-    entity_m_window.save
+    #entity_m_window.save
     #.m_properties.create([
     #                                                                    {:name => 'title', :title => '标题',:refable => v_text},
     #                                                                    {:name => 'note', :title => '备注',:refable => v_text},
     #                                                                    {:name => 'entity_kind', :title => '实体种类', :refable => entity_kind}])
 
-    entity_m_tab = Fastui::MEntity.create({:name => 'm_tab', :title => '标签', :entity_kind => 'sys'
-                                          }).m_properties.create([
-                                                                     {:name => 'title', :title => '标题',:refable => v_text},
-                                                                     {:name => 'note', :title => '备注',:refable => v_text},
-                                                                     {:name => 'read', :title => '只读', :refable => boolean},
-                                                                     {:name => 'entity_kind', :title => '实体种类', :refable => entity_kind}
-                                                                 ])
+    entity_m_tab = Fastui::MEntity.create({:name => 'm_tab', :title => '标签', :entity_kind => 'sys' })
+    tab_property1 = Fastui::MProperty.create({:name => 'title', :title => '标题',:refable => v_text})
+    tab_property2 = Fastui::MProperty.create({:name => 'note', :title => '备注',:refable => v_text})
+    tab_property3 = Fastui::MProperty.create({:name => 'read', :title => '只读', :refable => boolean})
+    tab_property4 = Fastui::MProperty.create({:name => 'entity_kind', :title => '实体种类', :refable => entity_kind})
+    entity_m_tab.m_properties = [tab_property1,tab_property2,tab_property3,tab_property4]
 
 
     w = Fastui::MWindow.create(:title => 'FastUI')
 
-    t1 = w.m_tabs.create(:title => '窗口')
+    t1 = w.m_tabs.create(:title => '窗口',:m_entity => entity_m_window)
     #t1.m_entity = entity_m_window
     #t1.m_fields.create(:title => '标题')
     #
-    t2 = w.m_tabs.create(:title => '标签')
+    t2 = w.m_tabs.create(:title => '标签',:m_entity => entity_m_tab)
     #t2.m_entity = entity_m_tab
     ##t2.m_fields.create(:title => '标题')
     #

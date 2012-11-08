@@ -3,16 +3,23 @@ Ext.define('FastUI.view.VFactory', {
 
     constructor:function (vdata) {
         this._vdata = vdata;
-        this.model_class = this._vdata.model_class;
-        if(this.model_class){
-            this.resource =  Ext.util.Inflector.pluralize(this._vdata.model_class.toLowerCase());
-//            this.resource = Inflector.pluralize(this._vdata.model_class.toLowerCase());
+        if(this._vdata.m_entity){
+            this.model_class = this._vdata.m_entity.name;
+            this.resource =  Ext.util.Inflector.pluralize(this.model_class.toLowerCase());
         }
+//        this.model_class = this._vdata.model_class;
+//        if(this.model_class){
+//            this.resource =  Ext.util.Inflector.pluralize(this._vdata.model_class.toLowerCase());
+////            this.resource = Inflector.pluralize(this._vdata.model_class.toLowerCase());
+//        }
 //        this._vdata.model_class = 'm_window'
     },
 
     getVData:function () {
         return this._vdata;
+    },
+    getModelClass:function(){
+        return this.model_class;
     },
     getModel:function(){
 

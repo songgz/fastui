@@ -17,7 +17,7 @@ module Fastui
       #respond_with(@m_window.to_json(:include => :m_tabs))
       #p @m_window.to_json(:include =>{:m_tabs =>{:include =>{:m_fields=>{},:m_columns=>{}}}})
       p ActiveRecord::Base.subclasses
-      respond_with(@m_window.to_json(:include => {:m_tabs => {:include => {:m_fields => {}, :m_columns => {}}}}))
+      respond_with(@m_window.to_json(:include => {:m_tabs => {:include => {:m_fields => {}, :m_columns => {},:m_entity => {}}}}))
     end
 
     def edit
