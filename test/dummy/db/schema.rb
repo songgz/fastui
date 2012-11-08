@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.integer  "m_tab_id"
     t.string   "title",         :limit => 60,                :null => false
     t.string   "note"
-    t.string   "name",          :limit => 20,                :null => false
+    t.string   "name",          :limit => 20
     t.integer  "m_property_id"
     t.integer  "width"
     t.string   "entity_kind",   :limit => 20
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.integer  "m_tab_id"
     t.string   "title",         :limit => 60,                 :null => false
     t.string   "note",                        :default => ""
-    t.string   "name",          :limit => 20,                 :null => false
+    t.string   "name",          :limit => 20
     t.integer  "m_property_id"
     t.boolean  "displayed"
     t.boolean  "read"

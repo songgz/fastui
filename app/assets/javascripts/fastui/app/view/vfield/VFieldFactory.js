@@ -21,6 +21,21 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
     },
     buildField:function (field) {
         var opt = {fieldLabel:field.title, name:field.name, allowBlank:true};
+        switch(field.m_property.refable_type){
+            case 'Fastui::MDataType':
+                return this.dataTypeMatch(field,opt);
+                break;
+            case 'Fastui::MGlossary':
+                alert('sf');
+               return Ext.create('FastUI.view.vfield.VComboBox', opt);
+                break;
+            case 'Fastui::MEntity':
+                break;
+        }
+
+
+    },
+    dataTypeMatch:function(field,opt){
         switch (field.m_property.refable.name) {
             case this.VType.VText:
                 return Ext.create('FastUI.view.vfield.VText', opt);
