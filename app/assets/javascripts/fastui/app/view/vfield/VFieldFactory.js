@@ -32,8 +32,6 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             case 'Fastui::MEntity':
                 break;
         }
-
-
     },
     dataTypeMatch:function(field,opt){
         switch (field.m_property.refable.name) {
