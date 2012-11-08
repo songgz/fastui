@@ -50,7 +50,7 @@ Ext.define('FastUI.view.VFactory', {
         Ext.each(this._vdata.m_columns, function (column) {
             columns.push({
                 header:column.title,
-                dataIndex:column.data_index
+                dataIndex:column.m_property.name
             });
         });
         return columns;
@@ -60,7 +60,7 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
         Ext.each(this._vdata.m_columns, function (column) {
             fields.push({
-                name:column.data_index
+                name:column.m_property.name
             });
         });
         return fields;
@@ -69,7 +69,7 @@ Ext.define('FastUI.view.VFactory', {
     getFormFields:function () {
         var fields = [];
         Ext.each(this._vdata.m_fields, function (field) {
-            field.name = this.model_class +'['+field.m_attr + ']';
+            field.name = this.model_class +'['+field.m_property.name + ']';
             fields.push(Ext.create('FastUI.view.vfield.VFieldFactory').buildField(field));
 //            fields.push({
 //                fieldLabel:field.title,

@@ -21,7 +21,7 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
     },
     buildField:function (field) {
         var opt = {fieldLabel:field.title, name:field.name, allowBlank:true};
-        switch (field.vfield) {
+        switch (field.m_property.refable.name) {
             case this.VType.VText:
                 return Ext.create('FastUI.view.vfield.VText', opt);
                 break;
