@@ -3,19 +3,29 @@ Ext.define('FastUI.view.VFactory', {
 
     constructor:function (vdata) {
         this._vdata = vdata;
-        this.model_class = this._vdata.model_class;
-        if(this.model_class){
-            this.resource =  Ext.util.Inflector.pluralize(this._vdata.model_class.toLowerCase());
-//            this.resource = Inflector.pluralize(this._vdata.model_class.toLowerCase());
+        if(this._vdata.m_entity){
+            this.model_class = this._vdata.m_entity.name;
+            this.resource =  Ext.util.Inflector.pluralize(this.model_class.toLowerCase());
         }
+//        this.model_class = this._vdata.model_class;
+//        if(this.model_class){
+//            this.resource =  Ext.util.Inflector.pluralize(this._vdata.model_class.toLowerCase());
+////            this.resource = Inflector.pluralize(this._vdata.model_class.toLowerCase());
+//        }
 //        this._vdata.model_class = 'm_window'
     },
 
     getVData:function () {
         return this._vdata;
     },
+    getModelClass:function(){
+        return this.model_class;
+    },
     getModel:function(){
 
+    },
+    getUrl:function(){
+        return '/fastui/'+this.resource+'.json'; //model_class
     },
     getStore:function () {
         return new Ext.data.JsonStore({
@@ -24,7 +34,7 @@ Ext.define('FastUI.view.VFactory', {
             autoLoad:true,
             proxy:{
                 type:'ajax',
-                url:'/fastui/'+this.resource+'.json', //model_class
+                url:this.getUrl(),
                 reader:{
                     type:'json',
                     root:''
@@ -43,7 +53,7 @@ Ext.define('FastUI.view.VFactory', {
         Ext.each(this._vdata.m_columns, function (column) {
             columns.push({
                 header:column.title,
-                dataIndex:column.data_index
+                dataIndex:column.m_property.name
             });
         });
         return columns;
@@ -53,7 +63,7 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
         Ext.each(this._vdata.m_columns, function (column) {
             fields.push({
-                name:column.data_index
+                name:column.m_property.name
             });
         });
         return fields;
@@ -62,7 +72,7 @@ Ext.define('FastUI.view.VFactory', {
     getFormFields:function () {
         var fields = [];
         Ext.each(this._vdata.m_fields, function (field) {
-            field.name = this.model_class +'['+field.m_attr + ']';
+            field.name = this.model_class +'['+field.m_property.name + ']';
             fields.push(Ext.create('FastUI.view.vfield.VFieldFactory').buildField(field));
 //            fields.push({
 //                fieldLabel:field.title,
