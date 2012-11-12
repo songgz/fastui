@@ -7,5 +7,6 @@ module Fastui
     has_many :m_fields, :dependent => :destroy
     has_many :m_columns, :dependent => :destroy
     has_many :m_actions, :dependent => :destroy
+    belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem'
   end
 end

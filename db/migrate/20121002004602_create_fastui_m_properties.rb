@@ -8,7 +8,7 @@ class CreateFastuiMProperties < ActiveRecord::Migration
 
       t.references :refable, :polymorphic => true      #data_type, glossary, entity
 
-      t.string :entity_kind, :limit => 20                     #sys,app
+      t.integer :entity_kind, :limit => 20                     #sys,app
       t.integer :seq, :default => 0
       t.boolean :actived,:default => true
       t.integer :org_id, :default => 0

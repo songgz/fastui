@@ -4,5 +4,6 @@ module Fastui
     attr_accessible :m_entity, :title ,:note ,:name,:refable,:entity_kind,:actived, :org_id, :createdby, :updatedby,:help
     belongs_to :m_entity, :class_name => 'Fastui::MEntity'
     belongs_to :refable, :polymorphic => true
+    belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem'
   end
 end

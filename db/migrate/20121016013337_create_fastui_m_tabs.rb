@@ -7,7 +7,7 @@ class CreateFastuiMTabs < ActiveRecord::Migration
       t.boolean :read,:default => false
       t.references :m_entity
 
-      t.string :entity_kind, :limit => 20                     #sys,app
+      t.integer :entity_kind, :limit => 20                     #sys,app
       t.integer :seq, :default => 0
       t.boolean :actived,:default => true
       t.integer :org_id, :default => 0

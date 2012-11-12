@@ -1,6 +1,6 @@
 Ext.define('FastUI.view.vfield.VComboBox', {
     extend:'Ext.form.field.ComboBox',
-    valueField:'name',
+    valueField:'id',
     displayField:"title",
     forceSelection:true,
     triggerAction: 'all',
@@ -19,13 +19,13 @@ Ext.define('FastUI.view.vfield.VComboBox', {
                 reader:{
                     type:'json',
                     root:'',
-                    id:'name'
+                    id:'id'
                 }
             },
             filters:[
                 {property:"m_glossary_id", value:this.glossary_id}
             ],
-            fields:['name', 'title','m_glossary_id']
+            fields:['id','name', 'title','m_glossary_id']
         });
     }
 });

@@ -3,9 +3,9 @@ class CreateFastuiMWindows < ActiveRecord::Migration
     create_table :fastui_m_windows do |t|
       t.string :title, :limit => 60, :null => false
       t.string :note,:default => ''
-      t.string :kind,:limit => 20,:default => ''                                 #maintain, transaction or query
+      t.integer :kind                                 #maintain, transaction or query
 
-      t.string :entity_kind, :limit => 20                     #sys,app
+      t.integer :entity_kind                      #sys,app
       t.integer :seq, :default => 0
       t.boolean :actived,:default => true
       t.integer :org_id, :default => 0
