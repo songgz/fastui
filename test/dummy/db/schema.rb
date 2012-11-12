@@ -171,8 +171,8 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.string   "title",       :limit => 60,                 :null => false
     t.string   "note",                      :default => ""
     t.string   "name",        :limit => 20,                 :null => false
-    t.string   "ref_type",    :limit => 20
     t.integer  "ref_id"
+    t.string   "ref_type"
     t.string   "entity_kind", :limit => 20
     t.integer  "seq",                       :default => 0
     t.boolean  "actived"

@@ -29,11 +29,12 @@ namespace :fastui do
                                              {:name => 'text', :title => '文本'}
                                          ])
 
-    Fastui::MEntity.create({:name => 'm_window', :title => '窗口',:entity_kind => 'sys'
-                           }).m_properties.create([
-        {:name => 'title', :title => '标题'},
-        {:name => 'note', :title => '备注'},
-        {:name => 'entity_kind', :title => '实体种类',:ref_type => sys}
+    va  = Fastui::MEntity.create({:name => 'm_window', :title => '窗口',:entity_kind => 'sys'
+                           })
+    Fastui::MProperty.create.([
+        {:name => 'title', :title => '标题',:m_entity => va},
+        {:name => 'note', :title => '备注',:m_entity => va},
+        {:name => 'entity_kind', :title => '实体种类',:m_entity => va,:ref => sys}
                                                                                       ])
     Fastui::MEntity.create({:name => 'm_tab',:title => '标签',:entity_kind => 'sys'
                            }).m_properties.create([
