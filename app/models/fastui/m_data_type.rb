@@ -1,7 +1,9 @@
 # encoding: utf-8
 module Fastui
   class MDataType < ActiveRecord::Base
-    attr_accessible :title ,:note ,:name,:entity_kind,:actived, :org_id, :createdby, :updatedby,:help
+    attr_accessible :id, :name, :title, :note
+    attr_accessible :entity_kind_id, :entity_kind,:actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
+
     has_many :refs, :as => :refable
 
     belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem'

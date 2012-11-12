@@ -1,7 +1,9 @@
 # encoding: utf-8
 module Fastui
   class MProperty < ActiveRecord::Base
-    attr_accessible :m_entity, :title ,:note ,:name,:refable,:entity_kind,:actived, :org_id, :createdby, :updatedby,:help
+    attr_accessible :id, :name, :title, :note, :refable
+    attr_accessible :entity_kind_id, :entity_kind,:actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
+
     belongs_to :m_entity, :class_name => 'Fastui::MEntity'
     belongs_to :refable, :polymorphic => true
 

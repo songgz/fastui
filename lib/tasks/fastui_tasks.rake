@@ -30,11 +30,21 @@ namespace :fastui do
     entity_kind_sys = entity_kind.m_glossary_items.create({:name => 'sys', :title => '系统实体'})
     entity_kind_app = entity_kind.m_glossary_items.create({:name => 'app', :title => '应用实体'})
 
+    window_kind = Fastui::MGlossary.create({:name => 'window_kind', :title => '窗体种类'})
+    window_kind_maintain = window_kind.m_glossary_items.create({:name => 'maintain', :title=> '维护'})
+    window_kind_transaction = window_kind.m_glossary_items.create({:name => 'transaction', :title=> '事务'})
+    window_kind_query = window_kind.m_glossary_items.create({:name => 'query', :title=> '查询'})
+
     m_window = Fastui::MEntity.create({:name => 'm_window', :title => '窗口', :entity_kind => entity_kind_sys})
     m_window_id = m_window.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
     m_window_title = m_window.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
     m_window_note = m_window.m_properties.create({:name => 'note', :title => '备注', :refable => v_text})
     m_window_entity_kind_id = m_window.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
+    m_window_kind_id = m_window.m_properties.create({:name => 'kind_id', :title => '窗体种类', :refable => window_kind})
+    m_window_seq = m_window.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
+    m_window_actived_id = m_window.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
+    m_window_help = m_window.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
+
 
     m_tab = Fastui::MEntity.create({:name => 'm_tab', :title => '标签', :entity_kind => entity_kind_sys})
     m_tab_id = m_tab.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
@@ -43,10 +53,15 @@ namespace :fastui do
     m_tab_read_id = m_tab.m_properties.create({:name => 'read_id', :title => '只读', :refable => boolean_value})
     m_tab_entity_kind_id = m_tab.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
 
+    m_field = Fastui::MEntity.create({:name => 'm_field', :title => '字段', :entity_kind => entity_kind_sys})
+
+    m_column = Fastui::MEntity.create({:name => 'm_column', :title => '表列', :entity_kind => entity_kind_sys})
 
     fastui = Fastui::MWindow.create(:title => 'FastUI')
     fastui_window = fastui.m_tabs.create(:title => '窗口', :m_entity => m_window)
     fastui_tab = fastui.m_tabs.create(:title => '标签', :m_entity => m_tab)
+    fastui_field = fastui.m_tabs.create(:title => '字段', :m_entity => m_field)
+    fastui_column = fastui.m_tabs.create(:title => '表列', :m_entity => m_column)
     #t2.m_entity = entity_m_tab
     ##t2.m_fields.create(:title => '标题')
     #
@@ -67,16 +82,25 @@ namespace :fastui do
 
     fastui_window.m_columns.create([
                                        {:title => 'ID', :m_property => m_window_id, :width => 35},
-                                       {:title => '窗口名称', :m_property => m_window_title, :width => 75}
+                                       {:title => '名称', :m_property => m_window_title, :width => 75}
                                    ])
 
     fastui_window.m_fields.create([
                                       {:title => 'ID', :m_property => m_window_id},
-                                      {:title => '窗口名称', :m_property => m_window_title}
+                                      {:title => '名称', :m_property => m_window_title},
+                                      {:title => '备注', :m_property => m_window_note},
+                                      {:title => '窗体种类', :m_property => m_window_kind_id},
+                                      {:title => '实体种类', :m_property => m_window_entity_kind_id},
+                                      {:title => '排序', :m_property => m_window_seq},
+                                      {:title => '是否激活', :m_property => m_window_actived_id},
+                                      {:title => '帮助', :m_property => m_window_help}
+                                      #{:title => '所属组织', :m_property => m_window_org_id},
+                                      #{:title => '创建人', :m_property => m_window_createdby_id},
+                                      #{:title => '更新人', :m_property => m_window_updatedby_id}
                                   ])
 
     fastui_tab.m_columns.create([{:title => 'ID', :m_property => m_tab_id, :width => 35},
-                                 {:title => '标签名称', :m_property => m_tab_title, :width => 75},
+                                 {:title => '名称', :m_property => m_tab_title, :width => 75},
                                  {:title => '备注', :m_property => m_tab_note, :width => 75},
                                  {:title => '只读', :m_property => m_tab_read_id, :width => 75}
                                 ])
@@ -88,7 +112,7 @@ namespace :fastui do
     #                    #{:title => '所属Tab',:data_index => 'm_tab_name',:association => 'included_tab',:association_name => 'name',:m_attr => m_tab.m_attrs.find_by_name('included_tab_id'),:xtype => 'VDefaultColumn',:sortable => true,:width => 75}
     #                    ])
     fastui_tab.m_fields.create([{:title => 'ID', :m_property => m_tab_id},
-                                {:title => '标签名称', :m_property => m_tab_title},
+                                {:title => '名称', :m_property => m_tab_title},
                                 {:title => '备注', :m_property => m_tab_note},
                                 {:title => '只读', :m_property => m_tab_read_id}
                                #                   #{:title => 'Model',:vfield => 'VLongCombo',:m_attr => 'model_class',:disabled => false,:order_by => 3,:position => 1,:desc => '模型名，此标签的对应的模型',:help => ''},
