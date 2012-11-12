@@ -5,7 +5,7 @@ class CreateFastuiMWindows < ActiveRecord::Migration
       t.string :note,:default => ''
       t.integer :kind                                 #maintain, transaction or query
 
-      t.string :entity_kind                      #sys,app
+      t.integer :entity_kind                      #sys,app
       t.integer :seq, :default => 0
       t.boolean :actived,:default => true
       t.integer :org_id, :default => 0

@@ -4,6 +4,6 @@ module Fastui
     attr_accessible :id, :note, :title, :kind
     attr_accessible :entity_kind, :seq, :actived, :org_id, :createdby, :updatedby, :help
     has_many :m_tabs, :dependent => :destroy
-    belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem'
+    belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem', :foreign_key => "entity_kind"
   end
 end

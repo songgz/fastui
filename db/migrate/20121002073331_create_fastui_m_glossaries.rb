@@ -5,7 +5,7 @@ class CreateFastuiMGlossaries < ActiveRecord::Migration
       t.string :note,:default => ''
       t.string :name, :limit => 20, :null => false           #entity名
 
-      t.string :entity_kind, :limit => 20                                 #sys,app
+      t.integer :entity_kind, :limit => 20                                 #sys,app
       t.integer :seq, :default => 0
       t.boolean :actived,:default => true
       t.integer :org_id, :default => 0

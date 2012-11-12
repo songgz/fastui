@@ -60,7 +60,8 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
         Ext.each(this._vdata.m_columns, function (column) {
             fields.push({
-                name:column.m_property.name
+                name:column.m_property.name,
+                type: 'float'
             });
         });
         return fields;
