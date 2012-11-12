@@ -7,11 +7,17 @@ Fastui::Engine.routes.draw do
     end
   end
 
+  resources :m_glossaries do
+    resources :m_glossary_items
+  end
+
   resources :m_tabs
   resources :m_columns
   resources :m_fields
   resources :m_properties
   resources :m_entities
+  resources :m_glossaries
+  resources :m_glossary_items
 
   root :to => "admin#index"
 end

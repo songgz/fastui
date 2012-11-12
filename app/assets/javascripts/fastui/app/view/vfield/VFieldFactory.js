@@ -20,14 +20,14 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
         VGridColumnXtypeCombo:"VGridColumnXtypeCombo"   }
     },
     buildField:function (field) {
-        var opt = {fieldLabel:field.title, name:field.name, allowBlank:true};
+        var opt = {fieldLabel:field.title, name:field.name,allowBlank:true};
         switch(field.m_property.refable_type){
             case 'Fastui::MDataType':
                 return this.dataTypeMatch(field,opt);
                 break;
             case 'Fastui::MGlossary':
-                alert('sf');
-               return Ext.create('FastUI.view.vfield.VComboBox', opt);
+               opt['glossary_id'] = field.m_property.refable_id;
+                return Ext.create('FastUI.view.vfield.VComboBox',opt);
                 break;
             case 'Fastui::MEntity':
                 break;

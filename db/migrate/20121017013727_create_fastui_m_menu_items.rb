@@ -3,7 +3,7 @@ class CreateFastuiMMenuItems < ActiveRecord::Migration
     create_table :fastui_m_menu_items do |t|
       t.string :title, :limit => 60, :null => false
       t.references :m_window
-      t.boolean :actived
+      t.boolean :actived,:default => true
       t.integer :org_id, :default => 0
       t.integer :createdby, :default => 0
       t.integer :updatedby, :default => 0

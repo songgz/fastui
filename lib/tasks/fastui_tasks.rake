@@ -71,10 +71,12 @@ namespace :fastui do
     #t1.m_columns = [col1,col2]
 
     t1.m_columns.create([{:title => 'ID', :m_property => window_property0, :width => 35},
-                         {:title => '窗口名称', :m_property => window_property1, :width => 75}])
+                         {:title => '窗口名称', :m_property => window_property1, :width => 75},
+                         {:title => '实体种类', :m_property => window_property3, :width => 75}])
 
     t1.m_fields.create([{:title => 'ID', :m_property => window_property0},
-                        {:title => '窗口名称', :m_property => window_property1}
+                        {:title => '窗口名称', :m_property => window_property1},
+                        {:title => '实体种类', :m_property => window_property3}
                        ])
 
     t2.m_columns.create([{:title => 'ID', :m_property => tab_property0, :width => 35},
