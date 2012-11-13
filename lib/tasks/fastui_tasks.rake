@@ -4,6 +4,8 @@ namespace :fastui do
   desc "init fastui system data"
   task :system_data => :environment do
 
+    org_system = Fastui::MOrg.create({:id => 0, :name => 'system', :title => '系统组织'})
+
     v_number = Fastui::MDataType.create({:name => 'VNumber', :title => '整型'})
     v_date = Fastui::MDataType.create({:name => 'VDate', :title => '日期'})
     v_text = Fastui::MDataType.create({:name => 'VText', :title => '字符串'})
@@ -35,6 +37,9 @@ namespace :fastui do
     window_kind_transaction = window_kind.m_glossary_items.create({:name => 'transaction', :title=> '事务'})
     window_kind_query = window_kind.m_glossary_items.create({:name => 'query', :title=> '查询'})
 
+    m_org = Fastui::MEntity.create({:name => 'm_org', :title => '组织', :entity_kind => entity_kind_sys})
+
+
     m_window = Fastui::MEntity.create({:name => 'm_window', :title => '窗口', :entity_kind => entity_kind_sys})
     m_window_id = m_window.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
     m_window_title = m_window.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
@@ -44,6 +49,7 @@ namespace :fastui do
     m_window_seq = m_window.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
     m_window_actived_id = m_window.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
     m_window_help = m_window.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
+    m_window_org_id = m_window.m_properties.create({:name => 'org_id',:title => '所属组织',:refable => m_org})
 
 
     m_tab = Fastui::MEntity.create({:name => 'm_tab', :title => '标签', :entity_kind => entity_kind_sys})
@@ -105,8 +111,8 @@ namespace :fastui do
                                       {:title => '实体种类', :m_property => m_window_entity_kind_id},
                                       {:title => '排序', :m_property => m_window_seq},
                                       {:title => '是否激活', :m_property => m_window_actived_id},
-                                      {:title => '帮助', :m_property => m_window_help}
-                                      #{:title => '所属组织', :m_property => m_window_org_id},
+                                      {:title => '帮助', :m_property => m_window_help},
+                                      {:title => '所属组织', :m_property => m_window_org_id},
                                       #{:title => '创建人', :m_property => m_window_createdby_id},
                                       #{:title => '更新人', :m_property => m_window_updatedby_id}
                                   ])
