@@ -18,6 +18,7 @@ Fastui::Engine.routes.draw do
   resources :m_entities
   resources :m_glossaries
   resources :m_glossary_items
+  resources :m_orgs
 
   root :to => "admin#index"
 end
