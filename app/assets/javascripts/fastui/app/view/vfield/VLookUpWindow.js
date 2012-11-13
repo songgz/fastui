@@ -1,8 +1,13 @@
 Ext.define('FastUI.view.vfield.VLookUpWindow', {
-    extend:'Ext.form.field.Trigger',
+    extend:'Ext.form.field.ComboBox',
     alias:'widget.vlookupwindow',
-
-    // override onTriggerClick
+    editable:false,
+    displayField: 'title',
+    valueField: 'id',
+    initComponent:function () {
+        this.store = this.getStore();
+        this.callParent();
+    },
     onTriggerClick:function () {
         this.loadWindow();
 
@@ -20,7 +25,6 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
                 itemclick:function (grid, record, item, index, e, eOpts) {
                     this.vlookup.setValue(record.get('id'));
                 }
-
             }
         });
 
