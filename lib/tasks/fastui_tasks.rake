@@ -52,37 +52,49 @@ namespace :fastui do
     m_tab_note = m_tab.m_properties.create({:name => 'note', :title => '备注', :refable => v_text})
     m_tab_read_id = m_tab.m_properties.create({:name => 'read_id', :title => '只读', :refable => boolean_value})
     m_tab_entity_kind_id = m_tab.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
+    m_tab_seq = m_tab.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
+    m_tab_actived_id = m_tab.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
+    m_tab_help = m_tab.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
+
 
     m_field = Fastui::MEntity.create({:name => 'm_field', :title => '字段', :entity_kind => entity_kind_sys})
+    m_field_id = m_field.m_properties.create({:name => 'id',:title => 'ID', :refable => v_number})
+    m_field_title = m_field .m_properties.create({:name => 'title',:title => '标题',:refable => v_text})
+    m_field_note = m_field.m_properties.create({:name => 'note',:title => '备注',:refable => v_text})
+    m_field_displayed = m_field.m_properties.create({:name => 'displayed',:title => '是否显示',:refable => boolean_value})
+    m_field_read = m_field.m_properties.create({:name => 'read',:title => '是否只读',:refable => boolean_value})
+    m_field_entity_kind_id = m_field.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
+    m_field_seq = m_field.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
+    m_field_actived_id = m_field.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
+    m_field_help = m_field.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
 
     m_column = Fastui::MEntity.create({:name => 'm_column', :title => '表列', :entity_kind => entity_kind_sys})
+    m_column_id = m_column.m_properties.create({:name => 'id',:title => 'ID', :refable => v_number})
+    m_column_title = m_column .m_properties.create({:name => 'title',:title => '标题',:refable => v_text})
+    m_column_note = m_column.m_properties.create({:name => 'note',:title => '备注',:refable => v_text})
+    m_column_width = m_column.m_properties.create({:name => 'width',:title => '列宽度',:refable => v_number})
+    m_column_entity_kind_id = m_column.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
+    m_column_seq = m_column.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
+    m_column_actived_id = m_column.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
+    m_column_help = m_column.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
+
+
 
     fastui = Fastui::MWindow.create(:title => 'FastUI')
     fastui_window = fastui.m_tabs.create(:title => '窗口', :m_entity => m_window)
     fastui_tab = fastui.m_tabs.create(:title => '标签', :m_entity => m_tab)
     fastui_field = fastui.m_tabs.create(:title => '字段', :m_entity => m_field)
     fastui_column = fastui.m_tabs.create(:title => '表列', :m_entity => m_column)
-    #t2.m_entity = entity_m_tab
-    ##t2.m_fields.create(:title => '标题')
-    #
-    #t3 = w.m_tabs.create(:title => '字段')
-    #t3.m_fields.create(:title => '标题')
-    #
-    #t4 = w.m_tabs.create(:title => '表格列属性')
-    #t4.m_fields.create(:title => '标题')
-    #
-    #t4 = w.m_tabs.create(:title => '标签Action')
-    #t4.m_fields.create(:title => '标题')
-
-    #col1 = Fastui::MColumn.create({:title => 'ID', :name => 'id',:width => 35})
-    #col1.m_property = window_property0
-    #col2= Fastui::MColumn.create({:title => '窗口名称', :name => 'title',:width => 75})
-    #col2.m_property = window_property1
-    #t1.m_columns = [col1,col2]
 
     fastui_window.m_columns.create([
                                        {:title => 'ID', :m_property => m_window_id, :width => 35},
-                                       {:title => '名称', :m_property => m_window_title, :width => 75}
+                                       {:title => '名称', :m_property => m_window_title, :width => 75},
+                                       {:title => '备注', :m_property => m_window_note, :width => 75},
+                                       {:title => '窗体种类', :m_property => m_window_kind_id, :width => 75},
+                                       {:title => '实体种类', :m_property => m_window_entity_kind_id, :width => 75},
+                                       {:title => '排序', :m_property => m_window_seq, :width => 75},
+                                       {:title => '是否激活', :m_property => m_window_actived_id, :width => 75},
+                                       {:title => '帮助', :m_property => m_window_help, :width => 75}
                                    ])
 
     fastui_window.m_fields.create([
@@ -102,28 +114,74 @@ namespace :fastui do
     fastui_tab.m_columns.create([{:title => 'ID', :m_property => m_tab_id, :width => 35},
                                  {:title => '名称', :m_property => m_tab_title, :width => 75},
                                  {:title => '备注', :m_property => m_tab_note, :width => 75},
-                                 {:title => '只读', :m_property => m_tab_read_id, :width => 75}
+                                 {:title => '只读', :m_property => m_tab_read_id, :width => 75},
+                                 {:title => '实体种类', :m_property => m_tab_entity_kind_id, :width => 75},
+                                 {:title => '排序', :m_property => m_tab_seq, :width => 75},
+                                 {:title => '是否激活', :m_property => m_tab_actived_id, :width => 75},
+                                 {:title => '帮助', :m_property => m_tab_help, :width => 75}
+
                                 ])
 
-    #t2.m_columns.create([{:title => 'ID', :data_index => 'id', :xtype => 'VDefaultColumn', :width => 35},
-    #                     {:title => '标签名称', :data_index => 'title', :xtype => 'VDefaultColumn', :width => 75},
-    #                    #{:title => 'Model',:data_index => 'model_class',:association => 'm_model',:xtype => 'VDefaultColumn',:sortable => true,:width => 75},
-    #                    #{:title => '所属窗口',:data_index => 'm_window_name',:association => 'm_window',:association_name => 'name',:m_attr => m_tab.m_attrs.find_by_name('m_window_id'),:xtype => 'VDefaultColumn',:sortable => true,:width => 75},
-    #                    #{:title => '所属Tab',:data_index => 'm_tab_name',:association => 'included_tab',:association_name => 'name',:m_attr => m_tab.m_attrs.find_by_name('included_tab_id'),:xtype => 'VDefaultColumn',:sortable => true,:width => 75}
-    #                    ])
     fastui_tab.m_fields.create([{:title => 'ID', :m_property => m_tab_id},
                                 {:title => '名称', :m_property => m_tab_title},
                                 {:title => '备注', :m_property => m_tab_note},
-                                {:title => '只读', :m_property => m_tab_read_id}
-                               #                   #{:title => 'Model',:vfield => 'VLongCombo',:m_attr => 'model_class',:disabled => false,:order_by => 3,:position => 1,:desc => '模型名，此标签的对应的模型',:help => ''},
-                               #                   #{:title => '表单显示列数',:attr => 'layout',:vfield => 'VNumber',:m_attr => m_tab.m_attrs.find_by_name('layout'),:disabled => false,:order_by => 4,:position => 1,:desc => '表单显示时，一行中属性的个数',:help => ''},
-                               #                   #{:title => '所属窗口',:attr => 'm_window_id',:vfield => 'VCombo',:m_attr => m_tab.m_attrs.find_by_name('m_window_id'),:disabled => false,:order_by => 5,:position => 1,:desc => '此标签所属的窗口',:help => ''},
-                               #                   #{:title => '关联的标签',:attr => 'included_tab_id',:vfield => 'VIncludedTabsCombo',:m_attr => m_tab.m_attrs.find_by_name('included_tab_id'),:disabled => false,:order_by => 6,:position => 1,:desc => '在点击时，次标签的上一级链接地址',:help => ''},
-                               #                   #{:title => '描述',:attr => 'desc',:m_attr => m_tab.m_attrs.find_by_name('desc'),:vfield => 'VString',:disabled => false,:order_by => 7,:position => 1,:desc => '描述',:help => ''},
-                               #                   #{:title => '帮助',:attr => 'help',:vfield => 'VLongString',:m_attr => m_tab.m_attrs.find_by_name('help'),:disabled => false,:order_by => 8,:position => 1,:desc => '帮助信息',:help => ''}
+                                {:title => '只读', :m_property => m_tab_read_id},
+                                {:title => '实体种类', :m_property => m_tab_entity_kind_id},
+                                {:title => '排序', :m_property => m_tab_seq},
+                                {:title => '是否激活', :m_property => m_tab_actived_id},
+                                {:title => '帮助', :m_property => m_tab_help}
+                               #{:title => '所属组织', :m_property => m_tab_org_id},
+                               #{:title => '创建人', :m_property => m_tab_createdby_id},
+                               #{:title => '更新人', :m_property => m_tab_updatedby_id}
                                ])
 
+    fastui_field.m_columns.create([{:title => 'ID', :m_property => m_field_id, :width => 35},
+                                 {:title => '名称', :m_property => m_field_title, :width => 75},
+                                 {:title => '备注', :m_property => m_field_note, :width => 75},
+                                 {:title => '显示', :m_property => m_field_displayed, :width => 75},
+                                 {:title => '只读', :m_property => m_field_read, :width => 75},
+                                 {:title => '实体种类', :m_property => m_field_entity_kind_id, :width => 75},
+                                 {:title => '排序', :m_property => m_field_seq, :width => 75},
+                                 {:title => '是否激活', :m_property => m_field_actived_id, :width => 75},
+                                 {:title => '帮助', :m_property => m_field_help, :width => 75}
+                                ])
 
+    fastui_field.m_fields.create([{:title => 'ID', :m_property => m_field_id},
+                                {:title => '名称', :m_property => m_field_title},
+                                {:title => '备注', :m_property => m_field_note},
+                                {:title => '显示', :m_property => m_field_displayed},
+                                {:title => '只读', :m_property => m_field_read},
+                                {:title => '实体种类', :m_property => m_field_entity_kind_id},
+                                {:title => '排序', :m_property => m_field_seq},
+                                {:title => '是否激活', :m_property => m_field_actived_id},
+                                {:title => '帮助', :m_property => m_field_help}
+                               #{:title => '所属组织', :m_property => m_tab_org_id},
+                               #{:title => '创建人', :m_property => m_tab_createdby_id},
+                               #{:title => '更新人', :m_property => m_tab_updatedby_id}
+                               ])
+
+    fastui_column.m_columns.create([{:title => 'ID', :m_property => m_column_id, :width => 35},
+                                   {:title => '名称', :m_property => m_column_title, :width => 75},
+                                   {:title => '备注', :m_property => m_column_note, :width => 75},
+                                   {:title => '列宽度', :m_property => m_column_width, :width => 75},
+                                   {:title => '实体种类', :m_property => m_column_entity_kind_id, :width => 75},
+                                   {:title => '排序', :m_property => m_column_seq, :width => 75},
+                                   {:title => '是否激活', :m_property => m_column_actived_id, :width => 75},
+                                   {:title => '帮助', :m_property => m_column_help, :width => 75}
+                                  ])
+
+    fastui_column.m_fields.create([{:title => 'ID', :m_property => m_column_id},
+                                  {:title => '名称', :m_property => m_column_title},
+                                  {:title => '备注', :m_property => m_column_note},
+                                  {:title => '列宽度', :m_property => m_column_width},
+                                  {:title => '实体种类', :m_property => m_column_entity_kind_id},
+                                  {:title => '排序', :m_property => m_column_seq},
+                                  {:title => '是否激活', :m_property => m_column_actived_id},
+                                  {:title => '帮助', :m_property => m_column_help}
+                                 #{:title => '所属组织', :m_property => m_tab_org_id},
+                                 #{:title => '创建人', :m_property => m_tab_createdby_id},
+                                 #{:title => '更新人', :m_property => m_tab_updatedby_id}
+                                 ])
   end
 
 end
