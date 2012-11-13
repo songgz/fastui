@@ -5,20 +5,27 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
     // override onTriggerClick
     onTriggerClick:function () {
         this.loadWindow();
-
     },
     loadWindow:function () {
-        Ext.create('Ext.window.Window', {
-            title:'Hello',
+       this.grid = Ext.create('Ext.grid.Panel', {
+           vlookup:this,
+           border:false,
+           store: this.getStore(),
+           columns: [
+               {header:'ID',dataIndex:'id'},{header:'名称',dataIndex: 'title'}
+           ],
+           listeners:{
+               itemclick:function( grid, record, item, index, e, eOpts){
+                  this.vlookup.setValue(record.get('id'));
+               }
+           }
+       });
+       this.window = Ext.create('Ext.window.Window', {
+            title:this.entity.title,
             height:200,
             width:400,
             layout:'fit',
-            items:{
-                xtype:'grid',
-                border:false,
-                columns:['id', 'title'],
-                store:this.getStore()
-            }
+            items:this.grid
         }).show();
     },
     getStore:function () {
@@ -27,7 +34,7 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
             fields:['id', 'title'],
             proxy:{
                 type:'ajax',
-                url:'/fastui/' + Ext.util.Inflector.pluralize(this.entity_name) + '.json',
+                url:'/fastui/' + Ext.util.Inflector.pluralize(this.entity.name) + '.json',
                 reader:{
                     type:'json',
                     root:''

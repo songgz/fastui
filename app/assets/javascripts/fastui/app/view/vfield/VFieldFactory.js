@@ -30,7 +30,7 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
                 return Ext.create('FastUI.view.vfield.VComboBox',opt);
                 break;
             case 'Fastui::MEntity':
-                opt['entity_name'] = field.m_property.refable.name;
+                opt['entity'] = field.m_property.refable;
                 return Ext.create('FastUI.view.vfield.VLookUpWindow',opt);
                 break;
         }
