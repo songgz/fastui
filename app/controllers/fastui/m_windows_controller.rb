@@ -6,7 +6,7 @@ module Fastui
 
     def index
       @m_windows = MWindow.all
-      respond_with(@m_windows)
+      respond_with(@m_windows.to_json(:include => {:kind => {}}))
     end
 
     def show
@@ -20,9 +20,17 @@ module Fastui
       respond_with(@m_window.to_json(:include =>
                                          {:m_tabs =>
                                               {:include =>
-                                                   {:m_fields => {:include => {:m_property => {:include => [:refable]}}}, :m_columns => {:include => [:m_property]},
-                                                    :m_entity => {:include => [:m_properties]}
-                                                   }}}))
+                                                   {:m_fields =>
+                                                        {:include =>
+                                                             {:m_property => {:include => [:refable]}}},
+                                                    :m_columns => {:include => [:m_property]},
+                                                    :m_entity =>
+                                                        {:include => [:m_properties]}
+                                                   }
+                                              },:kind =>{},:entity_kind => {},:actived => {}
+                                         }
+                   )
+      )
     end
 
     def edit
