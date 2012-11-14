@@ -64,7 +64,7 @@ Ext.define('FastUI.view.VFactory', {
         Ext.each(this._vdata.m_columns, function (column) {
             var col = {name:column.m_property.name};
             if (column.m_property.refable_type === 'Fastui::MGlossary' && column.m_property.refable.name === 'entity_kind'){
-                col.mapping = '' + column.m_property.refable.name + '.title'
+                col.mapping = '' + column.m_property.name-id + '.title'
                 alert(col.mapping);
             }
             fields.push(col);
