@@ -13,11 +13,21 @@ module Fastui
       @m_window = MWindow.find(params[:id])
       p ActiveRecord::Base.subclasses
       respond_with(@m_window.to_json(:include =>
-                                         {:m_tabs =>
-                                              {:include =>
-                                                   {:m_fields => {:include => {:m_property => {:include => [:refable]}}}, :m_columns => {:include => {:m_property => {:include => [:refable]}}},
-                                                    :m_entity => {:include => [:m_properties]}
-                                                   }}}))
+                                         {:m_tabs => {:include =>
+                                                          {:m_fields => {:include =>
+                                                                             {:m_property => {:include => [:refable]}
+                                                                             }
+                                                          },
+                                                           :m_columns => {:include =>
+                                                                              {:m_property => {:include => [:refable]}
+                                                                              }
+                                                           },
+                                                           :m_entity => {:include => [:m_properties]}
+                                                          }
+                                         }
+                                         }
+                   )
+      )
     end
 
     def edit

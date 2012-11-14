@@ -5,7 +5,7 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_tabs = MTab.all
-      respond_with(@m_tabs)
+      respond_with(@m_tabs.to_json(:include => [:m_columns,:m_fields,:read,:actived,:entity_kind]))
     end
 
     def show
