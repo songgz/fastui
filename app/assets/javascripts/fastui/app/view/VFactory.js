@@ -7,12 +7,6 @@ Ext.define('FastUI.view.VFactory', {
             this.model_class = this._vdata.m_entity.name;
             this.resource =  Ext.util.Inflector.pluralize(this.model_class.toLowerCase());
         }
-//        this.model_class = this._vdata.model_class;
-//        if(this.model_class){
-//            this.resource =  Ext.util.Inflector.pluralize(this._vdata.model_class.toLowerCase());
-////            this.resource = Inflector.pluralize(this._vdata.model_class.toLowerCase());
-//        }
-//        this._vdata.model_class = 'm_window'
     },
 
     getVData:function () {
@@ -29,8 +23,6 @@ Ext.define('FastUI.view.VFactory', {
     },
     getStore:function () {
         return new Ext.data.JsonStore({
-            // store configs
-            //storeId: 'myStore',
             autoLoad:true,
             proxy:{
                 type:'ajax',
@@ -63,9 +55,8 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
         Ext.each(this._vdata.m_columns, function (column) {
             var col = {name:column.m_property.name};
-            if (column.m_property.refable_type === 'Fastui::MGlossary' && column.m_property.refable.name === 'entity_kind'){
-                col.mapping = '' + column.m_property.name-id + '.title'
-                alert(col.mapping);
+            if (column.m_property.name.indexOf('_id') > 0){
+                col.mapping = '' + column.m_property.name.replace('_id','') + '.title' ;
             }
             fields.push(col);
         });

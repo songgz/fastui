@@ -6,16 +6,11 @@ module Fastui
 
     def index
       @m_windows = MWindow.all()
-      respond_with(@m_windows.to_json(:include => [:kind,:entity_kind]))
+      respond_with(@m_windows.to_json(:include => [:window_kind, :entity_kind, :actived]))
     end
 
     def show
       @m_window = MWindow.find(params[:id])
-      #p 'dsf'
-      #p @m_window.m_tabs
-      #respond_with({:success => true,:m_windows =>@m_window})
-      #respond_with(@m_window.to_json(:include => :m_tabs))
-      #p @m_window.to_json(:include =>{:m_tabs =>{:include =>{:m_fields=>{},:m_columns=>{}}}})
       p ActiveRecord::Base.subclasses
       respond_with(@m_window.to_json(:include =>
                                          {:m_tabs =>

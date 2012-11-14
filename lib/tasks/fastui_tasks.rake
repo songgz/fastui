@@ -17,9 +17,8 @@ namespace :fastui do
 
     state = Fastui::MGlossary.create({:name => 'state', :title => '状态'})
     state.m_glossary_items.create([
-                                              {:name => 'actived', :title => '激活'},
-                                              {:name => 'readonly', :title => '只读'},
-                                              {:name => 'hidden', :title => '隐藏'}
+                                              {:name => 'true', :title => '是'},
+                                              {:name => 'false', :title => '否'}
                                           ])
 
     access_level = Fastui::MGlossary.create({:name => 'access_level', :title => '访问级别'})
@@ -48,7 +47,7 @@ namespace :fastui do
     m_window_entity_kind_id = m_window.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
     m_window_kind_id = m_window.m_properties.create({:name => 'window_kind_id', :title => '窗体种类', :refable => window_kind})
     m_window_seq = m_window.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
-    m_window_state_id = m_window.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
+    m_window_actived_id = m_window.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => state})
     m_window_help = m_window.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
     m_window_org_id = m_window.m_properties.create({:name => 'org_id',:title => '所属组织',:refable => m_org})
 
@@ -57,10 +56,10 @@ namespace :fastui do
     m_tab_id = m_tab.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
     m_tab_title = m_tab.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
     m_tab_note = m_tab.m_properties.create({:name => 'note', :title => '备注', :refable => v_text})
-    m_tab_read_id = m_tab.m_properties.create({:name => 'read_id', :title => '只读', :refable => boolean_value})
+    m_tab_read_id = m_tab.m_properties.create({:name => 'read_id', :title => '只读', :refable => state})
     m_tab_entity_kind_id = m_tab.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
     m_tab_seq = m_tab.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
-    m_tab_actived_id = m_tab.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
+    m_tab_actived_id = m_tab.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => state})
     m_tab_help = m_tab.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
 
 
@@ -68,11 +67,11 @@ namespace :fastui do
     m_field_id = m_field.m_properties.create({:name => 'id',:title => 'ID', :refable => v_number})
     m_field_title = m_field .m_properties.create({:name => 'title',:title => '标题',:refable => v_text})
     m_field_note = m_field.m_properties.create({:name => 'note',:title => '备注',:refable => v_text})
-    m_field_displayed = m_field.m_properties.create({:name => 'displayed',:title => '是否显示',:refable => boolean_value})
-    m_field_read = m_field.m_properties.create({:name => 'read',:title => '是否只读',:refable => boolean_value})
+    m_field_displayed = m_field.m_properties.create({:name => 'displayed',:title => '是否显示',:refable => state})
+    m_field_read = m_field.m_properties.create({:name => 'read',:title => '是否只读',:refable => state})
     m_field_entity_kind_id = m_field.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
     m_field_seq = m_field.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
-    m_field_actived_id = m_field.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
+    m_field_actived_id = m_field.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => state})
     m_field_help = m_field.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
 
     m_column = Fastui::MEntity.create({:name => 'm_column', :title => '表列', :entity_kind => entity_kind_sys})
@@ -82,7 +81,7 @@ namespace :fastui do
     m_column_width = m_column.m_properties.create({:name => 'width',:title => '列宽度',:refable => v_number})
     m_column_entity_kind_id = m_column.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
     m_column_seq = m_column.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
-    m_column_actived_id = m_column.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
+    m_column_actived_id = m_column.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => state})
     m_column_help = m_column.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
 
 

@@ -7,7 +7,7 @@ class CreateFastuiMWindows < ActiveRecord::Migration
 
       t.integer :entity_kind_id #:sys,:app
       t.integer :seq, :default => 0
-      t.integer :state_id       #:actived,:readonly,:hidden
+      t.integer :actived_id
       t.integer :org_id, :default => 0
       t.integer :createdby_id, :default => 0
       t.integer :updatedby_id, :default => 0

@@ -209,7 +209,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   create_table "fastui_m_windows", :force => true do |t|
     t.string   "title",          :limit => 60,                :null => false
     t.string   "note"
-    t.integer  "kind_id"
+    t.integer  "window_kind_id"
     t.integer  "entity_kind_id"
     t.integer  "seq",                          :default => 0
     t.integer  "actived_id"
