@@ -15,10 +15,11 @@ namespace :fastui do
     v_combobox = Fastui::MDataType.create({:name => 'VComboBox', :title => '下拉框'})
     v_defaultColumn = Fastui::MDataType.create({:name => 'VDefaultColumn', :title => 'grid默认列'})
 
-    boolean_value = Fastui::MGlossary.create({:name => 'boolean_value', :title => '布尔值'})
-    boolean_value.m_glossary_items.create([
-                                              {:name => 'false', :title => '否'},
-                                              {:name => 'true', :title => '是'}
+    state = Fastui::MGlossary.create({:name => 'state', :title => '状态'})
+    state.m_glossary_items.create([
+                                              {:name => 'actived', :title => '激活'},
+                                              {:name => 'readonly', :title => '只读'},
+                                              {:name => 'hidden', :title => '隐藏'}
                                           ])
 
     access_level = Fastui::MGlossary.create({:name => 'access_level', :title => '访问级别'})
@@ -45,9 +46,9 @@ namespace :fastui do
     m_window_title = m_window.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
     m_window_note = m_window.m_properties.create({:name => 'note', :title => '备注', :refable => v_text})
     m_window_entity_kind_id = m_window.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
-    m_window_kind_id = m_window.m_properties.create({:name => 'kind_id', :title => '窗体种类', :refable => window_kind})
+    m_window_kind_id = m_window.m_properties.create({:name => 'window_kind_id', :title => '窗体种类', :refable => window_kind})
     m_window_seq = m_window.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
-    m_window_actived_id = m_window.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
+    m_window_state_id = m_window.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => boolean_value})
     m_window_help = m_window.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
     m_window_org_id = m_window.m_properties.create({:name => 'org_id',:title => '所属组织',:refable => m_org})
 

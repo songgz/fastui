@@ -5,8 +5,8 @@ module Fastui
     respond_to :html, :xml, :json
 
     def index
-      @m_windows = MWindow.all
-      respond_with(@m_windows)
+      @m_windows = MWindow.all()
+      respond_with(@m_windows.to_json(:include => [:kind,:entity_kind]))
     end
 
     def show
@@ -20,7 +20,7 @@ module Fastui
       respond_with(@m_window.to_json(:include =>
                                          {:m_tabs =>
                                               {:include =>
-                                                   {:m_fields => {:include => {:m_property => {:include => [:refable]}}}, :m_columns => {:include => [:m_property]},
+                                                   {:m_fields => {:include => {:m_property => {:include => [:refable]}}}, :m_columns => {:include => {:m_property => {:include => [:refable]}}},
                                                     :m_entity => {:include => [:m_properties]}
                                                    }}}))
     end
