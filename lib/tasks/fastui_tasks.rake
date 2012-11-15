@@ -16,10 +16,8 @@ namespace :fastui do
     v_defaultColumn = Fastui::MDataType.create({:name => 'VDefaultColumn', :title => 'grid默认列'})
 
     state = Fastui::MGlossary.create({:name => 'state', :title => '状态'})
-    state.m_glossary_items.create([
-                                              {:name => 'true', :title => '是'},
-                                              {:name => 'false', :title => '否'}
-                                          ])
+    state_true = state.m_glossary_items.create({:name => 'true', :title => '是'})
+    state_false = state.m_glossary_items.create({:name => 'false', :title => '否'})
 
     access_level = Fastui::MGlossary.create({:name => 'access_level', :title => '访问级别'})
     access_level.m_glossary_items.create([
@@ -86,7 +84,7 @@ namespace :fastui do
 
 
 
-    fastui = Fastui::MWindow.create(:title => 'FastUI')
+    fastui = Fastui::MWindow.create(:title => 'FastUI',:window_kind =>window_kind_maintain ,:entity_kind => entity_kind_sys,:actived => state_true)
     fastui_window = fastui.m_tabs.create(:title => '窗口', :m_entity => m_window)
     fastui_tab = fastui.m_tabs.create(:title => '标签', :m_entity => m_tab)
     fastui_field = fastui.m_tabs.create(:title => '字段', :m_entity => m_field)

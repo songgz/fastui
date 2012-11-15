@@ -26,51 +26,51 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
 
   create_table "fastui_m_columns", :force => true do |t|
     t.integer  "m_tab_id"
-    t.string   "title",          :limit => 60,                :null => false
-    t.string   "note"
+    t.string   "title",          :limit => 60,                 :null => false
+    t.string   "note",                         :default => ""
     t.string   "name",           :limit => 20
     t.integer  "m_property_id"
-    t.integer  "width"
-    t.integer  "entity_kind_id"
+    t.integer  "width",                        :default => 35
+    t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
-    t.integer  "actived_id"
+    t.integer  "actived_id",                   :default => 0
     t.integer  "org_id",                       :default => 0
     t.integer  "createdby_id",                 :default => 0
     t.integer  "updatedby_id",                 :default => 0
-    t.string   "help"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "help",                         :default => ""
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "fastui_m_data_types", :force => true do |t|
-    t.string   "title",          :limit => 60,                :null => false
-    t.string   "note"
-    t.string   "name",           :limit => 20,                :null => false
-    t.integer  "entity_kind_id"
+    t.string   "title",          :limit => 60,                 :null => false
+    t.string   "note",                         :default => ""
+    t.string   "name",           :limit => 20,                 :null => false
+    t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
-    t.integer  "actived_id"
+    t.integer  "actived_id",                   :default => 0
     t.integer  "org_id",                       :default => 0
     t.integer  "createdby_id",                 :default => 0
     t.integer  "updatedby_id",                 :default => 0
-    t.string   "help"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "help",                         :default => ""
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "fastui_m_entities", :force => true do |t|
-    t.string   "title",           :limit => 60,                :null => false
-    t.string   "note"
-    t.string   "name",            :limit => 20,                :null => false
-    t.integer  "access_level_id"
-    t.integer  "entity_kind_id"
+    t.string   "title",           :limit => 60,                 :null => false
+    t.string   "note",                          :default => ""
+    t.string   "name",            :limit => 20,                 :null => false
+    t.integer  "access_level_id",               :default => 0
+    t.integer  "entity_kind_id",                :default => 0
     t.integer  "seq",                           :default => 0
-    t.integer  "actived_id"
+    t.integer  "actived_id",                    :default => 0
     t.integer  "org_id",                        :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
-    t.string   "help"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.string   "help",                          :default => ""
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "fastui_m_fields", :force => true do |t|
@@ -79,15 +79,15 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.string   "note",                         :default => ""
     t.string   "name",           :limit => 20
     t.integer  "m_property_id"
-    t.boolean  "displayed"
-    t.boolean  "read"
-    t.integer  "entity_kind_id"
+    t.integer  "displayed",                    :default => 0
+    t.integer  "read",                         :default => 0
+    t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
-    t.integer  "actived_id"
+    t.integer  "actived_id",                   :default => 0
     t.integer  "org_id",                       :default => 0
     t.integer  "createdby_id",                 :default => 0
     t.integer  "updatedby_id",                 :default => 0
-    t.string   "help"
+    t.string   "help",                         :default => ""
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
   end
@@ -109,66 +109,66 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
 
   create_table "fastui_m_glossary_items", :force => true do |t|
     t.integer  "m_glossary_id"
-    t.string   "title",          :limit => 60,                :null => false
-    t.string   "note"
-    t.string   "name",           :limit => 20,                :null => false
-    t.integer  "entity_kind_id"
+    t.string   "title",          :limit => 60,                 :null => false
+    t.string   "note",                         :default => ""
+    t.string   "name",           :limit => 20,                 :null => false
+    t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
-    t.integer  "actived_id"
+    t.integer  "actived_id",                   :default => 0
     t.integer  "org_id",                       :default => 0
     t.integer  "createdby_id",                 :default => 0
     t.integer  "updatedby_id",                 :default => 0
-    t.string   "help"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "help",                         :default => ""
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "fastui_m_menu_items", :force => true do |t|
-    t.string   "title",       :limit => 60,                   :null => false
+    t.string   "title",       :limit => 60,                :null => false
     t.integer  "m_window_id"
-    t.boolean  "actived",                   :default => true
+    t.integer  "actived",                   :default => 0
     t.integer  "org_id",                    :default => 0
     t.integer  "createdby",                 :default => 0
     t.integer  "updatedby",                 :default => 0
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   add_index "fastui_m_menu_items", ["m_window_id"], :name => "index_fastui_m_menu_items_on_m_window_id"
 
   create_table "fastui_m_menus", :force => true do |t|
-    t.string   "title",      :limit => 60,                   :null => false
-    t.boolean  "actived",                  :default => true
+    t.string   "title",      :limit => 60,                :null => false
+    t.integer  "actived",                  :default => 0
     t.integer  "org_id",                   :default => 0
     t.integer  "createdby",                :default => 0
     t.integer  "updatedby",                :default => 0
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "fastui_m_orgs", :force => true do |t|
-    t.string   "title",          :limit => 60,                :null => false
-    t.string   "note"
-    t.string   "name",           :limit => 20,                :null => false
-    t.integer  "entity_kind_id"
+    t.string   "title",          :limit => 60,                 :null => false
+    t.string   "note",                         :default => ""
+    t.string   "name",           :limit => 20,                 :null => false
+    t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
-    t.integer  "actived_id"
+    t.integer  "actived_id",                   :default => 0
     t.integer  "org_id",                       :default => 0
     t.integer  "createdby_id",                 :default => 0
     t.integer  "updatedby_id",                 :default => 0
-    t.string   "help"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "help",                         :default => ""
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "fastui_m_people", :force => true do |t|
-    t.string   "name",       :limit => 60,                   :null => false
-    t.boolean  "actived",                  :default => true
+    t.string   "name",       :limit => 60,                :null => false
+    t.integer  "actived",                  :default => 0
     t.integer  "org_id",                   :default => 0
     t.integer  "createdby",                :default => 0
     t.integer  "updatedby",                :default => 0
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "fastui_m_properties", :force => true do |t|
@@ -178,13 +178,13 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.string   "name",           :limit => 20,                 :null => false
     t.integer  "refable_id"
     t.string   "refable_type"
-    t.integer  "entity_kind_id"
+    t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
-    t.integer  "actived_id"
+    t.integer  "actived_id",                   :default => 0
     t.integer  "org_id",                       :default => 0
     t.integer  "createdby_id",                 :default => 0
     t.integer  "updatedby_id",                 :default => 0
-    t.string   "help"
+    t.string   "help",                         :default => ""
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
   end
@@ -193,11 +193,11 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.integer  "m_window_id"
     t.string   "title",          :limit => 60,                :null => false
     t.string   "note"
-    t.integer  "read_id"
+    t.integer  "read_id",                      :default => 0
     t.integer  "m_entity_id"
     t.integer  "entity_kind_id"
     t.integer  "seq",                          :default => 0
-    t.integer  "actived_id"
+    t.integer  "actived_id",                   :default => 0
     t.integer  "org_id",                       :default => 0
     t.integer  "createdby_id",                 :default => 0
     t.integer  "updatedby_id",                 :default => 0
@@ -207,18 +207,18 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   end
 
   create_table "fastui_m_windows", :force => true do |t|
-    t.string   "title",          :limit => 60,                :null => false
-    t.string   "note"
-    t.integer  "window_kind_id"
-    t.integer  "entity_kind_id"
+    t.string   "title",          :limit => 60,                 :null => false
+    t.string   "note",                         :default => ""
+    t.integer  "window_kind_id",               :default => 0
+    t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
-    t.integer  "actived_id"
+    t.integer  "actived_id",                   :default => 0
     t.integer  "org_id",                       :default => 0
     t.integer  "createdby_id",                 :default => 0
     t.integer  "updatedby_id",                 :default => 0
-    t.string   "help"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "help",                         :default => ""
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
 end

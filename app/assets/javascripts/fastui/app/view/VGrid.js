@@ -8,11 +8,5 @@ Ext.define('FastUI.view.VGrid', {
         this.columns = this.vfactory.getColumns();
         this.store = this.vfactory.getStore();
         this.callParent();
-    },
-    renderer: function(value){
-        if (value === 1) {
-            return '1 person';
-        }
-        return value + ' people';
     }
 });

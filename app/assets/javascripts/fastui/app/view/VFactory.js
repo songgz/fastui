@@ -23,7 +23,7 @@ Ext.define('FastUI.view.VFactory', {
     },
     getStore:function () {
         return new Ext.data.JsonStore({
-            autoLoad:true,
+//            autoLoad:true,
             proxy:{
                 type:'ajax',
                 url:this.getUrl(),
@@ -47,7 +47,27 @@ Ext.define('FastUI.view.VFactory', {
                 text:column.title,
                 dataIndex:column.m_property.name
             });
+
+
+//            if(column.m_property.name.indexOf('_id') > 0)
+//            {
+//                var colName =  column.m_property.name.replace('_id','');
+//                columns.push({
+//                    header:column.title,
+//                    dataIndex:column.m_property.name,
+//                    renderer: function(value, meta, record, rowIndex, colIndex, store, view) {
+////                       alert(this._vdata.entity_kind.title);
+//                        return '000'
+//                    }
+//                });
+//            }else{
+//                columns.push({
+//                    header:column.title,
+//                    dataIndex:column.m_property.name
+//                });
+//            }
         });
+
         return columns;
     },
 
@@ -55,9 +75,9 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
         Ext.each(this._vdata.m_columns, function (column) {
             var col = {name:column.m_property.name};
-            if (column.m_property.name.indexOf('_id') > 0){
-                col.mapping = '' + column.m_property.name.replace('_id','') + '.title' ;
-            }
+//            if (column.m_property.name.indexOf('_id') > 0){
+//                col.mapping = '' + column.m_property.name.replace('_id','') + '.title' ;
+//            }
             fields.push(col);
         });
         return fields;
