@@ -47,25 +47,6 @@ Ext.define('FastUI.view.VFactory', {
                 text:column.title,
                 dataIndex:column.m_property.name
             });
-
-
-//            if(column.m_property.name.indexOf('_id') > 0)
-//            {
-//                var colName =  column.m_property.name.replace('_id','');
-//                columns.push({
-//                    header:column.title,
-//                    dataIndex:column.m_property.name,
-//                    renderer: function(value, meta, record, rowIndex, colIndex, store, view) {
-////                       alert(this._vdata.entity_kind.title);
-//                        return '000'
-//                    }
-//                });
-//            }else{
-//                columns.push({
-//                    header:column.title,
-//                    dataIndex:column.m_property.name
-//                });
-//            }
         });
 
         return columns;

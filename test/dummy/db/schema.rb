@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.string   "note"
     t.integer  "read_id",                      :default => 0
     t.integer  "m_entity_id"
-    t.integer  "entity_kind_id"
+    t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
     t.integer  "actived_id",                   :default => 0
     t.integer  "org_id",                       :default => 0
