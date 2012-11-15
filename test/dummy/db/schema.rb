@@ -191,8 +191,8 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
 
   create_table "fastui_m_tabs", :force => true do |t|
     t.integer  "m_window_id"
-    t.string   "title",          :limit => 60,                :null => false
-    t.string   "note"
+    t.string   "title",          :limit => 60,                 :null => false
+    t.string   "note",                         :default => ""
     t.integer  "read_id",                      :default => 0
     t.integer  "m_entity_id"
     t.integer  "entity_kind_id",               :default => 0
@@ -201,9 +201,9 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.integer  "org_id",                       :default => 0
     t.integer  "createdby_id",                 :default => 0
     t.integer  "updatedby_id",                 :default => 0
-    t.string   "help"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "help",                         :default => ""
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "fastui_m_windows", :force => true do |t|

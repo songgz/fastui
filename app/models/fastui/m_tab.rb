@@ -1,7 +1,7 @@
 # encoding: utf-8
 module Fastui
   class MTab < ActiveRecord::Base
-    attr_accessible :id, :title, :note, :m_entity, :m_entity_id, :read_id, :read
+    attr_accessible :id, :title, :note, :m_window,:m_window_id,:m_entity, :m_entity_id, :read_id, :read
     attr_accessible :entity_kind_id, :entity_kind,:actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
 
     belongs_to :m_window

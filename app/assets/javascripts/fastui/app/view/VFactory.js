@@ -51,22 +51,31 @@ Ext.define('FastUI.view.VFactory', {
 
         return columns;
     },
-
+//    fieldWithIdMapFn:function(v,rec){
+//        if(v == 0){
+//            return 0;
+//        }else{
+//            alert(Ext.JSON.encode(rec));
+//            alert(v.name);
+//            return rec.raw[column.m_property.name.replace('_id','')].title;
+//        }
+//    },
     getFields:function () {
         var fields = [];
         Ext.each(this._vdata.m_columns, function (column) {
             var col = {name:column.m_property.name};
             if (column.m_property.name.indexOf('_id') > 0){
+//                col.convert = this.fieldWithIdMapFn;
                 col.convert = function(v,rec){
                     if(v == 0){
                         return 0;
                     }else{
-                        return rec.raw[ column.m_property.name.replace('_id','')].title;
+                        return rec.raw[column.m_property.name.replace('_id','')].title;
                     }
                 }
             }
             fields.push(col);
-        });
+        },this);
         return fields;
     },
 
