@@ -59,8 +59,8 @@ namespace :fastui do
     m_tab_seq = m_tab.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
     m_tab_actived_id = m_tab.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => state})
     m_tab_help = m_tab.m_properties.create({:name => 'help', :title => '帮助', :refable => v_text})
-    m_tab_window_id = m_tab.m_properties.create({:name => 'm_window',:title => '所属窗口',:refable => m_window})
-    m_tab_entity_id = m_tab.m_properties.create({:name => 'm_entity',:title => '对应实体',:refable => m_tab})
+    m_tab_window_id = m_tab.m_properties.create({:name => 'm_window_id',:title => '所属窗口',:refable => m_window})
+    m_tab_entity_id = m_tab.m_properties.create({:name => 'm_entity_id',:title => '对应实体',:refable => m_tab})
     m_tab_org_id = m_tab.m_properties.create({:name => 'org_id',:title => '所属组织',:refable => m_org})
 
 
