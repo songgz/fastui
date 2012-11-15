@@ -70,6 +70,7 @@ Ext.define('FastUI.view.VFactory', {
                     if(v == 0){
                         return 0;
                     }else{
+//                        alert(rec.raw[column.m_property.name.replace('_id','')].title);
                         return rec.raw[column.m_property.name.replace('_id','')].title;
                     }
                 }

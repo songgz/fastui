@@ -36,7 +36,8 @@ namespace :fastui do
     window_kind_query = window_kind.m_glossary_items.create({:name => 'query', :title=> '查询'})
 
     m_org = Fastui::MEntity.create({:name => 'm_org', :title => '组织', :entity_kind => entity_kind_sys})
-
+    m_person = Fastui::MPerson.create({:name => 'Admin'})
+    m_person1 = Fastui::MPerson.create({:name => '李老师'})
 
     m_window = Fastui::MEntity.create({:name => 'm_window', :title => '窗口', :entity_kind => entity_kind_sys})
     m_window_id = m_window.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
@@ -62,7 +63,8 @@ namespace :fastui do
     m_tab_window_id = m_tab.m_properties.create({:name => 'm_window_id',:title => '所属窗口',:refable => m_window})
     m_tab_entity_id = m_tab.m_properties.create({:name => 'm_entity_id',:title => '对应实体',:refable => m_tab})
     m_tab_org_id = m_tab.m_properties.create({:name => 'org_id',:title => '所属组织',:refable => m_org})
-
+    m_tab_createdby_id = m_tab.m_properties.create({:name => 'createdby_id',:title => '创建人',:refable => m_person})
+    m_tab_updatedby_id = m_tab.m_properties.create({:name => 'updatedby_id',:title => '更新人',:refable => m_person1})
 
 
     m_field = Fastui::MEntity.create({:name => 'm_field', :title => '字段', :entity_kind => entity_kind_sys})
@@ -126,6 +128,11 @@ namespace :fastui do
                                  {:title => '实体种类', :m_property => m_tab_entity_kind_id, :width => 75},
                                  {:title => '排序', :m_property => m_tab_seq, :width => 75},
                                  {:title => '是否激活', :m_property => m_tab_actived_id, :width => 75},
+                                 {:title => '所属窗口',:m_property => m_tab_window_id,:width => 75},
+                                 {:title => '对应实体',:m_property => m_tab_entity_id,:width => 75},
+                                 {:title => '所属组织',:m_property => m_tab_org_id,:width => 75},
+                                 {:title => '创建人',:m_property => m_tab_createdby_id,:width => 75},
+                                 {:title => '更新人',:m_property => m_tab_updatedby_id,:width => 75},
                                  {:title => '帮助', :m_property => m_tab_help, :width => 75}
 
                                 ])
@@ -137,12 +144,12 @@ namespace :fastui do
                                 {:title => '实体种类', :m_property => m_tab_entity_kind_id},
                                 {:title => '排序', :m_property => m_tab_seq},
                                 {:title => '是否激活', :m_property => m_tab_actived_id},
-                                {:title => '帮助', :m_property => m_tab_help},
                                 {:title => '所属窗口',:m_property => m_tab_window_id },
                                 {:title => '对应实体',:m_property => m_tab_entity_id },
                                {:title => '所属组织', :m_property => m_tab_org_id},
-                               #{:title => '创建人', :m_property => m_tab_createdby_id},
-                               #{:title => '更新人', :m_property => m_tab_updatedby_id}
+                               {:title => '创建人', :m_property => m_tab_createdby_id},
+                               {:title => '更新人', :m_property => m_tab_updatedby_id},
+                               {:title => '帮助', :m_property => m_tab_help},
                                ])
 
     fastui_field.m_columns.create([{:title => 'ID', :m_property => m_field_id, :width => 35},
