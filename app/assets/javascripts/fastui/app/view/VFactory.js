@@ -75,9 +75,15 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
         Ext.each(this._vdata.m_columns, function (column) {
             var col = {name:column.m_property.name};
-//            if (column.m_property.name.indexOf('_id') > 0){
-//                col.mapping = '' + column.m_property.name.replace('_id','') + '.title' ;
-//            }
+            if (column.m_property.name.indexOf('_id') > 0){
+                col.convert = function(v,rec){
+                    if(v == 0){
+                        return 0;
+                    }else{
+                        return rec.raw[ column.m_property.name.replace('_id','')].title;
+                    }
+                }
+            }
             fields.push(col);
         });
         return fields;
