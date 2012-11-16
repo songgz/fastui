@@ -1,7 +1,7 @@
 require_dependency "fastui/application_controller"
 
 module Fastui
-  class MPersonsController < ApplicationController
+  class MPeopleController < ApplicationController
     respond_to :html, :xml, :json
     def index
       @m_people = MPerson.all

@@ -7,7 +7,8 @@ Ext.define('FastUI.view.RestHelper', {
         if(this.model_class){
             //Ext.util.Inflector.pluralize('word'); //'words'
                     //Ext.util.Inflector.singularize('words'); //'word'
-                    this.resource = Ext.util.Inflector.pluralize(model_class.toLowerCase());
+//                    this.resource = Ext.util.Inflector.pluralize(model_class.toLowerCase());
+            this.resource = 'm_'+  Ext.util.Inflector.pluralize(model_class.toLowerCase().replace('m_',''));
         }
         this.root = '/fastui';
         this.ext = '.json';
