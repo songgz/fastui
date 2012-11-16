@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.string   "note",                         :default => ""
     t.string   "name",           :limit => 20
     t.integer  "m_property_id"
-    t.integer  "displayed",                    :default => 0
-    t.integer  "read",                         :default => 0
+    t.integer  "displayed_id",                 :default => 0
+    t.integer  "read_id",                      :default => 0
     t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
     t.integer  "actived_id",                   :default => 0
@@ -162,13 +162,14 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   end
 
   create_table "fastui_m_people", :force => true do |t|
-    t.string   "name",       :limit => 60,                :null => false
-    t.integer  "actived",                  :default => 0
-    t.integer  "org_id",                   :default => 0
-    t.integer  "createdby",                :default => 0
-    t.integer  "updatedby",                :default => 0
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.string   "title",        :limit => 60,                 :null => false
+    t.string   "name",                       :default => ""
+    t.integer  "actived_id",                 :default => 0
+    t.integer  "org_id",                     :default => 0
+    t.integer  "createdby_id",               :default => 0
+    t.integer  "updatedby_id",               :default => 0
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "fastui_m_properties", :force => true do |t|

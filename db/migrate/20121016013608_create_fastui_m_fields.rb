@@ -7,8 +7,8 @@ class CreateFastuiMFields < ActiveRecord::Migration
       t.string :name, :limit => 20
 
       t.references :m_property
-      t.integer :displayed , :default => 0
-      t.integer :read , :default => 0
+      t.integer :displayed_id , :default => 0
+      t.integer :read_id , :default => 0
 
       t.integer :entity_kind_id, :default => 0 #:sys,:app
       t.integer :seq, :default => 0

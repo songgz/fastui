@@ -5,7 +5,7 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_fields = MField.all
-      respond_with(@m_fields)
+      respond_with(@m_fields.to_json(:include => [:m_tab,:m_property,:displayed,:read,:entity_kind,:actived,:org,:createdby,:updatedby]))
     end
 
     def show
