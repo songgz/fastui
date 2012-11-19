@@ -13,3 +13,4 @@
 //= require ./extjs4/ext-all
 //= require ./app/inflection
 //= require ./fastui
+

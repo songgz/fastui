@@ -42,7 +42,7 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
             fields:['id', 'title'],
             proxy:{
                 type:'ajax',
-                url:'/fastui/' + 'm_'+  Ext.util.Inflector.pluralize(this.entity.name.toLowerCase().replace('m_','')) + '.json',
+                url:'/fastui/' + this.entity.name.toLowerCase().pluralize() + '.json',
                 reader:{
                     type:'json',
                     root:''
