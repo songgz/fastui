@@ -4,6 +4,7 @@ Ext.define('FastUI.view.VFactory', {
     constructor:function (vdata) {
         this._vdata = vdata;
         if(this._vdata.m_entity){
+            this.model_class = this._vdata.m_entity.name;
             this.resource = this._vdata.m_entity.name.toLowerCase().pluralize();
         }
     },
@@ -84,7 +85,6 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
         Ext.each(this._vdata.m_fields, function (field) {
             field.name = this.model_class +'['+field.m_property.name + ']';
-
             fields.push(Ext.create('FastUI.view.vfield.VFieldFactory').buildField(field));
 //            fields.push({
 //                fieldLabel:field.title,
