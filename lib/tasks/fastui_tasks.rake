@@ -267,6 +267,12 @@ namespace :fastui do
                                    {:title => '帮助', :m_property => m_column_help,:displayed => state_true,:read =>state_true,
                                     :entity_kind => entity_kind_sys,:seq => 11,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1}
                                   ])
-  end
 
+    menu_sys = Fastui::MMenu.new({:name => 'menu_sys', :title => '系统菜单'})
+    menu_sys_tools = Fastui::MMenuItem.create({:name => 'sys_tools', :title => '系统工具',:m_menu => menu_sys})
+    menu_sys_tools_fastui = menu_sys_tools.children.create({:name => 'sys_fastui', :title => 'FastUI'})
+
+
+
+  end
 end

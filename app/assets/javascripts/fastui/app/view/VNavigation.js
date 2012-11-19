@@ -5,37 +5,17 @@ Ext.define('FastUI.view.VNavigation', {
     title:'菜单',
     width:150,
     //scope: this,
+    initComponent:function () {
+        this.store = this.getStore();
+        this.callParent();
+    },
     listeners:{
         itemclick:function (self, record, item, index, e, eOpts) {
             this.loadVWindow(self, record, item, index, e, eOpts);
         }
 
     },
-    root:{
-        text:'Root',
-        expanded:true,
-        children:[
-            {
-                text:'FastUI',
-                leaf:true,
-                id:1
-            },
-            {
-                text:'Child 2',
-                leaf:true
-            },
-            {
-                text:'Child 3',
-                expanded:true,
-                children:[
-                    {
-                        text:'Grandchild',
-                        leaf:true
-                    }
-                ]
-            }
-        ]
-    },
+
     loadVWindow:function (self, record, item, index, e, eOpts) {
 
         Ext.Ajax.request({
@@ -49,6 +29,26 @@ Ext.define('FastUI.view.VNavigation', {
                 var c = Ext.getCmp('mycenter');
                 c.add(win);
                 c.setActiveTab(win);
+            }
+        });
+    },
+    getStore:function () {
+        return Ext.create('Ext.data.TreeStore', {
+            // convert:function(v,rec){return rec.getRawValue().title}
+            fields:['id', {name:'text', mapping:'title'}],
+            proxy:{
+                type:'ajax',
+                url:'/fastui/m_menu_items.json',
+                reader:{
+                    type:'json',
+                    root:'',
+                    record:''
+                }
+            },
+            root:{
+                text:'菜单',
+
+                expanded:true
             }
         });
     }
