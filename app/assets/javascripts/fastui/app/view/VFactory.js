@@ -45,7 +45,8 @@ Ext.define('FastUI.view.VFactory', {
         Ext.each(this._vdata.m_columns, function (column) {
             columns.push({
                 text:column.title,
-                dataIndex:column.m_property.name
+                dataIndex:column.m_property.name,
+                width:column.width
             });
         });
 

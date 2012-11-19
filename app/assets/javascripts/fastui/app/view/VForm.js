@@ -5,7 +5,7 @@ Ext.define('FastUI.view.VForm', {
     url:'',
     layout:'anchor',
     defaults:{
-        anchor:'100%'
+        anchor:'60%'
     },
     defaultType:'textfield',
 

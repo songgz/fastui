@@ -17,6 +17,7 @@ Ext.define('FastUI.view.vfield.VComboBox', {
             fields:['id','name', 'title'],
             proxy:{
                 type:'ajax',
+//                type: 'memory',
                 url:'/fastui/m_glossaries/' + this.glossary_id + '/m_glossary_items.json', //model_class
                 reader:{
                     type:'json',
