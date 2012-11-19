@@ -4,8 +4,7 @@ Ext.define('FastUI.view.VFactory', {
     constructor:function (vdata) {
         this._vdata = vdata;
         if(this._vdata.m_entity){
-            this.model_class = this._vdata.m_entity.name;
-            this.resource ='m_'+  Ext.util.Inflector.pluralize(this.model_class.toLowerCase().replace('m_',''));
+            this.resource = this._vdata.m_entity.name.pluralize();
         }
     },
 
