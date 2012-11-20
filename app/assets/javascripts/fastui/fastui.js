@@ -1,9 +1,15 @@
-Ext.Loader.setConfig({enabled: true});
-// Set valid ExtJS loading path (/vendor/assets/extjs4/src)
-Ext.Loader.setPath({
-    'Ext': '/assets/fastui/extjs4/src',
-    'Ext.ux': '/assets/fastui/extjs4/ux'
+Ext.Loader.setConfig({
+    enabled: true,
+    paths:{
+        'Ext': '/assets/fastui/extjs4/src',
+        'Ext.ux': '/assets/fastui/extjs4/ux'
+    }
 });
+//// Set valid ExtJS loading path (/vendor/assets/extjs4/src)
+//Ext.Loader.setPath({
+//    'Ext': '/assets/fastui/extjs4/src',
+//    'Ext.ux': '/assets/fastui/extjs4/ux'
+//});
 //Ext.require('FastUI.model.MWindow');
 
 //FastUI.model.MWindow
