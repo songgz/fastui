@@ -20,7 +20,7 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
         VGridColumnXtypeCombo:"VGridColumnXtypeCombo"   }
     },
     buildField:function (field) {
-        var opt = {fieldLabel:field.title, name:field.name,allowBlank:true};
+        var opt = {fieldLabel:field.title, name:field.name,disabled:(field.read.name == 'true') ,allowBlank:true};
         switch(field.m_property.refable_type){
             case 'Fastui::MDataType':
                 return this.dataTypeMatch(field,opt);

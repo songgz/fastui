@@ -5,7 +5,7 @@ Ext.define('FastUI.view.VFactory', {
         this._vdata = vdata;
         if(this._vdata.m_entity){
             this.model_class = this._vdata.m_entity.name;
-            this.resource = this._vdata.m_entity.name.toLowerCase().pluralize();
+            this.resource = this.model_class.toLowerCase().pluralize();
         }
     },
 

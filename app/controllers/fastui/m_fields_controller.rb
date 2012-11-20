@@ -15,7 +15,7 @@ module Fastui
 
     def edit
       @m_field = MField.find(params[:id])
-      respond_with(@m_field)
+      respond_with(@m_field.to_json(:include => [:m_tab,:m_property,:displayed,:read,:entity_kind,:actived,:org,:createdby,:updatedby]))
     end
 
     def new
