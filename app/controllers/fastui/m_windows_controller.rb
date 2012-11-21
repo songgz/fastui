@@ -5,7 +5,7 @@ module Fastui
     respond_to :html, :xml, :json
 
     def index
-      @m_windows = MWindow.all()
+      @m_windows = MWindow.all
       respond_with(@m_windows.to_json(:include => [:window_kind, :entity_kind, :actived,:org,:createdby,:updatedby]))
     end
 
