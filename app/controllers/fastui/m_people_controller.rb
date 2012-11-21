@@ -4,8 +4,15 @@ module Fastui
   class MPeopleController < ApplicationController
     respond_to :html, :xml, :json
     def index
+      limit = params[:limit].to_i
+      start = params[:start].to_i
       @m_people = MPerson.all
-      respond_with(@m_people)
+      @records = MPerson.limit(limit).offset(start)
+      data  ={
+          :totalCount => @m_people.length,
+          :rows => @records
+      }
+      respond_with(data.to_json)
     end
 
     def show
