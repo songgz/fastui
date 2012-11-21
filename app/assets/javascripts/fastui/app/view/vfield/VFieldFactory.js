@@ -31,7 +31,6 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
                 break;
             case 'Fastui::MEntity':
                 opt['entity'] = field.m_property.refable;
-                opt['createdby_id'] = field.createdby_id;
                 return Ext.create('FastUI.view.vfield.VLookUpWindow',opt);
                 break;
         }
