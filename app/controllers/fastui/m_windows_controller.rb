@@ -5,13 +5,18 @@ module Fastui
     respond_to :html, :xml, :json
 
     def index
-      @m_windows = MWindow.all()
+      @m_windows = MWindow.includes(:window_kind, :entity_kind, :actived,:org,:createdby,:updatedby).all()
       respond_with(@m_windows.to_json(:include => [:window_kind, :entity_kind, :actived,:org,:createdby,:updatedby]))
     end
 
     def show
-      @m_window = MWindow.find(params[:id])
-      p ActiveRecord::Base.subclasses
+      @m_window = MWindow.includes(:window_kind, :entity_kind, :actived,:org,:createdby,:updatedby,:m_tabs => {
+          :m_fields => {:m_property => :refable},
+          :m_columns => {:m_property => :refable},
+          :m_entity => :m_properties
+      }).find(params[:id])
+
+
       respond_with(@m_window.to_json(:include =>
                                          {:m_tabs => {:include =>
                                                           {:m_fields => {:include =>
