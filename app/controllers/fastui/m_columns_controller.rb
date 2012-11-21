@@ -4,7 +4,7 @@ module Fastui
   class MColumnsController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_columns = MColumn.all
+      @m_columns = MColumn.includes(:m_tab, :m_property,:entity_kind, :actived,:org,:createdby,:updatedby).all
       respond_with(@m_columns.to_json(:include => [:m_tab, :m_property,:entity_kind, :actived,:org,:createdby,:updatedby]))
     end
 

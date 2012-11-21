@@ -269,8 +269,8 @@ namespace :fastui do
                                   ])
 
     menu_sys = Fastui::MMenu.new({:name => 'menu_sys', :title => '系统菜单'})
-    menu_sys_tools = Fastui::MMenuItem.create({:name => 'sys_tools', :title => '系统工具',:m_menu => menu_sys})
-    menu_sys_tools_fastui = menu_sys_tools.children.create({:name => 'sys_fastui', :title => 'FastUI'})
+    menu_sys_tools = Fastui::MMenuItem.create({:name => 'sys_tools', :title => '系统工具',:m_menu_id => menu_sys.id})
+    menu_sys_tools_fastui = menu_sys_tools.children.create({:name => 'sys_fastui', :title => 'FastUI', :m_window_id => fastui.id})
 
 
 
