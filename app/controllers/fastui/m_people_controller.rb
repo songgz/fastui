@@ -3,12 +3,19 @@ require_dependency "fastui/application_controller"
 module Fastui
   class MPeopleController < ApplicationController
     respond_to :html, :xml, :json
+
     def index
       limit = params[:limit].to_i
       start = params[:start].to_i
-      @m_people = MPerson.all
-      @records = MPerson.limit(limit).offset(start)
-      data  ={
+      search = params[:search]
+      if search.blank?
+        @m_people = MPerson.all
+        @records = MPerson.limit(limit).offset(start)
+      else
+        @m_people = MPerson.where("title LIKE :input", {:input => "%#{search}%"})
+        @records = @m_people.limit(limit).offset(start)
+      end
+      data ={
           :totalCount => @m_people.length,
           :rows => @records
       }

@@ -2,10 +2,23 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
     extend:'Ext.form.field.ComboBox',
     alias:'widget.vlookupwindow',
     editable:false,
-    displayField: 'title',
-    valueField: 'id',
+    displayField:'title',
+    valueField:'id',
     initComponent:function () {
-        this.store = this.getStore();
+        this.store = new Ext.data.JsonStore({
+            autoLoad:true,
+            fields:['id', 'title'],
+            proxy:{
+                type:'ajax',
+                url:'/fastui/' + this.entity.name.toLowerCase().pluralize() + '.json',
+                reader:{
+                    type:'json',
+                    root:'rows',
+                    totalProperty:"totalCount"
+                }
+            }
+        });
+        this.windowStore = this.getStore();
         this.callParent();
     },
     onTriggerClick:function () {
@@ -14,28 +27,35 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
     loadWindow:function () {
         this.window = Ext.create('Ext.window.Window', {
             title:this.entity.title,
-            height:200,
-            width:400,
+            height:300,
+            width:600,
             layout:'fit',
             items:this.getGrid()
         }).show();
     },
-    searchPanel:function(){
-        this.tbar = ['标题',{
-            xtype: 'textfield',
-            name: 'searchField',
-            hideLabel: true,
-            width: 200,
-            listeners: {
+    searchPanel:function () {
+        this.tbar = ['标题', {
+            xtype:'textfield',
+            id:'searchField',
+            hideLabel:true,
+            width:200,
+            listeners:{
             }
-        },{ xtype: 'button', text: '搜索' }];
+        }, { xtype:'button', text:'搜索',
+            handler:function () {
+                var searchText = Ext.getCmp('searchField').getValue();
+                this.store.load({
+                    params:{
+                        search:searchText
+                    }})
+            }, scope:this}];
         return this.tbar
     },
-    getGrid:function(){
+    getGrid:function () {
         this.grid = Ext.create('Ext.grid.Panel', {
             vlookup:this,
             border:false,
-            store:this.store,
+            store:this.windowStore,
             tbar:this.searchPanel(),
             columns:[
                 {header:'ID', dataIndex:'id'},
@@ -47,31 +67,31 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
                     this.vlookup.setValue(record.get('id'));
                 }
             }
-
-        },this);
+        }, this);
         return this.grid
     },
-    pageBar:function(){
+    pageBar:function () {
         this.pagebar = Ext.create('Ext.toolbar.Paging', {
-            store: this.store,
-            displayInfo: true
-//            displayMsg: '显示第{0} 条到 {1} 条记录，总共{2}条记录'
-        },this);
+            store:this.windowStore,
+            displayInfo:true,
+            beforePageText:'第',
+            afterPageText:'页共 {0}页',
+            displayMsg:'显示第{0} 条到第 {1} 条记录，总共{2}条记录'
+        }, this);
         return this.pagebar;
     },
     getStore:function () {
         return new Ext.data.JsonStore({
-            autoLoad:{start: 0, limit: 2},
-            pageSize: 2 ,// items per page
+            autoLoad:{start:0, limit:2},
+            pageSize:2, // items per page
             fields:['id', 'title'],
             proxy:{
                 type:'ajax',
-                url:'/fastui/' +this.entity.name.toLowerCase().pluralize() + '.json',
+                url:'/fastui/' + this.entity.name.toLowerCase().pluralize() + '.json',
                 reader:{
                     type:'json',
                     root:'rows',
-                    totalProperty : "totalCount"
-
+                    totalProperty:"totalCount"
                 }
             }
         });
