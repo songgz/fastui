@@ -1,15 +1,20 @@
-/**
-* Created with JetBrains RubyMine.
-* User: Administrator
-* Date: 12-10-12
-* Time: 下午4:40
-* To change this template use File | Settings | File Templates.
-*/
-
 Ext.define('FastUI.store.MWindows', {
-    extend:'Ext.data.Store',
-//    storeId:'MWindowStore',
-    model:'FastUI.model.MWindow'
+    extend:'Ext.data.JsonStore',
+    storeId:'MWindowStore',
+    proxy:{
+        type:'ajax',
+        url:'get-images.php',
+        reader:{
+            type:'json',
+            root:'',
+            idProperty:'id'
+        }
+    },
+
+    //alternatively, a Ext.data.Model name can be given (see Ext.data.Store for an example)
+    fields:['name', 'url', {name:'size', type:'float'}, {name:'lastmod', type:'date'}]
+
+//    model:'FastUI.model.MWindow'
 //    autoLoad:true,
 //    autoSync: true,
 //    proxy:{
