@@ -1,17 +1,19 @@
 Fastui::Engine.routes.draw do
 
   resources :m_windows do
-    resources :m_tabs do
-      resources :m_columns
-      resources :m_fields
-    end
+    resources :m_tabs
+  end
+
+  resources :m_tabs do
+    resources :m_columns
+    resources :m_fields
   end
 
   resources :m_glossaries do
     resources :m_glossary_items
   end
 
-  resources :m_tabs
+
   resources :m_columns
   resources :m_fields
   resources :m_properties

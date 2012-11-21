@@ -52,15 +52,6 @@ Ext.define('FastUI.view.VFactory', {
 
         return columns;
     },
-//    fieldWithIdMapFn:function(v,rec){
-//        if(v == 0){
-//            return 0;
-//        }else{
-//            alert(Ext.JSON.encode(rec));
-//            alert(v.name);
-//            return rec.raw[column.m_property.name.replace('_id','')].title;
-//        }
-//    },
     getFields:function () {
         var fields = [];
         Ext.each(this._vdata.m_columns, function (column) {

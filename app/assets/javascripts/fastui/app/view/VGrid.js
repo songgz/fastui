@@ -1,4 +1,3 @@
-
 Ext.define('FastUI.view.VGrid', {
     extend: 'Ext.grid.Panel',
     selType: 'rowmodel',

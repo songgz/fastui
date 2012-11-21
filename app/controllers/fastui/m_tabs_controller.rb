@@ -2,9 +2,12 @@ require_dependency "fastui/application_controller"
 
 module Fastui
   class MTabsController < ApplicationController
+    before_filter :get_m_window
     respond_to :html, :xml, :json
+
     def index
-      @m_tabs = MTab.all
+      @m_tabs = @m_window ? @m_window.m_tabs : []
+      #@m_tabs = MTab.all
       respond_with(@m_tabs.to_json(:include => [:m_columns,:m_fields,:read,:actived,:entity_kind,:m_window,
       :m_entity,:org,:createdby,:updatedby]))
     end
@@ -53,6 +56,12 @@ module Fastui
       @m_tab = MTab.find(params[:id])
       @m_tab.destroy
       respond_with(@m_tab)
+    end
+
+    private
+    def get_m_window
+      p params[:m_window_id]
+      @m_window = params[:m_window_id].blank? ? nil : MWindow.find(params[:m_window_id])
     end
 
   end
