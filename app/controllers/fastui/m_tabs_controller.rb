@@ -6,7 +6,7 @@ module Fastui
     def index
       @m_tabs = MTab.all
       respond_with(@m_tabs.to_json(:include => [:m_columns,:m_fields,:read,:actived,:entity_kind,:m_window,
-      :m_entity,:org,:createdby,:updatedby]))
+      :m_entity,:included_tab,:org,:createdby,:updatedby]))
     end
 
     def show

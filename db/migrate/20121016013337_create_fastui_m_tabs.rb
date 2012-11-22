@@ -6,8 +6,8 @@ class CreateFastuiMTabs < ActiveRecord::Migration
       t.string :note  , :default => ''
       t.integer :read_id, :default => 0
       t.references :m_entity
-      t.references :included_tab,:default => 0
 
+      t.integer :included_tab_id,:default => 0
       t.integer :entity_kind_id,:default => 0 #:sys,:app
       t.integer :seq, :default => 0
       t.integer :actived_id, :default => 0
