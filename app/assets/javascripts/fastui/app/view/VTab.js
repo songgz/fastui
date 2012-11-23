@@ -3,7 +3,7 @@ Ext.define('FastUI.view.VTab', {
     alias:'widget.vtab',
     title:'All VTabs',
     vfactory:null,
-    layout:"card",
+    layout:'card',
     initComponent:function () {
         this.title = this.vfactory.getVData().title;
         this.restHelper = Ext.create('FastUI.view.RestHelper',this.vfactory.getModelClass());
@@ -48,10 +48,11 @@ Ext.define('FastUI.view.VTab', {
         if (!this.grid) {
             this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory});
             this.add(this.grid);
+            this.getLayout().setActiveItem(this.grid.id);
         }
 
-        this.grid.getStore(this.model_class).reload(); // 不一定每次都要刷新 需修改
-        this.getLayout().setActiveItem(this.grid.id);
+        this.grid.getStore().reload(); // 不一定每次都要刷新 需修改
+//        this.grid.getView().refresh(false);
     },
     cmdCreate:function () {
         if (!this.form) {

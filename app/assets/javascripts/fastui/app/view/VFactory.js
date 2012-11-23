@@ -24,6 +24,7 @@ Ext.define('FastUI.view.VFactory', {
     getStore:function () {
         return new Ext.data.JsonStore({
 //            autoLoad:true,
+            pageSize:50,
             proxy:{
                 type:'ajax',
                 url:this.getUrl(),
