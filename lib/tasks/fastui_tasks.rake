@@ -40,8 +40,9 @@ namespace :fastui do
     person1 = Fastui::MPerson.create({:name => 'Administrator',:title => '超级管理员'})
     #person1 = Fastui::MPerson.create({:name => 'Mr Li',:title => '李老师'})
     m_person = Fastui::MEntity.create({:name => 'm_person',:title => '人员',:entity_kind => entity_kind_app })
+    m_entity = Fastui::MEntity.create({:name => 'm_entity',:title => '实体',:entity_kind => entity_kind_app})
 
-    m_window = Fastui::MEntity.create({:name => 'm_window', :title => '窗口', :entity_kind => entity_kind_sys})
+    m_window = Fastui::MEntity.create({:name => 'm_window', :title => 'm_window', :entity_kind => entity_kind_sys})
     m_window_id = m_window.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
     m_window_title = m_window.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
     m_window_note = m_window.m_properties.create({:name => 'note', :title => '备注', :refable => v_textarea})
@@ -55,7 +56,7 @@ namespace :fastui do
     m_window_updatedby_id = m_window.m_properties.create({:name => 'updatedby_id', :title => '更新人', :refable => m_person})
 
 
-    m_tab = Fastui::MEntity.create({:name => 'm_tab', :title => '标签', :entity_kind => entity_kind_sys})
+    m_tab = Fastui::MEntity.create({:name => 'm_tab', :title => 'm_tab', :entity_kind => entity_kind_sys})
     m_tab_id = m_tab.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
     m_tab_title = m_tab.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
     m_tab_note = m_tab.m_properties.create({:name => 'note', :title => '备注', :refable => v_textarea})
@@ -65,14 +66,14 @@ namespace :fastui do
     m_tab_actived_id = m_tab.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => state})
     m_tab_help = m_tab.m_properties.create({:name => 'help', :title => '帮助', :refable => v_textarea})
     m_tab_window_id = m_tab.m_properties.create({:name => 'm_window_id', :title => '所属窗口', :refable => m_window})
-    m_tab_included_tab_id = m_tab.m_properties.create({:name => 'included_tab_id',:title => '所属标签',:refable => m_window})
-    m_tab_entity_id = m_tab.m_properties.create({:name => 'm_entity_id', :title => '对应实体', :refable => m_tab})
+    m_tab_included_tab_id = m_tab.m_properties.create({:name => 'included_tab_id',:title => '所属标签',:refable => m_tab})
+    m_tab_entity_id = m_tab.m_properties.create({:name => 'm_entity_id', :title => 'Model', :refable => m_entity})
     m_tab_org_id = m_tab.m_properties.create({:name => 'org_id', :title => '所属组织', :refable => m_org})
     m_tab_createdby_id = m_tab.m_properties.create({:name => 'createdby_id', :title => '创建人', :refable => m_person})
     m_tab_updatedby_id = m_tab.m_properties.create({:name => 'updatedby_id', :title => '更新人', :refable => m_person})
 
 
-    m_field = Fastui::MEntity.create({:name => 'm_field', :title => '字段', :entity_kind => entity_kind_sys})
+    m_field = Fastui::MEntity.create({:name => 'm_field', :title => 'm_field', :entity_kind => entity_kind_sys})
     m_field_id = m_field.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
     m_field_title = m_field.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
     m_field_note = m_field.m_properties.create({:name => 'note', :title => '备注', :refable => v_textarea})
@@ -87,7 +88,7 @@ namespace :fastui do
     m_field_updatedby_id = m_field.m_properties.create({:name => 'updatedby_id', :title => '更新人', :refable => m_person})
     m_field_help = m_field.m_properties.create({:name => 'help', :title => '帮助', :refable => v_textarea})
 
-    m_column = Fastui::MEntity.create({:name => 'm_column', :title => '表列', :entity_kind => entity_kind_sys})
+    m_column = Fastui::MEntity.create({:name => 'm_column', :title => 'm_column', :entity_kind => entity_kind_sys})
     m_column_id = m_column.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
     m_column_title = m_column.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
     m_column_note = m_column.m_properties.create({:name => 'note', :title => '备注', :refable => v_textarea})
@@ -278,12 +279,42 @@ namespace :fastui do
                                    {:title => '帮助', :m_property => m_column_help,:displayed => state_true,:read =>state_false,
                                     :entity_kind => entity_kind_sys,:seq => 11,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1}
                                   ])
+    # 导航树 初始化数据
+    win_entity = Fastui::MWindow.create(:title => '实体管理', :window_kind => window_kind_maintain, :entity_kind => entity_kind_sys,
+                                    :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
+    m_entity = Fastui::MEntity.create({:name => 'm_entity', :title => 'm_entity', :entity_kind => entity_kind_sys})
+    m_property = Fastui::MEntity.create({:name => 'm_property', :title => 'm_property', :entity_kind => entity_kind_sys})
+    win_entity_model = win_entity.m_tabs.create(:title => '模型', :m_entity => m_entity,:read => state_true,:entity_kind => entity_kind_sys,
+                                         :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
+    win_entity_property = win_entity.m_tabs.create(:title => '属性', :m_entity => m_property,:read => state_true,:entity_kind => entity_kind_sys,
+                                                   :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
+
+
+
+
+
+
+
+    sys_win_menu = Fastui::MWindow.create(:title => '菜单管理', :window_kind => window_kind_maintain, :entity_kind => entity_kind_sys,
+                                        :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
+    m_menu = Fastui::MEntity.create({:name => 'm_menu', :title => 'm_menu', :entity_kind => entity_kind_sys})
+
+
+    m_menu_item = Fastui::MEntity.create({:name => 'm_menu_item', :title => 'm_menu_item', :entity_kind => entity_kind_sys})
+    sys_menu = sys_win_menu.m_tabs.create(:title => '菜单', :m_entity => m_menu,:read => state_true,:entity_kind => entity_kind_sys,
+                                                :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
+    sys_menu_item = sys_win_menu.m_tabs.create(:title => '菜单项', :m_entity => m_menu_item,:read => state_true,:entity_kind => entity_kind_sys,
+                                                   :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
+
+
+
+
 
     menu_sys = Fastui::MMenu.new({:name => 'menu_sys', :title => '系统菜单'})
-    menu_sys_tools = Fastui::MMenuItem.create({:name => 'sys_tools', :title => '系统工具',:m_menu_id => menu_sys.id})
-    menu_sys_tools_fastui = menu_sys_tools.children.create({:name => 'sys_fastui', :title => 'FastUI', :m_window_id => fastui.id})
-
-
+    menu_sys_settings = Fastui::MMenuItem.create({:name => 'sys_tools', :title => '系统设置',:m_menu_id => menu_sys.id})
+    menu_sys_settings_win_entity = menu_sys_settings.children.create({:name => 'win_entity',:title => '实体管理',:m_window_id => win_entity.id})
+    menu_sys_settings_fastui = menu_sys_settings.children.create({:name => 'sys_fastui', :title => 'FastUI', :m_window_id => fastui.id})
+    menu_sys_settings_win_menu = menu_sys_settings.children.create({:name => 'win_menu',:title => '菜单管理',:m_window_id => sys_win_menu.id})
 
   end
 end
