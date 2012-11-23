@@ -48,10 +48,16 @@ Ext.define('FastUI.view.VTab', {
         if (!this.grid) {
             this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory});
             this.add(this.grid);
-        }
-
-        this.grid.getStore(this.model_class).reload(); // 不一定每次都要刷新 需修改
-        this.getLayout().setActiveItem(this.grid.id);
+        };
+        var grid = this.grid;
+        var record = grid.getSelectionModel().getSelection();
+        this.grid.getStore().reload({
+            callback: function (records, operation, success) {
+                var rowIndex = this.find('id', record[0].get('id'));  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
+                grid.getView().select(rowIndex);
+            }
+        }); // 不一定每次都要刷新 需修改
+        //this.getLayout().setActiveItem(this.grid.id);
     },
     cmdCreate:function () {
         if (!this.form) {

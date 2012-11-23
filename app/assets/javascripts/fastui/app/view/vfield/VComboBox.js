@@ -3,8 +3,8 @@ Ext.define('FastUI.view.vfield.VComboBox', {
     valueField:'id',
     displayField:"title",
     forceSelection:true,
-    triggerAction: 'all',
-    editable: false,
+    triggerAction:'all',
+    editable:false,
     selectOnFocus:true,
 
     initComponent:function () {
@@ -13,8 +13,8 @@ Ext.define('FastUI.view.vfield.VComboBox', {
     },
     getStore:function () {
         return new Ext.data.JsonStore({
-            autoLoad: true,
-            fields:['id','name', 'title'],
+            autoLoad:true,
+            fields:['id', 'name', 'title'],
             proxy:{
                 type:'ajax',
 //                type: 'memory',
