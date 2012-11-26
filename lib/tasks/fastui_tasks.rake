@@ -375,6 +375,8 @@ namespace :fastui do
                                                       :entity_kind => entity_kind_sys, :seq => 3, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_entity_kind_id = m_property.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind,
                                                                 :entity_kind => entity_kind_sys, :seq => 4, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_property_entity_id = m_property.m_properties.create({:name => 'm_entity_id', :title => '对应实体', :refable => m_entity,
+                                                                :entity_kind => entity_kind_sys, :seq => 4, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_seq = m_property.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number,
                                                      :entity_kind => entity_kind_sys, :seq => 5, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_actived_id = m_property.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => state,
@@ -485,6 +487,7 @@ namespace :fastui do
                                              {:title => '名称', :m_property => m_property_title, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '备注', :m_property => m_property_note, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '实体种类', :m_property => m_property_entity_kind_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                             {:title => '对应实体', :m_property => m_property_entity_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '排序', :m_property => m_property_seq, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '是否激活', :m_property => m_property_actived_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '所属组织', :m_property => m_property_org_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
@@ -501,6 +504,8 @@ namespace :fastui do
                                              :entity_kind => entity_kind_sys, :seq => 3, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                             {:title => '实体种类', :m_property => m_property_entity_kind_id, :displayed => state_true, :read => state_false,
                                              :entity_kind => entity_kind_sys, :seq => 5, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                            {:title => '对应实体', :m_property => m_property_entity_id, :displayed => state_true, :read => state_false,
+                                             :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                             {:title => '排序', :m_property => m_property_seq, :displayed => state_true, :read => state_false,
                                              :entity_kind => entity_kind_sys, :seq => 6, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                             {:title => '是否激活', :m_property => m_property_actived_id, :displayed => state_true, :read => state_false,
