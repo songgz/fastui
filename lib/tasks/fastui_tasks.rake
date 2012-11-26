@@ -40,7 +40,6 @@ namespace :fastui do
     m_org = Fastui::MEntity.create({:name => 'm_org', :title => '组织', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                     :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
-
     m_window = Fastui::MEntity.create({:name => 'm_window', :title => 'm_window', :access_level => access_level_system,
                                        :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_window_id = m_window.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
@@ -334,6 +333,11 @@ namespace :fastui do
 
 
     # 导航树 初始化数据
+
+    menu_sys = Fastui::MMenu.create({:name => 'menu_sys', :title => '系统菜单',
+                                     :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
+
+
     # 实体
     m_entity = Fastui::MEntity.create({:name => 'm_entity', :title => 'm_entity', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                        :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -414,6 +418,8 @@ namespace :fastui do
     m_menu_item_title = m_menu_item.m_properties.create({:name => 'title', :title => '标题', :refable => v_text,
                                                          :entity_kind => entity_kind_sys, :seq => 2, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_menu_item_entity_kind_id = m_menu_item.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind,
+                                                                  :entity_kind => entity_kind_sys, :seq => 3, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_menu_item_m_menu = m_menu_item.m_properties.create({:name => 'm_menu_id', :title => '对应菜单', :refable => m_menu,
                                                                   :entity_kind => entity_kind_sys, :seq => 3, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_menu_item_seq = m_menu_item.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number,
                                                        :entity_kind => entity_kind_sys, :seq => 4, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -555,6 +561,7 @@ namespace :fastui do
                                        {:title => 'ID', :m_property => m_menu_item_id, :width => 35, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                        {:title => '名称', :m_property => m_menu_item_title, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                        {:title => '实体种类', :m_property => m_menu_item_entity_kind_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                       {:title => '对应菜单', :m_property => m_menu_item_m_menu, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                        {:title => '排序', :m_property => m_menu_item_seq, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                        {:title => '是否激活', :m_property => m_menu_item_actived_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                        {:title => '所属组织', :m_property => m_menu_item_org_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
@@ -568,6 +575,8 @@ namespace :fastui do
                                       {:title => '名称', :m_property => m_menu_item_title, :displayed => state_true, :read => state_false,
                                        :entity_kind => entity_kind_sys, :seq => 2, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                       {:title => '实体种类', :m_property => m_menu_item_entity_kind_id, :displayed => state_true, :read => state_false,
+                                       :entity_kind => entity_kind_sys, :seq => 5, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                      {:title => '对应菜单', :m_property => m_menu_item_m_menu, :displayed => state_true, :read => state_false,
                                        :entity_kind => entity_kind_sys, :seq => 5, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                       {:title => '排序', :m_property => m_menu_item_seq, :displayed => state_true, :read => state_false,
                                        :entity_kind => entity_kind_sys, :seq => 6, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
@@ -584,9 +593,8 @@ namespace :fastui do
                                   ])
 
 
-    menu_sys = Fastui::MMenu.create({:name => 'menu_sys', :title => '系统菜单',
-                                     :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
-    menu_sys_settings = Fastui::MMenuItem.create({:name => 'sys_tools', :title => '系统设置', :m_menu_id => menu_sys.id,
+
+    menu_sys_settings = Fastui::MMenuItem.create({:name => 'sys_tools', :title => '系统设置', :m_menu => menu_sys,
                                                   :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     menu_sys_settings_win_entity = menu_sys_settings.children.create({:name => 'win_entity', :title => '实体', :m_window_id => win_entity.id,
                                                                       :entity_kind => entity_kind_sys, :seq => 2, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})

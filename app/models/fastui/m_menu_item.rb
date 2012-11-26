@@ -1,6 +1,6 @@
 module Fastui
   class MMenuItem < ActiveRecord::Base
-    attr_accessible :id, :name, :title, :note, :m_menu_id, :m_window_id, :parent_id
+    attr_accessible :id, :name, :title, :note, :m_menu_id,:m_menu, :m_window_id, :parent_id
     attr_accessible :entity_kind_id, :entity_kind,:actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
 
     belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem'
@@ -11,7 +11,7 @@ module Fastui
 
 
     acts_as_nested_set
-    belongs_to :m_window
-    belongs_to :m_menu
+    belongs_to :m_window,:class_name => 'Fastui::MWindow'
+    belongs_to :m_menu,:class_name => 'Fastui::MMenu'
   end
 end
