@@ -17,7 +17,7 @@ Ext.define('FastUI.view.Viewport', {
             border:false,
             margins:'0 0 5 0'
         },
-        Ext.create('FastUI.view.VNavigation'),
+        Ext.create('FastUI.view.VMenu'),
         {
             region:'south',
             title:'South Panel',

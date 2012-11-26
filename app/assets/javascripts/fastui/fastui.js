@@ -20,14 +20,14 @@ Ext.application({
   name: 'FastUI',
 
   appFolder: '/assets/fastui/app',
-    requires: ['FastUI.view.WindowMgr'],
+    //requires: ['FastUI.view.WindowMgr'],
 
   //requires: ['FastUI.model.MWindow','FastUI.view.VVWindow','FastUI.view.VFactory'],
   //models: ['FastUI.model.MWindow'],
+    stores: ['MMenus'],
+    //views: ['VMenu'],
   //controllers: [],
-    //controllers: [
-    //    'MWindows'
-    //],
+    controllers: ['MMenus'],
 
   autoCreateViewport: true
 //    launch: function() {
