@@ -21,6 +21,7 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
         this.windowStore = this.getStore();
         this.callParent();
     },
+
     onTriggerClick:function () {
         this.loadWindow();
     },

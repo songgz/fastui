@@ -90,6 +90,7 @@ Ext.define('FastUI.view.VTab', {
                 for (k in data) {
                     o[this.restHelper.getName() + '[' + k + ']'] = data[k];
                 }
+
                 form.setValues(o);
             }, scope:this
         });
