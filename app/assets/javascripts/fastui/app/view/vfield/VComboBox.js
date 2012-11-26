@@ -1,5 +1,6 @@
 Ext.define('FastUI.view.vfield.VComboBox', {
     extend:'Ext.form.field.ComboBox',
+    requires:['FastUI.store.MGlossaryMgr'],
     valueField:'id',
     displayField:"title",
     forceSelection:true,
@@ -8,23 +9,7 @@ Ext.define('FastUI.view.vfield.VComboBox', {
     selectOnFocus:true,
 
     initComponent:function () {
-        this.store = this.getStore();
+        this.store = FastUI.store.MGlossaryMgr.getStore(this.glossary_id);
         this.callParent();
-    },
-    getStore:function () {
-        return new Ext.data.JsonStore({
-            autoLoad:true,
-            fields:['id', 'name', 'title'],
-            proxy:{
-                type:'ajax',
-//                type: 'memory',
-                url:'/fastui/m_glossaries/' + this.glossary_id + '/m_glossary_items.json', //model_class
-                reader:{
-                    type:'json',
-                    root:''
-                }
-            }
-
-        });
     }
 });

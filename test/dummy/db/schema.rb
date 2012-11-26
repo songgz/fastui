@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   create_table "fastui_m_menu_items", :force => true do |t|
     t.string   "name",           :limit => 20,                 :null => false
     t.string   "title",          :limit => 60,                 :null => false
+    t.string   "note",                         :default => ""
     t.integer  "m_menu_id"
     t.integer  "m_window_id"
     t.integer  "parent_id"

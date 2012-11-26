@@ -1,9 +1,9 @@
 Ext.define('FastUI.controller.MMenus', {
     extend:'Ext.app.Controller',
+    requires:['FastUI.store.MWindowMgr'],
     stores:['MMenus'],
     //models: [ 'MWindow'],
     views:['VMenu'],
-    requires:['FastUI.view.WindowMgr'],
     init:function () {
         this.control({
             'vMenu':{
@@ -15,7 +15,7 @@ Ext.define('FastUI.controller.MMenus', {
     loadVWindow:function (self, record, item, index, e, eOpts) {
 
         var id = record.get('m_window_id');
-        FastUI.view.WindowMgr.instanceWin(id, function (obj) {
+        FastUI.store.MWindowMgr.load(id, function (obj) {
             var c = Ext.getCmp('mycenter');
             var win_id = 'win_' + id;
             var win = Ext.getCmp(win_id);
