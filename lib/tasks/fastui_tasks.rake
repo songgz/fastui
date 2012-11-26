@@ -280,8 +280,7 @@ namespace :fastui do
 
 
     # 导航树 初始化数据
-    win_entity = Fastui::MWindow.create(:title => '实体', :window_kind => window_kind_maintain, :entity_kind => entity_kind_sys,
-                                    :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
+    # 实体
     m_entity = Fastui::MEntity.create({:name => 'm_entity', :title => 'm_entity', :entity_kind => entity_kind_sys})
     m_entity_id = m_entity.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
     m_entity_title = m_entity.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
@@ -295,8 +294,7 @@ namespace :fastui do
     m_entity_createdby_id = m_entity.m_properties.create({:name => 'createdby_id', :title => '创建人', :refable => m_person})
     m_entity_updatedby_id = m_entity.m_properties.create({:name => 'updatedby_id', :title => '更新人', :refable => m_person})
 
-
-
+    # 属性
     m_property = Fastui::MEntity.create({:name => 'm_property', :title => 'm_property', :entity_kind => entity_kind_sys})
     m_property_id = m_property.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
     m_property_title = m_property.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
@@ -310,35 +308,189 @@ namespace :fastui do
     m_property_createdby_id = m_property.m_properties.create({:name => 'createdby_id', :title => '创建人', :refable => m_person})
     m_property_updatedby_id = m_property.m_properties.create({:name => 'updatedby_id', :title => '更新人', :refable => m_person})
 
+    # 菜单
+    m_menu = Fastui::MEntity.create({:name => 'm_menu', :title => 'm_menu', :entity_kind => entity_kind_sys})
+    m_menu_id = m_menu.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
+    m_menu_title = m_menu.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
+    m_menu_entity_kind_id = m_menu.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
+    m_menu_seq = m_menu.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
+    m_menu_actived_id = m_menu.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => state})
+    m_menu_help = m_menu.m_properties.create({:name => 'help', :title => '帮助', :refable => v_textarea})
+    m_menu_org_id = m_menu.m_properties.create({:name => 'org_id', :title => '所属组织', :refable => m_org})
+    m_menu_createdby_id = m_menu.m_properties.create({:name => 'createdby_id', :title => '创建人', :refable => m_person})
+    m_menu_updatedby_id = m_menu.m_properties.create({:name => 'updatedby_id', :title => '更新人', :refable => m_person})
+
+    # 菜单项
+    m_menu_item = Fastui::MEntity.create({:name => 'm_menu_item', :title => 'm_menu_item', :entity_kind => entity_kind_sys})
+    m_menu_item_id = m_menu_item.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number})
+    m_menu_item_title = m_menu_item.m_properties.create({:name => 'title', :title => '标题', :refable => v_text})
+    m_menu_item_entity_kind_id = m_menu_item.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind})
+    m_menu_item_seq = m_menu_item.m_properties.create({:name => 'seq', :title => '排序', :refable => v_number})
+    m_menu_item_actived_id = m_menu_item.m_properties.create({:name => 'actived_id', :title => '是否激活', :refable => state})
+    m_menu_item_help = m_menu_item.m_properties.create({:name => 'help', :title => '帮助', :refable => v_textarea})
+    m_menu_item_org_id = m_menu_item.m_properties.create({:name => 'org_id', :title => '所属组织', :refable => m_org})
+    m_menu_item_createdby_id = m_menu_item.m_properties.create({:name => 'createdby_id', :title => '创建人', :refable => m_person})
+    m_menu_item_updatedby_id = m_menu_item.m_properties.create({:name => 'updatedby_id', :title => '更新人', :refable => m_person})
 
 
 
-
-
-
+    win_entity = Fastui::MWindow.create(:title => '实体', :window_kind => window_kind_maintain, :entity_kind => entity_kind_sys,
+                                        :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
     win_entity_model = win_entity.m_tabs.create(:title => '实体', :m_entity => m_entity,:read => state_true,:entity_kind => entity_kind_sys,
                                          :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
+    win_entity_model.m_columns.create([
+                                       {:title => 'ID', :m_property => m_entity_id, :width => 35,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '名称', :m_property => m_entity_title, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '备注', :m_property => m_entity_note, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '访问级别', :m_property => m_entity_access_level_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '实体种类', :m_property => m_entity_entity_kind_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '排序', :m_property => m_entity_seq, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '是否激活', :m_property => m_entity_actived_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '所属组织', :m_property => m_entity_org_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '创建人', :m_property => m_entity_createdby_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '更新人', :m_property => m_entity_updatedby_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                       {:title => '帮助', :m_property => m_entity_help, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 }
+                                   ])
+    win_entity_model.m_fields.create([
+                                      {:title => 'ID', :m_property => m_entity_id,:displayed => state_true,:read =>state_true,
+                                       :entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                      {:title => '名称', :m_property => m_entity_title,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 2,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                      {:title => '备注', :m_property => m_entity_note,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 3,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                      {:title => '访问级别', :m_property => m_entity_access_level_id,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 4,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                      {:title => '实体种类', :m_property => m_entity_entity_kind_id,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 5,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                      {:title => '排序', :m_property => m_entity_seq,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 6,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                      {:title => '是否激活', :m_property => m_entity_actived_id,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 7,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                      {:title => '所属组织', :m_property => m_entity_org_id,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 8,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                      {:title => '创建人', :m_property => m_entity_createdby_id,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 9,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                      {:title => '更新人', :m_property => m_entity_updatedby_id,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 10,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                      {:title => '帮助', :m_property => m_entity_help,:displayed => state_true,:read =>state_false,
+                                       :entity_kind => entity_kind_sys,:seq => 11,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1}
+                                  ])
+
+
+
     win_entity_property = win_entity.m_tabs.create(:title => '属性', :m_entity => m_property,:read => state_true,:entity_kind => entity_kind_sys,
                                                    :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
-
-
-
-
-
+    win_entity_property.m_columns.create([
+                                          {:title => 'ID', :m_property => m_property_id, :width => 35,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '名称', :m_property => m_property_title, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '备注', :m_property => m_property_note, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '访问级别', :m_property => m_property_access_level_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '实体种类', :m_property => m_property_entity_kind_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '排序', :m_property => m_property_seq, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '是否激活', :m_property => m_property_actived_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '所属组织', :m_property => m_property_org_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '创建人', :m_property => m_property_createdby_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '更新人', :m_property => m_property_updatedby_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '帮助', :m_property => m_property_help, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 }
+                                      ])
+    win_entity_property.m_fields.create([
+                                         {:title => 'ID', :m_property => m_property_id,:displayed => state_true,:read =>state_true,
+                                          :entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                         {:title => '名称', :m_property => m_property_title,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 2,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '备注', :m_property => m_property_note,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 3,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '访问级别', :m_property => m_property_access_level_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 4,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '实体种类', :m_property => m_property_entity_kind_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 5,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '排序', :m_property => m_property_seq,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 6,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '是否激活', :m_property => m_property_actived_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 7,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '所属组织', :m_property => m_property_org_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 8,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '创建人', :m_property => m_property_createdby_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 9,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '更新人', :m_property => m_property_updatedby_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 10,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '帮助', :m_property => m_property_help,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 11,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1}
+                                     ])
 
 
     sys_win_menu = Fastui::MWindow.create(:title => '菜单', :window_kind => window_kind_maintain, :entity_kind => entity_kind_sys,
                                         :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
-    m_menu = Fastui::MEntity.create({:name => 'm_menu', :title => 'm_menu', :entity_kind => entity_kind_sys})
 
-
-    m_menu_item = Fastui::MEntity.create({:name => 'm_menu_item', :title => 'm_menu_item', :entity_kind => entity_kind_sys})
     sys_menu = sys_win_menu.m_tabs.create(:title => '菜单', :m_entity => m_menu,:read => state_true,:entity_kind => entity_kind_sys,
                                                 :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
+    sys_menu.m_columns.create([
+                                          {:title => 'ID', :m_property => m_menu_id, :width => 35,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '名称', :m_property => m_menu_title, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '实体种类', :m_property => m_menu_entity_kind_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '排序', :m_property => m_menu_seq, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '是否激活', :m_property => m_menu_actived_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '所属组织', :m_property => m_menu_org_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '创建人', :m_property => m_menu_createdby_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '更新人', :m_property => m_menu_updatedby_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                          {:title => '帮助', :m_property => m_menu_help, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 }
+                                      ])
+    sys_menu.m_fields.create([
+                                         {:title => 'ID', :m_property => m_menu_id,:displayed => state_true,:read =>state_true,
+                                          :entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                         {:title => '名称', :m_property => m_menu_title,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 2,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '实体种类', :m_property => m_menu_entity_kind_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 5,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '排序', :m_property => m_menu_seq,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 6,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '是否激活', :m_property => m_menu_actived_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 7,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '所属组织', :m_property => m_menu_org_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 8,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '创建人', :m_property => m_menu_createdby_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 9,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '更新人', :m_property => m_menu_updatedby_id,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 10,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                         {:title => '帮助', :m_property => m_menu_help,:displayed => state_true,:read =>state_false,
+                                          :entity_kind => entity_kind_sys,:seq => 11,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1}
+                                     ])
+
+
     sys_menu_item = sys_win_menu.m_tabs.create(:title => '菜单项', :m_entity => m_menu_item,:read => state_true,:entity_kind => entity_kind_sys,
                                                    :seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1)
 
-
+    sys_menu_item.m_columns.create([
+                                  {:title => 'ID', :m_property => m_menu_item_id, :width => 35,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                  {:title => '名称', :m_property => m_menu_item_title, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                  {:title => '实体种类', :m_property => m_menu_item_entity_kind_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                  {:title => '排序', :m_property => m_menu_item_seq, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                  {:title => '是否激活', :m_property => m_menu_item_actived_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                  {:title => '所属组织', :m_property => m_menu_item_org_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                  {:title => '创建人', :m_property => m_menu_item_createdby_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                  {:title => '更新人', :m_property => m_menu_item_updatedby_id, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                  {:title => '帮助', :m_property => m_menu_item_help, :width => 75,:entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 }
+                              ])
+    sys_menu_item.m_fields.create([
+                                 {:title => 'ID', :m_property => m_menu_item_id,:displayed => state_true,:read =>state_true,
+                                  :entity_kind => entity_kind_sys,:seq => 1,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1 },
+                                 {:title => '名称', :m_property => m_menu_item_title,:displayed => state_true,:read =>state_false,
+                                  :entity_kind => entity_kind_sys,:seq => 2,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                 {:title => '实体种类', :m_property =>m_menu_item_entity_kind_id,:displayed => state_true,:read =>state_false,
+                                  :entity_kind => entity_kind_sys,:seq => 5,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                 {:title => '排序', :m_property => m_menu_item_seq,:displayed => state_true,:read =>state_false,
+                                  :entity_kind => entity_kind_sys,:seq => 6,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                 {:title => '是否激活', :m_property => m_menu_item_actived_id,:displayed => state_true,:read =>state_false,
+                                  :entity_kind => entity_kind_sys,:seq => 7,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                 {:title => '所属组织', :m_property => m_menu_item_org_id,:displayed => state_true,:read =>state_false,
+                                  :entity_kind => entity_kind_sys,:seq => 8,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                 {:title => '创建人', :m_property => m_menu_item_createdby_id,:displayed => state_true,:read =>state_false,
+                                  :entity_kind => entity_kind_sys,:seq => 9,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                 {:title => '更新人', :m_property => m_menu_item_updatedby_id,:displayed => state_true,:read =>state_false,
+                                  :entity_kind => entity_kind_sys,:seq => 10,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1},
+                                 {:title => '帮助', :m_property => m_menu_item_help,:displayed => state_true,:read =>state_false,
+                                  :entity_kind => entity_kind_sys,:seq => 11,:actived => state_true,:org => org_system,:createdby => person1,:updatedby => person1}
+                             ])
 
 
 
