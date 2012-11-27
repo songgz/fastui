@@ -30,11 +30,10 @@ Ext.define('FastUI.view.VFactory', {
                 url:this.getUrl(),
                 reader:{
                     type:'json',
-                    root:''
-//                    idProperty:'id'
+                    root:'',
+                    id: "id"
                 }
             },
-
             //alternatively, a Ext.data.Model name can be given (see Ext.data.Store for an example)
             //fields: ['name', 'url', {name:'size', type: 'float'}, {name:'lastmod', type:'date'}]
             fields:this.getFields()     //tab.m_fields
