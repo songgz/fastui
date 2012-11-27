@@ -11,5 +11,13 @@ Ext.define('FastUI.view.vfield.VComboBox', {
     initComponent:function () {
         this.store = FastUI.store.MGlossaryMgr.getStore(this.glossary_id);
         this.callParent();
+    },
+    setValue:function (value) {
+        if(value && value.id && value.title){
+            this.setValue(value.id);
+        }else{
+            this.callParent(arguments);
+        }
     }
+
 });

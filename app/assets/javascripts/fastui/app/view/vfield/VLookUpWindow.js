@@ -5,21 +5,33 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
     displayField:'title',
     valueField:'id',
     initComponent:function () {
-        this.store = new Ext.data.JsonStore({
-            autoLoad:true,
+        this.store = Ext.create('Ext.data.ArrayStore', {
             fields:['id', 'title'],
-            proxy:{
-                type:'ajax',
-                url:'/fastui/' + this.entity.name.toLowerCase().pluralize() + '.json',
-                reader:{
-                    type:'json',
-                    root:'rows',
-                    totalProperty:"totalCount"
-                }
-            }
+            data:[]
         });
+//        this.store = new Ext.data.JsonStore({
+//            autoLoad:true,
+//            fields:['id', 'title'],
+//            proxy:{
+//                type:'ajax',
+//                url:'/fastui/' + this.entity.name.toLowerCase().pluralize() + '.json',
+//                reader:{
+//                    type:'json',
+//                    root:'rows',
+//                    totalProperty:"totalCount"
+//                }
+//            }
+//        });
         this.windowStore = this.getStore();
         this.callParent();
+    },
+    setValue:function(value){
+        if(value && value.id && value.title){
+            this.store.add(value);
+            this.setValue(value.id);
+        }else{
+            this.callParent(arguments);
+        }
     },
 
     onTriggerClick:function () {
@@ -65,7 +77,11 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
             bbar:this.pageBar(),
             listeners:{
                 itemclick:function (grid, record, item, index, e, eOpts) {
-                    this.vlookup.setValue(record.get('id'));
+                    var id = record.get('id');
+                    if (!this.vlookup.store.getById()){
+                        this.vlookup.store.add({id:id,title:record.get('title')});
+                    }
+                    this.vlookup.setValue(id);
                 }
             }
         }, this);
