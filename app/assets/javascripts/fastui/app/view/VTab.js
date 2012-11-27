@@ -6,7 +6,7 @@ Ext.define('FastUI.view.VTab', {
     layout:"card",
     initComponent:function () {
         this.title = this.vfactory.getVData().title;
-        this.restHelper = Ext.create('FastUI.view.RestHelper',this.vfactory.getModelClass());
+        this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getModelClass());
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             items:[
                 {   text:'新建',
@@ -48,13 +48,20 @@ Ext.define('FastUI.view.VTab', {
         if (!this.grid) {
             this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory});
             this.add(this.grid);
-        };
+        }
+        ;
         var grid = this.grid;
-        var record = grid.getSelectionModel().getSelection();
+        var records = grid.getSelectionModel().getSelection();
+        var id = 0;
+        if (!Ext.isEmpty(records)) {
+            id = records[0].get('id');
+        }
         this.grid.getStore().reload({
-            callback: function (records, operation, success) {
-                var rowIndex = this.find('id', record[0].get('id'));  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
-                grid.getView().select(rowIndex);
+            callback:function (records, operation, success) {
+                if (id > 0) {
+                    var rowIndex = this.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
+                    grid.getView().select(rowIndex);
+                }
             }
         });
         this.getLayout().setActiveItem(this.grid.id);
@@ -88,12 +95,15 @@ Ext.define('FastUI.view.VTab', {
                 var data = Ext.decode(response.responseText);
                 var k, o = {};
                 for (k in data) {
-                    if(k.indexOf('_id') > 0){
-                        var attr = data[k.replace('_id','')];
+                    if (k.indexOf('_id') > 0) {
+                        var attr = data[k.replace('_id', '')];
                         var title = data[k];
-                        if(attr && attr.title){title = attr.title};
-                        o[this.restHelper.getName() + '[' + k + ']'] = {id:data[k],title:title};
-                    }else{
+                        if (attr && attr.title) {
+                            title = attr.title
+                        }
+                        ;
+                        o[this.restHelper.getName() + '[' + k + ']'] = {id:data[k], title:title};
+                    } else {
                         o[this.restHelper.getName() + '[' + k + ']'] = data[k];
                     }
                 }
@@ -154,7 +164,7 @@ Ext.define('FastUI.view.VTab', {
                 this.constructAjaxRequest({
                     url:form.url,
                     method:form.method,
-                    params:form.getValues(false, false,false),
+                    params:form.getValues(false, false, false),
                     success:function () {
                         this.cmdList();
                         Ext.MessageBox.alert("提示", "操作成功！")
@@ -167,14 +177,14 @@ Ext.define('FastUI.view.VTab', {
             }
         }
     },
-    constructAjaxRequest:function(options){
+    constructAjaxRequest:function (options) {
         return Ext.Ajax.request({
-            url: options.url,
-            method: options.method,
-            params: options.params,
-            success: options.success,
-            failure: options.failure,
-            scope: options.scope
+            url:options.url,
+            method:options.method,
+            params:options.params,
+            success:options.success,
+            failure:options.failure,
+            scope:options.scope
         });
     }
 });
