@@ -7,7 +7,7 @@ module Fastui
          @m_menu_items = params[:id] == 'root' ? MMenuItem.roots : MMenuItem.where({
                                              :parent_id => params[:id]
                                          }.delete_if {|k, v| v.blank? })
-         respond_with(@m_menu_items.to_json(:include => [:m_window,:m_menu,:actived, :entity_kind,:org, :createdby, :updatedby]))
+         respond_with(@m_menu_items.to_json(:include => [:m_window,:m_menu,:actived,:entity_kind,:org,:createdby,:updatedby]))
     end
     def show
       @m_menu_item = MMenuItem.find(params[:id])
