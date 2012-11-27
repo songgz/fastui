@@ -88,7 +88,14 @@ Ext.define('FastUI.view.VTab', {
                 var data = Ext.decode(response.responseText);
                 var k, o = {};
                 for (k in data) {
-                    o[this.restHelper.getName() + '[' + k + ']'] = data[k];
+                    if(k.indexOf('_id') > 0){
+                        var attr = data[k.replace('_id','')];
+                        var title = data[k];
+                        if(attr && attr.title){title = attr.title};
+                        o[this.restHelper.getName() + '[' + k + ']'] = {id:data[k],title:title};
+                    }else{
+                        o[this.restHelper.getName() + '[' + k + ']'] = data[k];
+                    }
                 }
 
                 form.setValues(o);
