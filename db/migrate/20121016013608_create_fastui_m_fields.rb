@@ -4,7 +4,7 @@ class CreateFastuiMFields < ActiveRecord::Migration
       t.references :m_tab
       t.string :title, :limit => 60, :null => false
       t.string :note, :default => ''
-      t.string :name, :limit => 20
+      t.string :name,:default => '', :limit => 20 # 系统编码
 
       t.references :m_property
       t.integer :displayed_id , :default => 0

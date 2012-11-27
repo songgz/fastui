@@ -1,7 +1,7 @@
 class CreateFastuiMMenus < ActiveRecord::Migration
   def change
     create_table :fastui_m_menus do |t|
-      t.string :name, :limit => 20, :null => false
+      t.string :name,:default => '', :limit => 20
       t.string :title, :limit => 60, :null => false
 
       t.integer :entity_kind_id, :default => 0 #:sys,:app
