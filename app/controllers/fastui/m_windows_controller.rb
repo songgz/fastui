@@ -33,7 +33,7 @@ module Fastui
 
     def edit
       @m_window = MWindow.find(params[:id])
-      respond_with(@m_window)
+      respond_with(@m_window.to_json(:include => [:org,:createdby,:updatedby]))
     end
 
     def new

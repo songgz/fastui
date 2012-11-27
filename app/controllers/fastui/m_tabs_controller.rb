@@ -17,7 +17,7 @@ module Fastui
 
     def edit
       @m_tab = MTab.find(params[:id])
-      respond_with(@m_tab)
+      respond_with(@m_tab.to_json(:include => [:m_window,:m_entity,:included_tab,:org,:createdby,:updatedby]))
     end
 
     def new
