@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.integer  "m_tab_id"
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
-    t.string   "name",           :limit => 20
+    t.string   "name",           :limit => 20, :default => ""
     t.integer  "m_property_id"
     t.integer  "width",                        :default => 35
     t.integer  "entity_kind_id",               :default => 0
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   create_table "fastui_m_data_types", :force => true do |t|
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
-    t.string   "name",           :limit => 20,                 :null => false
+    t.string   "name",           :limit => 20, :default => ""
     t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
     t.integer  "actived_id",                   :default => 0
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   create_table "fastui_m_entities", :force => true do |t|
     t.string   "title",           :limit => 60,                 :null => false
     t.string   "note",                          :default => ""
-    t.string   "name",            :limit => 20,                 :null => false
+    t.string   "name",            :limit => 20, :default => ""
     t.integer  "access_level_id",               :default => 0
     t.integer  "entity_kind_id",                :default => 0
     t.integer  "seq",                           :default => 0
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.integer  "m_tab_id"
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
-    t.string   "name",           :limit => 20
+    t.string   "name",           :limit => 20, :default => ""
     t.integer  "m_property_id"
     t.integer  "displayed_id",                 :default => 0
     t.integer  "read_id",                      :default => 0
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   create_table "fastui_m_glossaries", :force => true do |t|
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
-    t.string   "name",           :limit => 20,                 :null => false
+    t.string   "name",           :limit => 20, :default => ""
     t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
     t.integer  "actived_id",                   :default => 0
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.integer  "m_glossary_id"
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
-    t.string   "name",           :limit => 20,                 :null => false
+    t.string   "name",           :limit => 20, :default => ""
     t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
     t.integer  "actived_id",                   :default => 0
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   end
 
   create_table "fastui_m_menu_items", :force => true do |t|
-    t.string   "name",           :limit => 20,                 :null => false
+    t.string   "name",           :limit => 20, :default => ""
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
     t.integer  "m_menu_id"
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   end
 
   create_table "fastui_m_menus", :force => true do |t|
-    t.string   "name",           :limit => 20,                 :null => false
+    t.string   "name",           :limit => 20, :default => ""
     t.string   "title",          :limit => 60,                 :null => false
     t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   create_table "fastui_m_orgs", :force => true do |t|
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
-    t.string   "name",           :limit => 20,                 :null => false
+    t.string   "name",           :limit => 20, :default => ""
     t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0
     t.integer  "actived_id",                   :default => 0
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.integer  "m_entity_id"
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
-    t.string   "name",           :limit => 20,                 :null => false
+    t.string   "name",           :limit => 20, :default => ""
     t.integer  "refable_id"
     t.string   "refable_type"
     t.integer  "entity_kind_id",               :default => 0
@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.integer  "m_window_id"
     t.string   "title",           :limit => 60,                 :null => false
     t.string   "note",                          :default => ""
+    t.string   "name",            :limit => 20, :default => ""
     t.integer  "read_id",                       :default => 0
     t.integer  "m_entity_id"
     t.integer  "included_tab_id",               :default => 0
@@ -223,6 +224,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
   create_table "fastui_m_windows", :force => true do |t|
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
+    t.string   "name",           :limit => 20, :default => ""
     t.integer  "window_kind_id",               :default => 0
     t.integer  "entity_kind_id",               :default => 0
     t.integer  "seq",                          :default => 0

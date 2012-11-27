@@ -3,7 +3,7 @@ class CreateFastuiMGlossaries < ActiveRecord::Migration
     create_table :fastui_m_glossaries do |t|
       t.string :title, :limit => 60, :null => false
       t.string :note, :default => ''
-      t.string :name, :limit => 20, :null => false #entity名
+      t.string :name,:default => '', :limit => 20
 
       t.integer :entity_kind_id, :default => 0  #:sys,:app
       t.integer :seq, :default => 0
