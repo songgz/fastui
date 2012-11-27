@@ -17,7 +17,7 @@ module Fastui
 
     def edit
       @m_entity = MEntity.find(params[:id])
-      respond_with(@m_entity)
+      respond_with(@m_entity.to_json(:include => [:org, :createdby, :updatedby]))
     end
 
     def new

@@ -16,7 +16,7 @@ module Fastui
 
     def edit
       @m_property = MProperty.find(params[:id])
-      respond_with(@m_property)
+      respond_with(@m_property.to_json(:include => [:org, :createdby, :updatedby]))
     end
 
     def new
@@ -25,7 +25,7 @@ module Fastui
     end
 
     def create
-      @m_property = MProperty.new(params[:m_field])
+      @m_property = MProperty.new(params[:m_property])
       respond_with(@m_property) do |format|
         if @m_property.save
           format.json { render :json => {:success => true, :msg => 'ok'} }
@@ -40,7 +40,7 @@ module Fastui
       @m_property = MProperty.find(params[:id])
 
       respond_with(@m_property) do |format|
-        if @m_property.update_attributes(params[:m_field])
+        if @m_property.update_attributes(params[:m_property])
           format.json { render :json => {:success => true, :msg => 'ok'} }
         else
           format.json { render :json => {:success => false, :msg => 'false'} }
