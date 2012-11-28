@@ -31,7 +31,7 @@ module Fastui
         if @m_tab.save
           format.json { render :json => {:success => true, :msg => 'ok'} }
         else
-          format.json { render :json => {:success => false, :msg => 'failure'} }
+          format.json { render :json => {:success => false, :msg => 'failure'}}
         end
       end
 
