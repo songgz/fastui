@@ -44,6 +44,18 @@ namespace :fastui do
 
     m_window = Fastui::MEntity.create({:name => 'm_window', :title => 'm_window', :access_level => access_level_system,
                                        :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
+
+    #[{name: 'id',title: 'ID',refable: v_number,entity_kind: entity_kind_sys,seq:1,actived:state_true,org:org_system,createdby:person1,updatedby:person1},
+    #{name:'title',title: '标题',refable: v_text}].each_with_index do |pro,seq_i|
+    #    pro[:refable] = pro[:refable] || v_text
+    #  pro[:entity_kind] = pro[:entity_kind] || entity_kind_sys
+    ##'m_window'+'_'+ pro[:name] = m_window.m_properties.create({:title => pro[:title]})
+    #
+    #end
+
+
+
+
     m_window_id = m_window.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
                                                 :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_window_title = m_window.m_properties.create({:name => 'title', :title => '标题', :refable => v_text,

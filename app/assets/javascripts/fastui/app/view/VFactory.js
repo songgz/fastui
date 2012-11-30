@@ -55,9 +55,8 @@ Ext.define('FastUI.view.VFactory', {
             },
             fields:this.getFields(),
             listeners:{
-                beforeload:function(){
-                    this.getStore().getProxy().extraParams = this.getParams();
-//                    console.log(Ext.JSON.encode(this.getStore().getProxy().extraParams));
+                beforeload:function( store, operation, eOpts){
+                    store.getProxy().extraParams = this.getParams();
                 },scope:this
             }
         });

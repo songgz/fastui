@@ -12,10 +12,6 @@ Ext.define('FastUI.view.VGrid', {
         this.title = this.vfactory.getVData().title;
         this.columns = this.vfactory.getColumns();
         this.store = this.vfactory.getStore();
-        this.store.load({
-            params :this.vfactory.getParams()
-        });
-//        this.store.getProxy().extraParams = this.vfactory.getParams();
         this.callParent();
     }
 });

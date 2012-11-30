@@ -57,7 +57,6 @@ Ext.define('FastUI.view.VTab', {
             id = records[0].get('id');
         }
         this.grid.getStore().reload({
-            params: this.vfactory.getParams(),
                 callback:function (records, operation, success) {
                 if (id > 0) {
                     var rowIndex = this.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
