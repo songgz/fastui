@@ -1,9 +1,13 @@
 Ext.define('FastUI.view.VFactory', {
     name:'vfactory',
 
-    constructor:function (vdata) {
+    constructor:function (vdata){
         this._vdata = vdata;
         if(this._vdata.m_entity){
+//            alert(this._vdata.m_entity.name);
+//            if(this._vdata.included_tab_id > 0){
+//                alert(this._vdata.included_tab_id);
+//            }
             this.model_class = this._vdata.m_entity.name;
             this.resource = this.model_class.toLowerCase().pluralize();
         }
@@ -19,11 +23,26 @@ Ext.define('FastUI.view.VFactory', {
 
     },
     getUrl:function(){
-        return '/fastui/'+this.resource+'.json'; //model_class
+        var url = '/fastui/'+this.resource+'.json';
+        return  url;
+    },
+    getParams:function(){
+        var p = {};
+        if (!Ext.isEmpty(this.getVData().included_tab_id)){
+            var tab = Ext.getCmp('tab_'+ this.getVData().included_tab_id);
+            if (tab && tab.grid){
+            var records =  tab.grid.getSelectionModel().getSelection();
+            var id = 0;
+            if (!Ext.isEmpty(records)) {
+                id = records[0].get('id');
+            }
+            p[tab.vfactory.getModelClass() + '_id'] = id;
+            }
+        }
+        return p;
     },
     getStore:function () {
         return new Ext.data.JsonStore({
-//            autoLoad:true,
             pageSize:50,
             proxy:{
                 type:'ajax',
@@ -34,9 +53,13 @@ Ext.define('FastUI.view.VFactory', {
                     id: "id"
                 }
             },
-            //alternatively, a Ext.data.Model name can be given (see Ext.data.Store for an example)
-            //fields: ['name', 'url', {name:'size', type: 'float'}, {name:'lastmod', type:'date'}]
-            fields:this.getFields()     //tab.m_fields
+            fields:this.getFields(),
+            listeners:{
+                beforeload:function(){
+                    this.getStore().getProxy().extraParams = this.getParams();
+//                    console.log(Ext.JSON.encode(this.getStore().getProxy().extraParams));
+                },scope:this
+            }
         });
     },
 
@@ -75,7 +98,7 @@ Ext.define('FastUI.view.VFactory', {
     getFormFields:function () {
         var fields = [];
         Ext.each(this._vdata.m_fields, function (field) {
-            field.name = this.model_class +'['+field.m_property.name + ']';
+            field.name = this.getModelClass() +'['+field.m_property.name + ']';
             fields.push(Ext.create('FastUI.view.vfield.VFieldFactory').buildField(field));
 //            fields.push({
 //                fieldLabel:field.title,

@@ -25,6 +25,7 @@ Ext.define('FastUI.view.VVWindow', {
     },
     loadTabs:function (vwindow, opts) {
         Ext.each(this.vfactory.getVData().m_tabs, function (mtab) {
+//            alert(mtab.m_entity.name)
             var vTab = Ext.create('FastUI.view.VTab', {vfactory: Ext.create('FastUI.view.VFactory',mtab)});
 //            this.items= [ {expanded:false,items:{
 //                                title: 'Users',

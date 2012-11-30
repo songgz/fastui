@@ -4,7 +4,8 @@ Ext.define('FastUI.view.VTab', {
     title:'All VTabs',
     vfactory:null,
     layout:"card",
-    initComponent:function () {
+    initComponent:function (){
+        this.id = 'tab_' + this.vfactory.getVData().id;
         this.title = this.vfactory.getVData().title;
         this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getModelClass());
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
@@ -49,7 +50,6 @@ Ext.define('FastUI.view.VTab', {
             this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory});
             this.add(this.grid);
         }
-        ;
         var grid = this.grid;
         var records = grid.getSelectionModel().getSelection();
         var id = 0;
@@ -57,7 +57,8 @@ Ext.define('FastUI.view.VTab', {
             id = records[0].get('id');
         }
         this.grid.getStore().reload({
-            callback:function (records, operation, success) {
+            params: this.vfactory.getParams(),
+                callback:function (records, operation, success) {
                 if (id > 0) {
                     var rowIndex = this.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
                     grid.getView().select(rowIndex);
@@ -101,7 +102,6 @@ Ext.define('FastUI.view.VTab', {
                         if (attr && attr.title) {
                             title = attr.title
                         }
-                        ;
                         o[this.restHelper.getName() + '[' + k + ']'] = {id:data[k], title:title};
                     } else {
                         o[this.restHelper.getName() + '[' + k + ']'] = data[k];

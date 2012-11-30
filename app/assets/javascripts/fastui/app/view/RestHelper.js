@@ -10,6 +10,7 @@ Ext.define('FastUI.view.RestHelper', {
         this.ext = '.json';
     },
     getPath:function(action, id){
+//        var parent_type = this.mtab
 //        var url = Inflector.pluralize(this.mTab.getModel());
 //        var parent_tab = this.mTab.getIncludedTab();
 //        if(parent_tab){
