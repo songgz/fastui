@@ -5,6 +5,7 @@ Ext.define('FastUI.view.VTab', {
     vfactory:null,
     layout:"card",
     initComponent:function () {
+        this.id = 'tab_' + this.vfactory.getVData().id;
         this.title = this.vfactory.getVData().title;
         this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getModelClass());
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
@@ -33,7 +34,7 @@ Ext.define('FastUI.view.VTab', {
                     }, scope:this},
                 { text:'帮助',
                     handler:function () {
-                        alert('帮助');
+                        this.cmdHelp();
                     }, scope:this}
             ]
         });
@@ -49,7 +50,6 @@ Ext.define('FastUI.view.VTab', {
             this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory});
             this.add(this.grid);
         }
-        ;
         var grid = this.grid;
         var records = grid.getSelectionModel().getSelection();
         var id = 0;
@@ -101,7 +101,6 @@ Ext.define('FastUI.view.VTab', {
                         if (attr && attr.title) {
                             title = attr.title
                         }
-                        ;
                         o[this.restHelper.getName() + '[' + k + ']'] = {id:data[k], title:title};
                     } else {
                         o[this.restHelper.getName() + '[' + k + ']'] = data[k];
@@ -133,6 +132,14 @@ Ext.define('FastUI.view.VTab', {
             }
         }, this)
 
+    },
+    cmdHelp:function () {
+        var record = this.grid.getSelectionModel().getSelection();
+        if (record) {
+            this.currentRecord = record[0];
+            var helpWindow = Ext.create('FastUI.view.VHelpWindow', {html:this.currentRecord.get('help')});
+            helpWindow.show();
+        }
     },
     cmdSave:function () {
         if (this.form) {

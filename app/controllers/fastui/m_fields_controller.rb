@@ -4,7 +4,8 @@ module Fastui
   class MFieldsController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_fields = MField.includes(:m_tab,:m_property,:displayed,:read,:entity_kind,:actived,:org,:createdby,:updatedby).all
+      @m_fields = MField.includes(:m_tab,:m_property,:displayed,:read,:entity_kind,:actived,:org,:createdby,:updatedby).where({
+          :m_tab_id => params[:m_tab_id]}.delete_if {|k, v| v.blank? })
       respond_with(@m_fields.to_json(:include => [:m_tab,:m_property,:displayed,:read,:entity_kind,:actived,:org,:createdby,:updatedby]))
     end
 

@@ -24,10 +24,9 @@ Ext.define('FastUI.model.MTab', {
             associationKey: 'm_columns'
         }
     ],
-
     proxy:{
         type:'rest',
-        url:'/fastui/m_windows/:id/m_tabs',
+        url:'/fastui/m_tabs',
         format:'json'
 //        reader:{
 //            type:'json',
@@ -35,5 +34,9 @@ Ext.define('FastUI.model.MTab', {
 //            successProperty:'success'
 //        }
     }
+//    ,
+//    getIncludedTab:function(included_tab_id){
+//        return FastUI.model.MTab.find(included_tab_id);
+//    }
 
 });
