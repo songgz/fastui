@@ -4,18 +4,19 @@ module Fastui
   class MGlossaryItemsController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      conditions = {}
-      unless params[:filter].blank?
-      JSON.parse(params[:filter]).each do |filter|
-        conditions[filter['property']] = filter['value']
-      end
-      end
-      unless params[:m_glossary_id].blank?
-        conditions[:m_glossary_id] = params[:m_glossary_id]
-      end
-
-      @m_glossary_items = MGlossaryItem.where(conditions)
-      respond_with(@m_glossary_items)
+      #conditions = {}
+      #unless params[:filter].blank?
+      #JSON.parse(params[:filter]).each do |filter|
+      #  conditions[filter['property']] = filter['value']
+      #end
+      #end
+      #unless params[:m_glossary_id].blank?
+      #  conditions[:m_glossary_id] = params[:m_glossary_id]
+      #end
+      #
+      #@m_glossary_items = MGlossaryItem.where(conditions)
+      @m_glossary_items = MGlossaryItem.where({:m_glossary_id => params[:m_glossary_id]}.delete_if {|k, v| v.blank? })
+      respond_with(@m_glossary_items.to_json(:include =>[:m_glossary,:actived,:entity_kind,:org,:createdby,:updatedby]))
     end
 
     def show

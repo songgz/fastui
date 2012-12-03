@@ -4,9 +4,8 @@ module Fastui
   class MPropertiesController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_properties = MProperty.all
-      respond_with(@m_properties.to_json(:include => [:m_entity, :actived, :entity_kind,
-                                                     :org, :createdby, :updatedby]))
+      @m_properties = MProperty.where({:m_entity_id => params[:m_entity_id]}.delete_if {|k, v| v.blank? })
+      respond_with(@m_properties.to_json(:include => [:m_entity, :actived, :entity_kind,:org, :createdby, :updatedby]))
     end
 
     def show
