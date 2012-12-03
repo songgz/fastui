@@ -16,7 +16,7 @@ module Fastui
 
     def edit
       @m_column = MColumn.find(params[:id])
-      respond_with(@m_column.to_json(:include => [:m_tab,:org,:createdby,:updatedby]))
+      respond_with(@m_column.to_json(:include => [:m_tab,:m_property,:entity_kind,:actived,:org,:createdby,:updatedby]))
     end
 
     def new
