@@ -4,7 +4,7 @@ Ext.define('FastUI.view.VTab', {
     title:'All VTabs',
     vfactory:null,
     layout:"card",
-    initComponent:function (){
+    initComponent:function () {
         this.id = 'tab_' + this.vfactory.getVData().id;
         this.title = this.vfactory.getVData().title;
         this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getModelClass());
@@ -34,7 +34,7 @@ Ext.define('FastUI.view.VTab', {
                     }, scope:this},
                 { text:'帮助',
                     handler:function () {
-                        alert('帮助');
+                        this.cmdHelp();
                     }, scope:this}
             ]
         });
@@ -57,7 +57,7 @@ Ext.define('FastUI.view.VTab', {
             id = records[0].get('id');
         }
         this.grid.getStore().reload({
-                callback:function (records, operation, success) {
+            callback:function (records, operation, success) {
                 if (id > 0) {
                     var rowIndex = this.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
                     grid.getView().select(rowIndex);
@@ -132,6 +132,14 @@ Ext.define('FastUI.view.VTab', {
             }
         }, this)
 
+    },
+    cmdHelp:function () {
+        var record = this.grid.getSelectionModel().getSelection();
+        if (record) {
+            this.currentRecord = record[0];
+            var helpWindow = Ext.create('FastUI.view.VHelpWindow', {html:this.currentRecord.get('help')});
+            helpWindow.show();
+        }
     },
     cmdSave:function () {
         if (this.form) {
