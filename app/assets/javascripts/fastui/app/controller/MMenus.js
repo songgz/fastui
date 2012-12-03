@@ -13,21 +13,21 @@ Ext.define('FastUI.controller.MMenus', {
         });
     },
     loadVWindow:function (self, record, item, index, e, eOpts) {
-
         var id = record.get('m_window_id');
-        FastUI.store.MWindowMgr.load(id, function (obj) {
-            var c = Ext.getCmp('mycenter');
-            var win_id = 'win_' + id;
-            var win = Ext.getCmp(win_id);
-            if (!win) {
-                win = Ext.create('FastUI.view.VVWindow', {id:win_id,
-                    vfactory:Ext.create('FastUI.view.VFactory', obj)
-                });
-                c.add(win);
-            }
-            c.setActiveTab(win);
-
-        });
+        if (record.get('leaf')) {
+            FastUI.store.MWindowMgr.load(id, function (obj) {
+                var c = Ext.getCmp('mycenter');
+                var win_id = 'win_' + id;
+                var win = Ext.getCmp(win_id);
+                if (!win) {
+                    win = Ext.create('FastUI.view.VVWindow', {id:win_id,
+                        vfactory:Ext.create('FastUI.view.VFactory', obj)
+                    });
+                    c.add(win);
+                }
+                c.setActiveTab(win);
+            });
+        }
     }
 
 });

@@ -4,7 +4,7 @@ Ext.define('FastUI.store.MMenus', {
     //model:'FastUI.model.MMenus',
     autoLoad:true,
 
-    fields:['id', {name:'text', mapping:'title'}, 'm_window_id'],
+    fields:['id', {name:'text', mapping:'title'},{name:'leaf',mapping:'leaf?'},{name:'expanded',mapping:'child?'}, 'm_window_id'],
     proxy:{
         type:'ajax',
         url:'/fastui/m_menu_items.json',
