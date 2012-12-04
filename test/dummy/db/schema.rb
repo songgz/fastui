@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(:version => 20121018013512) do
     t.string   "title",          :limit => 60,                 :null => false
     t.string   "note",                         :default => ""
     t.string   "name",           :limit => 20, :default => ""
+    t.string   "foreign_key",                  :default => ""
     t.integer  "refable_id"
     t.string   "refable_type"
     t.integer  "entity_kind_id",               :default => 0

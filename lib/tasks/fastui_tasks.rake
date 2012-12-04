@@ -34,6 +34,11 @@ namespace :fastui do
     window_kind_transaction = window_kind.m_glossary_items.create({:name => 'transaction', :title => '事务'})
     window_kind_query = window_kind.m_glossary_items.create({:name => 'query', :title => '查询'})
 
+    refable_type = Fastui::MGlossary.create({:name => 'refable_type',:title => '引用类型'})
+    ref_data_type = refable_type.m_glossary_items.create({:name => 'data_type',:title => 'data_type'})
+    ref_glossary = refable_type.m_glossary_items.create({:name => 'glossary',:title => 'glossary'})
+    ref_entity = refable_type.m_glossary_items.create({:name => 'entity',:title => 'entity'})
+
 
     #person1 = Fastui::MPerson.create({:name => 'Mr Li',:title => '李老师'})
     m_person = Fastui::MEntity.create({:name => 'm_person', :title => 'm_person', :access_level => access_level_system, :entity_kind => entity_kind_sys,
@@ -422,6 +427,10 @@ namespace :fastui do
                                                       :entity_kind => entity_kind_sys, :seq => 2, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_note = m_property.m_properties.create({:name => 'note', :title => '备注', :refable => v_textarea,
                                                       :entity_kind => entity_kind_sys, :seq => 3, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_property_external_key = m_property.m_properties.create({:name => 'external_key', :title => '外键', :refable => v_text,
+                                                      :entity_kind => entity_kind_sys, :seq => 3, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_property_refable = m_property.m_properties.create({:name => 'refable', :title => '引用类型', :refable => refable_type,
+                                                      :entity_kind => entity_kind_sys, :seq => 3, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_entity_kind_id = m_property.m_properties.create({:name => 'entity_kind_id', :title => '实体种类', :refable => entity_kind,
                                                                 :entity_kind => entity_kind_sys, :seq => 4, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_entity_id = m_property.m_properties.create({:name => 'm_entity_id', :title => '所属实体', :refable => m_entity,
@@ -588,7 +597,7 @@ namespace :fastui do
                                    ])
 
 
-    win_glossary_item = win_glossary.m_tabs.create(:title => '词汇项', :m_entity => m_glossary_item, :read => state_true, :entity_kind => entity_kind_sys,
+    win_glossary_item = win_glossary.m_tabs.create(:title => '词汇项', :m_entity => m_glossary_item, :read => state_true, :entity_kind => entity_kind_sys,:included_tab => win_glossary_g,
                                                    :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1)
 
     win_glossary_item.m_columns.create([
@@ -676,13 +685,15 @@ namespace :fastui do
                                      ])
 
 
-    win_entity_property = win_entity.m_tabs.create(:title => '属性', :m_entity => m_property, :read => state_true, :entity_kind => entity_kind_sys,
+    win_entity_property = win_entity.m_tabs.create(:title => '属性', :m_entity => m_property, :read => state_true, :entity_kind => entity_kind_sys,:included_tab => win_entity_model,
                                                    :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1)
     win_entity_property.m_columns.create([
                                              {:title => 'ID', :m_property => m_property_id, :width => 35, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '标题', :m_property => m_property_title, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '标识', :m_property => m_property_name, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                             {:title => '外键', :m_property => m_property_external_key, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '备注', :m_property => m_property_note, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                             {:title => '引用类型', :m_property => m_property_refable, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '实体种类', :m_property => m_property_entity_kind_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '所属实体', :m_property => m_property_entity_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '排序', :m_property => m_property_seq, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
@@ -699,8 +710,12 @@ namespace :fastui do
                                              :entity_kind => entity_kind_sys, :seq => 2, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                             {:title => '标识', :m_property => m_property_name, :displayed => state_true, :read => state_false,
                                              :entity_kind => entity_kind_sys, :seq => 2, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                            {:title => '外键', :m_property => m_property_external_key, :displayed => state_true, :read => state_false,
+                                             :entity_kind => entity_kind_sys, :seq => 2, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                             {:title => '备注', :m_property => m_property_note, :displayed => state_true, :read => state_false,
                                              :entity_kind => entity_kind_sys, :seq => 3, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                            {:title => '引用类型', :m_property => m_property_refable, :displayed => state_true, :read => state_false,
+                                             :entity_kind => entity_kind_sys, :seq => 5, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                             {:title => '实体种类', :m_property => m_property_entity_kind_id, :displayed => state_true, :read => state_false,
                                              :entity_kind => entity_kind_sys, :seq => 5, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                             {:title => '所属实体', :m_property => m_property_entity_id, :displayed => state_true, :read => state_false,
@@ -761,7 +776,7 @@ namespace :fastui do
                              ])
 
 
-    sys_menu_item = sys_win_menu.m_tabs.create(:title => '菜单项', :m_entity => m_menu_item, :read => state_true, :entity_kind => entity_kind_sys,
+    sys_menu_item = sys_win_menu.m_tabs.create(:title => '菜单项', :m_entity => m_menu_item, :read => state_true, :entity_kind => entity_kind_sys,:included_tab => sys_menu,
                                                :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1)
 
     sys_menu_item.m_columns.create([
