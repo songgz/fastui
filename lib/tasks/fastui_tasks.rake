@@ -113,7 +113,7 @@ namespace :fastui do
                                             :entity_kind => entity_kind_sys, :seq => 7, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_tab_window_id = m_tab.m_properties.create({:name => 'm_window_id', :title => '所属窗口', :refable => m_window,
                                                  :entity_kind => entity_kind_sys, :seq => 8, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_tab_included_tab_id = m_tab.m_properties.create({:name => 'included_tab_id', :title => '所属标签', :refable => m_tab,
+    m_tab_included_tab_id = m_tab.m_properties.create({:name => 'included_tab_id', :title => '依赖标签', :refable => m_tab,
                                                        :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_tab_entity_id = m_tab.m_properties.create({:name => 'm_entity_id', :title => 'Model', :refable => m_entity,
                                                  :entity_kind => entity_kind_sys, :seq => 10, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -151,7 +151,7 @@ namespace :fastui do
                                                       :entity_kind => entity_kind_sys, :seq => 8, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_field_org_id = m_field.m_properties.create({:name => 'org_id', :title => '所属组织', :refable => m_org,
                                                   :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_field_tab_id = m_field.m_properties.create({:name => 'm_tab_id', :title => '所属标签', :refable => m_tab,
+    m_field_tab_id = m_field.m_properties.create({:name => 'm_tab_id', :title => '依赖标签', :refable => m_tab,
                                                   :entity_kind => entity_kind_sys, :seq => 10, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_field_createdby_id = m_field.m_properties.create({:name => 'createdby_id', :title => '创建人', :refable => m_person,
                                                         :entity_kind => entity_kind_sys, :seq => 11, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -184,7 +184,7 @@ namespace :fastui do
                                                         :entity_kind => entity_kind_sys, :seq => 7, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_column_org_id = m_column.m_properties.create({:name => 'org_id', :title => '所属组织', :refable => m_org,
                                                     :entity_kind => entity_kind_sys, :seq => 8, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_column_tab_id = m_column.m_properties.create({:name => 'm_tab_id', :title => '所属标签', :refable => m_tab,
+    m_column_tab_id = m_column.m_properties.create({:name => 'm_tab_id', :title => '依赖标签', :refable => m_tab,
                                                     :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_column_createdby_id = m_column.m_properties.create({:name => 'createdby_id', :title => '创建人', :refable => m_person,
                                                           :entity_kind => entity_kind_sys, :seq => 10, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -255,7 +255,7 @@ namespace :fastui do
                                  {:title => '排序', :m_property => m_tab_seq, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                  {:title => '是否激活', :m_property => m_tab_actived_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                  {:title => '所属窗口', :m_property => m_tab_window_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '所属标签', :m_property => m_tab_included_tab_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                 {:title => '依赖标签', :m_property => m_tab_included_tab_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                  {:title => '所属实体', :m_property => m_tab_entity_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                  {:title => '所属组织', :m_property => m_tab_org_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                  {:title => '创建人', :m_property => m_tab_createdby_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
@@ -282,7 +282,7 @@ namespace :fastui do
                                  :entity_kind => entity_kind_sys, :seq => 7, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                 {:title => '所属窗口', :m_property => m_tab_window_id, :displayed => state_true, :read => state_false,
                                  :entity_kind => entity_kind_sys, :seq => 8, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                {:title => '所属标签', :m_property => m_tab_included_tab_id, :displayed => state_true, :read => state_false,
+                                {:title => '依赖标签', :m_property => m_tab_included_tab_id, :displayed => state_true, :read => state_false,
                                  :entity_kind => entity_kind_sys, :seq => 8, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                 {:title => '所属实体', :m_property => m_tab_entity_id, :displayed => state_true, :read => state_false,
                                  :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
@@ -309,7 +309,7 @@ namespace :fastui do
                                    {:title => '排序', :m_property => m_field_seq, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                    {:title => '是否激活', :m_property => m_field_actived_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                    {:title => '所属组织', :m_property => m_field_org_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                   {:title => '所属标签', :m_property => m_field_tab_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                   {:title => '依赖标签', :m_property => m_field_tab_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                    {:title => '创建人', :m_property => m_field_createdby_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                    {:title => '更新人', :m_property => m_field_updatedby_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                    {:title => '帮助', :m_property => m_field_help, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1}
@@ -339,7 +339,7 @@ namespace :fastui do
                                    :entity_kind => entity_kind_sys, :seq => 8, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                   {:title => '所属组织', :m_property => m_field_org_id, :displayed => state_true, :read => state_false,
                                    :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '所属标签', :m_property => m_field_tab_id, :displayed => state_true, :read => state_false,
+                                  {:title => '依赖标签', :m_property => m_field_tab_id, :displayed => state_true, :read => state_false,
                                    :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                   {:title => '创建人', :m_property => m_field_createdby_id, :displayed => state_true, :read => state_false,
                                    :entity_kind => entity_kind_sys, :seq => 10, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
@@ -363,7 +363,7 @@ namespace :fastui do
                                     {:title => '排序', :m_property => m_column_seq, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                     {:title => '是否激活', :m_property => m_column_actived_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                     {:title => '所属组织', :m_property => m_column_org_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                    {:title => '所属标签', :m_property => m_column_tab_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                    {:title => '依赖标签', :m_property => m_column_tab_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                     {:title => '创建人', :m_property => m_column_createdby_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                     {:title => '更新人', :m_property => m_column_updatedby_id, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                     {:title => '帮助', :m_property => m_column_help, :width => 75, :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1}
@@ -391,7 +391,7 @@ namespace :fastui do
                                     :entity_kind => entity_kind_sys, :seq => 7, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                    {:title => '所属组织', :m_property => m_column_org_id, :displayed => state_true, :read => state_false,
                                     :entity_kind => entity_kind_sys, :seq => 8, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                   {:title => '所属标签', :m_property => m_column_tab_id, :displayed => state_true, :read => state_false,
+                                   {:title => '依赖标签', :m_property => m_column_tab_id, :displayed => state_true, :read => state_false,
                                     :entity_kind => entity_kind_sys, :seq => 8, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
                                    {:title => '创建人', :m_property => m_column_createdby_id, :displayed => state_true, :read => state_false,
                                     :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1},
