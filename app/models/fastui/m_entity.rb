@@ -1,6 +1,6 @@
 module Fastui
   class MEntity < ActiveRecord::Base
-    attr_accessible :id, :name, :title, :access_level, :access_level_id, :note
+    attr_accessible :id, :name, :title,:print_text, :access_level, :access_level_id, :note
     attr_accessible :entity_kind_id, :entity_kind,:actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
 
     has_many :m_properties, :class_name => 'Fastui::MProperty'

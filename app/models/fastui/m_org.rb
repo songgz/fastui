@@ -1,6 +1,6 @@
 module Fastui
   class MOrg < ActiveRecord::Base
-    attr_accessible :id, :name, :title, :note
+    attr_accessible :id, :name, :title,:print_text, :note
     attr_accessible :entity_kind_id, :entity_kind, :actived_id, :actived, :org_id, :org, :createdby_id, :createdby, :updatedby_id, :updatedby, :help, :seq
 
     belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem'

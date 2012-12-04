@@ -1,6 +1,6 @@
 module Fastui
   class MMenu < ActiveRecord::Base
-    attr_accessible :name, :title
+    attr_accessible :id,:name, :title ,:print_text
     attr_accessible :entity_kind_id, :entity_kind,:actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
     has_many :m_menu_items, :class_name => 'Fastui::MMenuItem'
 

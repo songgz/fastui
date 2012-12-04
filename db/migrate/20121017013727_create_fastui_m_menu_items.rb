@@ -1,9 +1,10 @@
 class CreateFastuiMMenuItems < ActiveRecord::Migration
   def change
     create_table :fastui_m_menu_items do |t|
-      t.string :name,:default => '', :limit => 20
       t.string :title, :limit => 60, :null => false
+      t.string :print_text,:default => '',:limit => 60
       t.string :note, :default => ''
+      t.string :name,:default => '', :limit => 20
       t.references :m_menu
       t.references :m_window
 
