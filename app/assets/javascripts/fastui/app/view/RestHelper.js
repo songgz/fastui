@@ -3,6 +3,7 @@ Ext.define('FastUI.view.RestHelper', {
 
     constructor:function (model_class) {
         this.model_class = model_class;
+
         if(this.model_class){
             this.resource = model_class.toLowerCase().pluralize();
         }
