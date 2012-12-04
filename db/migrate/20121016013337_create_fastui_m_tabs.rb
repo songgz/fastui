@@ -3,6 +3,7 @@ class CreateFastuiMTabs < ActiveRecord::Migration
     create_table :fastui_m_tabs do |t|
       t.references :m_window
       t.string :title, :limit => 60, :null => false
+      t.string :print_text,:default => '',:limit => 60
       t.string :note  , :default => ''
       t.string :name,:default => '', :limit => 20 # 系统编码
       t.integer :read_id, :default => 0

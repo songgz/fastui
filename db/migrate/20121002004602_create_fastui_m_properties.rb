@@ -3,6 +3,7 @@ class CreateFastuiMProperties < ActiveRecord::Migration
     create_table :fastui_m_properties do |t|
       t.references :m_entity
       t.string :title, :limit => 60, :null => false
+      t.string :print_text,:default => '',:limit => 60
       t.string :note, :default => ''
       t.string :name,:default => '', :limit => 20
       t.string :external_key,:default => ''

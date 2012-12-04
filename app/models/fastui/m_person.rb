@@ -1,7 +1,7 @@
 # encoding: utf-8
 module Fastui
   class MPerson < ActiveRecord::Base
-    attr_accessible :id, :name, :title
+    attr_accessible :id, :name, :title,:print_text
     attr_accessible :actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby
 
     has_many :m_relationships, :class_name => 'Fastui::MRelationship'

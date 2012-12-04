@@ -24,7 +24,7 @@ module Fastui
     end
 
     def create
-      @m_glossary = MGlossary.new(params[:m_field])
+      @m_glossary = MGlossary.new(params[:m_glossary])
       respond_with(@m_glossary) do |format|
         if @m_glossary.save
           format.json { render :json => {:success => true, :msg => 'ok'} }
@@ -39,7 +39,7 @@ module Fastui
       @m_glossary = MGlossary.find(params[:id])
 
       respond_with(@m_glossary) do |format|
-        if @m_glossary.update_attributes(params[:m_field])
+        if @m_glossary.update_attributes(params[:m_glossary])
           format.json { render :json => {:success => true, :msg => 'ok'} }
         else
           format.json { render :json => {:success => false, :msg => 'false'} }

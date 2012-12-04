@@ -15,7 +15,7 @@ module Fastui
 
     def edit
       @m_property = MProperty.find(params[:id])
-      respond_with(@m_property.to_json(:include => [:m_entity, :actived, :entity_kind,:org, :createdby, :updatedby]))
+      respond_with(@m_property.to_json(:include => [:m_entity,:refable, :actived, :entity_kind,:org, :createdby, :updatedby]))
     end
 
     def new
