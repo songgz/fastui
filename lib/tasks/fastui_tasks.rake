@@ -41,16 +41,16 @@ namespace :fastui do
 
 
     #person1 = Fastui::MPerson.create({:name => 'Mr Li',:title => '李老师'})
-    m_person = Fastui::MEntity.create({:name => 'm_person', :title => 'm_person', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_person = Fastui::MEntity.create({:name => 'Fastui::MPerson', :title => 'm_person', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                        :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_entity = Fastui::MEntity.create({:name => 'm_entity', :title => 'm_entity', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_entity = Fastui::MEntity.create({:name => 'Fastui::MEntity', :title => 'm_entity', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                        :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_property = Fastui::MEntity.create({:name => 'm_property', :title => '属性', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_property = Fastui::MEntity.create({:name => 'Fastui::MProperty', :title => '属性', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                        :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_org = Fastui::MEntity.create({:name => 'm_org', :title => 'm_org', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_org = Fastui::MEntity.create({:name => 'Fastui::MOrg', :title => 'm_org', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                     :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
-    m_window = Fastui::MEntity.create({:name => 'm_window', :title => 'm_window', :access_level => access_level_system,
+    m_window = Fastui::MEntity.create({:name => 'Fastui::MWindow', :title => 'm_window', :access_level => access_level_system,
                                        :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
     #[{name: 'id',title: 'ID',refable: v_number,entity_kind: entity_kind_sys,seq:1,actived:state_true,org:org_system,createdby:person1,updatedby:person1},
@@ -90,7 +90,7 @@ namespace :fastui do
                                                           :entity_kind => entity_kind_sys, :seq => 11, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
 
-    m_tab = Fastui::MEntity.create({:name => 'm_tab', :title => 'm_tab', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_tab = Fastui::MEntity.create({:name => 'Fastui::MTab', :title => 'm_tab', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                     :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_tab_id = m_tab.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
                                           :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -125,7 +125,7 @@ namespace :fastui do
                                                     :entity_kind => entity_kind_sys, :seq => 13, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
 
-    m_field = Fastui::MEntity.create({:name => 'm_field', :title => 'm_field', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_field = Fastui::MEntity.create({:name => 'Fastui::MField', :title => 'm_field', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                       :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_field_id = m_field.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
                                               :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -160,7 +160,7 @@ namespace :fastui do
     m_field_help = m_field.m_properties.create({:name => 'help', :title => '帮助', :refable => v_textarea,
                                                 :entity_kind => entity_kind_sys, :seq => 13, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
-    m_column = Fastui::MEntity.create({:name => 'm_column', :title => 'm_column', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_column = Fastui::MEntity.create({:name => 'Fastui::MColumn', :title => 'm_column', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                        :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_column_id = m_column.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
                                                 :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -439,8 +439,8 @@ namespace :fastui do
                                                           :entity_kind => entity_kind_sys, :seq => 11, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
     # 属性
-    m_property = Fastui::MEntity.create({:name => 'm_property', :title => 'm_property', :access_level => access_level_system, :entity_kind => entity_kind_sys,
-                                         :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
+    #m_property = Fastui::MEntity.create({:name => 'm_property', :title => 'm_property', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    #                                     :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_id = m_property.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
                                                     :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_title = m_property.m_properties.create({:name => 'title', :title => '标题', :refable => v_text,
@@ -473,7 +473,7 @@ namespace :fastui do
                                                               :entity_kind => entity_kind_sys, :seq => 10, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
     # 菜单
-    m_menu = Fastui::MEntity.create({:name => 'm_menu', :title => 'm_menu', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_menu = Fastui::MEntity.create({:name => 'Fastui::MMenu', :title => 'm_menu', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                      :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_menu_id = m_menu.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
                                             :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -499,7 +499,7 @@ namespace :fastui do
                                                       :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
     # 菜单项
-    m_menu_item = Fastui::MEntity.create({:name => 'm_menu_item', :title => 'm_menu_item', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_menu_item = Fastui::MEntity.create({:name => 'Fastui::MMenuItem', :title => 'm_menu_item', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                           :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_menu_item_id = m_menu_item.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
                                                       :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -529,7 +529,7 @@ namespace :fastui do
                                                                 :entity_kind => entity_kind_sys, :seq => 9, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
     # 词汇
-    m_glossary = Fastui::MEntity.create({:name => 'm_glossary', :title => '词汇', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_glossary = Fastui::MEntity.create({:name => 'Fastui::MGlossary', :title => '词汇', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                          :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_glossary_id = m_glossary.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
                                                     :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -557,7 +557,7 @@ namespace :fastui do
                                                               :entity_kind => entity_kind_sys, :seq => 11, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
 
     # 词汇项
-    m_glossary_item = Fastui::MEntity.create({:name => 'm_glossary_item', :title => '词汇项', :access_level => access_level_system, :entity_kind => entity_kind_sys,
+    m_glossary_item = Fastui::MEntity.create({:name => 'Fastui::MGlossaryItem', :title => '词汇项', :access_level => access_level_system, :entity_kind => entity_kind_sys,
                                               :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_glossary_item_id = m_glossary_item.m_properties.create({:name => 'id', :title => 'ID', :refable => v_number,
                                                               :entity_kind => entity_kind_sys, :seq => 1, :actived => state_true, :org => org_system, :createdby => person1, :updatedby => person1})

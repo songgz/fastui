@@ -4,15 +4,10 @@ Ext.define('FastUI.view.VFactory', {
     constructor:function (vdata){
         this._vdata = vdata;
         if(this._vdata.m_entity){
-//            alert(this._vdata.m_entity.name);
-//            if(this._vdata.included_tab_id > 0){
-//                alert(this._vdata.included_tab_id);
-//            }
-            this.model_class = this._vdata.m_entity.name;
-            this.resource = this.model_class.toLowerCase().pluralize();
+            this.model_class = this._vdata.m_entity.name.demodulize().underscore();
+            this.resource = this._vdata.m_entity.name.underscore().pluralize();
         }
     },
-
     getVData:function () {
         return this._vdata;
     },
@@ -23,7 +18,7 @@ Ext.define('FastUI.view.VFactory', {
 
     },
     getUrl:function(){
-        var url = '/fastui/'+this.resource+'.json';
+        var url = this.resource+'.json';
         return  url;
     },
     getParams:function(){

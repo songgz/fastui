@@ -4,7 +4,7 @@ class CreateFastuiMOrgs < ActiveRecord::Migration
       t.string :title, :limit => 60, :null => false
       t.string :print_text,:default => '',:limit => 60
       t.string :note , :default => ''
-      t.string :name,:default => '', :limit => 20
+      t.string :name,:default => '', :limit => 60
 
       t.integer :entity_kind_id, :default => 0                   #:sys,:app
       t.integer :seq, :default => 0

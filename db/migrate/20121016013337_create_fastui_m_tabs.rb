@@ -5,7 +5,7 @@ class CreateFastuiMTabs < ActiveRecord::Migration
       t.string :title, :limit => 60, :null => false
       t.string :print_text,:default => '',:limit => 60
       t.string :note  , :default => ''
-      t.string :name,:default => '', :limit => 20 # 系统编码
+      t.string :name,:default => '', :limit => 60 # 系统编码
       t.integer :read_id, :default => 0
       t.references :m_entity
 
