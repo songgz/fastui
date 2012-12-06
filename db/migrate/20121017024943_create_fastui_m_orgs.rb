@@ -6,9 +6,9 @@ class CreateFastuiMOrgs < ActiveRecord::Migration
       t.string :note , :default => ''
       t.string :name,:default => '', :limit => 60
 
-      t.integer :entity_kind_id, :default => 0                   #:sys,:app
+      t.string :entity_kind, :default => ''                   #:sys,:app
       t.integer :seq, :default => 0
-      t.integer :actived_id, :default => 0
+      t.boolean :actived, :default => true
       t.integer :org_id, :default => 0
       t.integer :createdby_id, :default => 0
       t.integer :updatedby_id, :default => 0

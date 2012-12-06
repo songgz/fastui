@@ -7,7 +7,7 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_tabs = MTab.where({:m_window_id => params[:m_window_id]}.delete_if {|k, v| v.blank? })
-      respond_with(@m_tabs.to_json(:include => [:m_columns,:m_fields,:read,:actived,:entity_kind,:m_window,
+      respond_with(@m_tabs.to_json(:include => [:m_columns,:m_fields,:read,:actived,:m_window,
       :m_entity,:org,:createdby,:updatedby,:included_tab =>{:include => [:m_entity]}]))
     end
 
