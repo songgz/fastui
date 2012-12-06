@@ -16,7 +16,7 @@ module Fastui
 
     def edit
       @m_menu_item = MMenuItem.find(params[:id])
-      respond_with(@m_menu_item.to_json(:include => [:org,:createdby,:updatedby]))
+      respond_with(@m_menu_item.to_json(:include => [:m_window,:m_menu,:actived,:entity_kind,:org,:createdby,:updatedby]))
     end
 
     def new
