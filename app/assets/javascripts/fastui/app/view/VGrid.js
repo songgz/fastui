@@ -8,6 +8,7 @@ Ext.define('FastUI.view.VGrid', {
 ////    selModel:new Ext.selection.RowModel({SINGLE: true}),
 //    selType: 'rowmodel',
     multiSelect:false,
+    plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
     initComponent:function(){
         this.title = this.vfactory.getVData().title;
         this.columns = this.vfactory.getColumns();

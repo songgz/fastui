@@ -9,7 +9,6 @@ module Fastui
     belongs_to :createdby, :class_name => 'Fastui::MPerson'
     belongs_to :updatedby, :class_name => 'Fastui::MPerson'
 
-
     acts_as_nested_set
     belongs_to :m_window,:class_name => 'Fastui::MWindow'
     belongs_to :m_menu,:class_name => 'Fastui::MMenu'
