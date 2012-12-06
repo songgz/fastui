@@ -94,12 +94,6 @@ Ext.define('FastUI.view.VFactory', {
         Ext.each(this._vdata.m_fields, function (field) {
             field.name = this.getModelClass() +'['+field.m_property.name + ']';
             fields.push(Ext.create('FastUI.view.vfield.VFieldFactory').buildField(field));
-//            fields.push({
-//                fieldLabel:field.title,
-//                name:fieldName,
-////                value:record.get('title'),
-//                allowBlank:true
-//            });
         },this);
         return fields;
     },

@@ -80,6 +80,9 @@ Ext.define('FastUI.view.VTab', {
     cmdEdit:function () {
         var record = this.grid.getSelectionModel().getSelection();
         if (record) this.currentRecord = record[0];
+//        alert(this.currentRecord.get('m_tab_id'));
+//        alert(this.currentRecord.get('m_tab').m_entity_id);
+//        alert(this.currentRecord.get('m_tab').m_window_id);
         if (!this.form) {
             this.form = Ext.create('FastUI.view.VForm', {vfactory:this.vfactory});
             this.add(this.form);
@@ -93,6 +96,8 @@ Ext.define('FastUI.view.VTab', {
             url:this.restHelper.getPath('edit', this.currentRecord.get('id')),
             success:function (response) {
                 var data = Ext.decode(response.responseText);
+//                alert(data['m_tab'].m_entity_id);
+//                alert(data['m_tab'].m_window_id);
                 var k, o = {};
                 for (k in data) {
                     if (k.indexOf('_id') > 0) {

@@ -97,6 +97,19 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
         }, this);
         return this.pagebar;
     },
+    getParams:function(){
+        var p = {};
+        switch(this.entity.name){
+            case 'Fastui::MProperty':
+                p['m_entity_id'] = this.entity.id;
+                return p;
+                break;
+            case 'Fastui::MTab':
+                p['m_window_id'] = '';
+                return p;
+                break;
+        }
+    },
     getStore:function () {
         return new Ext.data.JsonStore({
             autoLoad:{start:0, limit:2},
@@ -104,6 +117,7 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
             fields:['id', 'title'],
             proxy:{
                 type:'ajax',
+                extraParams:this.getParams(),
                 url:this.entity.name.underscore().pluralize() + '.json',
 //                url:'/fastui/' + this.entity.name.toLowerCase().pluralize() + '.json',
                 reader:{
