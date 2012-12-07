@@ -2,7 +2,7 @@
 module Fastui
   class MTab < ActiveRecord::Base
     attr_accessible :id, :title,:print_text,:name, :note, :m_window,:m_window_id,:m_entity, :m_entity_id, :read_id, :read
-    attr_accessible :included_tab,:included_tab_id,:entity_kind_id, :entity_kind,:actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
+    attr_accessible :entity_kind,:included_tab,:included_tab_id,:actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
 
     belongs_to :m_window,:class_name => 'Fastui::MWindow'
     belongs_to :m_entity,:class_name => 'Fastui::MEntity'
@@ -12,7 +12,7 @@ module Fastui
     has_many :m_actions, :dependent => :destroy
     belongs_to :read, :class_name => 'Fastui::MGlossaryItem'
 
-    belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem'
+    #belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem'  :entity_kind_id,
     belongs_to :actived, :class_name => 'Fastui::MGlossaryItem'
     belongs_to :org, :class_name => 'Fastui::MOrg'
     belongs_to :createdby, :class_name => 'Fastui::MPerson'

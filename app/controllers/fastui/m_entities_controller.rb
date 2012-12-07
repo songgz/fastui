@@ -6,8 +6,7 @@ module Fastui
 
     def index
       @m_entities = MEntity.all
-      respond_with(@m_entities.to_json(:include => [:m_properties, :access_level, :actived, :entity_kind,
-                                                    :org, :createdby, :updatedby]))
+      respond_with(@m_entities.to_json(:include => [:m_properties, :actived,:org, :createdby, :updatedby]))
     end
 
     def show

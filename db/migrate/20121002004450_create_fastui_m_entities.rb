@@ -5,11 +5,10 @@ class CreateFastuiMEntities < ActiveRecord::Migration
       t.string :print_text,:default => '',:limit => 60
       t.string :note, :default => ''
       t.string :name, :default => '', :limit => 60          #系统编码
-      t.integer :access_level_id , :default => 0        #:system,:org,:dept
-
-      t.integer :entity_kind_id, :default => 0                  #:sys,:app
+      t.string :access_level , :default => ''        #:system,:org,:dept
+      t.string :entity_kind, :default => ''                  #:sys,:app
       t.integer :seq, :default => 0
-      t.integer :actived_id, :default => 0
+      t.boolean :actived, :default => true
       t.integer :org_id, :default => 0
       t.integer :createdby_id, :default => 0
       t.integer :updatedby_id, :default => 0
