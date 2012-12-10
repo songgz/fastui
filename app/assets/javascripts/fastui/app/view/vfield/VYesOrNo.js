@@ -8,7 +8,7 @@ Ext.define('FastUI.view.vfield.VYesOrNo',{
     queryMode:"local",
     hiddenName:this.name,
     initComponent:function(){
-        this.store = Ext.create('Ext.data.JsonStore',{
+        this.store = Ext.create('Ext.data.ArrayStore',{
             fields: ["name","bool"],
             data:[['否',false],['是',true]]
         });
