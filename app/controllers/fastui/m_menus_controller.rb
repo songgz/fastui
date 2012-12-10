@@ -5,7 +5,7 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_menus = MMenu.all
-      respond_with(@m_menus.to_json(:include => [:m_menu_items,:actived,:org, :createdby, :updatedby]))
+      respond_with(@m_menus.to_json(:include => [:m_menu_items,:org, :createdby, :updatedby]))
     end
 
     def show

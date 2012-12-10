@@ -4,9 +4,9 @@ module Fastui
   class MColumnsController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_columns = MColumn.includes(:m_tab, :m_property, :actived,:org,:createdby,:updatedby).where({
+      @m_columns = MColumn.includes(:m_tab, :m_property,:org,:createdby,:updatedby).where({
       :m_tab_id => params[:m_tab_id]}.delete_if {|k, v| v.blank? })
-      respond_with(@m_columns.to_json(:include => [:m_tab, :m_property, :actived,:org,:createdby,:updatedby]))
+      respond_with(@m_columns.to_json(:include => [:m_tab, :m_property,:org,:createdby,:updatedby]))
     end
 
     def show
@@ -16,7 +16,7 @@ module Fastui
 
     def edit
       @m_column = MColumn.find(params[:id])
-      respond_with(@m_column.to_json(:include => [:m_tab,:m_property,:actived,:org,:createdby,:updatedby]))
+      respond_with(@m_column.to_json(:include => [:m_tab,:m_property,:org,:createdby,:updatedby]))
     end
 
     def new

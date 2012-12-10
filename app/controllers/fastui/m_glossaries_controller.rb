@@ -5,7 +5,7 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_glossaries = MGlossary.all
-      respond_with(@m_glossaries.to_json(:include => [:m_glossary_items,:actived, :org, :createdby, :updatedby]))
+      respond_with(@m_glossaries.to_json(:include => [:m_glossary_items,:org, :createdby, :updatedby]))
     end
 
     def show
