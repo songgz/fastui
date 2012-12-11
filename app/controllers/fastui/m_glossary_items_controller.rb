@@ -16,7 +16,7 @@ module Fastui
       #
       #@m_glossary_items = MGlossaryItem.where(conditions)
       @m_glossary_items = MGlossaryItem.where({:m_glossary_id => params[:m_glossary_id]}.delete_if {|k, v| v.blank? })
-      respond_with(@m_glossary_items.to_json(:include =>[:m_glossary,:actived,:org,:createdby,:updatedby]))
+      respond_with(@m_glossary_items.to_json(:include =>[:m_glossary,:org,:createdby,:updatedby]))
     end
 
     def show

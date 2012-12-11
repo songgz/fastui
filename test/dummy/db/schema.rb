@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(:version => 20121204061207) do
 
   create_table "fastui_m_properties", :force => true do |t|
     t.integer  "m_entity_id"
-    t.string   "title",        :limit => 60,                    :null => false
+    t.string   "title",        :limit => 60,                   :null => false
     t.string   "print_text",   :limit => 60, :default => ""
     t.string   "note",                       :default => ""
     t.string   "name",         :limit => 60, :default => ""
@@ -205,13 +205,13 @@ ActiveRecord::Schema.define(:version => 20121204061207) do
     t.string   "refable_type"
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => false
+    t.boolean  "actived",                    :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
     t.string   "help",                       :default => ""
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "fastui_m_relationships", :force => true do |t|

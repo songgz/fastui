@@ -6,7 +6,13 @@ Ext.define('FastUI.view.VGrid', {
 //
 //    },
 ////    selModel:new Ext.selection.RowModel({SINGLE: true}),
-//    selType: 'rowmodel',
+    selType: 'rowmodel',
+    plugins: [
+        Ext.create('Ext.grid.plugin.CellEditing', {
+            editing:true
+//            clicksToEdit: 1
+        })
+    ],
     multiSelect:false,
     plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
     initComponent:function(){

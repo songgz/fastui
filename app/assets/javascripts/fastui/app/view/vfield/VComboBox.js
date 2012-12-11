@@ -7,14 +7,17 @@ Ext.define('FastUI.view.vfield.VComboBox', {
     triggerAction:'all',
     editable:false,
     selectOnFocus:true,
-    typeAhead: true,
-    selectOnTab: true,
-    lazyRender: true,
-                    listClass: 'x-combo-list-small',
-
 
     initComponent:function () {
-        this.store = FastUI.store.MGlossaryMgr.getStore(this.glossary_id);
+        //---set synchronous loading on this one to avoid problems with rendering
+        Ext.apply(Ext.data.Connection.prototype, {
+            async: false
+        });
+        this.store = FastUI.store.MGlossaryMgr.getStore(this.glossary_id).load();
+        //---restore async property to the default value
+        Ext.apply(Ext.data.Connection.prototype, {
+            async: true
+        });
         this.callParent();
     },
     setValue:function (value) {
