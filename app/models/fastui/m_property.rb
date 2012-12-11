@@ -2,10 +2,11 @@
 module Fastui
   class MProperty < ActiveRecord::Base
     attr_accessible :id, :name, :title,:print_text, :note,:external_key, :refable,:m_entity,:m_entity_id
-    attr_accessible :entity_kind,:actived_id,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
+    attr_accessible :m_datatype,:m_datatype_id,:entity_kind,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
 
     belongs_to :m_entity, :class_name => 'Fastui::MEntity'
-    belongs_to :refable, :polymorphic => true
+    belongs_to :m_datatype,:class_name => 'Fastui::MDatatype'
+    #belongs_to :refable, :polymorphic => true
 
     #belongs_to :entity_kind, :class_name => 'Fastui::MGlossaryItem'     :entity_kind_id,
     #belongs_to :actived, :class_name => 'Fastui::MGlossaryItem'

@@ -2,13 +2,15 @@ class CreateFastuiMProperties < ActiveRecord::Migration
   def change
     create_table :fastui_m_properties do |t|
       t.references :m_entity
+      t.references :m_datatype
+
       t.string :title, :limit => 60, :null => false
       t.string :print_text,:default => '',:limit => 60
       t.string :note, :default => ''
       t.string :name,:default => '', :limit => 60
       t.string :external_key,:default => ''
 
-      t.references :refable, :polymorphic => true #data_type, glossary, entity
+      #t.references :refable, :polymorphic => true #data_type, glossary, entity
 
       t.string :entity_kind, :default => '' #:sys,:app
       t.integer :seq, :default => 0

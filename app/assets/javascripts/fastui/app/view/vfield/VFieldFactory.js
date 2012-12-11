@@ -3,21 +3,21 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
 //        singleton: true,
         constructor:function () {
          this.VType =  {
-        VText:"VText",
-        VDate:"VDate",
-        VHtmlEditor:"VHtmlEditor",
-        VComboBox:"VComboBox",
-        VLongComboBox:"VLongComboBox",
-        VTextArea:"VTextArea",
-        VNumber:"VNumber",
-        VCheckBox:"VCheckBox",
+        VText:"MText",
+        VDate:"MDate",
+        VHtmlEditor:"MHtmlEditor",
+        VComboBox:"MComboBox",
+        VLongComboBox:"MLongComboBox",
+        VTextArea:"MTextArea",
+        VNumber:"MNumber",
+        VCheckBox:"MCheckBox",
         VCheckboxGroup:"VCheckboxGroup",
-        VSexSelect:"VSexSelect",
-        VFile:"VFile",
-        VYesOrNo:"VYesOrNo",
+        VSexSelect:"MSexSelect",
+        VFile:"MFile",
+        VYesOrNo:"MYesOrNo",
 //            VFieldCombobox:"VFieldCombobox",
 //            VIncludedTabsCombo:"VIncludedTabsCombo",
-        VGridColumnXtypeCombo:"VGridColumnXtypeCombo"   }
+        VGridColumnXtypeCombo:"MGridColumnXtypeCombo"   }
     },
     buildField:function (field) {
         var opt = {fieldLabel:field.title, name:field.name,disabled:(field.read && field.read.name == 'true') ,allowBlank:true};
