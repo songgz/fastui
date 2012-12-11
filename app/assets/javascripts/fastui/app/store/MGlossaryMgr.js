@@ -11,7 +11,7 @@ Ext.define('FastUI.store.MGlossaryMgr', {
     },
     createStore:function (glossary_id) {
         return new Ext.data.JsonStore({
-            autoLoad:true,
+            //autoLoad:true,
             fields:['id', 'name', 'title'],
             proxy:{
                 type:'ajax',

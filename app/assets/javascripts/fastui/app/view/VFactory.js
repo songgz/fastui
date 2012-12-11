@@ -1,5 +1,6 @@
 Ext.define('FastUI.view.VFactory', {
     name:'vfactory',
+    requires:['FastUI.store.MGlossaryMgr'],
 
     constructor:function (vdata){
         this._vdata = vdata;
@@ -18,7 +19,7 @@ Ext.define('FastUI.view.VFactory', {
 
     },
     getUrl:function(){
-        var url = this.resource+'.json';
+        var url = '/'+this.resource+'.json';
         return  url;
     },
     getParams:function(){
@@ -60,11 +61,15 @@ Ext.define('FastUI.view.VFactory', {
     getColumns:function () {
         var columns = [];
         Ext.each(this._vdata.m_columns, function (column) {
+            var opt = {glossary_id: column.m_property.refable_id};
             columns.push({
                 text:column.title,
                 dataIndex:column.m_property.name,
-                width:column.width,
-                editor: {}
+                width:column.width
+//                renderer: function(value){
+//                    return value === 'sys' ? FastUI.store.MGlossaryMgr.getTitle(column.m_property.refable_id, value) : value;
+//                }
+                //editor: column.m_property.name == 'entity_kind' ? Ext.create('FastUI.view.vfield.VComboBox',opt) : {}
             });
         });
 

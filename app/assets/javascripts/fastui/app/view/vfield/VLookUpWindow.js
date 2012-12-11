@@ -118,7 +118,7 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
             proxy:{
                 type:'ajax',
                 extraParams:this.getParams(),
-                url:this.entity.name.underscore().pluralize() + '.json',
+                url:'/'+this.entity.name.underscore().pluralize() + '.json',
 //                url:'/fastui/' + this.entity.name.toLowerCase().pluralize() + '.json',
                 reader:{
                     type:'json',
