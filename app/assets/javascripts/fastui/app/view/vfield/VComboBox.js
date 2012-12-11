@@ -10,14 +10,14 @@ Ext.define('FastUI.view.vfield.VComboBox', {
 
     initComponent:function () {
         //---set synchronous loading on this one to avoid problems with rendering
-        Ext.apply(Ext.data.Connection.prototype, {
-            async: false
-        });
+//        Ext.apply(Ext.data.Connection.prototype, {
+//            async: false
+//        });
         this.store = FastUI.store.MGlossaryMgr.getStore(this.glossary_id).load();
         //---restore async property to the default value
-        Ext.apply(Ext.data.Connection.prototype, {
-            async: true
-        });
+//        Ext.apply(Ext.data.Connection.prototype, {
+//            async: true
+//        });
         this.callParent();
     },
     setValue:function (value) {
