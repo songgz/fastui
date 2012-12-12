@@ -56,39 +56,47 @@ Ext.define('FastUI.view.VFactory', {
             }
         });
     },
-    getColumns:function() {
+    get_list_store:function (list_id) {
+        Ext.apply(Ext.data.Connection.prototype, {
+            async:false
+        });
+        var list_store = FastUI.store.MListMgr.getStore(list_id).load();
+        Ext.apply(Ext.data.Connection.prototype, {
+            async:true
+        });
+        return list_store;
+    },
+    getColumns:function () {
         var columns = [];
         Ext.each(this._vdata.m_columns, function (column) {
-            if (column.m_property.name == 'window_kind' || column.m_property.name == 'entity_kind') {
-                Ext.apply(Ext.data.Connection.prototype, {
-                    async: false
-                });
-                var  col_store = FastUI.store.MListMgr.getStore(column.m_property.m_datatype_id).load();
-                Ext.apply(Ext.data.Connection.prototype, {
-                    async: true
-                });
-                columns.push({
-                    text:column.title,
-                    dataIndex:column.m_property.name,
-                    width:column.width,
-//                    editor:col_combobox,
-                    renderer:function (val) {
-                     var  index = col_store.findExact('name',val);
-                       if (index != -1){
-                         var  rs = col_store.getAt(index).data;
-                           return rs.title;
-                       }
-                    }
-                });
-            } else {
-                columns.push({
-                    text:column.title,
-                    dataIndex:column.m_property.name,
-                    width:column.width
-                });
+            var col = {text:column.title, dataIndex:column.m_property.name,width:column.width };
+            switch (column.m_property.m_datatype.class_name) {
+                case 'Fastui::MList':
+                    var list_store = this.get_list_store(column.m_property.m_datatype_id);
+                    col.renderer = function (val) {
+                        var index = list_store.findExact('name', val);
+                        if (index != -1) {
+                            var rs = list_store.getAt(index).data;
+                            return rs.title;
+                        }
+                    };
+                    columns.push(col);
+                    break;
+                case 'Fastui::MYesOrNo':
+                    col.renderer = function (val) {
+                        if (val) {
+                            return '是'
+                        } else {
+                            return '否'
+                        }
+                    };
+                    columns.push(col);
+                    break;
+                default:
+                    columns.push(col);
+                    break;
             }
-        });
-
+        }, this);
         return columns;
     },
     getFields:function () {

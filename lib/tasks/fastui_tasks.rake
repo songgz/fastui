@@ -19,8 +19,8 @@ namespace :fastui do
     v_combobox = Fastui::MComboBox.create({:name => 'VComboBox', :title => '下拉框'})
     v_yesorno = Fastui::MYesOrNo.create({:name => 'VYesOrNo',:title => '是否'})
 
-    state = Fastui::MList.create({:name => 'state', :title => '状态'})
-    state.m_list_items.create([{:name => 'true', :title => '是'},{:name => 'false', :title => '否'}])
+    #state = Fastui::MList.create({:name => 'state', :title => '状态'})
+    #state.m_list_items.create([{:name => 'true', :title => '是'},{:name => 'false', :title => '否'}])
 
     access_level = Fastui::MList.create({:name => 'access_level', :title => '访问级别'})
     access_level.m_list_items.create([{:name => 'system', :title => '系统级别'},{:name => 'org', :title => '组织级别'},{:name => 'dept', :title => '部门级别'}])
