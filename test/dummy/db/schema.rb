@@ -60,12 +60,12 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
   end
 
   create_table "fastui_m_datatypes", :force => true do |t|
+    t.integer  "m_entity_id"
     t.string   "type"
     t.string   "title",        :limit => 60,                   :null => false
     t.string   "print_text",   :limit => 60, :default => ""
     t.string   "note",                       :default => ""
     t.string   "name",         :limit => 60, :default => ""
-    t.string   "entity_class",               :default => ""
     t.string   "access_level",               :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0

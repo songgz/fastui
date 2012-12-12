@@ -1,6 +1,7 @@
 class CreateFastuiMDatatypes < ActiveRecord::Migration
   def change
     create_table :fastui_m_datatypes do |t|
+      t.references :m_entity
       t.string :type
 
       t.string :title, :limit => 60, :null => false
@@ -8,7 +9,7 @@ class CreateFastuiMDatatypes < ActiveRecord::Migration
       t.string :note, :default => ''
       t.string :name, :default => '', :limit => 60          #系统编码
 
-      t.string :entity_class,:default => '' #relation 中包含实体的类名
+      #t.string :entity_class,:default => '' #relation 中包含实体的类名
       t.string :access_level , :default => ''        #:system,:org,:dept
       t.string :entity_kind, :default => ''                  #:sys,:app
       t.integer :seq, :default => 0

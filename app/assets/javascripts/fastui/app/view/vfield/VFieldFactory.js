@@ -1,42 +1,29 @@
 Ext.define('FastUI.view.vfield.VFieldFactory', {
     name:'vfieldFactory',
 //        singleton: true,
-        constructor:function () {
-         this.VType =  {
-        VText:"MText",
-        VDate:"MDate",
-        VHtmlEditor:"MHtmlEditor",
-        VComboBox:"MComboBox",
-        VLongComboBox:"MLongComboBox",
-        VTextArea:"MTextArea",
-        VNumber:"MNumber",
-        VCheckBox:"MCheckBox",
-        VCheckboxGroup:"VCheckboxGroup",
-        VSexSelect:"MSexSelect",
-        VFile:"MFile",
-        VYesOrNo:"MYesOrNo",
-//            VFieldCombobox:"VFieldCombobox",
-//            VIncludedTabsCombo:"VIncludedTabsCombo",
-        VGridColumnXtypeCombo:"MGridColumnXtypeCombo"   }
-    },
-    buildField:function (field) {
-        var opt = {fieldLabel:field.title, name:field.name,disabled:(field.read && field.read.name == 'true') ,allowBlank:true};
-        switch(field.m_property.refable_type){
-            case 'Fastui::MDataType':
-                return this.dataTypeMatch(field,opt);
-                break;
-            case 'Fastui::MGlossary':
-               opt['glossary_id'] = field.m_property.refable_id;
-                return Ext.create('FastUI.view.vfield.VComboBox',opt);
-                break;
-            case 'Fastui::MEntity':
-                opt['entity'] = field.m_property.refable;
-                return Ext.create('FastUI.view.vfield.VLookUpWindow',opt);
-                break;
+    constructor:function () {
+        this.VType = {
+            VText:"Fastui::MText",
+            VDate:"Fastui::MDate",
+            VHtmlEditor:"Fastui::MHtmlEditor",
+            VComboBox:"Fastui::MComboBox",
+            VLongComboBox:"Fastui::MLongComboBox",
+            VTextArea:"Fastui::MTextArea",
+            VNumber:"Fastui::MNumber",
+            VCheckBox:"Fastui::MCheckBox",
+            VCheckboxGroup:"Fastui::MCheckboxGroup",
+            VSexSelect:"Fastui::MSexSelect",
+            VFile:"Fastui::MFile",
+            VYesOrNo:"Fastui::MYesOrNo",
+            VGridColumnXtypeCombo:"Fastui::MGridColumnXtypeCombo",
+            VList:'Fastui::MList',
+            VLookup:'Fastui::MRelation'
         }
     },
-    dataTypeMatch:function(field,opt){
-        switch (field.m_property.refable.name) {
+    buildField:function (field) {
+        var opt = {fieldLabel:field.title, name:field.name, disabled:(field.read && field.read.name == 'true'), allowBlank:true};
+        var dt = field.m_property.m_datatype;
+        switch (dt.class_name) {
             case this.VType.VText:
                 return Ext.create('FastUI.view.vfield.VText', opt);
                 break;
@@ -72,6 +59,14 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
                 break;
             case this.VType.VYesOrNo:
                 return Ext.create('FastUI.view.vfield.VYesOrNo', opt);
+                break;
+            case this.VType.VList:
+                opt['list_id'] = dt.id;
+                return Ext.create('FastUI.view.vfield.VComboBox', opt);
+                break;
+            case this.VType.VLookup:
+                opt['entity'] = dt.m_entity;
+                return Ext.create('FastUI.view.vfield.VLookUpWindow', opt);
                 break;
         }
     }

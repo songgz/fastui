@@ -1,6 +1,6 @@
 Ext.define('FastUI.view.vfield.VComboBox', {
     extend:'Ext.form.field.ComboBox',
-    requires:['FastUI.store.MGlossaryMgr'],
+    requires:['FastUI.store.MListMgr'],
     valueField:'name',
     displayField:"title",
     forceSelection:true,
@@ -13,7 +13,7 @@ Ext.define('FastUI.view.vfield.VComboBox', {
 //        Ext.apply(Ext.data.Connection.prototype, {
 //            async: false
 //        });
-        this.store = FastUI.store.MGlossaryMgr.getStore(this.glossary_id).load();
+        this.store = FastUI.store.MListMgr.getStore(this.list_id).load();
         //---restore async property to the default value
 //        Ext.apply(Ext.data.Connection.prototype, {
 //            async: true
