@@ -60,7 +60,6 @@ Ext.define('FastUI.view.VFactory', {
         var columns = [];
         Ext.each(this._vdata.m_columns, function (column) {
             if (column.m_property.name == 'window_kind' || column.m_property.name == 'entity_kind') {
-//                var col_combobox = Ext.create('FastUI.view.vfield.VComboBox', {glossary_id:column.m_property.refable_id})
                 Ext.apply(Ext.data.Connection.prototype, {
                     async: false
                 });
