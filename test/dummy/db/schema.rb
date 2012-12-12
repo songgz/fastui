@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204061207) do
+ActiveRecord::Schema.define(:version => 20121211062955) do
 
   create_table "fastui_m_actions", :force => true do |t|
     t.string   "title"
@@ -48,6 +48,25 @@ ActiveRecord::Schema.define(:version => 20121204061207) do
     t.string   "print_text",   :limit => 60, :default => ""
     t.string   "note",                       :default => ""
     t.string   "name",         :limit => 60, :default => ""
+    t.string   "entity_kind",                :default => ""
+    t.integer  "seq",                        :default => 0
+    t.boolean  "actived",                    :default => true
+    t.integer  "org_id",                     :default => 0
+    t.integer  "createdby_id",               :default => 0
+    t.integer  "updatedby_id",               :default => 0
+    t.string   "help",                       :default => ""
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  create_table "fastui_m_datatypes", :force => true do |t|
+    t.string   "type"
+    t.string   "title",        :limit => 60,                   :null => false
+    t.string   "print_text",   :limit => 60, :default => ""
+    t.string   "note",                       :default => ""
+    t.string   "name",         :limit => 60, :default => ""
+    t.string   "entity_class",               :default => ""
+    t.string   "access_level",               :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
     t.boolean  "actived",                    :default => true
@@ -112,21 +131,21 @@ ActiveRecord::Schema.define(:version => 20121204061207) do
     t.datetime "updated_at",                                   :null => false
   end
 
-  create_table "fastui_m_glossary_items", :force => true do |t|
-    t.integer  "m_glossary_id"
-    t.string   "title",         :limit => 60,                   :null => false
-    t.string   "print_text",    :limit => 60, :default => ""
-    t.string   "note",                        :default => ""
-    t.string   "name",          :limit => 60, :default => ""
-    t.string   "entity_kind",                 :default => ""
-    t.integer  "seq",                         :default => 0
-    t.boolean  "actived",                     :default => true
-    t.integer  "org_id",                      :default => 0
-    t.integer  "createdby_id",                :default => 0
-    t.integer  "updatedby_id",                :default => 0
-    t.string   "help",                        :default => ""
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+  create_table "fastui_m_list_items", :force => true do |t|
+    t.integer  "m_list_id"
+    t.string   "title",        :limit => 60,                   :null => false
+    t.string   "print_text",   :limit => 60, :default => ""
+    t.string   "note",                       :default => ""
+    t.string   "name",         :limit => 60, :default => ""
+    t.string   "entity_kind",                :default => ""
+    t.integer  "seq",                        :default => 0
+    t.boolean  "actived",                    :default => true
+    t.integer  "org_id",                     :default => 0
+    t.integer  "createdby_id",               :default => 0
+    t.integer  "updatedby_id",               :default => 0
+    t.string   "help",                       :default => ""
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "fastui_m_menu_items", :force => true do |t|
@@ -196,22 +215,21 @@ ActiveRecord::Schema.define(:version => 20121204061207) do
 
   create_table "fastui_m_properties", :force => true do |t|
     t.integer  "m_entity_id"
-    t.string   "title",        :limit => 60,                   :null => false
-    t.string   "print_text",   :limit => 60, :default => ""
-    t.string   "note",                       :default => ""
-    t.string   "name",         :limit => 60, :default => ""
-    t.string   "external_key",               :default => ""
-    t.integer  "refable_id"
-    t.string   "refable_type"
-    t.string   "entity_kind",                :default => ""
-    t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => true
-    t.integer  "org_id",                     :default => 0
-    t.integer  "createdby_id",               :default => 0
-    t.integer  "updatedby_id",               :default => 0
-    t.string   "help",                       :default => ""
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.integer  "m_datatype_id"
+    t.string   "title",         :limit => 60,                   :null => false
+    t.string   "print_text",    :limit => 60, :default => ""
+    t.string   "note",                        :default => ""
+    t.string   "name",          :limit => 60, :default => ""
+    t.string   "external_key",                :default => ""
+    t.string   "entity_kind",                 :default => ""
+    t.integer  "seq",                         :default => 0
+    t.boolean  "actived",                     :default => true
+    t.integer  "org_id",                      :default => 0
+    t.integer  "createdby_id",                :default => 0
+    t.integer  "updatedby_id",                :default => 0
+    t.string   "help",                        :default => ""
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "fastui_m_relationships", :force => true do |t|

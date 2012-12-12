@@ -1,6 +1,6 @@
 Ext.define('FastUI.view.VFactory', {
     name:'vfactory',
-
+    requires:['FastUI.store.MGlossaryMgr'],
     constructor:function (vdata) {
         this._vdata = vdata;
         if (this._vdata.m_entity) {
@@ -60,16 +60,23 @@ Ext.define('FastUI.view.VFactory', {
         var columns = [];
         Ext.each(this._vdata.m_columns, function (column) {
             if (column.m_property.name == 'window_kind' || column.m_property.name == 'entity_kind') {
-                var col_combobox = Ext.create('FastUI.view.vfield.VComboBox', {glossary_id:column.m_property.refable_id})
+//                var col_combobox = Ext.create('FastUI.view.vfield.VComboBox', {glossary_id:column.m_property.refable_id})
+                Ext.apply(Ext.data.Connection.prototype, {
+                    async: false
+                });
+                var  col_store = FastUI.store.MGlossaryMgr.getStore(column.m_property.refable_id).load();
+                Ext.apply(Ext.data.Connection.prototype, {
+                    async: true
+                });
                 columns.push({
                     text:column.title,
                     dataIndex:column.m_property.name,
                     width:column.width,
-                    editor:col_combobox,
+//                    editor:col_combobox,
                     renderer:function (val) {
-                     var  index = col_combobox.getStore().findExact('name',val);
+                     var  index = col_store.findExact('name',val);
                        if (index != -1){
-                         var  rs = col_combobox.getStore().getAt(index).data;
+                         var  rs = col_store.getAt(index).data;
                            return rs.title;
                        }
                     }

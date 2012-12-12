@@ -1,7 +1,7 @@
-class CreateFastuiMGlossaryItems < ActiveRecord::Migration
+class CreateFastuiMListItems < ActiveRecord::Migration
   def change
-    create_table :fastui_m_glossary_items do |t|
-      t.references :m_glossary
+    create_table :fastui_m_list_items do |t|
+      t.references :m_list
       t.string :title, :limit => 60, :null => false
       t.string :print_text,:default => '',:limit => 60
       t.string :note , :default => ''
