@@ -1,5 +1,5 @@
 module Fastui
-  class MOrg < ActiveRecord::Base
+  class MOrg < MObject
     attr_accessible :id, :name, :title,:print_text, :note
     attr_accessible  :entity_kind,:actived, :org_id, :org, :createdby_id, :createdby, :updatedby_id, :updatedby, :help, :seq
 

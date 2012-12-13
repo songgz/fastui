@@ -1,5 +1,5 @@
 module Fastui
-  class MListItem < ActiveRecord::Base
+  class MListItem < MObject
     attr_accessible :id, :title, :print_text, :note, :name
     attr_accessible  :entity_kind,:seq, :actived, :org_id, :createdby, :createdby_id, :updatedby, :updatedby_id, :help
 

@@ -6,6 +6,8 @@ namespace :fastui do
 
     org_system = Fastui::MOrg.create({:name => 'system', :title => '系统组织'})
     person1 = Fastui::MPerson.create({:name => 'Administrator', :title => '系统管理员'})
+    Fastui::Env.ctx.set('g_person_id', person1)
+    Fastui::Env.ctx.set('g_person_id', org_system)
 
     v_datatype = Fastui::MDatatype.create({:name => 'load_datatype', :title => '加载文件'})
     v_datatype.delete

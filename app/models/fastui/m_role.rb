@@ -1,5 +1,5 @@
 module Fastui
-  class MRole < ActiveRecord::Base
+  class MRole < MObject
     # attr_accessible :title, :body
   end
 end

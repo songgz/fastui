@@ -1,5 +1,5 @@
 module Fastui
-  class MRelationship < ActiveRecord::Base
+  class MRelationship < MObject
 
     belongs_to :m_person, :class_name => 'Fastui::MPerson'
     belongs_to :m_org, :class_name => 'Fastui::MOrg'

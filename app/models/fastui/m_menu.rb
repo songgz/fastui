@@ -1,5 +1,5 @@
 module Fastui
-  class MMenu < ActiveRecord::Base
+  class MMenu < MObject
     attr_accessible :id,:name, :title ,:print_text
     attr_accessible :entity_kind,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
 

@@ -1,6 +1,6 @@
 # encoding: utf-8
 module Fastui
-  class MPerson < ActiveRecord::Base
+  class MPerson < MObject
     attr_accessible :id, :name, :title,:print_text
     attr_accessible :actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby
 

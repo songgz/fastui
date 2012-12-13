@@ -1,5 +1,5 @@
 module Fastui
-  class MDatatype < ActiveRecord::Base
+  class MDatatype < MObject
     attr_accessible :id, :title, :print_text, :note, :name
     attr_accessible  :m_entity,:m_entity_id,:access_level,:entity_kind,:seq, :actived, :org_id,:org, :createdby, :createdby_id, :updatedby, :updatedby_id, :help
 

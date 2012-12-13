@@ -1,6 +1,6 @@
 # encoding: utf-8
 module Fastui
-  class MWindow < ActiveRecord::Base
+  class MWindow < MObject
     attr_accessible :id, :title,:print_text, :name,:note
     attr_accessible :entity_kind,:window_kind,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
 

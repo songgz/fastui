@@ -1,5 +1,5 @@
 module Fastui
-  class MColumn < ActiveRecord::Base
+  class MColumn < MObject
     attr_accessible :id,:note, :title,:print_text, :name,:m_property,:m_property_id,:width,:m_tab,:m_tab_id
     attr_accessible :entity_kind,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
 
