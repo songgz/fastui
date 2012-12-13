@@ -9,8 +9,7 @@ namespace :fastui do
     Fastui::Env.ctx.set('g_person_id', person1)
     Fastui::Env.ctx.set('g_person_id', org_system)
 
-    v_datatype = Fastui::MDatatype.create({:name => 'load_datatype', :title => '加载文件'})
-    v_datatype.delete
+    v_datatype = Fastui::MDatatype
 
     v_number = Fastui::MNumber.create({:name => 'VNumber', :title => '整型'})
     v_date = Fastui::MDate.create({:name => 'VDate', :title => '日期'})
@@ -65,6 +64,18 @@ namespace :fastui do
                                                 :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_relation_datatype = Fastui::MRelation.create({:m_entity => m_datatype, :name => 'Fastui::MDatatype', :title => '数据类型', :access_level => 'system', :entity_kind => 'sys',
                                                     :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+
+    #mwin = Fastui::MEntity.create() do |ent|
+    #  ent.properties.create([{},{}])
+    #end
+    #mwin.m_properties.find_by {|name| name == ''}
+    #attr = {:entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1}
+    #Fastui::MWindow.create({}.merge(attr)) do |win|
+    #  win.m_tabs.create({entity:mwin}) do |tab|
+    #    tab.m_fields.create([{},{}])
+    #    tab.m_columns.create([{},{}])
+    #  end
+    #end
 
 
     m_window_id = m_window.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,

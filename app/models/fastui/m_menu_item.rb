@@ -1,11 +1,12 @@
 module Fastui
   class MMenuItem < MObject
-    attr_accessible :id, :name, :title,:print_text, :note, :m_menu_id,:m_menu, :m_window_id,:m_window, :parent_id
-    attr_accessible :entity_kind,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
+    #attr_accessible :id, :name, :title,:print_text, :note, :m_menu_id,:m_menu, :m_window_id,:m_window, :parent_id
+    #attr_accessible :entity_kind,:actived,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby,:help,:seq
+    attr_accessible :m_menu_id,:m_menu, :m_window_id,:m_window, :parent_id
 
-    belongs_to :org, :class_name => 'Fastui::MOrg'
-    belongs_to :createdby, :class_name => 'Fastui::MPerson'
-    belongs_to :updatedby, :class_name => 'Fastui::MPerson'
+    #belongs_to :org, :class_name => 'Fastui::MOrg'
+    #belongs_to :createdby, :class_name => 'Fastui::MPerson'
+    #belongs_to :updatedby, :class_name => 'Fastui::MPerson'
 
     acts_as_nested_set
     belongs_to :m_window,:class_name => 'Fastui::MWindow'

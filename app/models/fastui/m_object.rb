@@ -1,7 +1,13 @@
 module Fastui
   class MObject < ActiveRecord::Base
+    self.abstract_class = true
+
     attr_accessible :id, :name, :title, :print_text,:note, :entity_kind, :actived, :seq, :help
     attr_accessible :org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby
+
+    belongs_to :org, :class_name => 'Fastui::MOrg'
+    belongs_to :createdby, :class_name => 'Fastui::MPerson'
+    belongs_to :updatedby, :class_name => 'Fastui::MPerson'
 
     before_create do |mo|
       mo.org_id = Env.ctx.get(:g_org_id) || mo.org_id
