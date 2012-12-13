@@ -15,7 +15,7 @@ module Fastui
       respond_with(@m_window.to_json(:include =>
                                          {:m_tabs => {:include =>
                                                           {:m_fields => {:include => {:m_property => {:include => {:m_datatype =>{:methods => [:class_name],:include => {:m_entity => {}}} }}}},
-                                                           :m_columns => {:include => {:m_property => {:include => {}}}},
+                                                           :m_columns => {:include => {:m_property => {:include => {:m_datatype => {:methods => [:class_name],:include => {:m_entity => {}}}}}}},
                                                            :m_entity => {:include => [:m_properties]}
                                                           }
                                          }

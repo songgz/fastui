@@ -5,7 +5,7 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_properties = MProperty.where({:m_entity_id => params[:m_entity_id]}.delete_if {|k, v| v.blank? })
-      respond_with(@m_properties.to_json(:include => [:m_entity,:org, :createdby, :updatedby]))
+      respond_with(@m_properties.to_json(:include => [:m_entity,:m_datatype,:org, :createdby, :updatedby]))
     end
 
     def show
@@ -15,7 +15,7 @@ module Fastui
 
     def edit
       @m_property = MProperty.find(params[:id])
-      respond_with(@m_property.to_json(:include => [:m_entity,:refable,:org, :createdby, :updatedby]))
+      respond_with(@m_property.to_json(:include => [:m_entity,:m_datatype,:org, :createdby, :updatedby]))
     end
 
     def new
