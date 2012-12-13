@@ -1,6 +1,6 @@
 Ext.define('FastUI.view.VFactory', {
     name:'vfactory',
-    requires:['FastUI.store.MGlossaryMgr'],
+    requires:['FastUI.store.MListMgr'],
     constructor:function (vdata) {
         this._vdata = vdata;
         if (this._vdata.m_entity) {
@@ -64,7 +64,7 @@ Ext.define('FastUI.view.VFactory', {
                 Ext.apply(Ext.data.Connection.prototype, {
                     async: false
                 });
-                var  col_store = FastUI.store.MGlossaryMgr.getStore(column.m_property.refable_id).load();
+                var  col_store = FastUI.store.MListMgr.getStore(column.m_property.m_datatype_id).load();
                 Ext.apply(Ext.data.Connection.prototype, {
                     async: true
                 });

@@ -54,21 +54,6 @@ namespace :fastui do
     ref_entity = m_datatype_type.m_list_items.create({:name => 'entity',:title => 'entity'})
 
 
-    m_relation_org = Fastui::MRelation.create({:entity_class => 'Fastui::MOrg',:name => 'Fastui::MOrg', :title => '组织', :access_level => 'system', :entity_kind => 'sys',
-                                               :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_relation_person = Fastui::MRelation.create({:entity_class => 'Fastui::MPerson',:name => 'Fastui::MPerson', :title => '人员', :access_level => 'system', :entity_kind => 'sys',
-                                                  :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_relation_window = Fastui::MRelation.create({:entity_class => 'Fastui::MWindow',:name => 'Fastui::MWindow', :title => '窗口', :access_level => 'system',
-                                       :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_relation_tab = Fastui::MRelation.create({:entity_class => 'Fastui::MTab',:name => 'Fastui::MTab', :title => '标签', :access_level => 'system', :entity_kind => 'sys',
-                                    :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_relation_entity = Fastui::MRelation.create({:entity_class => 'Fastui::MEntity',:name => 'Fastui::MEntity', :title => '实体', :access_level => 'system', :entity_kind => 'sys',
-                                       :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_relation_property = Fastui::MRelation.create({:entity_class => 'Fastui::MProperty',:name => 'Fastui::MProperty', :title => '属性', :access_level => 'system', :entity_kind => 'sys',
-                                         :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_relation_menu = Fastui::MRelation.create({:entity_class => 'Fastui::MMenu',:name => 'Fastui::MMenu', :title => '菜单', :access_level => 'system', :entity_kind => 'sys',
-                                     :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-
 
 
     #person1 = Fastui::MPerson.create({:name => 'Mr Li',:title => '李老师'})
@@ -83,6 +68,29 @@ namespace :fastui do
 
     m_window = Fastui::MEntity.create({:name => 'Fastui::MWindow', :title => '窗口', :access_level => 'system',
                                        :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_tab = Fastui::MEntity.create({:name => 'Fastui::MTab', :title => '标签', :access_level => 'system', :entity_kind => 'sys',
+                                    :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_menu = Fastui::MEntity.create({:name => 'Fastui::MMenu', :title => '菜单', :access_level => 'system', :entity_kind => 'sys',
+                                     :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+
+
+
+
+    m_relation_org = Fastui::MRelation.create({:m_entity => m_org,:name => 'Fastui::MOrg', :title => '组织', :access_level => 'system', :entity_kind => 'sys',
+                                               :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_relation_person = Fastui::MRelation.create({:m_entity => m_person,:name => 'Fastui::MPerson', :title => '人员', :access_level => 'system', :entity_kind => 'sys',
+                                                  :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_relation_window = Fastui::MRelation.create({:m_entity => m_window,:name => 'Fastui::MWindow', :title => '窗口', :access_level => 'system',
+                                                  :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_relation_tab = Fastui::MRelation.create({:m_entity => m_tab,:name => 'Fastui::MTab', :title => '标签', :access_level => 'system', :entity_kind => 'sys',
+                                               :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_relation_entity = Fastui::MRelation.create({:m_entity => m_entity,:name => 'Fastui::MEntity', :title => '实体', :access_level => 'system', :entity_kind => 'sys',
+                                                  :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_relation_property = Fastui::MRelation.create({:m_entity => m_property,:name => 'Fastui::MProperty', :title => '属性', :access_level => 'system', :entity_kind => 'sys',
+                                                    :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_relation_menu = Fastui::MRelation.create({:m_entity => m_menu,:name => 'Fastui::MMenu', :title => '菜单', :access_level => 'system', :entity_kind => 'sys',
+                                                :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+
 
     #[{name: 'id',title: 'ID',m_datatype: v_number,entity_kind: 'sys',seq:1,actived:str,org:org_system,createdby:person1,updatedby:person1},
     #{name:'title',title: '标题',m_datatype: v_text}].each_with_index do |pro,seq_i|
@@ -123,9 +131,7 @@ namespace :fastui do
                                                           :entity_kind => 'sys', :seq => 11, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
 
 
-    m_tab = Fastui::MEntity.create({:name => 'Fastui::MTab', :title => '标签', :access_level => 'system', :entity_kind => 'sys',
-                                    :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_tab_id = m_tab.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
+     m_tab_id = m_tab.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
                                           :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_tab_title = m_tab.m_properties.create({:name => 'title', :title => '标题', :m_datatype => v_text,
                                              :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -506,9 +512,7 @@ namespace :fastui do
                                                               :entity_kind => 'sys', :seq => 10, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
 
     # 菜单
-    m_menu = Fastui::MEntity.create({:name => 'Fastui::MMenu', :title => '菜单', :access_level => 'system', :entity_kind => 'sys',
-                                     :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_id = m_menu.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
+      m_menu_id = m_menu.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
                                             :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_menu_title = m_menu.m_properties.create({:name => 'title', :title => '标题', :m_datatype => v_text,
                                                :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})

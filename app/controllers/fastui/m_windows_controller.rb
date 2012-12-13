@@ -6,7 +6,7 @@ module Fastui
 
     def index
       @m_windows = MWindow.all
-      respond_with(@m_windows.to_json(:include => [:org,:createdby,:updatedby]))
+      respond_with(@m_windows.to_json(:include => [:org, :createdby, :updatedby]))
     end
 
     def show
@@ -14,13 +14,8 @@ module Fastui
       p ActiveRecord::Base.subclasses
       respond_with(@m_window.to_json(:include =>
                                          {:m_tabs => {:include =>
-                                                          {:m_fields => {:include =>
-                                                                             {:m_property => {:include => [:refable]}}
-                                                          },
-                                                           :m_columns => {:include =>
-                                                                              {:m_property => {:include => [:refable]}
-                                                                              }
-                                                           },
+                                                          {:m_fields => {:include => {:m_property => {:include => {:m_datatype =>{:methods => [:class_name],:include => {:m_entity => {}}} }}}},
+                                                           :m_columns => {:include => {:m_property => {:include => {}}}},
                                                            :m_entity => {:include => [:m_properties]}
                                                           }
                                          }
@@ -31,7 +26,7 @@ module Fastui
 
     def edit
       @m_window = MWindow.find(params[:id])
-      respond_with(@m_window.to_json(:include => [:org,:createdby,:updatedby]))
+      respond_with(@m_window.to_json(:include => [:org, :createdby, :updatedby]))
     end
 
     def new

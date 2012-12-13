@@ -9,8 +9,8 @@ Fastui::Engine.routes.draw do
     resources :m_fields
   end
 
-  resources :m_glossaries do
-    resources :m_glossary_items
+  resources :m_lists do
+    resources :m_list_items
   end
 
 
@@ -18,8 +18,8 @@ Fastui::Engine.routes.draw do
   resources :m_fields
   resources :m_properties
   resources :m_entities
-  resources :m_glossaries
-  resources :m_glossary_items
+  resources :m_lists
+  resources :m_list_items
   resources :m_orgs
   resources :m_people
   resources :m_menus
