@@ -9,7 +9,7 @@ module Fastui
     end
 
     def get(key)
-      @data[key]
+      @data[key.to_s]
     end
   end
 end
