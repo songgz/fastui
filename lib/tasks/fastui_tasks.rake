@@ -450,7 +450,7 @@ namespace :fastui do
                                                       :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_external_key = m_property.m_properties.create({:name => 'external_key', :title => '外键', :m_datatype => v_text,
                                                               :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_property_m_datatype = m_property.m_properties.create({:name => 'm_datatype_id', :title => '引用', :m_datatype => m_relation_datatype,
+    m_property_m_datatype = m_property.m_properties.create({:name => 'm_datatype_id', :title => '数据类型', :m_datatype => m_relation_datatype,
                                                             :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_property_entity_kind = m_property.m_properties.create({:name => 'entity_kind', :title => '实体种类', :m_datatype => entity_kind,
                                                              :entity_kind => 'sys', :seq => 4, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -555,7 +555,7 @@ namespace :fastui do
                                                                     :entity_kind => 'sys', :seq => 11, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
 
     # 枚举
-    m_list = Fastui::MEntity.create({:name => 'Fastui::MList', :title => '词汇', :access_level => 'system', :entity_kind => 'sys',
+    m_list = Fastui::MEntity.create({:name => 'Fastui::MList', :title => '枚举', :access_level => 'system', :entity_kind => 'sys',
                                      :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_list_id = m_list.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
                                             :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -583,7 +583,7 @@ namespace :fastui do
                                                       :entity_kind => 'sys', :seq => 11, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
 
     # 枚举项
-    m_list_item = Fastui::MEntity.create({:name => 'Fastui::MListItem', :title => '词汇项', :access_level => 'system', :entity_kind => 'sys',
+    m_list_item = Fastui::MEntity.create({:name => 'Fastui::MListItem', :title => '枚举项', :access_level => 'system', :entity_kind => 'sys',
                                           :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_list_item_id = m_list_item.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
                                                       :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
@@ -812,7 +812,7 @@ namespace :fastui do
                                              {:title => '标识', :m_property => m_property_name, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '外键', :m_property => m_property_external_key, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '备注', :m_property => m_property_note, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                             {:title => '引用类型', :m_property => m_property_m_datatype, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
+                                             {:title => '数据类型', :m_property => m_property_m_datatype, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '实体种类', :m_property => m_property_entity_kind, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '所属实体', :m_property => m_property_entity_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
                                              {:title => '排序', :m_property => m_property_seq, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
@@ -835,7 +835,7 @@ namespace :fastui do
                                              :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
                                             {:title => '备注', :m_property => m_property_note, :displayed => true, :ro => false,
                                              :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                            {:title => '引用类型', :m_property => m_property_m_datatype, :displayed => true, :ro => false,
+                                            {:title => '数据类型', :m_property => m_property_m_datatype, :displayed => true, :ro => false,
                                              :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
                                             {:title => '实体种类', :m_property => m_property_entity_kind, :displayed => true, :ro => false,
                                              :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
