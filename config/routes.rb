@@ -19,6 +19,7 @@ Fastui::Engine.routes.draw do
   resources :m_properties
   resources :m_entities
   resources :m_datatypes
+  resources :m_relations
   resources :m_lists
   resources :m_list_items
   resources :m_orgs
