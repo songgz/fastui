@@ -9,7 +9,7 @@ module Fastui
     belongs_to :included_tab, :class_name => 'Fastui::MTab'
     has_many :m_fields, :dependent => :destroy
     has_many :m_columns, :dependent => :destroy
-    has_many :m_actions, :dependent => :destroy
+
 
   end
 end
