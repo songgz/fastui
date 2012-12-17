@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.integer  "width",                       :default => 35
     t.string   "entity_kind",                 :default => ""
     t.integer  "seq",                         :default => 0
-    t.boolean  "actived",                     :default => true
+    t.boolean  "is_active",                   :default => true
     t.integer  "org_id",                      :default => 0
     t.integer  "createdby_id",                :default => 0
     t.integer  "updatedby_id",                :default => 0
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "access_level",               :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => true
+    t.boolean  "is_active",                  :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "access_level",               :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => true
+    t.boolean  "is_active",                  :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
@@ -86,11 +86,11 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "print_text",    :limit => 60, :default => ""
     t.string   "note",                        :default => ""
     t.string   "name",          :limit => 60, :default => ""
-    t.boolean  "displayed",                   :default => true
-    t.boolean  "ro",                          :default => false
+    t.boolean  "is_display",                  :default => true
+    t.boolean  "is_readonly",                 :default => false
     t.string   "entity_kind",                 :default => ""
     t.integer  "seq",                         :default => 0
-    t.boolean  "actived",                     :default => true
+    t.boolean  "is_active",                   :default => true
     t.integer  "org_id",                      :default => 0
     t.integer  "createdby_id",                :default => 0
     t.integer  "updatedby_id",                :default => 0
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "name",         :limit => 60, :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => true
+    t.boolean  "is_active",                  :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.integer  "depth"
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => true
+    t.boolean  "is_active",                  :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "name",         :limit => 60, :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => true
+    t.boolean  "is_active",                  :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "name",         :limit => 60, :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => true
+    t.boolean  "is_active",                  :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "title",        :limit => 60,                   :null => false
     t.string   "print_text",   :limit => 60, :default => ""
     t.string   "name",         :limit => 60, :default => ""
-    t.boolean  "actived",                    :default => true
+    t.boolean  "is_active",                  :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "external_key",                :default => ""
     t.string   "entity_kind",                 :default => ""
     t.integer  "seq",                         :default => 0
-    t.boolean  "actived",                     :default => true
+    t.boolean  "is_active",                   :default => true
     t.integer  "org_id",                      :default => 0
     t.integer  "createdby_id",                :default => 0
     t.integer  "updatedby_id",                :default => 0
@@ -204,9 +204,9 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.integer  "m_person_id"
     t.integer  "m_org_id"
     t.integer  "m_role_id"
-    t.boolean  "actived",      :default => true
     t.string   "entity_kind",  :default => ""
     t.integer  "seq",          :default => 0
+    t.boolean  "is_active",    :default => true
     t.integer  "org_id",       :default => 0
     t.integer  "createdby_id", :default => 0
     t.integer  "updatedby_id", :default => 0
@@ -221,7 +221,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "note",                       :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => true
+    t.boolean  "is_active",                  :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
@@ -237,11 +237,11 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "name",            :limit => 60, :default => ""
     t.string   "print_text",      :limit => 60, :default => ""
     t.string   "note",                          :default => ""
-    t.boolean  "ro",                            :default => false
+    t.boolean  "is_readonly",                   :default => false
     t.integer  "included_tab_id",               :default => 0
     t.string   "entity_kind",                   :default => ""
     t.integer  "seq",                           :default => 0
-    t.boolean  "actived",                       :default => true
+    t.boolean  "is_active",                     :default => true
     t.integer  "org_id",                        :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -258,7 +258,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "window_kind",                :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
-    t.boolean  "actived",                    :default => true
+    t.boolean  "is_active",                  :default => true
     t.integer  "org_id",                     :default => 0
     t.integer  "createdby_id",               :default => 0
     t.integer  "updatedby_id",               :default => 0
