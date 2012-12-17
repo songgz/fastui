@@ -1,12 +1,8 @@
 module Fastui
   class MDatatype < MObject
-    attr_accessible :id, :title, :print_text, :note, :name
-    attr_accessible  :m_entity,:m_entity_id,:access_level,:entity_kind,:seq, :actived, :org_id,:org, :createdby, :createdby_id, :updatedby, :updatedby_id, :help
+    attr_accessible  :m_entity,:m_entity_id,:access_level
 
     belongs_to :m_entity,:class_name => 'Fastui::MEntity'
-    belongs_to :org, :class_name => 'Fastui::MOrg'
-    belongs_to :createdby, :class_name => 'Fastui::MPerson'
-    belongs_to :updatedby, :class_name => 'Fastui::MPerson'
 
     def class_name
       self.class.to_s
