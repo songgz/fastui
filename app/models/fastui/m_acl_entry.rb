@@ -1,5 +1,5 @@
 module Fastui
-  class MAclEntry < ActiveRecord::Base
+  class MAclEntry < MObject
     # attr_accessible :title, :body
   end
 end
