@@ -13,7 +13,7 @@ class CreateFastuiMDatatypes < ActiveRecord::Migration
       t.string :access_level , :default => ''        #:system,:org,:dept
       t.string :entity_kind, :default => ''                  #:sys,:app
       t.integer :seq, :default => 0
-      t.boolean :actived, :default => true
+      t.boolean :is_active, :default => true
       t.integer :org_id, :default => 0
       t.integer :createdby_id, :default => 0
       t.integer :updatedby_id, :default => 0
