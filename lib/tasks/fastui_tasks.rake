@@ -34,14 +34,12 @@ namespace :fastui do
                                        :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     mentity = Fastui::MEntity.create({:name => 'Fastui::MEntity', :title => '实体', :access_level => 'system'}.merge(attr))
     mproperty = Fastui::MEntity.create({:name => 'Fastui::MProperty', :title => '属性', :access_level => 'system'}.merge(attr))
-    #m_entity = Fastui::MEntity.create({:name => 'Fastui::MEntity', :title => '实体', :access_level => 'system', :entity_kind => 'sys',
-    #                                   :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property = Fastui::MEntity.create({:name => 'Fastui::MProperty', :title => '属性', :access_level => 'system', :entity_kind => 'sys',
-    #                                     :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_org = Fastui::MEntity.create({:name => 'Fastui::MOrg', :title => '组织', :access_level => 'system', :entity_kind => 'sys',
                                     :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu = Fastui::MEntity.create({:name => 'Fastui::MMenu', :title => '菜单', :access_level => 'system', :entity_kind => 'sys',
-                                     :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    mmenu = Fastui::MEntity.create({:name => 'Fastui::MMenu', :title => '菜单', :access_level => 'system'}.merge(attr))
+
+    #m_menu = Fastui::MEntity.create({:name => 'Fastui::MMenu', :title => '菜单', :access_level => 'system', :entity_kind => 'sys',
+    #                                 :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_datatype = Fastui::MEntity.create({:name => 'Fastui::MDatatype', :title => '数据类型', :access_level => 'system', :entity_kind => 'sys',
                                          :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
 
@@ -52,12 +50,7 @@ namespace :fastui do
                                                   :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_relation_entity = Fastui::MRelation.create({:m_entity => mentity, :name => 'Fastui::MEntity', :title => '实体', :access_level => 'system'}.merge(attr))
     m_relation_property = Fastui::MRelation.create({:m_entity => mproperty, :name => 'Fastui::MProperty', :title => '属性', :access_level => 'system'}.merge(attr))
-    #m_relation_entity = Fastui::MRelation.create({:m_entity => m_entity, :name => 'Fastui::MEntity', :title => '实体', :access_level => 'system', :entity_kind => 'sys',
-    #                                              :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_relation_property = Fastui::MRelation.create({:m_entity => m_property, :name => 'Fastui::MProperty', :title => '属性', :access_level => 'system', :entity_kind => 'sys',
-    #                                                :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_relation_menu = Fastui::MRelation.create({:m_entity => m_menu, :name => 'Fastui::MMenu', :title => '菜单', :access_level => 'system', :entity_kind => 'sys',
-                                                :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    m_relation_menu = Fastui::MRelation.create({:m_entity => mmenu, :name => 'Fastui::MMenu', :title => '菜单', :access_level => 'system'}.merge(attr))
     m_relation_datatype = Fastui::MRelation.create({:m_entity => m_datatype, :name => 'Fastui::MDatatype', :title => '数据类型', :access_level => 'system', :entity_kind => 'sys',
                                                     :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
 
@@ -307,32 +300,32 @@ namespace :fastui do
 
     win_entity = Fastui::MWindow.create({:title => '实体', :window_kind => 'maintain', :entity_kind => 'sys'}.merge(attr)) do |w_entity|
       tab_ent = w_entity.m_tabs.build({:title => '实体', :m_entity => mentity, :ro => true, :entity_kind => 'sys'}.merge(attr))
-        tab_ent.m_fields.build([{:title => 'ID', :m_property => mentity.prop_by('id'), :displayed => true, :ro => true},
-                                {:title => '标题', :m_property => mentity.prop_by('title'), :displayed => true, :ro => false},
-                                {:title => '打印文本', :m_property => mentity.prop_by('print_text'), :displayed => true, :ro => false},
-                                {:title => '标识', :m_property => mentity.prop_by('name'), :displayed => true, :ro => false},
-                                {:title => '备注', :m_property => mentity.prop_by('note'), :displayed => true, :ro => false},
-                                {:title => '访问级别', :m_property => mentity.prop_by('access_level'), :displayed => true, :ro => false},
-                                {:title => '实体种类', :m_property => mentity.prop_by('entity_kind'), :displayed => true, :ro => false},
-                                {:title => '排序', :m_property => mentity.prop_by('seq'), :displayed => true, :ro => false},
-                                {:title => '是否激活', :m_property => mentity.prop_by('actived'), :displayed => true, :ro => false},
-                                {:title => '所属组织', :m_property => mentity.prop_by('org_id'), :displayed => true, :ro => false},
-                                {:title => '创建人', :m_property => mentity.prop_by('createdby_id'), :displayed => true, :ro => false},
-                                {:title => '更新人', :m_property => mentity.prop_by('updatedby_id'), :displayed => true, :ro => false},
-                                {:title => '帮助', :m_property => mentity.prop_by('help'), :displayed => true, :ro => false}].map { |a| a.merge(attr) })
-        tab_ent.m_columns.build([{:title => 'ID', :m_property => mentity.prop_by('id'), :width => 35},
-                                 {:title => '标题', :m_property => mentity.prop_by('title'), :width => 75},
-                                 {:title => '打印文本', :m_property => mentity.prop_by('print_text'), :width => 75},
-                                 {:title => '标识', :m_property => mentity.prop_by('name'), :width => 75},
-                                 {:title => '备注', :m_property => mentity.prop_by('note'), :width => 75},
-                                 {:title => '访问级别', :m_property => mentity.prop_by('access_level'), :width => 75},
-                                 {:title => '实体种类', :m_property => mentity.prop_by('entity_kind'), :width => 75},
-                                 {:title => '排序', :m_property => mentity.prop_by('seq'), :width => 75},
-                                 {:title => '是否激活', :m_property => mentity.prop_by('actived'), :width => 75},
-                                 {:title => '所属组织', :m_property => mentity.prop_by('org_id'), :width => 75},
-                                 {:title => '创建人', :m_property => mentity.prop_by('createdby_id'), :width => 75},
-                                 {:title => '更新人', :m_property => mentity.prop_by('updatedby_id'), :width => 75},
-                                 {:title => '帮助', :m_property => mentity.prop_by('help'), :width => 75}].map { |a| a.merge(attr) })
+      tab_ent.m_fields.build([{:title => 'ID', :m_property => mentity.prop_by('id'), :displayed => true, :ro => true},
+                              {:title => '标题', :m_property => mentity.prop_by('title'), :displayed => true, :ro => false},
+                              {:title => '打印文本', :m_property => mentity.prop_by('print_text'), :displayed => true, :ro => false},
+                              {:title => '标识', :m_property => mentity.prop_by('name'), :displayed => true, :ro => false},
+                              {:title => '备注', :m_property => mentity.prop_by('note'), :displayed => true, :ro => false},
+                              {:title => '访问级别', :m_property => mentity.prop_by('access_level'), :displayed => true, :ro => false},
+                              {:title => '实体种类', :m_property => mentity.prop_by('entity_kind'), :displayed => true, :ro => false},
+                              {:title => '排序', :m_property => mentity.prop_by('seq'), :displayed => true, :ro => false},
+                              {:title => '是否激活', :m_property => mentity.prop_by('actived'), :displayed => true, :ro => false},
+                              {:title => '所属组织', :m_property => mentity.prop_by('org_id'), :displayed => true, :ro => false},
+                              {:title => '创建人', :m_property => mentity.prop_by('createdby_id'), :displayed => true, :ro => false},
+                              {:title => '更新人', :m_property => mentity.prop_by('updatedby_id'), :displayed => true, :ro => false},
+                              {:title => '帮助', :m_property => mentity.prop_by('help'), :displayed => true, :ro => false}].map { |a| a.merge(attr) })
+      tab_ent.m_columns.build([{:title => 'ID', :m_property => mentity.prop_by('id'), :width => 35},
+                               {:title => '标题', :m_property => mentity.prop_by('title'), :width => 75},
+                               {:title => '打印文本', :m_property => mentity.prop_by('print_text'), :width => 75},
+                               {:title => '标识', :m_property => mentity.prop_by('name'), :width => 75},
+                               {:title => '备注', :m_property => mentity.prop_by('note'), :width => 75},
+                               {:title => '访问级别', :m_property => mentity.prop_by('access_level'), :width => 75},
+                               {:title => '实体种类', :m_property => mentity.prop_by('entity_kind'), :width => 75},
+                               {:title => '排序', :m_property => mentity.prop_by('seq'), :width => 75},
+                               {:title => '是否激活', :m_property => mentity.prop_by('actived'), :width => 75},
+                               {:title => '所属组织', :m_property => mentity.prop_by('org_id'), :width => 75},
+                               {:title => '创建人', :m_property => mentity.prop_by('createdby_id'), :width => 75},
+                               {:title => '更新人', :m_property => mentity.prop_by('updatedby_id'), :width => 75},
+                               {:title => '帮助', :m_property => mentity.prop_by('help'), :width => 75}].map { |a| a.merge(attr) })
 
 
       w_entity.m_tabs.build({:title => '属性', :m_entity => mproperty, :ro => true, :included_tab => tab_ent}.merge(attr)) do |tab_prop|
@@ -369,120 +362,88 @@ namespace :fastui do
       end
     end
 
-    ## 实体
-    #m_entity_id = m_entity.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
-    #                                            :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_title = m_entity.m_properties.create({:name => 'title', :title => '标题', :m_datatype => v_text,
-    #                                               :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_print_text = m_entity.m_properties.create({:name => 'print_text', :title => '打印文本', :m_datatype => v_text,
-    #                                                    :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_name = m_entity.m_properties.create({:name => 'name', :title => '标识', :m_datatype => v_text,
-    #                                              :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_note = m_entity.m_properties.create({:name => 'note', :title => '备注', :m_datatype => v_textarea,
-    #                                              :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_access_level = m_entity.m_properties.create({:name => 'access_level', :title => '访问级别', :m_datatype => access_level,
-    #                                                      :entity_kind => 'sys', :seq => 4, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_entity_kind = m_entity.m_properties.create({:name => 'entity_kind', :title => '实体种类', :m_datatype => entity_kind,
-    #                                                     :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_seq = m_entity.m_properties.create({:name => 'seq', :title => '排序', :m_datatype => v_number,
-    #                                             :entity_kind => 'sys', :seq => 6, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_actived_id = m_entity.m_properties.create({:name => 'actived', :title => '是否激活', :m_datatype => v_yesorno,
-    #                                                    :entity_kind => 'sys', :seq => 7, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_help = m_entity.m_properties.create({:name => 'help', :title => '帮助', :m_datatype => v_textarea,
-    #                                              :entity_kind => 'sys', :seq => 8, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_org_id = m_entity.m_properties.create({:name => 'org_id', :title => '所属组织', :m_datatype => m_relation_org,
-    #                                                :entity_kind => 'sys', :seq => 9, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_createdby_id = m_entity.m_properties.create({:name => 'createdby_id', :title => '创建人', :m_datatype => m_relation_person,
-    #                                                      :entity_kind => 'sys', :seq => 10, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_entity_updatedby_id = m_entity.m_properties.create({:name => 'updatedby_id', :title => '更新人', :m_datatype => m_relation_person,
-    #                                                      :entity_kind => 'sys', :seq => 11, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #
-    ## 属性
-    #m_property_id = m_property.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
-    #                                                :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_title = m_property.m_properties.create({:name => 'title', :title => '标题', :m_datatype => v_text,
-    #                                                   :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_print_text = m_property.m_properties.create({:name => 'print_text', :title => '打印文本', :m_datatype => v_text,
-    #                                                        :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_name = m_property.m_properties.create({:name => 'name', :title => '标识', :m_datatype => v_text,
-    #                                                  :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_note = m_property.m_properties.create({:name => 'note', :title => '备注', :m_datatype => v_textarea,
-    #                                                  :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_external_key = m_property.m_properties.create({:name => 'external_key', :title => '外键', :m_datatype => v_text,
-    #                                                          :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_m_datatype = m_property.m_properties.create({:name => 'm_datatype_id', :title => '数据类型', :m_datatype => m_relation_datatype,
-    #                                                        :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_entity_kind = m_property.m_properties.create({:name => 'entity_kind', :title => '实体种类', :m_datatype => entity_kind,
-    #                                                         :entity_kind => 'sys', :seq => 4, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_entity_id = m_property.m_properties.create({:name => 'm_entity_id', :title => '所属实体', :m_datatype => m_relation_entity,
-    #                                                       :entity_kind => 'sys', :seq => 4, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_seq = m_property.m_properties.create({:name => 'seq', :title => '排序', :m_datatype => v_number,
-    #                                                 :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_actived_id = m_property.m_properties.create({:name => 'actived', :title => '是否激活', :m_datatype => v_yesorno,
-    #                                                        :entity_kind => 'sys', :seq => 6, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_help = m_property.m_properties.create({:name => 'help', :title => '帮助', :m_datatype => v_textarea,
-    #                                                  :entity_kind => 'sys', :seq => 7, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_org_id = m_property.m_properties.create({:name => 'org_id', :title => '所属组织', :m_datatype => m_relation_org,
-    #                                                    :entity_kind => 'sys', :seq => 8, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_createdby_id = m_property.m_properties.create({:name => 'createdby_id', :title => '创建人', :m_datatype => m_relation_person,
-    #                                                          :entity_kind => 'sys', :seq => 9, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    #m_property_updatedby_id = m_property.m_properties.create({:name => 'updatedby_id', :title => '更新人', :m_datatype => m_relation_person,
-    #                                                          :entity_kind => 'sys', :seq => 10, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    # 菜单 菜单项
+    m_menu_item = Fastui::MEntity.create({:name => 'Fastui::MMenuItem', :title => '菜单项', :access_level => 'system'}.merge(attr))
+    mmenu.m_properties.create([{:name => 'id', :title => 'ID', :m_datatype => v_number},
+                               {:name => 'title', :title => '标题', :m_datatype => v_text},
+                               {:name => 'print_text', :title => '打印文本', :m_datatype => v_text},
+                               {:name => 'name', :title => '标识', :m_datatype => v_text},
+                               {:name => 'entity_kind', :title => '实体种类', :m_datatype => entity_kind},
+                               {:name => 'seq', :title => '排序', :m_datatype => v_number},
+                               {:name => 'actived', :title => '是否激活', :m_datatype => v_yesorno},
+                               {:name => 'help', :title => '帮助', :m_datatype => v_textarea},
+                               {:name => 'org_id', :title => '所属组织', :m_datatype => m_relation_org},
+                               {:name => 'createdby_id', :title => '创建人', :m_datatype => m_relation_person},
+                               {:name => 'updatedby_id', :title => '更新人', :m_datatype => m_relation_person}].map { |a| a.merge(attr) })
+    m_menu_item.m_properties.create([{:name => 'id', :title => 'ID', :m_datatype => v_number},
+                                     {:name => 'title', :title => '标题', :m_datatype => v_text},
+                                     {:name => 'print_text', :title => '打印文本', :m_datatype => v_text},
+                                     {:name => 'name', :title => '标识', :m_datatype => v_text},
+                                     {:name => 'entity_kind', :title => '实体种类', :m_datatype => entity_kind},
+                                     {:name => 'm_menu_id', :title => '对应菜单', :m_datatype => m_relation_menu},
+                                     {:name => 'm_window_id', :title => '对应窗口', :m_datatype => m_relation_window},
+                                     {:name => 'seq', :title => '排序', :m_datatype => v_number},
+                                     {:name => 'actived', :title => '是否激活', :m_datatype => v_yesorno},
+                                     {:name => 'help', :title => '帮助', :m_datatype => v_textarea},
+                                     {:name => 'org_id', :title => '所属组织', :m_datatype => m_relation_org},
+                                     {:name => 'createdby_id', :title => '创建人', :m_datatype => m_relation_person},
+                                     {:name => 'updatedby_id', :title => '更新人', :m_datatype => m_relation_person}].map { |a| a.merge(attr) })
 
-    # 菜单
-    m_menu_id = m_menu.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
-                                            :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_title = m_menu.m_properties.create({:name => 'title', :title => '标题', :m_datatype => v_text,
-                                               :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_print_text = m_menu.m_properties.create({:name => 'print_text', :title => '打印文本', :m_datatype => v_text,
-                                                    :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_name = m_menu.m_properties.create({:name => 'name', :title => '标识', :m_datatype => v_text,
-                                              :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_entity_kind = m_menu.m_properties.create({:name => 'entity_kind', :title => '实体种类', :m_datatype => entity_kind,
-                                                     :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_seq = m_menu.m_properties.create({:name => 'seq', :title => '排序', :m_datatype => v_number,
-                                             :entity_kind => 'sys', :seq => 4, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_actived_id = m_menu.m_properties.create({:name => 'actived', :title => '是否激活', :m_datatype => v_yesorno,
-                                                    :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_help = m_menu.m_properties.create({:name => 'help', :title => '帮助', :m_datatype => v_textarea,
-                                              :entity_kind => 'sys', :seq => 6, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_org_id = m_menu.m_properties.create({:name => 'org_id', :title => '所属组织', :m_datatype => m_relation_org,
-                                                :entity_kind => 'sys', :seq => 7, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_createdby_id = m_menu.m_properties.create({:name => 'createdby_id', :title => '创建人', :m_datatype => m_relation_person,
-                                                      :entity_kind => 'sys', :seq => 8, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_updatedby_id = m_menu.m_properties.create({:name => 'updatedby_id', :title => '更新人', :m_datatype => m_relation_person,
-                                                      :entity_kind => 'sys', :seq => 9, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    sys_win_menu = Fastui::MWindow.create({:title => '菜单', :window_kind => 'maintain'}.merge(attr)) do |w_menu|
+      win_menu = w_menu.m_tabs.build({:title => '菜单', :m_entity => mmenu, :ro => true}.merge(attr))
+      win_menu.m_fields.build([{:title => 'ID', :m_property => mmenu.prop_by('id'), :displayed => true, :ro => true},
+                             {:title => '标题', :m_property => mmenu.prop_by('title'), :displayed => true, :ro => false},
+                             {:title => '打印文本', :m_property => mmenu.prop_by('print_text'), :displayed => true, :ro => false},
+                             {:title => '标识', :m_property => mmenu.prop_by('name'), :displayed => true, :ro => false},
+                             {:title => '实体种类', :m_property => mmenu.prop_by('entity_kind'), :displayed => true, :ro => false},
+                             {:title => '排序', :m_property => mmenu.prop_by('seq'), :displayed => true, :ro => false},
+                             {:title => '是否激活', :m_property => mmenu.prop_by('actived'), :displayed => true, :ro => false},
+                             {:title => '所属组织', :m_property => mmenu.prop_by('org_id'), :displayed => true, :ro => false},
+                             {:title => '创建人', :m_property => mmenu.prop_by('createdby_id'), :displayed => true, :ro => false},
+                             {:title => '更新人', :m_property => mmenu.prop_by('updatedby_id'), :displayed => true, :ro => false},
+                             {:title => '帮助', :m_property => mmenu.prop_by('help'), :displayed => true, :ro => false}].map { |a| a.merge(attr) })
+      win_menu.m_columns.build([{:title => 'ID', :m_property => mmenu.prop_by('id'), :width => 35},
+                              {:title => '标题', :m_property => mmenu.prop_by('title'), :width => 75},
+                              {:title => '打印文本', :m_property => mmenu.prop_by('print_text'), :width => 75},
+                              {:title => '标识', :m_property => mmenu.prop_by('name'), :width => 75},
+                              {:title => '实体种类', :m_property => mmenu.prop_by('entity_kind'), :width => 75},
+                              {:title => '排序', :m_property => mmenu.prop_by('seq'), :width => 75},
+                              {:title => '是否激活', :m_property => mmenu.prop_by('actived'), :width => 75},
+                              {:title => '所属组织', :m_property => mmenu.prop_by('org_id'), :width => 75},
+                              {:title => '创建人', :m_property => mmenu.prop_by('createdby_id'), :width => 75},
+                              {:title => '更新人', :m_property => mmenu.prop_by('updatedby_id'), :width => 75},
+                              {:title => '帮助', :m_property => mmenu.prop_by('help'), :width => 75}].map { |a| a.merge(attr) })
 
-    # 菜单项
-    m_menu_item = Fastui::MEntity.create({:name => 'Fastui::MMenuItem', :title => '菜单项', :access_level => 'system', :entity_kind => 'sys',
-                                          :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_id = m_menu_item.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
-                                                      :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_title = m_menu_item.m_properties.create({:name => 'title', :title => '标题', :m_datatype => v_text,
-                                                         :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_print_text = m_menu_item.m_properties.create({:name => 'print_text', :title => '打印文本', :m_datatype => v_text,
-                                                              :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_name = m_menu_item.m_properties.create({:name => 'name', :title => '标识', :m_datatype => v_text,
-                                                        :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_entity_kind = m_menu_item.m_properties.create({:name => 'entity_kind', :title => '实体种类', :m_datatype => entity_kind,
-                                                               :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_m_menu = m_menu_item.m_properties.create({:name => 'm_menu_id', :title => '对应菜单', :m_datatype => m_relation_menu,
-                                                          :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_m_window = m_menu_item.m_properties.create({:name => 'm_window_id', :title => '对应窗口', :m_datatype => m_relation_window,
-                                                            :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_seq = m_menu_item.m_properties.create({:name => 'seq', :title => '排序', :m_datatype => v_number,
-                                                       :entity_kind => 'sys', :seq => 4, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_actived_id = m_menu_item.m_properties.create({:name => 'actived', :title => '是否激活', :m_datatype => v_yesorno,
-                                                              :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_help = m_menu_item.m_properties.create({:name => 'help', :title => '帮助', :m_datatype => v_textarea,
-                                                        :entity_kind => 'sys', :seq => 6, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_relation_org_id = m_menu_item.m_properties.create({:name => 'org_id', :title => '所属组织', :m_datatype => m_relation_org,
-                                                                   :entity_kind => 'sys', :seq => 7, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_createdby_id = m_menu_item.m_properties.create({:name => 'createdby_id', :title => '创建人', :m_datatype => m_relation_person,
-                                                                :entity_kind => 'sys', :seq => 8, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    m_menu_item_updatedby_id = m_menu_item.m_properties.create({:name => 'updatedby_id', :title => '更新人', :m_datatype => m_relation_person,
-                                                                :entity_kind => 'sys', :seq => 9, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    # 关联
+      w_menu.m_tabs.build({:title => '菜单项', :m_entity => m_menu_item, :ro => true, :included_tab => win_menu}.merge(attr)) do |menu_item|
+        menu_item.m_fields.build([{:title => 'ID', :m_property => m_menu_item.prop_by('id'), :displayed => true, :ro => true},
+                                  {:title => '标题', :m_property => m_menu_item.prop_by('title'), :displayed => true, :ro => false},
+                                  {:title => '打印文本', :m_property => m_menu_item.prop_by('print_text'), :displayed => true, :ro => false},
+                                  {:title => '标识', :m_property => m_menu_item.prop_by('name'), :displayed => true, :ro => false},
+                                  {:title => '实体种类', :m_property => m_menu_item.prop_by('entity_kind'), :displayed => true, :ro => false},
+                                  {:title => '对应菜单', :m_property => m_menu_item.prop_by('m_menu_id'), :displayed => true, :ro => false},
+                                  {:title => '对应窗口', :m_property => m_menu_item.prop_by('m_window_id'), :displayed => true, :ro => false},
+                                  {:title => '排序', :m_property => m_menu_item.prop_by('seq'), :displayed => true, :ro => false},
+                                  {:title => '是否激活', :m_property => m_menu_item.prop_by('actived'), :displayed => true, :ro => false},
+                                  {:title => '所属组织', :m_property => m_menu_item.prop_by('org_id'), :displayed => true, :ro => false},
+                                  {:title => '创建人', :m_property => m_menu_item.prop_by('createdby_id'), :displayed => true, :ro => false},
+                                  {:title => '更新人', :m_property => m_menu_item.prop_by('updatedby_id'), :displayed => true, :ro => false},
+                                  {:title => '帮助', :m_property => m_menu_item.prop_by('help'), :displayed => true, :ro => false}].map { |a| a.merge(attr) })
+        menu_item.m_columns.build([{:title => 'ID', :m_property => m_menu_item.prop_by('id'), :width => 35},
+                                   {:title => '标题', :m_property => m_menu_item.prop_by('title'), :width => 75},
+                                   {:title => '打印文本', :m_property => m_menu_item.prop_by('print_text'), :width => 75},
+                                   {:title => '标识', :m_property => m_menu_item.prop_by('name'), :width => 75},
+                                   {:title => '实体种类', :m_property => m_menu_item.prop_by('entity_kind'), :width => 75},
+                                   {:title => '对应菜单', :m_property => m_menu_item.prop_by('m_menu_id'), :width => 75},
+                                   {:title => '对应窗口', :m_property => m_menu_item.prop_by('m_window_id'), :width => 75},
+                                   {:title => '排序', :m_property => m_menu_item.prop_by('seq'), :width => 75},
+                                   {:title => '是否激活', :m_property => m_menu_item.prop_by('actived'), :width => 75},
+                                   {:title => '所属组织', :m_property => m_menu_item.prop_by('org_id'), :width => 75},
+                                   {:title => '创建人', :m_property => m_menu_item.prop_by('createdby_id'), :width => 75},
+                                   {:title => '更新人', :m_property => m_menu_item.prop_by('updatedby_id'), :width => 75},
+                                   {:title => '帮助', :m_property => m_menu_item.prop_by('help'), :width => 75}].map { |a| a.merge(attr) })
+      end
+    end
+
     m_dt_relation = Fastui::MEntity.create({:name => 'Fastui::MRelation', :title => '关联', :access_level => 'system', :entity_kind => 'sys',
                                             :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
     m_dt_relation_id = m_dt_relation.m_properties.create({:name => 'id', :title => 'ID', :m_datatype => v_number,
@@ -710,200 +671,6 @@ namespace :fastui do
                                       {:title => '更新人', :m_property => m_list_item_updatedby_id, :displayed => true, :ro => false,
                                        :entity_kind => 'sys', :seq => 10, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
                                       {:title => '帮助', :m_property => m_list_item_help, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 11, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1}
-                                  ])
-
-
-    #win_entity = Fastui::MWindow.create(:title => '实体', :window_kind => 'maintain', :entity_kind => 'sys',
-    #                                    :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1)
-    #win_entity_model = win_entity.m_tabs.create(:title => '实体', :m_entity => m_entity, :ro => true, :entity_kind => 'sys',
-    #                                            :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1)
-    #win_entity_model.m_columns.create([
-    #                                      {:title => 'ID', :m_property => m_entity_id, :width => 35, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '标题', :m_property => m_entity_title, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '打印文本', :m_property => m_entity_print_text, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '标识', :m_property => m_entity_name, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '备注', :m_property => m_entity_note, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '访问级别', :m_property => m_entity_access_level, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '实体种类', :m_property => m_entity_entity_kind, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '排序', :m_property => m_entity_seq, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '是否激活', :m_property => m_entity_actived_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '所属组织', :m_property => m_entity_org_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '创建人', :m_property => m_entity_createdby_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '更新人', :m_property => m_entity_updatedby_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                      {:title => '帮助', :m_property => m_entity_help, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1}
-    #                                  ])
-    #win_entity_model.m_fields.create([
-    #                                     {:title => 'ID', :m_property => m_entity_id, :displayed => true, :ro => true,
-    #                                      :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '标题', :m_property => m_entity_title, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '打印文本', :m_property => m_entity_print_text, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '标识', :m_property => m_entity_name, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '备注', :m_property => m_entity_note, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '访问级别', :m_property => m_entity_access_level, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 4, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '实体种类', :m_property => m_entity_entity_kind, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '排序', :m_property => m_entity_seq, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 6, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '是否激活', :m_property => m_entity_actived_id, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 7, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '所属组织', :m_property => m_entity_org_id, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 8, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '创建人', :m_property => m_entity_createdby_id, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 9, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '更新人', :m_property => m_entity_updatedby_id, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 10, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                     {:title => '帮助', :m_property => m_entity_help, :displayed => true, :ro => false,
-    #                                      :entity_kind => 'sys', :seq => 11, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1}
-    #                                 ])
-    #
-    #
-    #win_entity_property = win_entity.m_tabs.create(:title => '属性', :m_entity => m_property, :ro => true, :entity_kind => 'sys', :included_tab => win_entity_model,
-    #                                               :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1)
-    #win_entity_property.m_columns.create([
-    #                                         {:title => 'ID', :m_property => m_property_id, :width => 35, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '标题', :m_property => m_property_title, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '打印文本', :m_property => m_property_print_text, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '标识', :m_property => m_property_name, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '外键', :m_property => m_property_external_key, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '备注', :m_property => m_property_note, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '数据类型', :m_property => m_property_m_datatype, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '实体种类', :m_property => m_property_entity_kind, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '所属实体', :m_property => m_property_entity_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '排序', :m_property => m_property_seq, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '是否激活', :m_property => m_property_actived_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '所属组织', :m_property => m_property_org_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '创建人', :m_property => m_property_createdby_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '更新人', :m_property => m_property_updatedby_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                         {:title => '帮助', :m_property => m_property_help, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1}
-    #                                     ])
-    #win_entity_property.m_fields.create([
-    #                                        {:title => 'ID', :m_property => m_property_id, :displayed => true, :ro => true,
-    #                                         :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '标题', :m_property => m_property_title, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '打印文本', :m_property => m_property_print_text, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '标识', :m_property => m_property_name, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '外键', :m_property => m_property_external_key, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '备注', :m_property => m_property_note, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '数据类型', :m_property => m_property_m_datatype, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '实体种类', :m_property => m_property_entity_kind, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '所属实体', :m_property => m_property_entity_id, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 9, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '排序', :m_property => m_property_seq, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 6, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '是否激活', :m_property => m_property_actived_id, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 7, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '所属组织', :m_property => m_property_org_id, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 8, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '创建人', :m_property => m_property_createdby_id, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 9, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '更新人', :m_property => m_property_updatedby_id, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 10, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-    #                                        {:title => '帮助', :m_property => m_property_help, :displayed => true, :ro => false,
-    #                                         :entity_kind => 'sys', :seq => 11, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1}
-    #                                    ])
-
-
-    sys_win_menu = Fastui::MWindow.create(:title => '菜单', :window_kind => 'maintain', :entity_kind => 'sys',
-                                          :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1)
-
-    sys_menu = sys_win_menu.m_tabs.create(:title => '菜单', :m_entity => m_menu, :ro => true, :entity_kind => 'sys',
-                                          :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1)
-    sys_menu.m_columns.create([
-                                  {:title => 'ID', :m_property => m_menu_id, :width => 35, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '标题', :m_property => m_menu_title, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '打印文本', :m_property => m_menu_print_text, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '标识', :m_property => m_menu_name, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '实体种类', :m_property => m_menu_entity_kind, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '排序', :m_property => m_menu_seq, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '是否激活', :m_property => m_menu_actived_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '所属组织', :m_property => m_menu_org_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '创建人', :m_property => m_menu_createdby_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '更新人', :m_property => m_menu_updatedby_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                  {:title => '帮助', :m_property => m_menu_help, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1}
-                              ])
-    sys_menu.m_fields.create([
-                                 {:title => 'ID', :m_property => m_menu_id, :displayed => true, :ro => true,
-                                  :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '标题', :m_property => m_menu_title, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '打印文本', :m_property => m_menu_print_text, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '标识', :m_property => m_menu_name, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '实体种类', :m_property => m_menu_entity_kind, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '排序', :m_property => m_menu_seq, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 6, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '是否激活', :m_property => m_menu_actived_id, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 7, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '所属组织', :m_property => m_menu_org_id, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 8, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '创建人', :m_property => m_menu_createdby_id, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 9, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '更新人', :m_property => m_menu_updatedby_id, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 10, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                 {:title => '帮助', :m_property => m_menu_help, :displayed => true, :ro => false,
-                                  :entity_kind => 'sys', :seq => 11, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1}
-                             ])
-
-
-    sys_menu_item = sys_win_menu.m_tabs.create(:title => '菜单项', :m_entity => m_menu_item, :ro => true, :entity_kind => 'sys', :included_tab => sys_menu,
-                                               :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1)
-
-    sys_menu_item.m_columns.create([
-                                       {:title => 'ID', :m_property => m_menu_item_id, :width => 35, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '标题', :m_property => m_menu_item_title, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '打印文本', :m_property => m_menu_item_print_text, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '标识', :m_property => m_menu_item_name, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '实体种类', :m_property => m_menu_item_entity_kind, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '对应菜单', :m_property => m_menu_item_m_menu, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '对应窗口', :m_property => m_menu_item_m_window, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '排序', :m_property => m_menu_item_seq, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '是否激活', :m_property => m_menu_item_actived_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '所属组织', :m_property => m_menu_item_relation_org_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '创建人', :m_property => m_menu_item_createdby_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '更新人', :m_property => m_menu_item_updatedby_id, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                       {:title => '帮助', :m_property => m_menu_item_help, :width => 75, :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1}
-                                   ])
-    sys_menu_item.m_fields.create([
-                                      {:title => 'ID', :m_property => m_menu_item_id, :displayed => true, :ro => true,
-                                       :entity_kind => 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '标题', :m_property => m_menu_item_title, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '打印文本', :m_property => m_menu_item_print_text, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '标识', :m_property => m_menu_item_name, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 2, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '实体种类', :m_property => m_menu_item_entity_kind, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '对应菜单', :m_property => m_menu_item_m_menu, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '对应窗口', :m_property => m_menu_item_m_window, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '排序', :m_property => m_menu_item_seq, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 6, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '是否激活', :m_property => m_menu_item_actived_id, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 7, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '所属组织', :m_property => m_menu_item_relation_org_id, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 8, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '创建人', :m_property => m_menu_item_createdby_id, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 9, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '更新人', :m_property => m_menu_item_updatedby_id, :displayed => true, :ro => false,
-                                       :entity_kind => 'sys', :seq => 10, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1},
-                                      {:title => '帮助', :m_property => m_menu_item_help, :displayed => true, :ro => false,
                                        :entity_kind => 'sys', :seq => 11, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1}
                                   ])
 

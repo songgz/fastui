@@ -3,12 +3,14 @@ require_dependency "fastui/application_controller"
 module Fastui
   class MMenuItemsController < ApplicationController
     respond_to :html, :xml, :json
+
     def index
-         @m_menu_items = params[:id] == 'root' ? MMenuItem.roots : MMenuItem.where({
-                                             :parent_id => params[:id]
-                                         }.delete_if {|k, v| v.blank? })
-         respond_with(@m_menu_items.to_json(:include => [:m_window,:m_menu,:org,:createdby,:updatedby], :methods => [:leaf?,:child?]))
+      @m_menu_items = params[:id] == 'root' ? MMenuItem.roots : MMenuItem.where({
+                                                                                    :parent_id => params[:id]
+                                                                                }.delete_if { |k, v| v.blank? })
+      respond_with(@m_menu_items.to_json(:include => [:m_window, :m_menu, :org, :createdby, :updatedby], :methods => [:leaf?, :child?]))
     end
+
     def show
       @m_menu_item = MMenuItem.find(params[:id])
       respond_with(@m_menu_item)
@@ -16,7 +18,7 @@ module Fastui
 
     def edit
       @m_menu_item = MMenuItem.find(params[:id])
-      respond_with(@m_menu_item.to_json(:include => [:m_window,:m_menu,:org,:createdby,:updatedby]))
+      respond_with(@m_menu_item.to_json(:include => [:m_window, :m_menu, :org, :createdby, :updatedby]))
     end
 
     def new
