@@ -481,7 +481,7 @@ namespace :fastui do
                                      {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
 
 
-    sys_datatype = Fastui::MWindow.create({title: '数据类型', :window_kind => 'maintain'}.merge(attr)) do |data_type|
+    sys_datatype = Fastui::MWindow.create({title: '数据类型', window_kind: 'maintain'}.merge(attr)) do |data_type|
       data_type.m_tabs.build({title: '关联', m_entity: m_dt_relation, ro: true}.merge(attr)) do |rel|
         rel.m_fields.build([{title: 'ID', m_property: m_dt_relation.prop_by('id'), displayed: true, ro: true},
                             {title: '标题', m_property: m_dt_relation.prop_by('title'), displayed: true, ro: false},
@@ -567,16 +567,11 @@ namespace :fastui do
 
     end     
 
-    menu_sys_settings = Fastui::MMenuItem.create({name: 'sys_tools', title: '系统设置', :m_menu_id => menu_sys.id, :m_window_id => 0,
-                                                  entity_kind: 'sys', :seq => 1, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    menu_sys_settings_sys_datatype = menu_sys_settings.children.create({name: 'sys_datatype', title: '数据类型', :m_window_id => sys_datatype.id, :m_menu_id => menu_sys.id,
-                                                                        entity_kind: 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    menu_sys_settings_win_entity = menu_sys_settings.children.create({name: 'win_entity', title: '实体', :m_window_id => win_entity.id, :m_menu_id => menu_sys.id,
-                                                                      entity_kind: 'sys', :seq => 3, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    menu_sys_settings_fastui = menu_sys_settings.children.create({name: 'sys_fastui', title: 'FastUI', :m_window_id => win.id, :m_menu_id => menu_sys.id,
-                                                                  entity_kind: 'sys', :seq => 4, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
-    menu_sys_settings_win_menu = menu_sys_settings.children.create({name: 'win_menu', title: '菜单', :m_window_id => sys_win_menu.id, :m_menu_id => menu_sys.id,
-                                                                    entity_kind: 'sys', :seq => 5, :actived => true, :org => org_system, :createdby => person1, :updatedby => person1})
+    menu_sys_settings = Fastui::MMenuItem.create({name: 'sys_tools', title: '系统设置', m_menu_id: menu_sys.id, m_window_id: 0}.merge(attr))
+    menu_sys_settings_sys_datatype = menu_sys_settings.children.create({name: 'sys_datatype', title: '数据类型', m_window_id: sys_datatype.id, m_menu_id: menu_sys.id}.merge(attr))
+    menu_sys_settings_win_entity = menu_sys_settings.children.create({name: 'win_entity', title: '实体', m_window_id: win_entity.id, m_menu_id: menu_sys.id}.merge(attr))
+    menu_sys_settings_fastui = menu_sys_settings.children.create({name: 'sys_fastui', title: 'FastUI', m_window_id: win.id, m_menu_id: menu_sys.id}.merge(attr))
+    menu_sys_settings_win_menu = menu_sys_settings.children.create({name: 'win_menu', title: '菜单', m_window_id: sys_win_menu.id, m_menu_id: menu_sys.id}.merge(attr))
 
   end
 end
