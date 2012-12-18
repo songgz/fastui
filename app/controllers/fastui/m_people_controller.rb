@@ -38,7 +38,7 @@ module Fastui
     end
 
     def create
-      @m_person = MPerson.new(params[:m_field])
+      @m_person = MPerson.new(params[:m_person])
       respond_with(@m_person) do |format|
         if @m_person.save
           format.json { render :json => {:success => true, :msg => 'ok'} }
@@ -53,7 +53,7 @@ module Fastui
       @m_person = MPerson.find(params[:id])
 
       respond_with(@m_person) do |format|
-        if @m_person.update_attributes(params[:m_field])
+        if @m_person.update_attributes(params[:m_person])
           format.json { render :json => {:success => true, :msg => 'ok'} }
         else
           format.json { render :json => {:success => false, :msg => 'false'} }
