@@ -70,8 +70,8 @@ Ext.define('FastUI.view.VFactory', {
         var columns = [];
         Ext.each(this._vdata.m_columns, function (column) {
             if (column.m_property.name.indexOf('_id') > 0) {
-                var temp = {text:column.title, dataIndex:column.m_property.name.replace('_id', ''), width:column.width };
-                columns.push(temp);
+                var entity_title = {text:column.title, dataIndex:column.m_property.name.replace('_id', ''), width:column.width };
+                columns.push(entity_title);
             }
             var col = {text:column.title, dataIndex:column.m_property.name, width:column.width };
             if(col.dataIndex.indexOf('_id') > 0){
@@ -112,18 +112,16 @@ Ext.define('FastUI.view.VFactory', {
             var col = {name:column.m_property.name};
             fields.push(col);
             if (column.m_property.name.indexOf('_id') > 0) {
-//                col.convert = this.fieldWithIdMapFn;
-                var temp = {};
-                temp = {name:column.m_property.name.replace('_id', '')}
-                temp.convert = function (v, rec) {
+              var  entity_title = {name:column.m_property.name.replace('_id', '')};
+                entity_title.convert = function (v, rec) {
                     if (v == 0) {
                         return 0;
                     } else {
 //                        alert(rec.raw[column.m_property.name.replace('_id','')].title);
                         return rec.raw[column.m_property.name.replace('_id', '')].title;
                     }
-                }
-                fields.push(temp);
+                };
+                fields.push(entity_title);
             }
 //            fields.push(col);
         }, this);
@@ -133,7 +131,6 @@ Ext.define('FastUI.view.VFactory', {
     getFormFields:function () {
         var m_entity_id = 0;
         if (!Ext.isEmpty(this.getVData().included_tab_id)) {
-//            alert(this.getVData().included_tab_id)
             var tab = Ext.getCmp('tab_' + this.getVData().included_tab_id);
             if (tab && tab.grid) {
                 var records = tab.grid.getSelectionModel().getSelection();
