@@ -24,7 +24,7 @@ module Fastui
     end
 
     def create
-      @m_org = MOrg.new(params[:m_field])
+      @m_org = MOrg.new(params[:m_org])
       respond_with(@m_org) do |format|
         if @m_org.save
           format.json { render :json => {:success => true, :msg => 'ok'} }
@@ -39,7 +39,7 @@ module Fastui
       @m_org = MOrg.find(params[:id])
 
       respond_with(@m_org) do |format|
-        if @m_org.update_attributes(params[:m_field])
+        if @m_org.update_attributes(params[:m_org])
           format.json { render :json => {:success => true, :msg => 'ok'} }
         else
           format.json { render :json => {:success => false, :msg => 'false'} }

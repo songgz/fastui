@@ -69,7 +69,14 @@ Ext.define('FastUI.view.VFactory', {
     getColumns:function () {
         var columns = [];
         Ext.each(this._vdata.m_columns, function (column) {
-            var col = {text:column.title, dataIndex:column.m_property.name,width:column.width };
+            if (column.m_property.name.indexOf('_id') > 0) {
+                var entity_title = {text:column.title, dataIndex:column.m_property.name.replace('_id', ''), width:column.width };
+                columns.push(entity_title);
+            }
+            var col = {text:column.title, dataIndex:column.m_property.name, width:column.width };
+            if(col.dataIndex.indexOf('_id') > 0){
+                col.hidden = true;
+            }
             switch (column.m_property.m_datatype.class_name) {
                 case 'Fastui::MList':
                     var list_store = this.get_list_store(column.m_property.m_datatype_id);
@@ -103,25 +110,40 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
         Ext.each(this._vdata.m_columns, function (column) {
             var col = {name:column.m_property.name};
+            fields.push(col);
             if (column.m_property.name.indexOf('_id') > 0) {
-//                col.convert = this.fieldWithIdMapFn;
-                col.convert = function (v, rec) {
+              var  entity_title = {name:column.m_property.name.replace('_id', '')};
+                entity_title.convert = function (v, rec) {
                     if (v == 0) {
                         return 0;
                     } else {
 //                        alert(rec.raw[column.m_property.name.replace('_id','')].title);
                         return rec.raw[column.m_property.name.replace('_id', '')].title;
                     }
-                }
+                };
+                fields.push(entity_title);
             }
-            fields.push(col);
+//            fields.push(col);
         }, this);
         return fields;
     },
 
     getFormFields:function () {
+        var m_entity_id = 0;
+        if (!Ext.isEmpty(this.getVData().included_tab_id)) {
+            var tab = Ext.getCmp('tab_' + this.getVData().included_tab_id);
+            if (tab && tab.grid) {
+                var records = tab.grid.getSelectionModel().getSelection();
+//                alert(Ext.encode(records[0].getData()));
+                m_entity_id = records[0].get('m_entity_id');
+//                alert(records[0].get('m_entity_id'));
+            }
+        }
         var fields = [];
+//        alert(this._vdata.m_entity_id);
         Ext.each(this._vdata.m_fields, function (field) {
+            field.m_window_id = this._vdata.m_window_id;
+            field.m_entity_id = m_entity_id;
             field.name = this.getModelClass() + '[' + field.m_property.name + ']';
             fields.push(Ext.create('FastUI.view.vfield.VFieldFactory').buildField(field));
         }, this);

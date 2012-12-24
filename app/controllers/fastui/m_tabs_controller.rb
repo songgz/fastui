@@ -13,13 +13,12 @@ module Fastui
 
     def show
       @m_tab = MTab.find(params[:id])
-      #p @m_tab.to_json(:include => [:m_columns,:m_fields])
       respond_with(@m_tab.to_json(:include => [:m_columns,:m_fields]))
     end
 
     def edit
       @m_tab = MTab.find(params[:id])
-      respond_with(@m_tab.to_json(:include => [:m_window,:m_entity,:included_tab,:org,:createdby,:updatedby]))
+      respond_with(@m_tab.to_json(:include => [:m_entity,:included_tab,:org,:createdby,:updatedby,:m_window =>{:include => [:m_tabs]}]))
     end
 
     def new

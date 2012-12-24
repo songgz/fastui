@@ -101,11 +101,11 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
         var p = {};
         switch(this.entity.name){
             case 'Fastui::MProperty':
-                p['m_entity_id'] = this.entity.id;
+                p['m_entity_id'] = this.m_entity_id;
                 return p;
                 break;
             case 'Fastui::MTab':
-                p['m_window_id'] = '';
+                p['m_window_id'] = this.m_window_id;
                 return p;
                 break;
         }
@@ -117,9 +117,8 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
             fields:['id', 'title'],
             proxy:{
                 type:'ajax',
-//                extraParams:this.getParams(),
+                extraParams:this.getParams(),
                 url:this.entity.name.underscore().pluralize() + '.json',
-//                url:'/fastui/' + this.entity.name.toLowerCase().pluralize() + '.json',
                 reader:{
                     type:'json',
                     root:'rows',
