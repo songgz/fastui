@@ -22,11 +22,17 @@ Ext.define('FastUI.Env', {
     getTabCtx:function(win,tab,key){
         return this.getCtx().getTabCtx(win,tab,key);
     },
-    //${}
-    parseContext:function(WindowNo, value){
-        var patten = /\${[\s\S]*?}/ig ;
+    //${value}
+    parseCtx:function(WindowNo, value){
+        var patten = /\${([\s\S]*?)}/ig ;
         var me = this;
-        return value.replace(patten,function(m){return me.getWinCtx(WindowNo,m);});
+        return value.replace(patten, function(m){
+            var p = patten.exec(m);
+            if(b){
+                return me.getWinCtx(WindowNo,p[1]);
+            }
+            return m;
+        });
     }
 
 });
