@@ -6,6 +6,10 @@ Ext.define('FastUI.view.VTab', {
     layout:"card",
     initComponent:function () {
         this.id = 'tab_' + this.vfactory.getVData().id;
+//        alert(this.vfactory.getVData().m_entity_id)
+        FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id',this.id);
+        FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','m_entity_id',this.vfactory.getVData().m_entity_id);
+//                alert(FastUI.Env.getTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id'));
         this.title = this.vfactory.getVData().title;
         this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getModelClass());
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
@@ -55,6 +59,8 @@ Ext.define('FastUI.view.VTab', {
         var id = 0;
         if (!Ext.isEmpty(records)) {
             id = records[0].get('id');
+//            FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','selected_id',id);
+//            alert(FastUI.Env.getTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','selected_id'));
         }
         this.grid.getStore().reload({
             callback:function (records, operation, success) {

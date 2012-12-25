@@ -66,7 +66,7 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
                 break;
             case this.VType.VLookup:
                 opt['entity'] = dt.m_entity;
-                opt['m_window_id'] = field.m_window_id;
+//                opt['m_window_id'] = field.m_window_id;
                 opt['m_entity_id'] = field.m_entity_id;
                 return Ext.create('FastUI.view.vfield.VLookUpWindow', opt);
                 break;
