@@ -101,13 +101,14 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
         var p = {};
         switch(this.entity.name){
             case 'Fastui::MProperty':
-                p['m_entity_id'] = this.m_entity_id;
+//                p['m_entity_id'] = this.m_entity_id;
+                p['m_entity_id'] = FastUI.Env.get('m_entity_id');
                 return p;
                 break;
             case 'Fastui::MTab':
 //                p['m_window_id'] = this.m_window_id;
 //                alert(FastUI.Env.getWinCtx('winNo','win_id'));
-                p['m_window_id'] = FastUI.Env.getWinCtx('winNo','win_id');
+                p['m_window_id'] = FastUI.Env.get('m_window_id');
                 return p;
                 break;
         }

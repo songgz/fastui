@@ -8,7 +8,7 @@ Ext.define('FastUI.view.VTab', {
         this.id = 'tab_' + this.vfactory.getVData().id;
 //        alert(this.vfactory.getVData().m_entity_id)
         FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id',this.id);
-        FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','m_entity_id',this.vfactory.getVData().m_entity_id);
+//        FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','m_entity_id',this.vfactory.getVData().m_entity_id);
 //                alert(FastUI.Env.getTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id'));
         this.title = this.vfactory.getVData().title;
         this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getModelClass());

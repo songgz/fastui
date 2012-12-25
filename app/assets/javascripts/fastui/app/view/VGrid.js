@@ -20,5 +20,11 @@ Ext.define('FastUI.view.VGrid', {
         this.columns = this.vfactory.getColumns();
         this.store = this.vfactory.getStore();
         this.callParent();
+    },
+    listeners:{
+        selectionchange:function (selectModel, selected, eOpts){
+//            var record = selected[0];
+//            alert(Ext.encode(record.getData()));
+        },scope:this
     }
 });
