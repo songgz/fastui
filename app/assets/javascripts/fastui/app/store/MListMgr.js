@@ -10,7 +10,10 @@ Ext.define('FastUI.store.MListMgr', {
         return gs;
     },
     createStore:function (list_id) {
-        return new Ext.data.JsonStore({
+        Ext.apply(Ext.data.Connection.prototype, {
+            async:false
+        });
+        var store = new Ext.data.JsonStore({
             autoLoad:false,
             fields:['id', 'name', 'title'],
             proxy:{
@@ -22,5 +25,10 @@ Ext.define('FastUI.store.MListMgr', {
                 }
             }
         });
+        store.load();
+        Ext.apply(Ext.data.Connection.prototype, {
+            async:true
+        });
+        return store;
     }
 });

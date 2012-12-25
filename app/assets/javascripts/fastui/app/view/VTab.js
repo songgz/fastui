@@ -1,15 +1,13 @@
 Ext.define('FastUI.view.VTab', {
     extend:'Ext.Panel',
     alias:'widget.vtab',
-    title:'All VTabs',
+    valueObject: {},
+    ctx:{},
     vfactory:null,
     layout:"card",
     initComponent:function () {
-        this.id = 'tab_' + this.vfactory.getVData().id;
-        FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id',this.id);
-//        FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','m_entity_id',this.vfactory.getVData().m_entity_id);
-//                alert(FastUI.Env.getTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id'));
-        this.title = this.vfactory.getVData().title;
+        this.id = 'tab-' + this.getValue('id');
+        this.title = this.getValue('title');
         this.restHelper = Ext.create('FastUI.view.RestHelper', this.vfactory.getModelClass());
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             items:[
@@ -41,7 +39,14 @@ Ext.define('FastUI.view.VTab', {
                     }, scope:this}
             ]
         });
+        //FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id',this.id);
         this.callParent();
+    },
+    getValue:function(key){
+        return this.valueObject[key];
+    },
+    getEntity:function(){
+        return this.valueObject.m_entity;
     },
     listeners:{
         activate:function (tab, opts) {
@@ -50,7 +55,7 @@ Ext.define('FastUI.view.VTab', {
     },
     cmdList:function () {
         if (!this.grid) {
-            this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory});
+            this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory, valueObject:this.valueObject});
             this.add(this.grid);
         }
         var grid = this.grid;

@@ -24,7 +24,7 @@ Ext.define('FastUI.view.VFactory', {
     getParams:function () {
         var p = {};
         if (!Ext.isEmpty(this.getVData().included_tab_id)) {
-            var tab = Ext.getCmp('tab_' + this.getVData().included_tab_id);
+            var tab = Ext.getCmp('tab-' + this.getVData().included_tab_id);
             if (tab && tab.grid) {
                 var records = tab.grid.getSelectionModel().getSelection();
                 var id = 0;

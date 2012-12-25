@@ -17,11 +17,13 @@ Ext.define('FastUI.controller.MMenus', {
         if (record.get('leaf')) {
             FastUI.store.MWindowMgr.load(id, function (obj) {
                 var c = Ext.getCmp('mycenter');
-                var win_id = 'win_' + id;
-                var win = Ext.getCmp(win_id);
+                var windowNo = 'win-' + id;
+                var win = Ext.getCmp(windowNo);
                 if (!win) {
-                    win = Ext.create('FastUI.view.VVWindow', {id:win_id,
-                        vfactory:Ext.create('FastUI.view.VFactory', obj)
+                    win = Ext.create('FastUI.view.VVWindow', {
+                        id: windowNo,
+                        valueObject: obj
+                        //vfactory:Ext.create('FastUI.view.VFactory', obj)
                     });
                     c.add(win);
                 }

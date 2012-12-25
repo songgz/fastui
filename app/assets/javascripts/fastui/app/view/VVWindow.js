@@ -1,26 +1,31 @@
 Ext.define('FastUI.view.VVWindow', {
     extend:'Ext.ux.tab.VerticalPanel',
     alias:'widget.vvwindow',
-    title:'The VWindow',
+    valueObject: {},
     //activeGroup:0,
-    activeTab: 0,
+
+    activeTab:0,
     plain:true,
-    border: false,
+    border:false,
     //bodyStyle: 'padding: 10px',
-           defaults:{autoScroll: true},
-           tabsConfig: {
-               width: 130,
-               textAlign: 'right',
-               marginTop: 50	/* Push the tab strip down 30px from top. If not set, defaults to 0.*/
-           },
+    defaults:{autoScroll:true},
+    tabsConfig:{
+        width:130,
+        textAlign:'right',
+        marginTop:50    /* Push the tab strip down 30px from top. If not set, defaults to 0.*/
+    },
 
     initComponent:function () {
-        this.title = this.vfactory.getVData().title;
-        FastUI.Env.setWinCtx('winNo','win_id',this.id);
-//        alert(FastUI.Env.getWinCtx('winNo','win_id'));
-//        alert(Ext.encode(FastUI.Env.getCtx()));
-        this.callParent();
+        this.ctx = FastUI.Env.getCtx();
+        this.title = this.getValue('title');
 
+        this.callParent();
+    },
+    getValue:function(key){
+        return this.valueObject[key];
+    },
+    getTabValues:function(){
+        return this.valueObject.m_tabs;
     },
     listeners:{
         beforerender:function (vwindow, opts) {
@@ -28,16 +33,13 @@ Ext.define('FastUI.view.VVWindow', {
         }
     },
     loadTabs:function (vwindow, opts) {
-        Ext.each(this.vfactory.getVData().m_tabs, function (mtab) {
-//            alert(mtab.m_entity.name)
-            var vTab = Ext.create('FastUI.view.VTab', {vfactory: Ext.create('FastUI.view.VFactory',mtab)});
-//            this.items= [ {expanded:false,items:{
-//                                title: 'Users',
-//                                iconCls: 'x-icon-users',
-//                                tabTip: 'Users tabtip',
-//                                style: 'padding: 10px;',
-//                                html: "Ext.example.shortBogusMarkup"
-//                            }                }]
+        Ext.each(vwindow.getTabValues(), function (mtab) {
+            var vTab = Ext.create('FastUI.view.VTab', {
+                valueObject: mtab,
+                windowNo:vwindow.id,
+                ctx: vwindow.ctx,
+                vfactory:Ext.create('FastUI.view.VFactory', mtab)
+            });
             vwindow.add(vTab);
         });
     }
