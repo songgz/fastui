@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121211062955) do
+ActiveRecord::Schema.define(:version => 20121217020606) do
+
+  create_table "fastui_m_acl_entries", :force => true do |t|
+    t.string   "aco_type",     :limit => 60, :default => ""
+    t.integer  "aco_id",                     :default => 0
+    t.string   "aro_type",     :limit => 60, :default => ""
+    t.integer  "aro_id",                     :default => 0
+    t.string   "permit",       :limit => 60, :default => ""
+    t.string   "access_level",               :default => ""
+    t.string   "entity_kind",                :default => ""
+    t.integer  "seq",                        :default => 0
+    t.boolean  "actived",                    :default => true
+    t.integer  "org_id",                     :default => 0
+    t.integer  "createdby_id",               :default => 0
+    t.integer  "updatedby_id",               :default => 0
+    t.string   "help",                       :default => ""
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
 
   create_table "fastui_m_actions", :force => true do |t|
     t.string   "title"
@@ -219,6 +237,7 @@ ActiveRecord::Schema.define(:version => 20121211062955) do
     t.string   "title",        :limit => 60,                   :null => false
     t.string   "name",         :limit => 60, :default => ""
     t.string   "note",                       :default => ""
+    t.string   "access_level",               :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
     t.boolean  "is_active",                  :default => true
