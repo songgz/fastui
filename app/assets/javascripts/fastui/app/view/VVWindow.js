@@ -16,7 +16,11 @@ Ext.define('FastUI.view.VVWindow', {
 
     initComponent:function () {
         this.title = this.vfactory.getVData().title;
+        FastUI.Env.setWinCtx('winNo','win_id',this.id);
+//        alert(FastUI.Env.getWinCtx('winNo','win_id'));
+//        alert(Ext.encode(FastUI.Env.getCtx()));
         this.callParent();
+
     },
     listeners:{
         beforerender:function (vwindow, opts) {

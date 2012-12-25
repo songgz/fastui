@@ -142,7 +142,7 @@ Ext.define('FastUI.view.VFactory', {
         var fields = [];
 //        alert(this._vdata.m_entity_id);
         Ext.each(this._vdata.m_fields, function (field) {
-            field.m_window_id = this._vdata.m_window_id;
+//            field.m_window_id = this._vdata.m_window_id;
             field.m_entity_id = m_entity_id;
             field.name = this.getModelClass() + '[' + field.m_property.name + ']';
             fields.push(Ext.create('FastUI.view.vfield.VFieldFactory').buildField(field));

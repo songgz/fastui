@@ -105,7 +105,9 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
                 return p;
                 break;
             case 'Fastui::MTab':
-                p['m_window_id'] = this.m_window_id;
+//                p['m_window_id'] = this.m_window_id;
+//                alert(FastUI.Env.getWinCtx('winNo','win_id'));
+                p['m_window_id'] = FastUI.Env.getWinCtx('winNo','win_id');
                 return p;
                 break;
         }

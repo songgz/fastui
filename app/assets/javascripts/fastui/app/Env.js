@@ -1,6 +1,6 @@
-Ext.define('Fastui.Env', {
+Ext.define('FastUI.Env', {
     singleton: true,
-    _ctx_: Ext.create('Fastui.Ctx'),
+    _ctx_: Ext.create('FastUI.Ctx'),
     getCtx: function() {
         return this._ctx_;
     },
@@ -11,15 +11,15 @@ Ext.define('Fastui.Env', {
         return this.getCtx().get(key);
     },
     setWinCtx:function(win,key,value){
-        this.getCtx().set(win,key,value);
+        this.getCtx().setWinCtx(win,key,value);
     },
     getWinCtx:function(win,key){
-        return this.getCtx().get(win,key);
+        return this.getCtx().getWinCtx(win,key);
     },
     setTabCtx:function(win,tab,key,value){
-        this.getCtx().set(win,tab,key,value);
+        this.getCtx().setTabCtx(win,tab,key,value);
     },
     getTabCtx:function(win,tab,key){
-        return this.getCtx().set(win,tab,key);
+        return this.getCtx().getTabCtx(win,tab,key);
     }
 });

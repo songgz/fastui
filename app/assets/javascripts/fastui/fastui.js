@@ -1,8 +1,8 @@
 Ext.Loader.setConfig({
-    enabled: true,
+    enabled:true,
     paths:{
-        'Ext': '/assets/fastui/extjs4/src',
-        'Ext.ux': '/assets/fastui/extjs4/ux'
+        'Ext':'/assets/fastui/extjs4/src',
+        'Ext.ux':'/assets/fastui/extjs4/ux'
     }
 });
 //// Set valid ExtJS loading path (/vendor/assets/extjs4/src)
@@ -16,20 +16,21 @@ Ext.Loader.setConfig({
 // create a new instance of Application class
 
 Ext.application({
-  // the global namespace
-  name: 'FastUI',
+    // the global namespace
+    name:'FastUI',
 
-  appFolder: '/assets/fastui/app',
+    appFolder:'/assets/fastui/app',
     //requires: ['FastUI.view.WindowMgr'],
+    requires:['FastUI.Env'],
 
-  //requires: ['FastUI.model.MWindow','FastUI.view.VVWindow','FastUI.view.VFactory'],
-  //models: ['FastUI.model.MWindow'],
-    stores: ['MMenus'],
+    //requires: ['FastUI.model.MWindow','FastUI.view.VVWindow','FastUI.view.VFactory'],
+    //models: ['FastUI.model.MWindow'],
+    stores:['MMenus'],
     //views: ['VMenu'],
-  //controllers: [],
-    controllers: ['MMenus'],
+    //controllers: [],
+    controllers:['MMenus'],
 
-  autoCreateViewport: true
+    autoCreateViewport:true
 //    launch: function() {
 //        var store = Ext.create('Ext.data.Store', {
 //            model: 'FastUI.model.MWindow'
@@ -47,5 +48,5 @@ Ext.application({
 //            }
 //        });
 
-   // }
+    // }
 });

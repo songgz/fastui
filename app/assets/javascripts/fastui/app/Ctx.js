@@ -1,4 +1,4 @@
-Ext.define('Fastui.Ctx', {
+Ext.define('FastUI.Ctx', {
     constructor:function(){
         this._data_ = {};
     },
@@ -8,17 +8,17 @@ Ext.define('Fastui.Ctx', {
     get:function(key){
         return this._data_[key];
     },
-    setWinCtx:function(win,key,value){
-        this.set(win + '|' + key, value);
+    setWinCtx:function(winNo,key,value){
+        this.set(winNo + '|' + key, value);
     },
-    getWinCtx:function(win,key){
-        return this.get(win + '|' + key);
+    getWinCtx:function(winNo,key){
+        return this.get(winNo + '|' + key);
     },
-    setTabCtx:function(win,tab,key,value){
-        this.set(win + '|' +  tab + '|' + key, value);
+    setTabCtx:function(winNo,tabNo,key,value){
+        this.set(winNo + '|' +  tabNo + '|' + key, value);
     },
-    getTabCtx:function(win,tab,key){
-        return this.get(win + '|' +  tab + '|' + key);
+    getTabCtx:function(winNo,tabNo,key){
+        return this.get(winNo + '|' +  tabNo + '|' + key);
     }
 
 });
