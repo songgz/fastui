@@ -6,7 +6,6 @@ Ext.define('FastUI.view.VTab', {
     layout:"card",
     initComponent:function () {
         this.id = 'tab_' + this.vfactory.getVData().id;
-//        alert(this.vfactory.getVData().m_entity_id)
         FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id',this.id);
 //        FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','m_entity_id',this.vfactory.getVData().m_entity_id);
 //                alert(FastUI.Env.getTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id'));
