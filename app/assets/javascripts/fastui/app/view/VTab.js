@@ -45,7 +45,7 @@ Ext.define('FastUI.view.VTab', {
     getValue:function(key){
         return this.valueObject[key];
     },
-    getEntity:function(){
+    getMEntity:function(){
         return this.valueObject.m_entity;
     },
     listeners:{
@@ -57,28 +57,25 @@ Ext.define('FastUI.view.VTab', {
         if (!this.grid) {
             this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory, valueObject:this.valueObject});
             this.add(this.grid);
-        }else{
-            this.grid.getStore().reload();
-            this.grid.redoLayout();
         }
-//        var grid = this.grid;
-//        var records = grid.getSelectionModel().getSelection();
-//        var id = 0;
-//        if (!Ext.isEmpty(records)) {
-//            id = records[0].get('id');
-//            alert(id);
-////            FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','selected_id',id);
-////            alert(FastUI.Env.getTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','selected_id'));
-//        }
-//        this.grid.getStore().reload({
-//            callback:function (records, operation, success) {
-//                if (id > 0) {
-//                    var rowIndex = this.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
-//                    grid.getView().select(rowIndex);
-//                }
-//            }
-//        });
-        this.getLayout().setActiveItem(this.grid.id);
+        var records = this.grid.getSelectionModel().getSelection();
+        var id = 0;
+        if (!Ext.isEmpty(records)) {
+            id = records[0].get('id');
+            //alert(id);
+//            FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','selected_id',id);
+//            alert(FastUI.Env.getTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','selected_id'));
+        }
+        var store = this.grid.getStore().reload({
+            callback:function (records, operation, success) {
+                if (id > 0) {
+                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
+                    this.grid.getView().select(rowIndex);
+                }
+            },
+            scope:this
+        });
+       this.getLayout().setActiveItem(this.grid.id);
     },
     cmdCreate:function () {
         if (!this.form) {

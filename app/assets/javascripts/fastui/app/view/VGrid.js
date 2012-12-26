@@ -6,8 +6,8 @@ Ext.define('FastUI.view.VGrid', {
     //plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
     initComponent:function () {
         this.title = this.getValue('title');
-        this.columns = this.getGridColumns();
-        this.store = this.getStore();
+        this.columns = this.getGColumns();
+        this.store = this.getGStore();
         this.callParent();
     },
 //    listeners:{
@@ -29,41 +29,44 @@ Ext.define('FastUI.view.VGrid', {
                 if (!Ext.isEmpty(records)) {
                     id = records[0].get('id');
                 }
-                p[tab.getEntity().name.demodulize().underscore() + '_id'] = id;
+                p[tab.getMEntity().name.demodulize().underscore() + '_id'] = id;
             }
         }
         return p;
     },
-    getStore:function () {
+    getGStore:function () {
         return new Ext.data.JsonStore({
-            autoLoad:true,
+            //autoLoad:true,
             pageSize:50,
             proxy:{
-                type:'ajax',
-                url:this.getEntity().name.underscore().pluralize() + '.json',
+                type:'rest',
+                format: 'json',
+                url:this.getMEntity().name.underscore().pluralize(),
                 reader:{
                     type:'json',
                     root:'',
                     id:"id"
                 }
             },
-            fields:this.getGridFields(),
+            fields:this.getGFields(),
             listeners:{
                 beforeload:function (store, operation, eOpts) {
                     store.getProxy().extraParams = this.getParams();
-                }, scope:this
+                },
+
+                scope:this
             }
         });
     },
-    getEntity:function () {
+    getMEntity:function () {
         return this.valueObject.m_entity;
     },
-    getColumns:function () {
+    getMColumns:function () {
         return this.valueObject.m_columns;
     },
-    getGridFields:function () {
+    getGFields:function () {
         var fields = [];
-        Ext.each(this.getColumns(), function (column) {
+        Ext.each(this.getMColumns(), function (column) {
             var field = {
                 name:column.m_property.name,
                 type:'string'
@@ -82,9 +85,9 @@ Ext.define('FastUI.view.VGrid', {
         }, this);
         return fields;
     },
-    getGridColumns:function () {
+    getGColumns:function () {
         var columns = [Ext.create('Ext.grid.RowNumberer')];
-        Ext.each(this.getColumns(), function (column) {
+        Ext.each(this.getMColumns(), function (column) {
             var col = {
                 text:column.title,
                 dataIndex:column.m_property.name,
