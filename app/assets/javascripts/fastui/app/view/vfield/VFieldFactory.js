@@ -1,8 +1,7 @@
 Ext.define('FastUI.view.vfield.VFieldFactory', {
-    name:'vfieldFactory',
-//        singleton: true,
-    constructor:function () {
-        this.VType = {
+    singleton: true,
+
+     VType:{
             VText:'Fastui::MText',
             VDate:'Fastui::MDate',
             VHtmlEditor:'Fastui::MHtmlEditor',
@@ -18,10 +17,15 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             VGridColumnXtypeCombo:'Fastui::MGridColumnXtypeCombo',
             VList:'Fastui::MList',
             VLookup:'Fastui::MRelation'
-        }
-    },
-    buildField:function (field) {
-        var opt = {fieldLabel:field.title, name:field.name, disabled:(field.read && field.read.name == 'true'), allowBlank:true};
+        },
+
+    buildField:function (field,entity) {
+        var opt = {
+            fieldLabel:field.title,
+            name: (entity && entity.name ? entity.name.demodulize().underscore() : '') + '[' + field.m_property.name + ']',
+            disabled:(field.read && field.read.name == 'true'),
+            allowBlank:true
+        };
         var dt = field.m_property.m_datatype;
         switch (dt.class_name) {
             case this.VType.VText:

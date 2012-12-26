@@ -55,7 +55,7 @@ Ext.define('FastUI.view.VTab', {
     },
     cmdList:function () {
         if (!this.grid) {
-            this.grid = Ext.create('FastUI.view.VGrid', {vfactory:this.vfactory, valueObject:this.valueObject});
+            this.grid = Ext.create('FastUI.view.VGrid', {valueObject:this.valueObject});
             this.add(this.grid);
         }
         var records = this.grid.getSelectionModel().getSelection();
@@ -79,20 +79,20 @@ Ext.define('FastUI.view.VTab', {
     },
     cmdCreate:function () {
         if (!this.form) {
-            this.form = Ext.create('FastUI.view.VForm', {vfactory:this.vfactory});
+            this.form = Ext.create('FastUI.view.VForm', {valueObject: this.valueObject});
             this.add(this.form);
         }
-        this.getLayout().setActiveItem(this.form.id);
         var form = this.form.getForm();
         form.url = this.restHelper.getPath('create');
         form.method = 'POST';
         form.reset();
+        this.getLayout().setActiveItem(this.form.id);
     },
     cmdEdit:function () {
         var record = this.grid.getSelectionModel().getSelection();
         if (record) this.currentRecord = record[0];
         if (!this.form) {
-            this.form = Ext.create('FastUI.view.VForm', {vfactory:this.vfactory});
+            this.form = Ext.create('FastUI.view.VForm', {valueObject:this.valueObject});
             this.add(this.form);
         }
 

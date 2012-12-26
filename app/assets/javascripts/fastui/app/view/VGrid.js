@@ -53,7 +53,6 @@ Ext.define('FastUI.view.VGrid', {
                 beforeload:function (store, operation, eOpts) {
                     store.getProxy().extraParams = this.getParams();
                 },
-
                 scope:this
             }
         });
