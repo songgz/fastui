@@ -13,8 +13,10 @@ Ext.define('FastUI.view.VGrid', {
     //plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
     initComponent:function(){
         this.title = this.getValue('title');
-        this.columns = this.getGridColumns();
-        this.store = this.getStore();
+//        this.columns = this.getGridColumns();
+        this.columns = this.vfactory.getColumns();
+        this.store = this.vfactory.getStore();
+//        this.store = this.getStore();
         this.callParent();
     },
     listeners:{
@@ -98,27 +100,27 @@ Ext.define('FastUI.view.VGrid', {
                 col.hidden = true;
             }
             switch (column.m_property.m_datatype.class_name) {
-//                case 'Fastui::MList':
-//                    var list_store = FastUI.store.MListMgr.getStore(column.m_property.m_datatype_id);
-//                    col.renderer = function (val) {
-//                        var index = list_store.findExact('name', val);
-//                        if (index != -1) {
-//                            var rs = list_store.getAt(index).data;
-//                            return rs.title;
-//                        }
-//                    };
-//                    columns.push(col);
-//                    break;
-//                case 'Fastui::MYesOrNo':
-//                    col.renderer = function (val) {
-//                        if (val) {
-//                            return '是'
-//                        } else {
-//                            return '否'
-//                        }
-//                    };
-//                    columns.push(col);
-//                    break;
+                case 'Fastui::MList':
+                    var list_store = FastUI.store.MListMgr.getStore(column.m_property.m_datatype_id);
+                    col.renderer = function (val) {
+                        var index = list_store.findExact('name', val);
+                        if (index != -1) {
+                            var rs = list_store.getAt(index).data;
+                            return rs.title;
+                        }
+                    };
+                    columns.push(col);
+                    break;
+                case 'Fastui::MYesOrNo':
+                    col.renderer = function (val) {
+                        if (val) {
+                            return '是'
+                        } else {
+                            return '否'
+                        }
+                    };
+                    columns.push(col);
+                    break;
                 default:
                     columns.push(col);
                     break;

@@ -10,9 +10,9 @@ Ext.define('FastUI.store.MListMgr', {
         return gs;
     },
     createStore:function (list_id) {
-        Ext.apply(Ext.data.Connection.prototype, {
-            async:false
-        });
+//        Ext.apply(Ext.data.Connection.prototype, {
+//            async:false
+//        });
         var store = new Ext.data.JsonStore({
             autoLoad:false,
             fields:['id', 'name', 'title'],
@@ -25,10 +25,10 @@ Ext.define('FastUI.store.MListMgr', {
                 }
             }
         });
-        store.load();
-        Ext.apply(Ext.data.Connection.prototype, {
-            async:true
-        });
+//        store.load();
+//        Ext.apply(Ext.data.Connection.prototype, {
+//            async:true
+//        });
         return store;
     }
 });
