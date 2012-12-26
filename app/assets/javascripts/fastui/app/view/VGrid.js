@@ -1,29 +1,22 @@
 Ext.define('FastUI.view.VGrid', {
-    extend: 'Ext.grid.Panel',
-//    selModel:{
-//        mode : 'SINGLE',
-//        allowDeselect: false
-//
-//    },
-////    selModel:new Ext.selection.RowModel({SINGLE: true}),
-    valueObject: {},
-    selType: 'rowmodel',
-
+    extend:'Ext.grid.Panel',
+    valueObject:{},
+    selType:'rowmodel',
     multiSelect:false,
     //plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
-    initComponent:function(){
+    initComponent:function () {
         this.title = this.getValue('title');
         this.columns = this.getGridColumns();
         this.store = this.getStore();
         this.callParent();
     },
-    listeners:{
-        selectionchange:function (selectModel, selected, eOpts){
-//            var record = selected[0];
-//            alert(Ext.encode(record.getData()));
-        },scope:this
-    },
-    getValue:function(key){
+//    listeners:{
+//        selectionchange:function (selectModel, selected, eOpts){
+////            var record = selected[0];
+////            alert(Ext.encode(record.getData()));
+//        },scope:this
+//    },
+    getValue:function (key) {
         return this.valueObject[key];
     },
     getParams:function () {
@@ -43,10 +36,11 @@ Ext.define('FastUI.view.VGrid', {
     },
     getStore:function () {
         return new Ext.data.JsonStore({
+            autoLoad:true,
             pageSize:50,
             proxy:{
                 type:'ajax',
-                url: this.getEntity().name.underscore().pluralize() + '.json',
+                url:this.getEntity().name.underscore().pluralize() + '.json',
                 reader:{
                     type:'json',
                     root:'',
@@ -61,69 +55,70 @@ Ext.define('FastUI.view.VGrid', {
             }
         });
     },
-    getEntity:function(){
+    getEntity:function () {
         return this.valueObject.m_entity;
     },
-    getColumns:function(){
+    getColumns:function () {
         return this.valueObject.m_columns;
     },
     getGridFields:function () {
         var fields = [];
         Ext.each(this.getColumns(), function (column) {
-            var col = {name:column.m_property.name};
-            fields.push(col);
-            if (column.m_property.name.indexOf('_id') > 0) {
-                var  entity_title = {name:column.m_property.name.replace('_id', '')};
-                entity_title.convert = function (v, rec) {
-                    if (v == 0) {
-                        return 0;
-                    } else {
-                        return rec.raw[column.m_property.name.replace('_id', '')].title;
-                    }
-                };
-                fields.push(entity_title);
+            var field = {
+                name:column.m_property.name,
+                type:'string'
+            };
+            var prop = column.m_property;
+            switch (prop.m_datatype.class_name) {
+                case 'Fastui::MRelation':
+                    var entity = {
+                        name:column.m_property.name.replace('_id', ''),
+                        type:'auto'
+                    };
+                    fields.push(entity);
             }
+            fields.push(field);
+
         }, this);
         return fields;
     },
     getGridColumns:function () {
-        var columns = [];
+        var columns = [Ext.create('Ext.grid.RowNumberer')];
         Ext.each(this.getColumns(), function (column) {
-            if (column.m_property.name.indexOf('_id') > 0) {
-                var entity_title = {text:column.title, dataIndex:column.m_property.name.replace('_id', ''), width:column.width };
-                columns.push(entity_title);
-            }
-            var col = {text:column.title, dataIndex:column.m_property.name, width:column.width };
-            if(col.dataIndex.indexOf('_id') > 0){
-                col.hidden = true;
-            }
-            switch (column.m_property.m_datatype.class_name) {
-//                case 'Fastui::MList':
-//                    var list_store = FastUI.store.MListMgr.getStore(column.m_property.m_datatype_id);
-//                    col.renderer = function (val) {
-//                        var index = list_store.findExact('name', val);
-//                        if (index != -1) {
-//                            var rs = list_store.getAt(index).data;
-//                            return rs.title;
-//                        }
-//                    };
-//                    columns.push(col);
-//                    break;
-//                case 'Fastui::MYesOrNo':
-//                    col.renderer = function (val) {
-//                        if (val) {
-//                            return '是'
-//                        } else {
-//                            return '否'
-//                        }
-//                    };
-//                    columns.push(col);
-//                    break;
+            var col = {
+                text:column.title,
+                dataIndex:column.m_property.name,
+                width:column.width
+                //xtype:''
+            };
+            var prop = column.m_property;
+            switch (prop.m_datatype.class_name) {
+                case 'Fastui::MRelation':
+                    col.xtype = 'templatecolumn';
+                    col.tpl = '{' + prop.name.replace('_id', '') + '.title}';
+                    break;
+                case 'Fastui::MList':
+                    var list_store = FastUI.store.MListMgr.getStore(prop.m_datatype_id);
+                    col.renderer = function (val) {
+                        var index = list_store.findExact('name', val);
+                        if (index > -1) {
+                            var rs = list_store.getAt(index).data;
+                            return rs.title;
+                        }
+                        return "";
+                    };
+                    break;
+                case 'Fastui::MYesOrNo':
+                    col.renderer = function (val) {
+                        return val ? '是' : '否';
+                    };
+                    break;
                 default:
-                    columns.push(col);
                     break;
             }
+            columns.push(col);
         }, this);
+
         return columns;
     }
 });
