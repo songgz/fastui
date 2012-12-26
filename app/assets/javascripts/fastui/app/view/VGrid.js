@@ -36,7 +36,8 @@ Ext.define('FastUI.view.VGrid', {
     },
     getStore:function () {
         return new Ext.data.JsonStore({
-            autoLoad:true,
+//            autoLoad:true,
+//            autoSync: true,
             pageSize:50,
             proxy:{
                 type:'ajax',
@@ -51,6 +52,7 @@ Ext.define('FastUI.view.VGrid', {
             listeners:{
                 beforeload:function (store, operation, eOpts) {
                     store.getProxy().extraParams = this.getParams();
+//                    return false;
                 }, scope:this
             }
         });
