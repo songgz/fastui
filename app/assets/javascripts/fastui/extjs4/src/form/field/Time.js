@@ -292,7 +292,7 @@ Ext.define('Ext.form.field.Time', {
     },
 
     formatDate: function() {
-        return Ext.form.field.Date.prototype.formatDate.apply(this, arguments);
+        return Ext.vform.field.Date.prototype.formatDate.apply(this, arguments);
     },
 
     /**

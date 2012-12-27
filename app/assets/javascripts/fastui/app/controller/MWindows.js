@@ -35,7 +35,7 @@ Ext.define('FastUI.controller.MWindows', {
     editMWindow: function (grid, record) {
 //        console.log('Double clicked on ' + record.get('name'));
         var view = Ext.widget('mwindowedit');
-        view.down('form').loadRecord(record);
+        view.down('vform').loadRecord(record);
     },
     removeMWindow: function (user) {
 //        Ext.Msg.confirm('Remove User', 'Are you sure?', function (button) {

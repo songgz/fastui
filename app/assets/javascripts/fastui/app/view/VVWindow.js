@@ -16,7 +16,7 @@ Ext.define('FastUI.view.VVWindow', {
     },
 
     initComponent:function () {
-        this.ctx = FastUI.Env.getCtx();
+        this.winCtx = FastUI.Env.getCtx();
         this.title = this.getValue('title');
 
         this.callParent();
@@ -36,9 +36,9 @@ Ext.define('FastUI.view.VVWindow', {
         Ext.each(vwindow.getTabValues(), function (mtab) {
             var vTab = Ext.create('FastUI.view.VTab', {
                 valueObject: mtab,
-                windowNo:vwindow.id,
-                ctx: vwindow.ctx,
-                vfactory:Ext.create('FastUI.view.VFactory', mtab)
+                winId:vwindow.id,
+                winCtx: vwindow.winCtx //,
+                //vfactory:Ext.create('FastUI.view.VFactory', mtab)
             });
             vwindow.add(vTab);
         });

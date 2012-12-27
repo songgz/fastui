@@ -225,7 +225,7 @@ Ext.define('Ext.form.field.Trigger', {
                 style: 'position: absolute;', 
                 cls: Ext.baseCSSPrefix + 'form-trigger'
             });
-            Ext.form.field.Trigger.prototype.triggerWidth = tempEl.getWidth();
+            Ext.vform.field.Trigger.prototype.triggerWidth = tempEl.getWidth();
             tempEl.remove();
         }
 
@@ -417,7 +417,7 @@ Ext.define('Ext.form.field.Trigger', {
         if (me.monitorTab && me.inputEl) {
             me.un('specialkey', me.checkTab, me);
         }
-        Ext.form.field.Trigger.superclass.onBlur.call(me, e);
+        Ext.vform.field.Trigger.superclass.onBlur.call(me, e);
         if (me.bodyEl) {
             me.bodyEl.removeCls(me.wrapFocusCls);
         }

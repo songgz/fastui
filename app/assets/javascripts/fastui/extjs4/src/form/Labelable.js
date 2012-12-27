@@ -539,13 +539,13 @@ Ext.define("Ext.form.Labelable", {
             tempEl,
             topLabel = me.labelAlign === 'top';
 
-        if (!Ext.form.Labelable.errorIconWidth) {
-            Ext.form.Labelable.errorIconWidth = (tempEl = Ext.resetElement.createChild({style: 'position:absolute', cls: Ext.baseCSSPrefix + 'form-invalid-icon'})).getWidth();
+        if (!Ext.vform.Labelable.errorIconWidth) {
+            Ext.vform.Labelable.errorIconWidth = (tempEl = Ext.resetElement.createChild({style: 'position:absolute', cls: Ext.baseCSSPrefix + 'form-invalid-icon'})).getWidth();
             tempEl.remove();
         }
 
         data = Ext.copyTo({
-            inFormLayout   : me.ownerLayout && me.ownerLayout.type === 'form',
+            inFormLayout   : me.ownerLayout && me.ownerLayout.type === 'vform',
             inputId        : me.getInputId(),
             labelOnLeft    : !topLabel,
             hideLabel      : !me.hasVisibleLabel(),
@@ -557,7 +557,7 @@ Ext.define("Ext.form.Labelable", {
             bodyColspan    : me.getBodyColspan(),
             externalError  : !me.autoFitErrors,
             errorMsgCls    : me.getErrorMsgCls(),
-            errorIconWidth : Ext.form.Labelable.errorIconWidth
+            errorIconWidth : Ext.vform.Labelable.errorIconWidth
         },
         me, me.labelableRenderProps, true);
 

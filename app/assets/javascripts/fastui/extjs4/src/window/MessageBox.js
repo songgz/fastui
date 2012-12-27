@@ -240,11 +240,11 @@ Ext.define('Ext.window.MessageBox', {
                         type: 'anchor'
                     },
                     items: [
-                        me.msg = new Ext.form.field.Display({
+                        me.msg = new Ext.vform.field.Display({
                             id: baseId + '-displayfield',
                             cls: me.baseCls + '-text'
                         }),
-                        me.textField = new Ext.form.field.Text({
+                        me.textField = new Ext.vform.field.Text({
                             id: baseId + '-testfield',
                             anchor: '100%',
                             enableKeyEvents: true,
@@ -253,7 +253,7 @@ Ext.define('Ext.window.MessageBox', {
                                 scope: me
                             }
                         }),
-                        me.textArea = new Ext.form.field.TextArea({
+                        me.textArea = new Ext.vform.field.TextArea({
                             id: baseId + '-textarea',
                             anchor: '100%',
                             height: 75

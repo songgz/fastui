@@ -73,12 +73,12 @@ Ext.define('Ext.form.action.Submit', {
 
     // inherit docs
     run : function(){
-        var form = this.form;
+        var form = this.vform;
         if (this.clientValidation === false || form.isValid()) {
             this.doSubmit();
         } else {
             // client validation failed
-            this.failureType = Ext.form.action.Action.CLIENT_INVALID;
+            this.failureType = Ext.vform.action.Action.CLIENT_INVALID;
             form.afterAction(this, false);
         }
     },
@@ -97,7 +97,7 @@ Ext.define('Ext.form.action.Submit', {
 
         // For uploads we need to create an actual form that contains the file upload fields,
         // and pass that to the ajax call so it can do its iframe-based submit method.
-        if (this.form.hasUpload()) {
+        if (this.vform.hasUpload()) {
             formEl = ajaxOptions.form = this.buildForm();
             ajaxOptions.isUpload = true;
         } else {
@@ -118,7 +118,7 @@ Ext.define('Ext.form.action.Submit', {
     getParams: function() {
         var nope = false,
             configParams = this.callParent(),
-            fieldParams = this.form.getValues(nope, nope, this.submitEmptyText !== nope);
+            fieldParams = this.vform.getValues(nope, nope, this.submitEmptyText !== nope);
         return Ext.apply({}, fieldParams, configParams);
     },
 
@@ -136,7 +136,7 @@ Ext.define('Ext.form.action.Submit', {
         var fieldsSpec = [],
             formSpec,
             formEl,
-            basicForm = this.form,
+            basicForm = this.vform,
             params = this.getParams(),
             uploadFields = [],
             fields = basicForm.getFields().items,
@@ -178,7 +178,7 @@ Ext.define('Ext.form.action.Submit', {
         }
 
         formSpec = {
-            tag: 'form',
+            tag: 'vform',
             action: this.getUrl(),
             method: this.getMethod(),
             target: this.target || '_self',
@@ -215,14 +215,14 @@ Ext.define('Ext.form.action.Submit', {
      * @private
      */
     onSuccess: function(response) {
-        var form = this.form,
+        var form = this.vform,
             success = true,
             result = this.processResponse(response);
         if (result !== true && !result.success) {
             if (result.errors) {
                 form.markInvalid(result.errors);
             }
-            this.failureType = Ext.form.action.Action.SERVER_INVALID;
+            this.failureType = Ext.vform.action.Action.SERVER_INVALID;
             success = false;
         }
         form.afterAction(this, success);
@@ -232,7 +232,7 @@ Ext.define('Ext.form.action.Submit', {
      * @private
      */
     handleResponse: function(response) {
-        var form = this.form,
+        var form = this.vform,
             errorReader = form.errorReader,
             rs, errors, i, len, records;
         if (errorReader) {

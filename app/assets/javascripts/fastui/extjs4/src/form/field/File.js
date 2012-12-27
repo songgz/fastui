@@ -215,7 +215,7 @@ Ext.define("Ext.form.field.File", {
      */
     onFileChange: function() {
         this.lastValue = null; // force change event to get fired even if the user selects a file with the same name
-        Ext.form.field.File.superclass.setValue.call(this, this.fileInputEl.dom.value);
+        Ext.vform.field.File.superclass.setValue.call(this, this.fileInputEl.dom.value);
     },
 
     /**

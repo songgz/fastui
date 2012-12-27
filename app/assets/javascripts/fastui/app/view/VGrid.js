@@ -1,6 +1,8 @@
 Ext.define('FastUI.view.VGrid', {
     extend:'Ext.grid.Panel',
+    requires: ['FastUI.store.MListMgr'],
     valueObject:{},
+    rest: {},
     selType:'rowmodel',
     multiSelect:false,
     //plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
@@ -16,32 +18,26 @@ Ext.define('FastUI.view.VGrid', {
 ////            alert(Ext.encode(record.getData()));
 //        },scope:this
 //    },
+
+    selectedId:function(){
+        var id = 0;
+        var records = this.getSelectionModel().getSelection();
+        if (!Ext.isEmpty(records)) {
+            id = records[0].get('id');
+        }
+        return id;
+    },
     getValue:function (key) {
         return this.valueObject[key];
     },
-    getParams:function () {
-        var p = {};
-        if (!Ext.isEmpty(this.getValue('included_tab_id'))) {
-            var tab = Ext.getCmp('tab-' + this.getValue('included_tab_id'));
-            if (tab && tab.grid) {
-                var records = tab.grid.getSelectionModel().getSelection();
-                var id = 0;
-                if (!Ext.isEmpty(records)) {
-                    id = records[0].get('id');
-                }
-                p[tab.getMEntity().name.demodulize().underscore() + '_id'] = id;
-            }
-        }
-        return p;
-    },
+
     getGStore:function () {
         return new Ext.data.JsonStore({
-            //autoLoad:true,
+            autoLoad:true,
             pageSize:50,
             proxy:{
-                type:'rest',
-                format: 'json',
-                url:this.getMEntity().name.underscore().pluralize(),
+                type:'ajax',
+                url:this.rest.indexPath(),
                 reader:{
                     type:'json',
                     root:'',
@@ -50,10 +46,10 @@ Ext.define('FastUI.view.VGrid', {
             },
             fields:this.getGFields(),
             listeners:{
-                beforeload:function (store, operation, eOpts) {
-                    store.getProxy().extraParams = this.getParams();
-                },
-                scope:this
+//                beforeload:function (store, operation, eOpts) {
+//                    store.getProxy().extraParams = this.getParams();
+//                },
+//                scope:this
             }
         });
     },

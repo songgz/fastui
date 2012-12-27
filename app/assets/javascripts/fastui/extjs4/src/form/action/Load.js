@@ -93,9 +93,9 @@ Ext.define('Ext.form.action.Load', {
      */
     onSuccess: function(response){
         var result = this.processResponse(response),
-            form = this.form;
+            form = this.vform;
         if (result === true || !result.success || !result.data) {
-            this.failureType = Ext.form.action.Action.LOAD_FAILURE;
+            this.failureType = Ext.vform.action.Action.LOAD_FAILURE;
             form.afterAction(this, false);
             return;
         }
@@ -108,7 +108,7 @@ Ext.define('Ext.form.action.Load', {
      * @private
      */
     handleResponse: function(response) {
-        var reader = this.form.reader,
+        var reader = this.vform.reader,
             rs, data;
         if (reader) {
             rs = reader.read(response);

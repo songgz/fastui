@@ -467,7 +467,7 @@ Ext.define('Ext.form.field.Checkbox', {
 
     // inherit docs
     getManager: function() {
-        return Ext.form.CheckboxManager;
+        return Ext.vform.CheckboxManager;
     },
 
     onEnable: function() {

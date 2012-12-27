@@ -309,7 +309,7 @@ Ext.define('Ext.form.field.Text', {
         if(me.selectOnFocus || me.emptyText){
             me.mon(el, 'mousedown', me.onMouseDown, me);
         }
-        if(me.maskRe || (me.vtype && me.disableKeyFilter !== true && (me.maskRe = Ext.form.field.VTypes[me.vtype+'Mask']))){
+        if(me.maskRe || (me.vtype && me.disableKeyFilter !== true && (me.maskRe = Ext.vform.field.VTypes[me.vtype+'Mask']))){
             me.mon(el, 'keypress', me.filterKeys, me);
         }
 
@@ -650,7 +650,7 @@ Ext.define('Ext.form.field.Text', {
             emptyText = me.emptyText,
             allowBlank = me.allowBlank,
             vtype = me.vtype,
-            vtypes = Ext.form.field.VTypes,
+            vtypes = Ext.vform.field.VTypes,
             regex = me.regex,
             format = Ext.String.format,
             msg;

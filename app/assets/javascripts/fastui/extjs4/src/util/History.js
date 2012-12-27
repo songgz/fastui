@@ -188,7 +188,7 @@ Ext.define('Ext.util.History', {
         if (!me.hiddenField) {
             me.hiddenField = Ext.getBody().createChild({
                 id: Ext.id(),
-                tag: 'form',
+                tag: 'vform',
                 cls: Ext.baseCSSPrefix + 'hide-display',
                 children: [{
                     tag: 'input',

@@ -188,7 +188,7 @@ Ext.define('Ext.form.field.Spinner', {
 
     getSubTplMarkup: function() {
         var me = this,
-            field = Ext.form.field.Base.prototype.getSubTplMarkup.apply(me, arguments);
+            field = Ext.vform.field.Base.prototype.getSubTplMarkup.apply(me, arguments);
 
         return '<table id="' + me.id + '-triggerWrap" class="' + Ext.baseCSSPrefix + 'form-trigger-wrap" cellpadding="0" cellspacing="0">' +
             '<tbody>' +

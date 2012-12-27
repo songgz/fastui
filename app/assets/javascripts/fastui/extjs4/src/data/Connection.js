@@ -468,7 +468,7 @@ Ext.define('Ext.data.Connection', {
      * @return {HTMLElement} The form, null if not passed
      */
     getForm: function(options) {
-        return Ext.getDom(options.form) || null;
+        return Ext.getDom(options.vform) || null;
     },
 
     /**

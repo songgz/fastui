@@ -79,7 +79,7 @@ Ext.define('Ext.form.action.DirectLoad', {
 
     run: function() {
         var me = this,
-            form = me.form,
+            form = me.vform,
             fn = form.api.load,
             method = fn.directCfg.method,
             args = method.getArgs(me.getParams(), form.paramOrder, form.paramsAsHash);

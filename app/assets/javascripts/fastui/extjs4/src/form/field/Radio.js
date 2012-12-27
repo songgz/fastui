@@ -274,6 +274,6 @@ Ext.define('Ext.form.field.Radio', {
 
     // inherit docs
     getManager: function() {
-        return Ext.form.RadioManager;
+        return Ext.vform.RadioManager;
     }
 });

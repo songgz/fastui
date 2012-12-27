@@ -196,10 +196,10 @@ Ext.define('Ext.grid.property.Grid', {
 
         // Set up our default editor set for the 4 atomic data types
         me.editors = {
-            'date'    : new Ext.grid.CellEditor({ field: new Ext.form.field.Date({selectOnFocus: true})}),
-            'string'  : new Ext.grid.CellEditor({ field: new Ext.form.field.Text({selectOnFocus: true})}),
-            'number'  : new Ext.grid.CellEditor({ field: new Ext.form.field.Number({selectOnFocus: true})}),
-            'boolean' : new Ext.grid.CellEditor({ field: new Ext.form.field.ComboBox({
+            'date'    : new Ext.grid.CellEditor({ field: new Ext.vform.field.Date({selectOnFocus: true})}),
+            'string'  : new Ext.grid.CellEditor({ field: new Ext.vform.field.Text({selectOnFocus: true})}),
+            'number'  : new Ext.grid.CellEditor({ field: new Ext.vform.field.Number({selectOnFocus: true})}),
+            'boolean' : new Ext.grid.CellEditor({ field: new Ext.vform.field.ComboBox({
                 editable: false,
                 store: [[ true, me.headerCt.trueText ], [false, me.headerCt.falseText ]]
             })})
@@ -255,7 +255,7 @@ Ext.define('Ext.grid.property.Grid', {
         // If it's not even a Field, just a config object, instantiate it before wrapping it.
         if (editor) {
             if (!(editor instanceof Ext.grid.CellEditor)) {
-                if (!(editor instanceof Ext.form.field.Base)) {
+                if (!(editor instanceof Ext.vform.field.Base)) {
                     editor = Ext.ComponentManager.create(editor, 'textfield');
                 }
                 editor = me.customEditors[propName] = new Ext.grid.CellEditor({ field: editor });

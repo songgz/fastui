@@ -64,8 +64,8 @@ THE SOFTWARE.
     String.titleize() == String
       renders words into title casing (as for book titles)
 
-    String.demodulize() == String
-      renders class names that are prepended by modules into just the class
+   String.demodulize() == String
+ renders class names that are prepended by modules into just the class
 
     String.tableize() == String
       renders camel cased singular words into their underscored plural form

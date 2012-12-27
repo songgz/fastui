@@ -200,8 +200,8 @@ Ext.define('Ext.form.action.Action', {
      */
     onFailure : function(response){
         this.response = response;
-        this.failureType = Ext.form.action.Action.CONNECT_FAILURE;
-        this.form.afterAction(this, false);
+        this.failureType = Ext.vform.action.Action.CONNECT_FAILURE;
+        this.vform.afterAction(this, false);
     },
 
     /**
@@ -226,7 +226,7 @@ Ext.define('Ext.form.action.Action', {
      * @return {String} The URL.
      */
     getUrl: function() {
-        return this.url || this.form.url;
+        return this.url || this.vform.url;
     },
 
     /**
@@ -235,7 +235,7 @@ Ext.define('Ext.form.action.Action', {
      * @return {String} The HTTP method
      */
     getMethod: function() {
-        return (this.method || this.form.method || 'POST').toUpperCase();
+        return (this.method || this.vform.method || 'POST').toUpperCase();
     },
 
     /**
@@ -245,7 +245,7 @@ Ext.define('Ext.form.action.Action', {
      * @return {Object} the full set of parameters
      */
     getParams: function() {
-        return Ext.apply({}, this.params, this.form.baseParams);
+        return Ext.apply({}, this.params, this.vform.baseParams);
     },
 
     /**
@@ -255,7 +255,7 @@ Ext.define('Ext.form.action.Action', {
     createCallback: function() {
         var me = this,
             undef,
-            form = me.form;
+            form = me.vform;
         return {
             success: me.onSuccess,
             failure: me.onFailure,

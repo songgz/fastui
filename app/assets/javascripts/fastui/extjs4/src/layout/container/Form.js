@@ -57,7 +57,7 @@ Ext.define('Ext.layout.container.Form', {
    
     tableCls: Ext.baseCSSPrefix + 'form-layout-table',
 
-    type: 'form',
+    type: 'vform',
 
     manageOverflow: 2,
 

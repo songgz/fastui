@@ -146,7 +146,7 @@ Ext.define('Ext.form.Panel', {
      */
     layout: 'anchor',
 
-    ariaRole: 'form',
+    ariaRole: 'vform',
     
     basicFormConfigs: [
         'api', 
@@ -174,7 +174,7 @@ Ext.define('Ext.form.Panel', {
         me.initFieldAncestor();
         me.callParent();
 
-        me.relayEvents(me.form, [
+        me.relayEvents(me.vform, [
             /**
              * @event beforeaction
              * @inheritdoc Ext.form.Basic#beforeaction
@@ -212,14 +212,14 @@ Ext.define('Ext.form.Panel', {
         // Create the BasicForm
         var me = this;
 
-        me.form = me.createForm();
+        me.vform = me.createForm();
         me.callParent();
     },
 
     // Initialize the BasicForm after all layouts have been completed.
     afterFirstLayout: function() {
         this.callParent();
-        this.form.initialize();
+        this.vform.initialize();
     },
 
     /**
@@ -236,7 +236,7 @@ Ext.define('Ext.form.Panel', {
             prop = props[i];
             cfg[prop] = this[prop];
         }
-        return new Ext.form.Basic(this, cfg);
+        return new Ext.vform.Basic(this, cfg);
     },
 
     /**
@@ -244,7 +244,7 @@ Ext.define('Ext.form.Panel', {
      * @return {Ext.form.Basic} The {@link Ext.form.Basic Form} which this Panel contains.
      */
     getForm: function() {
-        return this.form;
+        return this.vform;
     },
 
     /**
@@ -277,7 +277,7 @@ Ext.define('Ext.form.Panel', {
 
     beforeDestroy: function() {
         this.stopPolling();
-        this.form.destroy();
+        this.vform.destroy();
         this.callParent();
     },
 
@@ -287,7 +287,7 @@ Ext.define('Ext.form.Panel', {
      * {@link Ext.form.Basic#doAction} for details)
      */
     load: function(options) {
-        this.form.load(options);
+        this.vform.load(options);
     },
 
     /**
@@ -296,7 +296,7 @@ Ext.define('Ext.form.Panel', {
      * {@link Ext.form.Basic#doAction} for details)
      */
     submit: function(options) {
-        this.form.submit(options);
+        this.vform.submit(options);
     },
 
     /**
@@ -331,7 +331,7 @@ Ext.define('Ext.form.Panel', {
      * {@link Ext.form.field.Field#checkChange check if its value has changed}.
      */
     checkChange: function() {
-        var fields = this.form.getFields().items,
+        var fields = this.vform.getFields().items,
             f,
             fLen   = fields.length,
             field;

@@ -435,7 +435,7 @@ Ext.define('Ext.form.CheckboxGroup', {
 
 }, function() {
 
-    this.borrow(Ext.form.field.Base, ['markInvalid', 'clearInvalid']);
+    this.borrow(Ext.vform.field.Base, ['markInvalid', 'clearInvalid']);
 
 });
 

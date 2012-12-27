@@ -98,7 +98,7 @@ Ext.define('Ext.form.action.DirectSubmit', {
         var me = this,
             callback = Ext.Function.bind(me.onComplete, me),
             formEl = me.buildForm();
-        me.form.api.submit(formEl, callback, me);
+        me.vform.api.submit(formEl, callback, me);
         Ext.removeNode(formEl);
     },
 

@@ -110,7 +110,7 @@ Ext.define('Ext.form.RadioGroup', {
                     cbValue = value[name];
                     first = this.items.first();
                     formId = first ? first.getFormId() : null;
-                    radios = Ext.form.RadioManager.getWithValue(name, cbValue, formId).items;
+                    radios = Ext.vform.RadioManager.getWithValue(name, cbValue, formId).items;
                     len = radios.length;
 
                     for (i = 0; i < len; ++i) {

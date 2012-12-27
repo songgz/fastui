@@ -414,7 +414,7 @@ TestAction.multiply(
         var me = this,
             enableBuffer = me.enableBuffer;
         
-        if (transaction.form) {
+        if (transaction.vform) {
             me.sendFormRequest(transaction);
             return;
         }
@@ -501,7 +501,7 @@ TestAction.multiply(
             params: transaction.params,
             callback: this.onData,
             scope: this,
-            form: transaction.form,
+            form: transaction.vform,
             isUpload: transaction.isUpload,
             transaction: transaction
         });
