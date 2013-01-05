@@ -1,6 +1,6 @@
 module Fastui
   class MDatatype < MObject
-    attr_accessible  :m_entity,:m_entity_id,:access_level
+    attr_accessible  :m_entity,:m_entity_id,:access_level,:filter
 
     belongs_to :m_entity,:class_name => 'Fastui::MEntity'
 
