@@ -19,63 +19,50 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             VLookup:'Fastui::MRelation'
         },
 
-    buildField:function (field,entity,winCtx,winId) {
-        var opt = {
-            fieldLabel:field.title,
-            name: (entity && entity.name ? entity.name.demodulize().underscore() : '') + '[' + field.m_property.name + ']',
-            disabled:(field.read && field.read.name == 'true'),
-            allowBlank:true
-        };
+    buildField:function (field,winCtx,winId,rest) {
         var dt = field.m_property.m_datatype;
         switch (dt.class_name) {
             case this.VType.VText:
-                return Ext.create('FastUI.view.vfield.VText', opt);
+                return Ext.create('FastUI.view.vfield.VText', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VDate:
-                return Ext.create('FastUI.view.vfield.VDate', opt);
+                return Ext.create('FastUI.view.vfield.VDate', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VHtmlEditor:
-                return Ext.create('FastUI.view.vfield.VHtmlEditor', opt);
+                return Ext.create('FastUI.view.vfield.VHtmlEditor', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VComboBox:
-                return Ext.create('FastUI.view.vfield.VComboBox', opt);
+                return Ext.create('FastUI.view.vfield.VComboBox', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VLongComboBox:
-                return Ext.create('FastUI.view.vfield.VLongComboBox', opt);
+                return Ext.create('FastUI.view.vfield.VLongComboBox', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VTextArea:
-                return Ext.create('FastUI.view.vfield.VTextArea', opt);
+                return Ext.create('FastUI.view.vfield.VTextArea', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VNumber:
-                return Ext.create('FastUI.view.vfield.VNumber', opt);
+                return Ext.create('FastUI.view.vfield.VNumber', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VCheckBox:
-                return Ext.create('FastUI.view.vfield.VCheckBox', opt);
+                return Ext.create('FastUI.view.vfield.VCheckBox', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VCheckboxGroup:
-                return Ext.create('FastUI.view.vfield.VCheckboxGroup', opt);
+                return Ext.create('FastUI.view.vfield.VCheckboxGroup', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VSexSelect:
-                return Ext.create('FastUI.view.vfield.VSexSelect', opt);
+                return Ext.create('FastUI.view.vfield.VSexSelect', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VFile:
-                return Ext.create('FastUI.view.vfield.VFile', opt);
+                return Ext.create('FastUI.view.vfield.VFile', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VYesOrNo:
-                return Ext.create('FastUI.view.vfield.VYesOrNo', opt);
+                return Ext.create('FastUI.view.vfield.VYesOrNo', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VList:
-                opt['list_id'] = dt.id;
-                return Ext.create('FastUI.view.vfield.VComboBox', opt);
+                return Ext.create('FastUI.view.vfield.VComboBox', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
             case this.VType.VLookup:
-                opt['entity'] = dt.m_entity;
-//                opt['m_window_id'] = field.m_window_id;
-//                opt['m_entity_id'] = field.m_entity_id;
-                opt['valueObject'] =dt;
-                opt['winCtx'] = winCtx;
-                opt['winId'] = winId;
-                return Ext.create('FastUI.view.vfield.VLookUpWindow', opt);
+                return Ext.create('FastUI.view.vfield.VLookUpWindow', {valueObject:field,winCtx:winCtx,winId:winId,rest:rest});
                 break;
         }
     }

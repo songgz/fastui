@@ -7,7 +7,7 @@ Ext.define('FastUI.view.VSearchWindow', {
     vlookup:{},
 
     initComponent:function () {
-        this.rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
+
         this.title = this.getValue('title');
         this.items = {
             xtype: 'grid',
@@ -33,11 +33,12 @@ Ext.define('FastUI.view.VSearchWindow', {
         this.callParent();
     },
     getValue:function (key) {
-        return this.vlookup.valueObject[key];
+        return this.vlookup.valueObject.m_property.m_datatype[key];
     },
-    getMEntity:function () {
-        return this.vlookup.valueObject.m_entity;
+    getMEntity:function(){
+        return this.vlookup.valueObject.m_property.m_datatype.m_entity;
     },
+
 //    getDataType:function(){
 //        return this.this.vlookup.valueObject.class_name
 //    },
@@ -77,6 +78,7 @@ Ext.define('FastUI.view.VSearchWindow', {
         return Ext.decode(s);
     },
     getStore:function () {
+        var rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
         return new Ext.data.JsonStore({
             autoLoad:{start:0, limit:2},
             pageSize:2, // items per page
@@ -84,7 +86,7 @@ Ext.define('FastUI.view.VSearchWindow', {
             proxy:{
                 type:'ajax',
                 extraParams:this.getParams(),
-                url:this.rest.indexPath(), //+ '?' + this.getParams(),
+                url:rest.indexPath(), //+ '?' + this.getParams(),
                 reader:{
                     type:'json',
                     root:'rows',
