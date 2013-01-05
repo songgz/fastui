@@ -8,7 +8,7 @@ class CreateFastuiMDatatypes < ActiveRecord::Migration
       t.string :print_text,:default => '',:limit => 60
       t.string :note, :default => ''
       t.string :name, :default => '', :limit => 60          #系统编码
-
+      t.string :filter, :default => ''
       #t.string :entity_class,:default => '' #relation 中包含实体的类名
       t.string :access_level , :default => ''        #:system,:org,:dept
       t.string :entity_kind, :default => ''                  #:sys,:app
