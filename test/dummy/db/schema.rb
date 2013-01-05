@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.string   "print_text",   :limit => 60, :default => ""
     t.string   "note",                       :default => ""
     t.string   "name",         :limit => 60, :default => ""
+    t.string   "filter",                     :default => ""
     t.string   "access_level",               :default => ""
     t.string   "entity_kind",                :default => ""
     t.integer  "seq",                        :default => 0
