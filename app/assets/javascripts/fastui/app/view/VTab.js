@@ -57,7 +57,7 @@ Ext.define('FastUI.view.VTab', {
         var p = {};
         var tab = Ext.getCmp('tab-' + this.getValue('included_tab_id'));
         if (tab) {
-            //p[tab.rest.getKey()] = this.getSelectedId();
+            //p[tab.rest.getKey()] = tab.getSelectedId();
             p[tab.rest.getKey()] = this.winCtx.getWinCtx(this.winId,tab.rest.getKey());
         }
         return p;
