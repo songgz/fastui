@@ -409,7 +409,7 @@ namespace :fastui do
                                        {name: 'note', title: '备注', m_datatype: v_textarea},
                                        {name: 'name', title: '标识', m_datatype: v_text},
                                        {name: 'm_entity_id', title: '所属实体', m_datatype: m_relation_entity},
-                                       {name: 'filter', title: '筛选条件', m_datatype: v_text},
+                                       {name: 'filter', title: '筛选条件', m_datatype: v_textarea},
                                        {name: 'access_level', title: '访问级别', m_datatype: access_level},
                                        {name: 'entity_kind', title: '实体种类', m_datatype: entity_kind},
                                        {name: 'seq', title: '排序', m_datatype: v_number},
