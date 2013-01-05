@@ -28,7 +28,7 @@ Ext.define('FastUI.Env', {
         var me = this;
         return value.replace(patten, function(m){
             var p = patten.exec(m);
-            if(b){
+            if(p){
                 return me.getWinCtx(WindowNo,p[1]);
             }
             return m;

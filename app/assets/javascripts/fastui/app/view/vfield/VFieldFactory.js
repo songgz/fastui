@@ -19,7 +19,7 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             VLookup:'Fastui::MRelation'
         },
 
-    buildField:function (field,entity) {
+    buildField:function (field,entity,winCtx,winId) {
         var opt = {
             fieldLabel:field.title,
             name: (entity && entity.name ? entity.name.demodulize().underscore() : '') + '[' + field.m_property.name + ']',
@@ -72,6 +72,9 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
                 opt['entity'] = dt.m_entity;
 //                opt['m_window_id'] = field.m_window_id;
 //                opt['m_entity_id'] = field.m_entity_id;
+                opt['valueObject'] =dt;
+                opt['winCtx'] = winCtx;
+                opt['winId'] = winId;
                 return Ext.create('FastUI.view.vfield.VLookUpWindow', opt);
                 break;
         }

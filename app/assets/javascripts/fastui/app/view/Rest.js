@@ -1,14 +1,17 @@
 Ext.define('FastUI.view.Rest', {
-    constructor:function (entity) {
-        this.entity = entity;
+    constructor:function (entity_class) {
+        this.entity_class = entity_class;
         this.ext = '.json';
-        this.path = this.entity.name.underscore().pluralize();
+        this.path = this.entity_class.underscore().pluralize();
     },
     getClassName:function(){
-        return this.entity.name.demodulize();
+        return this.entity_class.demodulize();
     },
     getTableName:function(){
         return this.getClassName().underscore();
+    },
+    getKey:function(){
+        return this.getTableName() + '_id';
     },
     newPath:function(){
         return this.path + "/new" + this.ext;

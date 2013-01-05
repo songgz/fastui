@@ -1,8 +1,10 @@
 Ext.define('FastUI.view.VGrid', {
     extend:'Ext.grid.Panel',
     requires: ['FastUI.store.MListMgr'],
+    winCtx: {},
+    winId: 0,
     valueObject:{},
-    rest: {},
+    rest:{},
     selType:'rowmodel',
     multiSelect:false,
     //plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
@@ -12,13 +14,11 @@ Ext.define('FastUI.view.VGrid', {
         this.store = this.getGStore();
         this.callParent();
     },
-//    listeners:{
-//        selectionchange:function (selectModel, selected, eOpts){
-////            var record = selected[0];
-////            alert(Ext.encode(record.getData()));
-//        },scope:this
-//    },
-
+    listeners:{
+        itemclick:function( view, record, item, index, e, eOpts ){
+            this.winCtx.setWinCtx(this.winId,this.rest.getKey(),record.get('id'));
+        }
+    },
     selectedId:function(){
         var id = 0;
         var records = this.getSelectionModel().getSelection();

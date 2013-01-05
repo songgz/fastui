@@ -1,6 +1,8 @@
 Ext.define('FastUI.view.VForm', {
     extend:'Ext.form.Panel',
     requires: ['FastUI.view.vfield.VFieldFactory'],
+    winId:0,
+    winCtx:{},
     valueObject: {},
     title:'Simple Form',
     bodyPadding:5,
@@ -38,7 +40,7 @@ Ext.define('FastUI.view.VForm', {
 //        }
         var fields = [];
         Ext.each(this.getValue('m_fields'), function (field) {
-            fields.push(FastUI.view.vfield.VFieldFactory.buildField(field,this.getMEntity()));
+            fields.push(FastUI.view.vfield.VFieldFactory.buildField(field,this.getMEntity(),this.winCtx, this.winId));
         }, this);
         return fields;
     }

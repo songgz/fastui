@@ -19,6 +19,17 @@ Ext.define('FastUI.Ctx', {
     },
     getTabCtx:function(winNo,tabNo,key){
         return this.get(winNo + '|' +  tabNo + '|' + key);
+    },
+    parseCtx:function(WinNo, value){
+        var patten = /\${([\s\S]*?)}/ig ;
+        var me = this;
+        return value.replace(patten, function(m){
+            var p = patten.exec(m);
+            if(p){
+                return me.getWinCtx(WinNo,p[1]);
+            }
+            return m;
+        });
     }
 
 });

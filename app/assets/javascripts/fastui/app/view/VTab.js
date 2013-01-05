@@ -1,18 +1,17 @@
 Ext.define('FastUI.view.VTab', {
     extend:'Ext.Panel',
     alias:'widget.vtab',
-    valueObject: {},
+    valueObject:{},
     winId:0,
     winCtx:{},
-    vfactory:null,
     layout:"card",
     initComponent:function () {
         this.id = 'tab-' + this.getValue('id');
         this.title = this.getValue('title');
-        this.rest = Ext.create('FastUI.view.Rest', this.getMEntity());
+        this.rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             items:[
-                {   text:'新建',
+                { text:'新建',
                     handler:function () {
                         this.cmdCreate();
                     },
@@ -43,10 +42,10 @@ Ext.define('FastUI.view.VTab', {
         //FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id',this.id);
         this.callParent();
     },
-    getValue:function(key){
+    getValue:function (key) {
         return this.valueObject[key];
     },
-    getMEntity:function(){
+    getMEntity:function () {
         return this.valueObject.m_entity;
     },
     listeners:{
@@ -56,53 +55,56 @@ Ext.define('FastUI.view.VTab', {
     },
     getParams:function () {
         var p = {};
-            var tab = Ext.getCmp('tab-' + this.getValue('included_tab_id'));
-            if(tab){
-            var grid = tab.getVGrid();
-            var id = grid.selectedId();
-            if (id > 0){
-                p[tab.rest.getTableName() + '_id'] = id;
-            }
-            }
+        var tab = Ext.getCmp('tab-' + this.getValue('included_tab_id'));
+        if (tab) {
+            //p[tab.rest.getKey()] = this.getSelectedId();
+            p[tab.rest.getKey()] = this.winCtx.getWinCtx(this.winId,tab.rest.getKey());
+        }
         return p;
     },
-    getVGrid:function(){
+    getVGrid:function () {
         if (!this.vgrid) {
-            this.vgrid = Ext.create('FastUI.view.VGrid', {winCtx:this.winCtx,winId:this.winId,valueObject:this.valueObject,rest:this.rest});
+            this.vgrid = Ext.create('FastUI.view.VGrid', {winCtx:this.winCtx, winId:this.winId, valueObject:this.valueObject, rest:this.rest});
             this.add(this.vgrid);
         }
         return this.vgrid;
+    },
+    getSelectedId:function(){
+        return this.getVGrid().selectedId();
     },
     cmdList:function () {
         var grid = this.getVGrid();
         //alert(typeof this.getValue('included_tab_id') );
 
 //        if (this.getValue('included_tab_id') > 0) {
-//            var store = grid.getStore();
-//            var params1 = store.getProxy().extraParams;
-//            var params2 = this.getParams();
-//            //if (params1 != params2){
-//                store.getProxy().extraParams = params2;
-//                store.reload();
-//            //}
+            var store = grid.getStore();
+            var params1 = store.getProxy().extraParams;
+            var params2 = this.getParams();
+
+
+            if (Ext.encode(params1) !== Ext.encode(params2)){
+                //alert(Ext.encode(params1) + Ext.encode(params2));
+                store.getProxy().extraParams = params2;
+                store.reload();
+            }
 //        }
-        var id = grid.selectedId();
-        var store = this.vgrid.getStore();
-        store.getProxy().extraParams = this.getParams();
-        store.reload({
-            callback:function (records, operation, success) {
-                if (id > 0) {
-                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
-                    this.vgrid.getView().select(rowIndex);
-                }
-            },
-            scope:this
-        });
-       this.getLayout().setActiveItem(this.vgrid.id);
+//        var id = grid.selectedId();
+//        var store = this.vgrid.getStore();
+//        store.getProxy().extraParams = this.getParams();
+//        store.reload({
+//            callback:function (records, operation, success) {
+//                if (id > 0) {
+//                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
+//                    this.vgrid.getView().select(rowIndex);
+//                }
+//            },
+//            scope:this
+//        });
+        this.getLayout().setActiveItem(this.vgrid.id);
     },
-    getForm:function(){
+    getForm:function () {
         if (!this.vform) {
-            this.vform = Ext.create('FastUI.view.VForm', {winCtx:this.winCtx,winId:this.winId,valueObject: this.valueObject});
+            this.vform = Ext.create('FastUI.view.VForm', {winCtx:this.winCtx, winId:this.winId, valueObject:this.valueObject});
             this.add(this.vform);
         }
         return this.vform.getForm();
@@ -115,14 +117,13 @@ Ext.define('FastUI.view.VTab', {
         this.getLayout().setActiveItem(this.vform.id);
     },
     cmdEdit:function () {
-        var record = this.vgrid.getSelectionModel().getSelection();
-        if (record) this.currentRecord = record[0];
+        var id = this.getVGrid().selectedId();
         var form = this.getForm();
-        form.url = this.rest.updatePath(this.currentRecord.get('id'));
+        form.url = this.rest.updatePath(id);
         form.method = 'PUT';
 
         Ext.Ajax.request({
-            url:this.rest.editPath(this.currentRecord.get('id')),
+            url:this.rest.editPath(id),
             success:function (response) {
                 var data = Ext.decode(response.responseText);
                 var k, o = {};
@@ -138,19 +139,17 @@ Ext.define('FastUI.view.VTab', {
                         o[this.rest.getTableName() + '[' + k + ']'] = data[k];
                     }
                 }
-
                 form.setValues(o);
             }, scope:this
         });
         this.getLayout().setActiveItem(this.vform.id);
     },
     cmdDelete:function () {
-        var record = this.vgrid.getSelectionModel().getSelection();
-        if (record) this.currentRecord = record[0];
+        var id = this.getVGrid().selectedId();
         Ext.MessageBox.confirm('提示', '确定要删除此记录吗?', function (btn) {
             if (btn == 'yes') {
                 Ext.Ajax.request({
-                    url:this.rest.deletePath(this.currentRecord.get('id')),
+                    url:this.rest.deletePath(id),
                     method:'DELETE',
                     success:function () {
                         this.cmdList();
@@ -166,12 +165,8 @@ Ext.define('FastUI.view.VTab', {
 
     },
     cmdHelp:function () {
-        var record = this.vgrid.getSelectionModel().getSelection();
-        if (record) {
-            this.currentRecord = record[0];
-            var helpWindow = Ext.create('FastUI.view.VHelpWindow', {html:this.currentRecord.get('help')});
-            helpWindow.show();
-        }
+        var helpWindow = Ext.create('FastUI.view.VHelpWindow', {html:this.getValue('help')});
+        helpWindow.show();
     },
     cmdSave:function () {
         if (this.vform) {

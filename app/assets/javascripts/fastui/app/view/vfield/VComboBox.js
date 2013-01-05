@@ -13,7 +13,7 @@ Ext.define('FastUI.view.vfield.VComboBox', {
 //        Ext.apply(Ext.data.Connection.prototype, {
 //            async: false
 //        });
-        this.store = FastUI.store.MListMgr.getStore(this.list_id).load();
+        this.store = FastUI.store.MListMgr.getStore(this.list_id);
         //---restore async property to the default value
 //        Ext.apply(Ext.data.Connection.prototype, {
 //            async: true
