@@ -3,6 +3,7 @@ Ext.define('FastUI.view.VVWindow', {
     alias:'widget.vvwindow',
     valueObject: {},
     //activeGroup:0,
+    closable: true,
 
     activeTab:0,
     plain:true,

@@ -7,16 +7,17 @@ require "fastui/version"
 Gem::Specification.new do |s|
   s.name        = "fastui"
   s.version     = Fastui::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Fastui."
-  s.description = "TODO: Description of Fastui."
+  s.authors     = ["sgzhe"]
+  s.email       = ["sgzhe@163.com"]
+  s.homepage    = ""
+  s.summary     = "Fastui generates a UI from model."
+  s.description = "Fastui generates a UI from model."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 3.2.8"
+  s.add_dependency "rails", "~> 3.2.9"
+  s.add_dependency "awesome_nested_set", "~> 2.1.5"
 
   s.add_development_dependency "mysql2"
 end
