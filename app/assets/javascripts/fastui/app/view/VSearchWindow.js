@@ -74,8 +74,6 @@ Ext.define('FastUI.view.VSearchWindow', {
     },
     getParams:function(){
 //        var s = "{m_window_id:${m_window_id}}";
-//        alert(this.getValue('title'));
-//        alert(this.getValue('filter'));
         var s = this.getValue('filter');
         if(s == '') return '';
         s = this.vlookup.winCtx.parseCtx(this.vlookup.winId,s);
