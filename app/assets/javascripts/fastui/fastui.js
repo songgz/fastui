@@ -1,7 +1,7 @@
 Ext.Loader.setConfig({
     enabled:true,
     paths:{
-        'Ext':'/assets/fastui/extjs4/src',
+        //'Ext':'/assets/fastui/extjs4/src',
         'Ext.ux':'/assets/fastui/extjs4/ux'
     }
 });
