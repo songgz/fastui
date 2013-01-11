@@ -3,7 +3,6 @@ PATH
   specs:
     fastui (0.0.1)
       awesome_nested_set (~> 2.1.5)
-      mysql2
       rails (~> 3.2.9)
 
 GEM
@@ -116,6 +115,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   fastui!
+  mysql2
   sass-rails (~> 3.2.3)
   therubyrhino
   uglifier (>= 1.0.3)
