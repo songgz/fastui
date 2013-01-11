@@ -16,6 +16,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'mysql2'
+
 # jquery-rails is used by the dummy application
 # gem "jquery-rails"
 
