@@ -14,3 +14,4 @@
 //= require ./app/inflection
 //= require ./fastui
 
+
