@@ -13,6 +13,7 @@ class CreateFastuiMColumns < ActiveRecord::Migration
       t.integer :seq, :default => 0
       t.boolean :is_active, :default => true
       t.integer :org_id, :default => 0
+      t.integer :createdbyorg_id, :default => 0
       t.integer :createdby_id, :default => 0
       t.integer :updatedby_id, :default => 0
       t.string :help, :default => ''
