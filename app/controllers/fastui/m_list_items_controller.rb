@@ -16,7 +16,7 @@ module Fastui
       #
       #@m_list_items = MListItem.where(conditions)
       @m_list_items = MListItem.where({:m_list_id => params[:m_list_id]}.delete_if {|k, v| v.blank? })
-      respond_with(@m_list_items.to_json(:include =>[:m_list,:org,:createdby,:updatedby]))
+      respond_with(@m_list_items.to_json(:include =>[:m_list,:createdbyorg,:createdby,:updatedby]))
     end
 
     def show
