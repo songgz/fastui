@@ -4,7 +4,7 @@ class CreateFastuiMRelationships < ActiveRecord::Migration
       t.references :m_person
       t.references :m_org
       t.references :m_role
-
+      t.string :type
 
       t.string :entity_kind, :default => '' #:sys,:app
       t.integer :seq, :default => 0
