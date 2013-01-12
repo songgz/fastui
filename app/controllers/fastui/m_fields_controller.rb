@@ -4,9 +4,9 @@ module Fastui
   class MFieldsController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_fields = MField.includes(:m_tab,:m_property,:org,:createdby,:updatedby).where({
+      @m_fields = MField.includes(:m_tab,:m_property,:createdbyorg,:createdby,:updatedby).where({
           :m_tab_id => params[:m_tab_id]}.delete_if {|k, v| v.blank? })
-      respond_with(@m_fields.to_json(:include => [:m_tab,:m_property,:org,:createdby,:updatedby]))
+      respond_with(@m_fields.to_json(:include => [:m_tab,:m_property,:createdbyorg,:createdby,:updatedby]))
     end
 
     def show
@@ -16,7 +16,7 @@ module Fastui
 
     def edit
       @m_field = MField.find(params[:id])
-      respond_with(@m_field.to_json(:include => [:m_tab,:m_property,:org,:createdby,:updatedby]))
+      respond_with(@m_field.to_json(:include => [:m_tab,:m_property,:createdbyorg,:createdby,:updatedby]))
     end
 
     def new

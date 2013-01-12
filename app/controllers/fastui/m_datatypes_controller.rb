@@ -5,7 +5,7 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_datatypes = MDatatype.all
-      respond_with(@m_datatypes.to_json(:include => [:m_entity,:org, :createdby, :updatedby]))
+      respond_with(@m_datatypes.to_json(:include => [:m_entity,:createdbyorg, :createdby, :updatedby]))
     end
 
     def show

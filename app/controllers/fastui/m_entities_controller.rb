@@ -6,7 +6,7 @@ module Fastui
 
     def index
       @m_entities = MEntity.all
-      respond_with(@m_entities.to_json(:include => [:m_properties,:org, :createdby, :updatedby]))
+      respond_with(@m_entities.to_json(:include => [:m_properties,:createdbyorg, :createdby, :updatedby]))
     end
 
     def show
@@ -16,7 +16,7 @@ module Fastui
 
     def edit
       @m_entity = MEntity.find(params[:id])
-      respond_with(@m_entity.to_json(:include => [:org, :createdby, :updatedby]))
+      respond_with(@m_entity.to_json(:include => [:createdbyorg, :createdby, :updatedby]))
     end
 
     def new

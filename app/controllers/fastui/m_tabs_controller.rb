@@ -8,7 +8,7 @@ module Fastui
     def index
       @m_tabs = MTab.where({:m_window_id => params[:m_window_id]}.delete_if {|k, v| v.blank?})
       respond_with(@m_tabs.to_json(:include => [:m_columns,:m_fields,:m_window,
-      :m_entity,:org,:createdby,:updatedby,:included_tab =>{:include => [:m_entity]}]))
+      :m_entity,:createdbyorg,:createdby,:updatedby,:included_tab =>{:include => [:m_entity]}]))
     end
 
     def show
@@ -18,7 +18,7 @@ module Fastui
 
     def edit
       @m_tab = MTab.find(params[:id])
-      respond_with(@m_tab.to_json(:include => [:m_entity,:included_tab,:org,:createdby,:updatedby,:m_window =>{:include => [:m_tabs]}]))
+      respond_with(@m_tab.to_json(:include => [:m_entity,:included_tab,:createdbyorg,:createdby,:updatedby,:m_window =>{:include => [:m_tabs]}]))
     end
 
     def new

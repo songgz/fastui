@@ -6,7 +6,7 @@ module Fastui
 
     def index
       @m_windows = MWindow.all
-      respond_with(@m_windows.to_json(:include => [:org, :createdby, :updatedby]))
+      respond_with(@m_windows.to_json(:include => [:createdbyorg, :createdby, :updatedby]))
     end
 
     def show
@@ -26,7 +26,7 @@ module Fastui
 
     def edit
       @m_window = MWindow.find(params[:id])
-      respond_with(@m_window.to_json(:include => [:org, :createdby, :updatedby]))
+      respond_with(@m_window.to_json(:include => [:createdbyorg, :createdby, :updatedby]))
     end
 
     def new

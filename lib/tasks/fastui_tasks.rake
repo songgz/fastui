@@ -5,7 +5,7 @@ namespace :fastui do
   task :system_data => :environment do
     org_system = Fastui::MOrg.create({name: 'system', title: '系统组织'})
     person1 = Fastui::MPerson.create({name: 'Administrator', title: '系统管理员'})
-    attr = {entity_kind: 'sys', seq: 1, is_active: true, org: org_system, createdby: person1, updatedby: person1}
+    attr = {entity_kind: 'sys', seq: 1, is_active: true, createdbyorg: org_system, createdby: person1, updatedby: person1}
     Fastui::Env.ctx.set('g_person_id', person1.id)
     Fastui::Env.ctx.set('g_person_id', org_system.id)
 

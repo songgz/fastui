@@ -8,7 +8,7 @@ module Fastui
       @m_menu_items = params[:id] == 'root' ? MMenuItem.roots : MMenuItem.where({
                                                                                     :parent_id => params[:id]
                                                                                 }.delete_if { |k, v| v.blank? })
-      respond_with(@m_menu_items.to_json(:include => [:m_window, :m_menu, :org, :createdby, :updatedby], :methods => [:leaf?, :child?]))
+      respond_with(@m_menu_items.to_json(:include => [:m_window, :m_menu, :createdbyorg, :createdby, :updatedby], :methods => [:leaf?, :child?]))
     end
 
     def show
@@ -18,7 +18,7 @@ module Fastui
 
     def edit
       @m_menu_item = MMenuItem.find(params[:id])
-      respond_with(@m_menu_item.to_json(:include => [:m_window, :m_menu, :org, :createdby, :updatedby]))
+      respond_with(@m_menu_item.to_json(:include => [:m_window, :m_menu, :createdbyorg, :createdby, :updatedby]))
     end
 
     def new

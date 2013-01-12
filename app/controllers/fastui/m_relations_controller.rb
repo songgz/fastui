@@ -5,7 +5,7 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_relations = MRelation.all
-      respond_with(@m_relations.to_json(:include => [:m_entity,:org, :createdby, :updatedby]))
+      respond_with(@m_relations.to_json(:include => [:m_entity,:createdbyorg, :createdby, :updatedby]))
     end
 
     def show
@@ -15,7 +15,7 @@ module Fastui
 
     def edit
       @m_relation = MRelation.find(params[:id])
-      respond_with(@m_relation.to_json(:include => [:m_entity,:org, :createdby, :updatedby]))
+      respond_with(@m_relation.to_json(:include => [:m_entity,:createdbyorg, :createdby, :updatedby]))
     end
 
     def new
