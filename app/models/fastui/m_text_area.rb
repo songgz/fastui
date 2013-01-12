@@ -1,5 +1,5 @@
 module Fastui
-  class MTextArea
+  class MTextArea < MDatatype
     # To change this template use File | Settings | File Templates.
 
   end

@@ -17,6 +17,7 @@ group :assets do
 end
 
 gem 'mysql2'
+gem 'puma'
 
 # jquery-rails is used by the dummy application
 # gem "jquery-rails"
