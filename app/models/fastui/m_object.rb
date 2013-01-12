@@ -3,9 +3,8 @@ module Fastui
     self.abstract_class = true
 
     attr_accessible :id, :name, :title, :print_text,:note, :entity_kind, :is_active, :seq, :help
-    attr_accessible :createdbyorg_id,:createdbyorg,:org_id,:org,:createdby_id,:createdby,:updatedby_id,:updatedby
+    attr_accessible :createdbyorg_id,:createdbyorg,:createdby_id,:createdby,:updatedby_id,:updatedby
 
-    belongs_to :org, :class_name => 'Fastui::MOrg'
     belongs_to :createdbyorg, :class_name => 'Fastui::MOrg'
     belongs_to :createdby, :class_name => 'Fastui::MPerson'
     belongs_to :updatedby, :class_name => 'Fastui::MPerson'

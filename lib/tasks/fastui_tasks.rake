@@ -57,7 +57,7 @@ namespace :fastui do
                               {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
                               {name: 'help', title: '帮助', m_datatype: v_textarea},
                               {name: 'note', title: '备注', m_datatype: v_textarea},
-                              {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                              {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                               {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                               {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}
                              ].map { |a| a.merge(attr) })
@@ -80,7 +80,7 @@ namespace :fastui do
                               {name: 'm_entity_id', title: '依赖实体', m_datatype: m_relation_entity},
                               {name: 'help', title: '帮助', m_datatype: v_textarea},
                               {name: 'note', title: '备注', m_datatype: v_textarea},
-                              {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                              {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                               {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                               {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
 
@@ -98,7 +98,7 @@ namespace :fastui do
                                     {name: 'm_tab_id', title: '依赖标签', m_datatype: m_relation_tab},
                                     {name: 'help', title: '帮助', m_datatype: v_textarea},
                                     {name: 'note', title: '备注', m_datatype: v_textarea},
-                                    {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                                    {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                     {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                     {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}
                                     ].map { |a| a.merge(attr) })
@@ -116,7 +116,7 @@ namespace :fastui do
                                      {name: 'm_tab_id', title: '依赖标签', m_datatype: m_relation_tab},
                                      {name: 'help', title: '帮助', m_datatype: v_textarea},
                                      {name: 'note', title: '备注', m_datatype: v_textarea},
-                                     {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                                     {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                      {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                      {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}
                                      ].map { |a| a.merge(attr) })
@@ -142,7 +142,7 @@ namespace :fastui do
                                {title: '实体种类', m_property: mwin.prop_by('entity_kind'), width: 75},
                                {title: '排序', m_property: mwin.prop_by('seq'), width: 75},
                                {title: '是否激活', m_property: mwin.prop_by('is_active'), width: 75},
-                               {title: '创建组织', m_property: mwin.prop_by('org_id'), width: 75},
+                               {title: '创建组织', m_property: mwin.prop_by('createdbyorg_id'), width: 75},
                                {title: '创建人', m_property: mwin.prop_by('updatedby_id'), width: 75},
                                {title: '更新人', m_property: mwin.prop_by('updatedby_id'), width: 75},
                                {title: '备注', m_property: mwin.prop_by('note'), width: 75}
@@ -174,7 +174,7 @@ namespace :fastui do
                              {title: '对应窗口', m_property: mtab.prop_by('m_window_id'), width: 75},
                              {title: '依赖标签', m_property: mtab.prop_by('included_tab_id'), width: 75},
                              {title: '所属实体', m_property: mtab.prop_by('m_entity_id'), width: 75},
-                             {title: '创建组织', m_property: mtab.prop_by('org_id'), width: 75},
+                             {title: '创建组织', m_property: mtab.prop_by('createdbyorg_id'), width: 75},
                              {title: '创建人', m_property: mtab.prop_by('createdby_id'), width: 75},
                              {title: '更新人', m_property: mtab.prop_by('updatedby_id'), width: 75},
                              {title: '备注', m_property: mtab.prop_by('note'), width: 75}
@@ -204,7 +204,7 @@ namespace :fastui do
                                  {title: '实体种类', m_property: mfield.prop_by('entity_kind'), width: 75},
                                  {title: '排序', m_property: mfield.prop_by('seq'), width: 75},
                                  {title: '是否激活', m_property: mfield.prop_by('is_active'), width: 75},
-                                 {title: '创建组织', m_property: mfield.prop_by('org_id'), width: 75},
+                                 {title: '创建组织', m_property: mfield.prop_by('createdbyorg_id'), width: 75},
                                  {title: '依赖标签', m_property: mfield.prop_by('m_tab_id'), width: 75},
                                  {title: '创建人', m_property: mfield.prop_by('createdby_id'), width: 75},
                                  {title: '更新人', m_property: mfield.prop_by('updatedby_id'), width: 75},
@@ -232,7 +232,7 @@ namespace :fastui do
                                   {title: '实体种类', m_property: mcolumn.prop_by('entity_kind'), width: 75},
                                   {title: '排序', m_property: mcolumn.prop_by('seq'), width: 75},
                                   {title: '是否激活', m_property: mcolumn.prop_by('is_active'), width: 75},
-                                  {title: '创建组织', m_property: mcolumn.prop_by('org_id'), width: 75},
+                                  {title: '创建组织', m_property: mcolumn.prop_by('createdbyorg_id'), width: 75},
                                   {title: '依赖标签', m_property: mcolumn.prop_by('m_tab_id'), width: 75},
                                   {title: '创建人', m_property: mcolumn.prop_by('createdby_id'), width: 75},
                                   {title: '更新人', m_property: mcolumn.prop_by('updatedby_id'), width: 75},
@@ -250,7 +250,7 @@ namespace :fastui do
                                  {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
                                  {name: 'help', title: '帮助', m_datatype: v_textarea},
                                  {name: 'note', title: '备注', m_datatype: v_textarea},
-                                 {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                                 {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                  {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                  {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
 
@@ -266,7 +266,7 @@ namespace :fastui do
                                    {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
                                    {name: 'help', title: '帮助', m_datatype: v_textarea},
                                    {name: 'note', title: '备注', m_datatype: v_textarea},
-                                   {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                                   {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                    {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                    {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
 
@@ -291,7 +291,7 @@ namespace :fastui do
                                {title: '实体种类', m_property: mentity.prop_by('entity_kind'), width: 75},
                                {title: '排序', m_property: mentity.prop_by('seq'), width: 75},
                                {title: '是否激活', m_property: mentity.prop_by('is_active'), width: 75},
-                               {title: '创建组织', m_property: mentity.prop_by('org_id'), width: 75},
+                               {title: '创建组织', m_property: mentity.prop_by('createdbyorg_id'), width: 75},
                                {title: '创建人', m_property: mentity.prop_by('createdby_id'), width: 75},
                                {title: '更新人', m_property: mentity.prop_by('updatedby_id'), width: 75},
                                {title: '备注', m_property: mentity.prop_by('note'), width: 75}].map { |a| a.merge(attr) })
@@ -320,7 +320,7 @@ namespace :fastui do
                                   {title: '所属实体', m_property: mproperty.prop_by('m_entity_id'), width: 75},
                                   {title: '排序', m_property: mproperty.prop_by('seq'), width: 75},
                                   {title: '是否激活', m_property: mproperty.prop_by('is_active'), width: 75},
-                                  {title: '创建组织', m_property: mproperty.prop_by('org_id'), width: 75},
+                                  {title: '创建组织', m_property: mproperty.prop_by('createdbyorg_id'), width: 75},
                                   {title: '创建人', m_property: mproperty.prop_by('createdby_id'), width: 75},
                                   {title: '更新人', m_property: mproperty.prop_by('updatedby_id'), width: 75},
                                   {title: '备注', m_property: mproperty.prop_by('note'), width: 75}].map { |a| a.merge(attr) })
@@ -339,7 +339,7 @@ namespace :fastui do
                                {name: 'seq', title: '排序', m_datatype: v_number},
                                {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
                                {name: 'help', title: '帮助', m_datatype: v_textarea},
-                               {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                               {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
     m_menu_item.m_properties.create([{name: 'id', title: 'ID', m_datatype: v_number},
@@ -352,7 +352,7 @@ namespace :fastui do
                                      {name: 'seq', title: '排序', m_datatype: v_number},
                                      {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
                                      {name: 'help', title: '帮助', m_datatype: v_textarea},
-                                     {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                                     {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                      {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                      {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
 
@@ -373,7 +373,7 @@ namespace :fastui do
                                 {title: '实体种类', m_property: mmenu.prop_by('entity_kind'), width: 75},
                                 {title: '排序', m_property: mmenu.prop_by('seq'), width: 75},
                                 {title: '是否激活', m_property: mmenu.prop_by('is_active'), width: 75},
-                                {title: '创建组织', m_property: mmenu.prop_by('org_id'), width: 75},
+                                {title: '创建组织', m_property: mmenu.prop_by('createdbyorg_id'), width: 75},
                                 {title: '创建人', m_property: mmenu.prop_by('createdby_id'), width: 75},
                                 {title: '更新人', m_property: mmenu.prop_by('updatedby_id'), width: 75}].map { |a| a.merge(attr) })
 
@@ -397,7 +397,7 @@ namespace :fastui do
                                    {title: '对应窗口', m_property: m_menu_item.prop_by('m_window_id'), width: 75},
                                    {title: '排序', m_property: m_menu_item.prop_by('seq'), width: 75},
                                    {title: '是否激活', m_property: m_menu_item.prop_by('is_active'), width: 75},
-                                   {title: '创建组织', m_property: m_menu_item.prop_by('org_id'), width: 75},
+                                   {title: '创建组织', m_property: m_menu_item.prop_by('createdbyorg_id'), width: 75},
                                    {title: '创建人', m_property: m_menu_item.prop_by('createdby_id'), width: 75},
                                    {title: '更新人', m_property: m_menu_item.prop_by('updatedby_id'), width: 75}].map { |a| a.merge(attr) })
       end
@@ -417,7 +417,7 @@ namespace :fastui do
                                        {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
                                        {name: 'help', title: '帮助', m_datatype: v_textarea},
                                        {name: 'note', title: '备注', m_datatype: v_textarea},
-                                       {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                                       {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                        {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                        {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
 
@@ -432,7 +432,7 @@ namespace :fastui do
                                 {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
                                 {name: 'help', title: '帮助', m_datatype: v_textarea},
                                 {name: 'note', title: '备注', m_datatype: v_textarea},
-                                {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                                {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                 {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                 {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
 
@@ -447,7 +447,7 @@ namespace :fastui do
                                      {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
                                      {name: 'help', title: '帮助', m_datatype: v_textarea},
                                      {name: 'note', title: '备注', m_datatype: v_textarea},
-                                     {name: 'org_id', title: '创建组织', m_datatype: m_relation_org},
+                                     {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                      {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                      {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
 
@@ -476,7 +476,7 @@ namespace :fastui do
                              {title: '实体种类', m_property: m_dt_relation.prop_by('entity_kind'), width: 75},
                              {title: '排序', m_property: m_dt_relation.prop_by('seq'), width: 75},
                              {title: '是否激活', m_property: m_dt_relation.prop_by('is_active'), width: 75},
-                             {title: '创建组织', m_property: m_dt_relation.prop_by('org_id'), width: 75},
+                             {title: '创建组织', m_property: m_dt_relation.prop_by('createdbyorg_id'), width: 75},
                              {title: '创建人', m_property: m_dt_relation.prop_by('createdby_id'), width: 75},
                              {title: '更新人', m_property: m_dt_relation.prop_by('updatedby_id'), width: 75},
                              {title: '备注', m_property: m_dt_relation.prop_by('note'), width: 75}].map { |a| a.merge(attr) })
@@ -498,7 +498,7 @@ namespace :fastui do
                               {title: '实体种类', m_property: m_list.prop_by('entity_kind'), width: 75},
                               {title: '排序', m_property: m_list.prop_by('seq'), width: 75},
                               {title: '是否激活', m_property: m_list.prop_by('is_active'), width: 75},
-                              {title: '创建组织', m_property: m_list.prop_by('org_id'), width: 75},
+                              {title: '创建组织', m_property: m_list.prop_by('createdbyorg_id'), width: 75},
                               {title: '创建人', m_property: m_list.prop_by('createdby_id'), width: 75},
                               {title: '更新人', m_property: m_list.prop_by('updatedby_id'), width: 75},
                               {title: '备注', m_property: m_list.prop_by('note'), width: 75}].map { |a| a.merge(attr) })
@@ -520,7 +520,7 @@ namespace :fastui do
                                      {title: '实体种类', m_property: m_list_item.prop_by('entity_kind'), width: 75},
                                      {title: '排序', m_property: m_list_item.prop_by('seq'), width: 75},
                                      {title: '是否激活', m_property: m_list_item.prop_by('is_active'), width: 75},
-                                     {title: '创建组织', m_property: m_list_item.prop_by('org_id'), width: 75},
+                                     {title: '创建组织', m_property: m_list_item.prop_by('createdbyorg_id'), width: 75},
                                      {title: '创建人', m_property: m_list_item.prop_by('createdby_id'), width: 75},
                                      {title: '更新人', m_property: m_list_item.prop_by('updatedby_id'), width: 75},
                                      {title: '备注', m_property: m_list_item.prop_by('note'), width: 75}].map { |a| a.merge(attr) })
