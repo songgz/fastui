@@ -4,9 +4,10 @@ class CreateFastuiMPeople < ActiveRecord::Migration
       t.string :title, :limit => 60, :null => false
       t.string :print_text,:default => '',:limit => 60
       t.string :name,:default => '',:limit => 60
+      t.integer :m_org_id, :default => 0
 
       t.boolean :is_active, :default => true
-      t.integer :org_id, :default => 0
+      t.integer :createdby_m_org_id, :default => 0
       t.integer :createdby_id, :default => 0
       t.integer :updatedby_id, :default => 0
 
