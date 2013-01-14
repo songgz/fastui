@@ -22,6 +22,7 @@ Ext.define('FastUI.view.VTab', {
                     handler:function () {
                         this.cmdCreate();
                         this.getBtn('save').enable();
+                        this.getBtn('edit').disable();
                     },
                     scope:this
                 },
@@ -33,6 +34,7 @@ Ext.define('FastUI.view.VTab', {
                     handler:function () {
                         this.cmdEdit();
                         this.getBtn('save').enable();
+                        this.getBtn('new').disable();
                     },
                     scope:this
                 },
@@ -43,6 +45,7 @@ Ext.define('FastUI.view.VTab', {
                     handler:function () {
                         this.cmdList();
                         this.getBtn('save').disable();
+                        this.getBtn('new').enable();
                     },
                     scope:this
                 },
@@ -132,8 +135,9 @@ Ext.define('FastUI.view.VTab', {
         store.reload({
             callback:function (records, operation, success) {
                 var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
-                if (rowIndex > 0) {
+                if (rowIndex > -1) {
                     this.vgrid.getView().select(rowIndex);
+                    this.getBtn('edit').enable();
                 }
             },
             scope:this
