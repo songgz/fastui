@@ -55,6 +55,7 @@ Ext.define('FastUI.view.VTab', {
                     text:'删除',
                     handler:function () {
                         this.cmdDelete();
+                        this.getBtn('edit').disable();
                     },
                     scope:this
                 },
@@ -120,8 +121,8 @@ Ext.define('FastUI.view.VTab', {
         store.getProxy().extraParams = this.getParams();
         store.reload({
             callback:function (records, operation, success) {
-                if (id > 0) {
-                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
+                var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
+                if (rowIndex > 0) {
                     this.vgrid.getView().select(rowIndex);
                 }
             },
