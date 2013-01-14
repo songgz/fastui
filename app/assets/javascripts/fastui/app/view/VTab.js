@@ -10,37 +10,69 @@ Ext.define('FastUI.view.VTab', {
         this.title = this.getValue('title');
         this.rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
+            id: this.id + 'tbar',
             items:[
-                { text:'新建',
+                {
+                    id: this.id + 'new',
+                    text:'新建',
                     handler:function () {
                         this.cmdCreate();
+                        this.getBtn('save').enable();
                     },
                     scope:this
                 },
-                { text:'编辑',
+                {
+                    id: this.id + 'edit',
+                    text:'编辑',
+                    disabled: true,
                     handler:function () {
                         this.cmdEdit();
-                    }, scope:this},
-                { text:'列表',
+                        this.getBtn('save').enable();
+                    },
+                    scope:this
+                },
+                {
+                    id: this.id + 'list',
+                    text:'列表',
                     handler:function () {
                         this.cmdList();
-                    }, scope:this},
-                { text:'保存',
+                        this.getBtn('save').disable();
+                    },
+                    scope:this
+                },
+                {
+                    id: this.id + 'save',
+                    text:'保存',
+                    disabled: true,
                     handler:function () {
                         this.cmdSave();
-                    }, scope:this},
-                { text:'删除',
+                        this.getBtn('save').disable();
+                    },
+                    scope:this
+                },
+                {
+                    id: this.id + 'del',
+                    text:'删除',
                     handler:function () {
                         this.cmdDelete();
-                    }, scope:this},
-                { text:'帮助',
+                    },
+                    scope:this
+                },
+                {
+                    id: this.id + 'help',
+                    text:'帮助',
                     handler:function () {
                         this.cmdHelp();
-                    }, scope:this}
+                    },
+                    scope:this
+                }
             ]
         });
         //FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id',this.id);
         this.callParent();
+    },
+    getBtn:function(name){
+        return this.getDockedComponent(this.id + 'tbar').items.get(this.id + name);
     },
     getValue:function (key) {
         return this.valueObject[key];
@@ -58,53 +90,48 @@ Ext.define('FastUI.view.VTab', {
         var tab = Ext.getCmp('tab-' + this.getValue('included_tab_id'));
         if (tab) {
             //p[tab.rest.getKey()] = tab.getSelectedId();
-            p[tab.rest.getKey()] = this.winCtx.getWinCtx(this.winId,tab.rest.getKey());
+            p[tab.rest.getKey()] = this.winCtx.getWinCtx(this.winId, tab.rest.getKey());
         }
         return p;
     },
     getVGrid:function () {
         if (!this.vgrid) {
-            this.vgrid = Ext.create('FastUI.view.VGrid', {winCtx:this.winCtx, winId:this.winId, valueObject:this.valueObject, rest:this.rest});
+            this.vgrid = Ext.create('FastUI.view.VGrid', {tab:this});
             this.add(this.vgrid);
         }
         return this.vgrid;
     },
-    getSelectedId:function(){
+    getSelectedId:function () {
         return this.getVGrid().selectedId();
     },
     cmdList:function () {
         var grid = this.getVGrid();
-        //alert(typeof this.getValue('included_tab_id') );
+        var store = grid.getStore();
 
-//        if (this.getValue('included_tab_id') > 0) {
-            var store = grid.getStore();
-            var params1 = store.getProxy().extraParams;
-            var params2 = this.getParams();
-
-
-            if (Ext.encode(params1) !== Ext.encode(params2)){
-                //alert(Ext.encode(params1) + Ext.encode(params2));
-                store.getProxy().extraParams = params2;
-                store.reload();
-            }
+//        var params1 = store.getProxy().extraParams;
+//        var params2 = this.getParams();
+//        if (Ext.encode(params1) !== Ext.encode(params2)) {
+//            //alert(Ext.encode(params1) + Ext.encode(params2));
+//            store.getProxy().extraParams = params2;
+//            store.reload();
 //        }
-//        var id = grid.selectedId();
-//        var store = this.vgrid.getStore();
-//        store.getProxy().extraParams = this.getParams();
-//        store.reload({
-//            callback:function (records, operation, success) {
-//                if (id > 0) {
-//                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
-//                    this.vgrid.getView().select(rowIndex);
-//                }
-//            },
-//            scope:this
-//        });
+
+        var id = grid.selectedId();
+        store.getProxy().extraParams = this.getParams();
+        store.reload({
+            callback:function (records, operation, success) {
+                if (id > 0) {
+                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
+                    this.vgrid.getView().select(rowIndex);
+                }
+            },
+            scope:this
+        });
         this.getLayout().setActiveItem(this.vgrid.id);
     },
     getForm:function () {
         if (!this.vform) {
-            this.vform = Ext.create('FastUI.view.VForm', {winCtx:this.winCtx, winId:this.winId, valueObject:this.valueObject,rest:this.rest});
+            this.vform = Ext.create('FastUI.view.VForm', {tab:this,winCtx:this.winCtx, winId:this.winId, valueObject:this.valueObject, rest:this.rest});
             this.add(this.vform);
         }
         return this.vform.getForm();

@@ -1,10 +1,8 @@
 Ext.define('FastUI.view.VGrid', {
     extend:'Ext.grid.Panel',
     requires: ['FastUI.store.MListMgr'],
-    winCtx: {},
-    winId: 0,
-    valueObject:{},
-    rest:{},
+    tab:{},
+
     selType:'rowmodel',
     multiSelect:false,
     //plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
@@ -16,11 +14,11 @@ Ext.define('FastUI.view.VGrid', {
     },
     listeners:{
         itemclick:function( view, record, item, index, e, eOpts ){
-            this.winCtx.setWinCtx(this.winId,this.rest.getKey(),record.get('id'));
+            this.tab.winCtx.setWinCtx(this.tab.winId,this.tab.rest.getKey(),record.get('id'));
             if (record.get('m_entity_id')){
-                this.winCtx.setWinCtx(this.winId,'m_entity_id',record.get('m_entity_id'));
+                this.tab.winCtx.setWinCtx(this.tab.winId,'m_entity_id',record.get('m_entity_id'));
             }
-
+            this.tab.getBtn('edit').enable();
         }
     },
     selectedId:function(){
@@ -32,7 +30,7 @@ Ext.define('FastUI.view.VGrid', {
         return id;
     },
     getValue:function (key) {
-        return this.valueObject[key];
+        return this.tab.valueObject[key];
     },
 
     getGStore:function () {
@@ -41,7 +39,7 @@ Ext.define('FastUI.view.VGrid', {
             pageSize:50,
             proxy:{
                 type:'ajax',
-                url:this.rest.indexPath(),
+                url:this.tab.rest.indexPath(),
                 reader:{
                     type:'json',
                     root:'',
@@ -58,10 +56,10 @@ Ext.define('FastUI.view.VGrid', {
         });
     },
     getMEntity:function () {
-        return this.valueObject.m_entity;
+        return this.tab.valueObject.m_entity;
     },
     getMColumns:function () {
-        return this.valueObject.m_columns;
+        return this.tab.valueObject.m_columns;
     },
     getGFields:function () {
         var fields = [];

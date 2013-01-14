@@ -13,7 +13,7 @@ Ext.define('FastUI.view.Viewport', {
     items:[
         {
             region:'north',
-            html:'<h1 class="x-panel-header">祺腾教育评价系统</h1>',
+            html:'<h1 class="x-panel-header">Fastui Rad Framework</h1>',
             border:false,
             margins:'0 0 5 0'
         },
