@@ -11,10 +11,14 @@ Ext.define('FastUI.view.VTab', {
         this.rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             id: this.id + 'tbar',
+            defaults: {
+                scale: 'small' //scale: 'large'
+            },
             items:[
                 {
                     id: this.id + 'new',
                     text:'新建',
+                    iconCls: 'fastui-btn-new',
                     handler:function () {
                         this.cmdCreate();
                         this.getBtn('save').enable();
@@ -25,6 +29,7 @@ Ext.define('FastUI.view.VTab', {
                     id: this.id + 'edit',
                     text:'编辑',
                     disabled: true,
+                    iconCls: 'fastui-btn-edit',
                     handler:function () {
                         this.cmdEdit();
                         this.getBtn('save').enable();
@@ -34,6 +39,7 @@ Ext.define('FastUI.view.VTab', {
                 {
                     id: this.id + 'list',
                     text:'列表',
+                    iconCls: 'fastui-btn-list',
                     handler:function () {
                         this.cmdList();
                         this.getBtn('save').disable();
@@ -44,6 +50,7 @@ Ext.define('FastUI.view.VTab', {
                     id: this.id + 'save',
                     text:'保存',
                     disabled: true,
+                    iconCls: 'fastui-btn-save',
                     handler:function () {
                         this.cmdSave();
                         this.getBtn('save').disable();
@@ -53,6 +60,8 @@ Ext.define('FastUI.view.VTab', {
                 {
                     id: this.id + 'del',
                     text:'删除',
+                    disabled: true,
+                    iconCls: 'fastui-btn-del',
                     handler:function () {
                         this.cmdDelete();
                         this.getBtn('edit').disable();
@@ -62,6 +71,7 @@ Ext.define('FastUI.view.VTab', {
                 {
                     id: this.id + 'help',
                     text:'帮助',
+                    iconCls: 'fastui-btn-help',
                     handler:function () {
                         this.cmdHelp();
                     },

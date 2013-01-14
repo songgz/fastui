@@ -19,6 +19,7 @@ Ext.define('FastUI.view.VGrid', {
                 this.tab.winCtx.setWinCtx(this.tab.winId,'m_entity_id',record.get('m_entity_id'));
             }
             this.tab.getBtn('edit').enable();
+            this.tab.getBtn('del').enable();
         }
     },
     selectedId:function(){
