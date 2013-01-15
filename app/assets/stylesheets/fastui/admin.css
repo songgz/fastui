@@ -1,4 +1,19 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+.fastui-btn-new {
+    background-image: url( table/table_add.png ) !important;
+}
+.fastui-btn-edit {
+    background-image: url( table/table_edit.png ) !important;
+}
+.fastui-btn-list {
+    background-image: url( table/table.png ) !important;
+}
+.fastui-btn-del {
+    background-image: url( table/table_delete.png ) !important;
+}
+.fastui-btn-save {
+    background-image: url( table/table_save.png ) !important;
+}
+.fastui-btn-help {
+    background-image: url( table/help.png ) !important;
+}
+

@@ -11,4 +11,5 @@
  *= require ./extjs4/resources/css/ext-all
  *= require ./extjs4/ux/tab/GroupTabPanel
  *= require ./extjs4/ux/tab/VerticalTabPanel
+ *= require ./admin
  */

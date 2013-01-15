@@ -604,4 +604,4 @@ Ext.define('Ext.ux.tab.VerticalPanel', {
             me.tabBar.remove(item.tab);
         }
     }
-});  
+});
