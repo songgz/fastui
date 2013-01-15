@@ -7,7 +7,7 @@ Ext.define('FastUI.view.VTab', {
     layout:"card",
     initComponent:function () {
         this.id = 'tab-' + this.getValue('id');
-        this.title = this.getValue('title');
+        this.title = this.getValue('level') + this.getValue('title');
         this.rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             id: this.id + 'tbar',

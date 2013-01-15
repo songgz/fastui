@@ -79,7 +79,6 @@
     background-image: -moz-linear-gradient(top, white,#F5F9FE 25%,#DEECFD 45%);
     background-image: linear-gradient(top, white,#F5F9FE 25%,#DEECFD 45%);
 }
-
 .x-nlg .x-tab-left-active {
-    background-image: url("../../resources/themes/images/default/tab/tab-default-top-active-bg.gif");
+    background-image: url(../../resources/themes/images/default/tab/tab-default-top-active-bg.gif);
 }
