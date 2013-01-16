@@ -85,6 +85,7 @@ Ext.define('FastUI.view.VGrid', {
     },
     getGColumns:function () {
         var columns = [Ext.create('Ext.grid.RowNumberer')];
+        if (this.getMColumns() <= 0) return columns;
         Ext.each(this.getMColumns(), function (column) {
             var col = {
                 text:column.title,
