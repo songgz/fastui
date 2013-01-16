@@ -4,13 +4,14 @@ Ext.define('FastUI.view.VForm', {
     tab:{},
     title:'Simple Form',
     bodyPadding:5,
-    url:'',
     layout:'anchor',
-    defaults:{
-        anchor:'60%'
+    fieldDefaults: {
+        labelAlign: 'left',
+        labelWidth: 90,
+        anchor: '60%'
     },
     defaultType:'textfield',
-
+    border:true,
     initComponent:function () {
         this.title = this.getValue('title');
         //this.url = this.vfactory.getUrl();

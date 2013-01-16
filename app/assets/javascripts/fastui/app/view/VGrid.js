@@ -2,9 +2,9 @@ Ext.define('FastUI.view.VGrid', {
     extend:'Ext.grid.Panel',
     requires: ['FastUI.store.MListMgr'],
     tab:{},
-
     selType:'rowmodel',
     multiSelect:false,
+    border:true,
     //plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
     initComponent:function () {
         this.title = this.getValue('title');
