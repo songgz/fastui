@@ -24,11 +24,9 @@ Ext.define('FastUI.Ctx', {
         var patten = /\${([\s\S]*?)}/ig ;
         var me = this;
         return value.replace(patten, function(m){
-            var p = patten.exec(m);
-            if(p){
-                return me.getWinCtx(WinNo,p[1]);
-            }
-            return m;
+            m = m.replace('${','');
+            m = m.replace('}','');
+            return me.getWinCtx(WinNo,m);
         });
     }
 

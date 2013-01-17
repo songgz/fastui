@@ -11,6 +11,7 @@ class CreateFastuiMFields < ActiveRecord::Migration
       t.boolean :is_display , :default => true
       t.boolean :is_readonly , :default => false
       t.string :entity_kind, :default => '' #:sys,:app
+      t.string :default_logic, :default => ''
       t.integer :seq, :default => 0
       t.boolean :is_active, :default => true
       t.integer :createdbyorg_id, :default => 0

@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.boolean  "is_display",                    :default => true
     t.boolean  "is_readonly",                   :default => false
     t.string   "entity_kind",                   :default => ""
+    t.string   "default_logic",                 :default => ""
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.integer  "createdbyorg_id",               :default => 0
@@ -191,11 +192,14 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
   create_table "fastui_m_people", :force => true do |t|
     t.string   "title",           :limit => 60,                   :null => false
     t.string   "print_text",      :limit => 60, :default => ""
+    t.string   "note",                          :default => ""
     t.string   "name",            :limit => 60, :default => ""
+    t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
+    t.string   "help",                          :default => ""
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
   end
@@ -207,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.string   "print_text",      :limit => 60, :default => ""
     t.string   "note",                          :default => ""
     t.string   "name",            :limit => 60, :default => ""
+    t.string   "default_logic",                 :default => ""
     t.string   "external_key",                  :default => ""
     t.string   "entity_kind",                   :default => ""
     t.integer  "seq",                           :default => 0

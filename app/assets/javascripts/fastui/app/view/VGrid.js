@@ -15,6 +15,7 @@ Ext.define('FastUI.view.VGrid', {
     listeners:{
         itemclick:function( view, record, item, index, e, eOpts ){
             this.tab.winCtx.setWinCtx(this.tab.winId,this.tab.rest.getKey(),record.get('id'));
+            this.tab.winCtx.setWinCtx(this.tab.winId,this.tab.rest.getTitle(),record.get('title'));
             if (record.get('m_entity_id')){
                 this.tab.winCtx.setWinCtx(this.tab.winId,'m_entity_id',record.get('m_entity_id'));
             }

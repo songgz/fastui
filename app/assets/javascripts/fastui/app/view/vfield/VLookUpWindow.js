@@ -20,6 +20,9 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
         });
         this.callParent();
     },
+    getDefaultValue: function(){
+        return this.getFValue('default_logic');
+    },
     getFValue:function (key) {
         return this.valueObject[key];
     },

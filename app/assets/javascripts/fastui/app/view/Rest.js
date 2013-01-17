@@ -13,6 +13,9 @@ Ext.define('FastUI.view.Rest', {
     getKey:function(){
         return this.getTableName() + '_id';
     },
+    getTitle:function(){
+        return this.getTableName() + '_title';
+    },
     newPath:function(){
         return this.path + "/new" + this.ext;
     },

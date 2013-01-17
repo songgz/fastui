@@ -156,6 +156,15 @@ Ext.define('FastUI.view.VTab', {
         form.url = this.rest.createPath();
         form.method = 'POST';
         form.reset();
+        var temp =  {};
+        var logic = "";
+        Ext.each(this.getValue('m_fields'),function(mfield){
+           if (mfield.default_logic.length > 0){
+               logic = this.winCtx.parseCtx(this.winId,mfield.default_logic);
+               temp[this.rest.getTableName() + '[' + mfield.m_property.name + ']'] = Ext.decode(logic);
+           }
+        },this);
+        form.setValues(temp);
         this.getLayout().setActiveItem(this.vform.id);
     },
     cmdEdit:function () {

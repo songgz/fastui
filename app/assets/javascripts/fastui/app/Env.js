@@ -24,15 +24,15 @@ Ext.define('FastUI.Env', {
     },
     //'${value}=${value}'
     parseCtx:function(WindowNo, value){
-        var patten = /\${([\s\S]*?)}/ig ;
-        var me = this;
-        return value.replace(patten, function(m){
-            var p = patten.exec(m);
-            if(p){
-                return me.getWinCtx(WindowNo,p[1]);
-            }
-            return m;
-        });
+//        var patten = /\${([\s\S]*?)}/ig ;
+//        var me = this;
+//        return value.replace(patten, function(m){
+//            var p = patten.exec(m);
+//            if(p){
+//                return me.getWinCtx(WindowNo,p[1]);
+//            }
+//            return m;
+//        });
     }
 
 });
