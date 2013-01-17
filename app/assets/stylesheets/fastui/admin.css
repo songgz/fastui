@@ -1,3 +1,21 @@
+.fastui-login-title {
+    background-image: url( locked.png ) !important;
+}
+.fastui-login-submit {
+      background-image: url( key_go.png ) !important;
+}
+.fastui-login-cancel {
+    background-image: url( cross.png ) !important;
+}
+.fastui-login-header {
+    background: transparent url("lock.png") no-repeat 97% 50%;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 10px 45px 10px 10px;
+}
+
+
+
 .fastui-btn-new {
     background-image: url( table/table_add.png ) !important;
 }

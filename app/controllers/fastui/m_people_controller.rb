@@ -67,5 +67,21 @@ module Fastui
       respond_with(@m_person)
     end
 
+    def login
+      @m_person = MPerson.where(:name => params[:UserName]).first_or_initialize
+      respond_with(@m_person) do |format|
+        if @m_person
+          format.json { render :json => {:success => true, :msg => 'ok'} }
+        else
+          format.json { render :json => {:success => false, :msg => 'false'} }
+        end
+      end
+
+    end
+
+    def logout
+
+    end
+
   end
 end

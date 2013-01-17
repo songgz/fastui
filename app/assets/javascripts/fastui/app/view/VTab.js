@@ -5,6 +5,7 @@ Ext.define('FastUI.view.VTab', {
     winId:0,
     winCtx:{},
     layout:"card",
+    border:true,
     initComponent:function () {
         this.id = 'tab-' + this.getValue('id');
         this.title = this.getValue('level') + this.getValue('title');
