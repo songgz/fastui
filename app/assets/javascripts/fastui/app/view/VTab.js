@@ -147,7 +147,7 @@ Ext.define('FastUI.view.VTab', {
     },
     getForm:function () {
         if (!this.vform) {
-            this.vform = Ext.create('FastUI.view.VForm', {tab:this,winCtx:this.winCtx, winId:this.winId, valueObject:this.valueObject, rest:this.rest});
+            this.vform = Ext.create('FastUI.view.VForm', {tab:this});
             this.add(this.vform);
         }
         return this.vform.getForm();
