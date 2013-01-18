@@ -4,7 +4,7 @@ namespace :fastui do
   desc "init fastui 'system' data"
   task :system_data => :environment do
     org_system = Fastui::MOrg.create({name: 'system', title: '系统组织'})
-    person1 = Fastui::MPerson.create({name: 'Administrator', title: '系统管理员'})
+    person1 = Fastui::MPerson.create({name: 'Administrator', title: '系统管理员',login_name:'admin',login_password:'123456'})
     attr = {entity_kind: 'sys', seq: 1, is_active: true, createdbyorg: org_system, createdby: person1, updatedby: person1}
     Fastui::Env.ctx.set('g_person_id', person1.id)
     Fastui::Env.ctx.set('g_person_id', org_system.id)
@@ -158,7 +158,7 @@ namespace :fastui do
                             {title: '实体种类', m_property: mtab.prop_by('entity_kind'), is_display: true, is_readonly: false},
                             {title: '排序', m_property: mtab.prop_by('seq'), is_display: true, is_readonly: false},
                             {title: '是否激活', m_property: mtab.prop_by('is_active'), is_display: true, is_readonly: false},
-                            {title: '对应窗口', m_property: mtab.prop_by('m_window_id'), is_display: true, is_readonly: false},
+                            {title: '对应窗口', m_property: mtab.prop_by('m_window_id'),default_logic:"{id:${m_window_id},title:'${m_window_title}'}", is_display: true, is_readonly: false},
                             {title: '依赖标签', m_property: mtab.prop_by('included_tab_id'), is_display: true, is_readonly: false},
                             {title: '所属实体', m_property: mtab.prop_by('m_entity_id'), is_display: true, is_readonly: false},
                             {title: '帮助', m_property: mtab.prop_by('help'), is_display: true, is_readonly: false},
@@ -193,7 +193,7 @@ namespace :fastui do
                                 {title: '默认逻辑', m_property: mfield.prop_by('default_logic'), is_display: true, is_readonly: false},
                                 {title: '排序', m_property: mfield.prop_by('seq'), is_display: true, is_readonly: false},
                                 {title: '是否激活', m_property: mfield.prop_by('is_active'), is_display: true, is_readonly: false},
-                                {title: '依赖标签', m_property: mfield.prop_by('m_tab_id'), is_display: true, is_readonly: false},
+                                {title: '依赖标签', m_property: mfield.prop_by('m_tab_id'),default_logic:"{id:${m_tab_id},title:'${m_tab_title}'}", is_display: true, is_readonly: false},
                                 {title: '帮助', m_property: mfield.prop_by('help'), is_display: true, is_readonly: false},
                                 {title: '备注', m_property: mfield.prop_by('note'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
       field_tab.m_columns.build([{title: 'ID', m_property: mfield.prop_by('id'), width: 35},
@@ -223,7 +223,7 @@ namespace :fastui do
                                  {title: '实体种类', m_property: mcolumn.prop_by('entity_kind'), is_display: true, is_readonly: false},
                                  {title: '排序', m_property: mcolumn.prop_by('seq'), is_display: true, is_readonly: false},
                                  {title: '是否激活', m_property: mcolumn.prop_by('is_active'), is_display: true, is_readonly: false},
-                                 {title: '依赖标签', m_property: mcolumn.prop_by('m_tab_id'), is_display: true, is_readonly: false},
+                                 {title: '依赖标签', m_property: mcolumn.prop_by('m_tab_id'),default_logic:"{id:${m_tab_id},title:'${m_tab_title}'}", is_display: true, is_readonly: false},
                                  {title: '帮助', m_property: mcolumn.prop_by('help'), is_display: true, is_readonly: false},
                                  {title: '备注', m_property: mcolumn.prop_by('note'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
       column_tab.m_columns.build([{title: 'ID', m_property: mcolumn.prop_by('id'), width: 35},
@@ -308,7 +308,7 @@ namespace :fastui do
                                  {title: '外键', m_property: mproperty.prop_by('external_key'), is_display: true, is_readonly: false},
                                  {title: '数据类型', m_property: mproperty.prop_by('m_datatype_id'), is_display: true, is_readonly: false},
                                  {title: '实体种类', m_property: mproperty.prop_by('entity_kind'), is_display: true, is_readonly: false},
-                                 {title: '所属实体', m_property: mproperty.prop_by('m_entity_id'), is_display: true, is_readonly: false},
+                                 {title: '所属实体', m_property: mproperty.prop_by('m_entity_id'),default_logic:"{id:${m_entity_id},title:'${m_entity_title}'}", is_display: true, is_readonly: false},
                                  {title: '排序', m_property: mproperty.prop_by('seq'), is_display: true, is_readonly: false},
                                  {title: '是否激活', m_property: mproperty.prop_by('is_active'), is_display: true, is_readonly: false},
                                  {title: '帮助', m_property: mproperty.prop_by('help'), is_display: true, is_readonly: false},
@@ -386,7 +386,7 @@ namespace :fastui do
                                   {title: '打印文本', m_property: m_menu_item.prop_by('print_text'), is_display: true, is_readonly: false},
                                   {title: '标识', m_property: m_menu_item.prop_by('name'), is_display: true, is_readonly: false},
                                   {title: '实体种类', m_property: m_menu_item.prop_by('entity_kind'), is_display: true, is_readonly: false},
-                                  {title: '对应菜单', m_property: m_menu_item.prop_by('m_menu_id'), is_display: true, is_readonly: false},
+                                  {title: '对应菜单', m_property: m_menu_item.prop_by('m_menu_id'),default_logic:"{id:${m_menu_id},title:'${m_menu_title}'}", is_display: true, is_readonly: false},
                                   {title: '对应窗口', m_property: m_menu_item.prop_by('m_window_id'), is_display: true, is_readonly: false},
                                   {title: '排序', m_property: m_menu_item.prop_by('seq'), is_display: true, is_readonly: false},
                                   {title: '是否激活', m_property: m_menu_item.prop_by('is_active'), is_display: true, is_readonly: false},
