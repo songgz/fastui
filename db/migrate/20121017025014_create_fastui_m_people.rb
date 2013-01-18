@@ -5,6 +5,8 @@ class CreateFastuiMPeople < ActiveRecord::Migration
       t.string :print_text,:default => '',:limit => 60
       t.string :note , :default => ''
       t.string :name,:default => '',:limit => 60
+      t.string :login_name,:default => '',:limit => 60
+      t.string :login_password,:default => '',:limit => 60
 
       t.integer :seq, :default => 0
       t.boolean :is_active, :default => true
