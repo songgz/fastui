@@ -211,7 +211,6 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.string   "print_text",      :limit => 60, :default => ""
     t.string   "note",                          :default => ""
     t.string   "name",            :limit => 60, :default => ""
-    t.string   "default_logic",                 :default => ""
     t.string   "external_key",                  :default => ""
     t.string   "entity_kind",                   :default => ""
     t.integer  "seq",                           :default => 0
