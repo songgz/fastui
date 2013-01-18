@@ -7,6 +7,11 @@ class CreateFastuiMOrgs < ActiveRecord::Migration
       t.string :name,:default => '', :limit => 60
       t.string :type
 
+      t.integer :parent_id
+      t.integer :lft
+      t.integer :rgt
+      t.integer :depth # this is optional.
+
       t.string :entity_kind, :default => ''                   #:sys,:app
       t.integer :seq, :default => 0
       t.boolean :is_active, :default => true
