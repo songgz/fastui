@@ -4,6 +4,7 @@ class CreateFastuiMRoles < ActiveRecord::Migration
       t.string :title, :limit => 60, :null => false
       t.string :name,:default => '', :limit => 60 # 系统标识
       t.string :note, :default => ''
+      t.string :type
 
       t.string :access_level , :default => ''        #:system,:org,:dept
       t.string :entity_kind, :default => '' #:sys,:app
