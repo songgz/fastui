@@ -68,7 +68,7 @@ Ext.define('FastUI.view.VGrid', {
         Ext.each(this.getMColumns(), function (column) {
             var field = {
                 name:column.m_property.name,
-                type:'string'
+                type:'auto'
             };
             var prop = column.m_property;
             switch (prop.m_datatype.class_name) {
