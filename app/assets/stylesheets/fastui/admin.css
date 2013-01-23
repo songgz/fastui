@@ -13,7 +13,9 @@
     font-weight: bold;
     padding: 10px 45px 10px 10px;
 }
-
+.fastui-upload {
+    background-image: url( upload.png ) !important;
+}
 
 
 .fastui-btn-new {

@@ -1,11 +1,14 @@
 Ext.define('FastUI.view.vfield.VFile',{
-    extend: 'Ext.form.field.Text',
+    extend: 'Ext.form.field.File',
 
     valueObject: {},
     winCtx:{},
     winId:0,
     rest:{},
-
+    buttonText: '',
+    buttonConfig: {
+        iconCls: 'fastui-upload'
+    },
     initComponent:function(){
         this.fieldLabel = this.getFValue('title');
         this.name =  this.rest.getTableName() + '[' + this.getFValue('m_property').name + ']';

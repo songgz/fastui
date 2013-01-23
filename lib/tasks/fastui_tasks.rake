@@ -18,6 +18,7 @@ namespace :fastui do
     v_textarea = Fastui::MTextArea.create({name: 'VTextArea', title: '文本'})
     v_checkbox = Fastui::MCheckBox.create({name: 'VCheckBox', title: '选择框'})
     v_combobox = Fastui::MComboBox.create({name: 'VComboBox', title: '下拉框'})
+    v_file = Fastui::MFile.create({name:'VFile',title:'上传资源'})
     v_yesorno = Fastui::MYesOrNo.create({name: 'VYesOrNo', title: '是否'})
     v_sex_select = Fastui::MSexSelect.create({name: 'VSexSelect', title: '男女'})
 
@@ -50,7 +51,7 @@ namespace :fastui do
     mwin = Fastui::MEntity.create({name: 'Fastui::MWindow', title: '窗口', access_level: 'system'}.merge(attr)) do |ent|
       ent.m_properties.build([{name: 'id', title: 'ID', m_datatype: v_number},
                               {name: 'title', title: '标题', m_datatype: v_text},
-                              {name: 'print_text', title: '打印文本', m_datatype: v_text},
+                              {name: 'print_text', title: '打印文本(photo)', m_datatype: v_file},
                               {name: 'name', title: '标识', m_datatype: v_text},
                               {name: 'entity_kind', title: '实体种类', m_datatype: entity_kind},
                               {name: 'window_kind', title: '窗体种类', m_datatype: window_kind},
@@ -128,7 +129,7 @@ namespace :fastui do
     fastui_window = win.m_tabs.create({title: '窗口', m_entity: mwin, is_readonly: true}.merge(attr)) do |win_tab|
       win_tab.m_fields.build([{title: 'ID', m_property: mwin.prop_by('id'), is_display: true, is_readonly: true},
                               {title: '标题', m_property: mwin.prop_by('title'), is_display: true, is_readonly: false},
-                              {title: '打印文本', m_property: mwin.prop_by('print_text'), is_display: true, is_readonly: false},
+                              {title: '打印文本(photo)', m_property: mwin.prop_by('print_text'), is_display: true, is_readonly: false},
                               {title: '标识', m_property: mwin.prop_by('name'), is_display: true, is_readonly: false},
                               {title: '窗体种类', m_property: mwin.prop_by('window_kind'), is_display: true, is_readonly: false},
                               {title: '实体种类', m_property: mwin.prop_by('entity_kind'), is_display: true, is_readonly: false},
@@ -138,7 +139,7 @@ namespace :fastui do
                               {title: '备注', m_property: mwin.prop_by('note'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
       win_tab.m_columns.build([{title: 'ID', m_property: mwin.prop_by('id'), width: 35},
                                {title: '标题', m_property: mwin.prop_by('title'), width: 75},
-                               {title: '打印文本', m_property: mwin.prop_by('print_text'), width: 75},
+                               {title: '打印文本(photo)', m_property: mwin.prop_by('print_text'), width: 75},
                                {title: '标识', m_property: mwin.prop_by('name'), width: 75},
                                {title: '窗体种类', m_property: mwin.prop_by('window_kind'), width: 75},
                                {title: '实体种类', m_property: mwin.prop_by('entity_kind'), width: 75},
