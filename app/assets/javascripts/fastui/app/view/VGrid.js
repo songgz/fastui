@@ -1,6 +1,6 @@
 Ext.define('FastUI.view.VGrid', {
     extend:'Ext.grid.Panel',
-    requires: ['FastUI.store.MListMgr'],
+    requires:['FastUI.store.MListMgr'],
     tab:{},
     selType:'rowmodel',
     multiSelect:false,
@@ -13,17 +13,17 @@ Ext.define('FastUI.view.VGrid', {
         this.callParent();
     },
     listeners:{
-        itemclick:function( view, record, item, index, e, eOpts ){
-            this.tab.winCtx.setWinCtx(this.tab.winId,this.tab.rest.getKey(),record.get('id'));
-            this.tab.winCtx.setWinCtx(this.tab.winId,this.tab.rest.getTitle(),record.get('title'));
-            if (record.get('m_entity_id')){
-                this.tab.winCtx.setWinCtx(this.tab.winId,'m_entity_id',record.get('m_entity_id'));
+        itemclick:function (view, record, item, index, e, eOpts) {
+            this.tab.winCtx.setWinCtx(this.tab.winId, this.tab.rest.getKey(), record.get('id'));
+            this.tab.winCtx.setWinCtx(this.tab.winId, this.tab.rest.getTitle(), record.get('title'));
+            if (record.get('m_entity_id')) {
+                this.tab.winCtx.setWinCtx(this.tab.winId, 'm_entity_id', record.get('m_entity_id'));
             }
             this.tab.getBtn('edit').enable();
             this.tab.getBtn('del').enable();
         }
     },
-    selectedId:function(){
+    selectedId:function () {
         var id = 0;
         var records = this.getSelectionModel().getSelection();
         if (!Ext.isEmpty(records)) {
@@ -112,8 +112,8 @@ Ext.define('FastUI.view.VGrid', {
                     };
                     break;
                 case 'Fastui::MSexSelect':
-                    col.renderer = function(val){
-                        return val ? '男': '女'
+                    col.renderer = function (val) {
+                        return val ? '男' : '女'
                     };
                     break;
                 case 'Fastui::MYesOrNo':
