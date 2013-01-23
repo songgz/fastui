@@ -111,6 +111,11 @@ Ext.define('FastUI.view.VGrid', {
                         return "";
                     };
                     break;
+                case 'Fastui::MSexSelect':
+                    col.renderer = function(val){
+                        return val ? '男': '女'
+                    };
+                    break;
                 case 'Fastui::MYesOrNo':
                     col.renderer = function (val) {
                         return val ? '是' : '否';

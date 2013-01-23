@@ -19,6 +19,7 @@ namespace :fastui do
     v_checkbox = Fastui::MCheckBox.create({name: 'VCheckBox', title: '选择框'})
     v_combobox = Fastui::MComboBox.create({name: 'VComboBox', title: '下拉框'})
     v_yesorno = Fastui::MYesOrNo.create({name: 'VYesOrNo', title: '是否'})
+    v_sex_select = Fastui::MSexSelect.create({name: 'VSexSelect', title: '男女'})
 
     access_level = Fastui::MList.create({name: 'access_level', title: '访问级别'})
     access_level.m_list_items.create([{name: 'system', title: '系统级别'}, {name: 'org', title: '组织级别'}, {name: 'dept', title: '部门级别'}])
