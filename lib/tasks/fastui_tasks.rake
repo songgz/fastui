@@ -18,6 +18,7 @@ namespace :fastui do
     v_textarea = Fastui::MTextArea.create({name: 'VTextArea', title: '文本'})
     v_checkbox = Fastui::MCheckBox.create({name: 'VCheckBox', title: '选择框'})
     v_combobox = Fastui::MComboBox.create({name: 'VComboBox', title: '下拉框'})
+    v_file = Fastui::MFile.create({name:'VFile',title:'上传资源'})
     v_yesorno = Fastui::MYesOrNo.create({name: 'VYesOrNo', title: '是否'})
     v_sex_select = Fastui::MSexSelect.create({name: 'VSexSelect', title: '男女'})
 

@@ -178,6 +178,11 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.string   "print_text",      :limit => 60, :default => ""
     t.string   "note",                          :default => ""
     t.string   "name",            :limit => 60, :default => ""
+    t.string   "type"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "depth"
     t.string   "entity_kind",                   :default => ""
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
@@ -196,6 +201,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.string   "name",            :limit => 60, :default => ""
     t.string   "login_name",      :limit => 60, :default => ""
     t.string   "login_password",  :limit => 60, :default => ""
+    t.string   "type"
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.integer  "createdbyorg_id",               :default => 0
@@ -245,6 +251,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.string   "title",           :limit => 60,                   :null => false
     t.string   "name",            :limit => 60, :default => ""
     t.string   "note",                          :default => ""
+    t.string   "type"
     t.string   "access_level",                  :default => ""
     t.string   "entity_kind",                   :default => ""
     t.integer  "seq",                           :default => 0
