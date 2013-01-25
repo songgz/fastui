@@ -41,6 +41,11 @@ Ext.define('FastUI.view.VLoginForm', {
                     name      : 'type',
                     inputValue: 'Guardian',
                     id        : 'guardian'
+                },{
+                    boxLabel  : '管理员',
+                    name      : 'type',
+                    inputValue: 'Fastui::MPerson',
+                    id        : 'person'
                 }
             ]
         },
@@ -48,8 +53,8 @@ Ext.define('FastUI.view.VLoginForm', {
             xtype:'textfield',
             fieldLabel:'用户名',
             blankText:'用户名不能为空',
-            name:'UserName',
-            id:'UserName',
+            name:'username',
+            id:'username',
             allowBlank:false,
             width:240
         },
@@ -58,8 +63,8 @@ Ext.define('FastUI.view.VLoginForm', {
             fieldLabel:'密　码',
             allowBlank:false,
             blankText:'密码不能为空',
-            name:'PassWord',
-            id:'PassWord',
+            name:'passWord',
+            id:'passWord',
             width:240,
             inputType:'password'
         },

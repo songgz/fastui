@@ -199,8 +199,8 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.string   "print_text",      :limit => 60, :default => ""
     t.string   "note",                          :default => ""
     t.string   "name",            :limit => 60, :default => ""
-    t.string   "login_name",      :limit => 60, :default => ""
-    t.string   "login_password",  :limit => 60, :default => ""
+    t.string   "username",        :limit => 60, :default => ""
+    t.string   "password_digest"
     t.string   "type"
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
@@ -249,6 +249,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
 
   create_table "fastui_m_roles", :force => true do |t|
     t.string   "title",           :limit => 60,                   :null => false
+    t.string   "print_text",      :limit => 60, :default => ""
     t.string   "name",            :limit => 60, :default => ""
     t.string   "note",                          :default => ""
     t.string   "type"
