@@ -18,6 +18,33 @@ Ext.define('FastUI.view.VLoginForm', {
     //defaultFocus:'UserName',
     items:[
         {
+            xtype      : 'fieldcontainer',
+            fieldLabel : '用户类型',
+            defaultType: 'radiofield',
+            defaults: {
+                flex: 1
+            },
+            layout: 'hbox',
+            items: [
+                {
+                    boxLabel  : '教师',
+                    name      : 'type',
+                    inputValue: 'Teacher',
+                    id        : 'teacher'
+                }, {
+                    boxLabel  : '学生',
+                    name      : 'type',
+                    inputValue: 'Student',
+                    id        : 'student'
+                }, {
+                    boxLabel  : '家长',
+                    name      : 'type',
+                    inputValue: 'Guardian',
+                    id        : 'guardian'
+                }
+            ]
+        },
+        {
             xtype:'textfield',
             fieldLabel:'用户名',
             blankText:'用户名不能为空',

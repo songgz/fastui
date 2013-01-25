@@ -1,5 +1,4 @@
 require 'rails/all'
-require 'fastui'
 
 module Fastui
   class Engine < ::Rails::Engine
