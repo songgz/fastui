@@ -1,5 +1,5 @@
 module Fastui
-  class MCheckBox < MDatatype
+  class MTree < MDatatype
     # To change this template use File | Settings | File Templates.
   end
 end

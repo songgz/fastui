@@ -1,4 +1,4 @@
-Ext.define('FastUI.view.vfield.VCombobox', {
+Ext.define('FastUI.view.vfield.VMultiCombobox', {
     extend:'Ext.form.field.ComboBox',
     requires:['FastUI.store.MListMgr'],
     valueObject: {},
@@ -9,6 +9,7 @@ Ext.define('FastUI.view.vfield.VCombobox', {
     valueField:'name',
     displayField:"title",
     forceSelection:true,
+    multiSelect: true,
     triggerAction:'all',
     editable:false,
     selectOnFocus:true,

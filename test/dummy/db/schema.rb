@@ -249,6 +249,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
 
   create_table "fastui_m_roles", :force => true do |t|
     t.string   "title",           :limit => 60,                   :null => false
+    t.string   "print_text",      :limit => 60, :default => ""
     t.string   "name",            :limit => 60, :default => ""
     t.string   "note",                          :default => ""
     t.string   "type"

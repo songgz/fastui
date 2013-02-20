@@ -9,15 +9,14 @@ namespace :fastui do
     Fastui::Env.ctx.set('g_person_id', person1.id)
     Fastui::Env.ctx.set('g_org_id', org_system.id)
 
-    v_datatype = Fastui::MDatatype
-
     v_number = Fastui::MNumber.create({name: 'VNumber', title: '整型'})
     v_date = Fastui::MDate.create({name: 'VDate', title: '日期'})
     v_text = Fastui::MText.create({name: 'VText', title: '字符串'})
     v_htmleditor = Fastui::MHtmlEditor.create({name: 'VHtmlEditor', title: '文本编辑器'})
     v_textarea = Fastui::MTextArea.create({name: 'VTextArea', title: '文本'})
-    v_checkbox = Fastui::MCheckBox.create({name: 'VCheckBox', title: '选择框'})
-    v_combobox = Fastui::MComboBox.create({name: 'VComboBox', title: '下拉框'})
+    v_checkbox = Fastui::MCheckbox.create({name: 'VCheckbox', title: '选择框'})
+    v_combobox = Fastui::MCombobox.create({name: 'VCombobox', title: '下拉框'})
+    v_multi_combobox = Fastui::MMultiCombobox.create({name: 'VMultiCombobox', title: '多选下拉框'})
     v_file = Fastui::MFile.create({name:'VFile',title:'上传资源'})
     v_yesorno = Fastui::MYesOrNo.create({name: 'VYesOrNo', title: '是否'})
     v_sex_select = Fastui::MSexSelect.create({name: 'VSexSelect', title: '男女'})
