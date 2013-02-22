@@ -42,6 +42,8 @@ namespace :fastui do
     m_relation_org = Fastui::MRelation.create({m_entity: m_org, name: 'Fastui::MOrg', title: '组织', access_level: 'system'}.merge(attr))
     m_relation_person = Fastui::MRelation.create({m_entity: m_person, name: 'Fastui::MPerson', title: '人员', access_level: 'system'}.merge(attr))
     m_relation_entity = Fastui::MRelation.create({m_entity: mentity, name: 'Fastui::MEntity', title: '实体', access_level: 'system'}.merge(attr))
+    #测试多选
+    multi_relation_entity = Fastui::MMultiCombobox.create({m_entity: mentity, name: 'Fastui::MEntity', title: '实体', access_level: 'system'}.merge(attr))
     m_relation_property = Fastui::MRelation.create({m_entity: mproperty, name: 'Fastui::MProperty', title: '属性', access_level: 'system'}.merge(attr))
     m_relation_menu = Fastui::MRelation.create({m_entity: mmenu, name: 'Fastui::MMenu', title: '菜单', access_level: 'system'}.merge(attr))
     m_relation_datatype = Fastui::MRelation.create({m_entity: m_datatype, name: 'Fastui::MDatatype', title: '数据类型', access_level: 'system'}.merge(attr))
@@ -266,6 +268,7 @@ namespace :fastui do
                                    {name: 'm_datatype_id', title: '数据类型', m_datatype: m_relation_datatype},
                                    {name: 'entity_kind', title: '实体种类', m_datatype: entity_kind},
                                    {name: 'm_entity_id', title: '所属实体', m_datatype: m_relation_entity},
+                                   #{name: 'm_entity_id', title: '所属实体', m_datatype: multi_relation_entity},
                                    {name: 'seq', title: '排序', m_datatype: v_number},
                                    {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
                                    {name: 'help', title: '帮助', m_datatype: v_textarea},
@@ -414,6 +417,7 @@ namespace :fastui do
                                        {name: 'print_text', title: '打印文本', m_datatype: v_text},
                                        {name: 'name', title: '标识', m_datatype: v_text},
                                        {name: 'm_entity_id', title: '所属实体', m_datatype: m_relation_entity},
+                                       #{name: 'm_entity_id', title: '所属实体', m_datatype: multi_relation_entity},
                                        {name: 'filter', title: '筛选条件', m_datatype: v_textarea},
                                        {name: 'access_level', title: '访问级别', m_datatype: access_level},
                                        {name: 'entity_kind', title: '实体种类', m_datatype: entity_kind},
