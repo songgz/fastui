@@ -1,4 +1,4 @@
-Ext.define('FastUI.view.vfield.VComboBox', {
+Ext.define('FastUI.view.vfield.VCombobox', {
     extend:'Ext.form.field.ComboBox',
     requires:['FastUI.store.MListMgr'],
     valueObject: {},
