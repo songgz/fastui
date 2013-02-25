@@ -7,7 +7,6 @@ module Fastui
 
     def authenticate(unencrypted_password)
       return false unless @user
-
       if @user.password == unencrypted_password
         @user
       else

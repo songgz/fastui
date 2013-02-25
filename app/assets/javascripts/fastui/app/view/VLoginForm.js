@@ -63,8 +63,8 @@ Ext.define('FastUI.view.VLoginForm', {
             fieldLabel:'密　码',
             allowBlank:false,
             blankText:'密码不能为空',
-            name:'passWord',
-            id:'passWord',
+            name:'password',
+            id:'password',
             width:240,
             inputType:'password'
         },

@@ -15,8 +15,7 @@ module Fastui
     end
 
     def password=(new_password)
-      @password = Password.create(new_password)
-      self.password_digest = @password
+      self.password_digest = Password.create(new_password)
     end
   end
 end
