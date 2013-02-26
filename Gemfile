@@ -16,6 +16,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'i18n'
 gem 'mysql2'
 gem 'puma'
 
