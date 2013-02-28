@@ -17,7 +17,7 @@ namespace :fastui do
     v_checkbox = Fastui::MCheckbox.create({name: 'VCheckbox', title: '选择框'})
     v_combobox = Fastui::MCombobox.create({name: 'VCombobox', title: '下拉框'})
     v_multi_combobox = Fastui::MMultiCombobox.create({name: 'VMultiCombobox', title: '多选下拉框'})
-    v_file = Fastui::MFile.create({name: 'VFile', title: '上传资源'})
+    v_file = Fastui::MFile.create({name:'VFile',title:'上传资源'})
     v_yesorno = Fastui::MYesOrNo.create({name: 'VYesOrNo', title: '是否'})
     v_sex_select = Fastui::MSexSelect.create({name: 'VSexSelect', title: '男女'})
 
@@ -43,7 +43,7 @@ namespace :fastui do
     m_relation_person = Fastui::MRelation.create({m_entity: m_person, name: 'Fastui::MPerson', title: '人员', access_level: 'system'}.merge(attr))
     m_relation_entity = Fastui::MRelation.create({m_entity: mentity, name: 'Fastui::MEntity', title: '实体', access_level: 'system'}.merge(attr))
     #测试多选
-    multi_relation_person = Fastui::MMultiCombobox.create({m_entity: m_person, name: 'Fastui::MEntity', title: '实体', access_level: 'system'}.merge(attr))
+    multi_relation_entity = Fastui::MMultiCombobox.create({m_entity: mentity, name: 'Fastui::MEntity', title: '实体', access_level: 'system'}.merge(attr))
     m_relation_property = Fastui::MRelation.create({m_entity: mproperty, name: 'Fastui::MProperty', title: '属性', access_level: 'system'}.merge(attr))
     m_relation_menu = Fastui::MRelation.create({m_entity: mmenu, name: 'Fastui::MMenu', title: '菜单', access_level: 'system'}.merge(attr))
     m_relation_datatype = Fastui::MRelation.create({m_entity: m_datatype, name: 'Fastui::MDatatype', title: '数据类型', access_level: 'system'}.merge(attr))
@@ -105,7 +105,7 @@ namespace :fastui do
                                     {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                     {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                     {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}
-                                   ].map { |a| a.merge(attr) })
+                                    ].map { |a| a.merge(attr) })
     end
     mcolumn = Fastui::MEntity.create({name: 'Fastui::MColumn', title: '表列', access_level: 'system'}.merge(attr)) do |column_ent|
       column_ent.m_properties.build([{name: 'id', title: 'ID', m_datatype: v_number},
@@ -123,7 +123,7 @@ namespace :fastui do
                                      {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                      {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
                                      {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}
-                                    ].map { |a| a.merge(attr) })
+                                     ].map { |a| a.merge(attr) })
     end
 
     win = Fastui::MWindow.create({title: 'FastUI', window_kind: 'maintain'}.merge(attr))
@@ -161,7 +161,7 @@ namespace :fastui do
                             {title: '实体种类', m_property: mtab.prop_by('entity_kind'), is_display: true, is_readonly: false},
                             {title: '排序', m_property: mtab.prop_by('seq'), is_display: true, is_readonly: false},
                             {title: '是否激活', m_property: mtab.prop_by('is_active'), is_display: true, is_readonly: false},
-                            {title: '对应窗口', m_property: mtab.prop_by('m_window_id'), default_logic: "{id:${m_window_id},title:'${m_window_title}'}", is_display: true, is_readonly: false},
+                            {title: '对应窗口', m_property: mtab.prop_by('m_window_id'),default_logic:"{id:${m_window_id},title:'${m_window_title}'}", is_display: true, is_readonly: false},
                             {title: '依赖标签', m_property: mtab.prop_by('included_tab_id'), is_display: true, is_readonly: false},
                             {title: '所属实体', m_property: mtab.prop_by('m_entity_id'), is_display: true, is_readonly: false},
                             {title: '帮助', m_property: mtab.prop_by('help'), is_display: true, is_readonly: false},
@@ -196,7 +196,7 @@ namespace :fastui do
                                 {title: '默认逻辑', m_property: mfield.prop_by('default_logic'), is_display: true, is_readonly: false},
                                 {title: '排序', m_property: mfield.prop_by('seq'), is_display: true, is_readonly: false},
                                 {title: '是否激活', m_property: mfield.prop_by('is_active'), is_display: true, is_readonly: false},
-                                {title: '依赖标签', m_property: mfield.prop_by('m_tab_id'), default_logic: "{id:${m_tab_id},title:'${m_tab_title}'}", is_display: true, is_readonly: false},
+                                {title: '依赖标签', m_property: mfield.prop_by('m_tab_id'),default_logic:"{id:${m_tab_id},title:'${m_tab_title}'}", is_display: true, is_readonly: false},
                                 {title: '帮助', m_property: mfield.prop_by('help'), is_display: true, is_readonly: false},
                                 {title: '备注', m_property: mfield.prop_by('note'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
       field_tab.m_columns.build([{title: 'ID', m_property: mfield.prop_by('id'), width: 35},
@@ -226,7 +226,7 @@ namespace :fastui do
                                  {title: '实体种类', m_property: mcolumn.prop_by('entity_kind'), is_display: true, is_readonly: false},
                                  {title: '排序', m_property: mcolumn.prop_by('seq'), is_display: true, is_readonly: false},
                                  {title: '是否激活', m_property: mcolumn.prop_by('is_active'), is_display: true, is_readonly: false},
-                                 {title: '依赖标签', m_property: mcolumn.prop_by('m_tab_id'), default_logic: "{id:${m_tab_id},title:'${m_tab_title}'}", is_display: true, is_readonly: false},
+                                 {title: '依赖标签', m_property: mcolumn.prop_by('m_tab_id'),default_logic:"{id:${m_tab_id},title:'${m_tab_title}'}", is_display: true, is_readonly: false},
                                  {title: '帮助', m_property: mcolumn.prop_by('help'), is_display: true, is_readonly: false},
                                  {title: '备注', m_property: mcolumn.prop_by('note'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
       column_tab.m_columns.build([{title: 'ID', m_property: mcolumn.prop_by('id'), width: 35},
@@ -312,7 +312,7 @@ namespace :fastui do
                                  {title: '外键', m_property: mproperty.prop_by('external_key'), is_display: true, is_readonly: false},
                                  {title: '数据类型', m_property: mproperty.prop_by('m_datatype_id'), is_display: true, is_readonly: false},
                                  {title: '实体种类', m_property: mproperty.prop_by('entity_kind'), is_display: true, is_readonly: false},
-                                 {title: '所属实体', m_property: mproperty.prop_by('m_entity_id'), default_logic: "{id:${m_entity_id},title:'${m_entity_title}'}", is_display: true, is_readonly: false},
+                                 {title: '所属实体', m_property: mproperty.prop_by('m_entity_id'),default_logic:"{id:${m_entity_id},title:'${m_entity_title}'}", is_display: true, is_readonly: false},
                                  {title: '排序', m_property: mproperty.prop_by('seq'), is_display: true, is_readonly: false},
                                  {title: '是否激活', m_property: mproperty.prop_by('is_active'), is_display: true, is_readonly: false},
                                  {title: '帮助', m_property: mproperty.prop_by('help'), is_display: true, is_readonly: false},
@@ -390,7 +390,7 @@ namespace :fastui do
                                   {title: '打印文本', m_property: m_menu_item.prop_by('print_text'), is_display: true, is_readonly: false},
                                   {title: '标识', m_property: m_menu_item.prop_by('name'), is_display: true, is_readonly: false},
                                   {title: '实体种类', m_property: m_menu_item.prop_by('entity_kind'), is_display: true, is_readonly: false},
-                                  {title: '对应菜单', m_property: m_menu_item.prop_by('m_menu_id'), default_logic: "{id:${m_menu_id},title:'${m_menu_title}'}", is_display: true, is_readonly: false},
+                                  {title: '对应菜单', m_property: m_menu_item.prop_by('m_menu_id'),default_logic:"{id:${m_menu_id},title:'${m_menu_title}'}", is_display: true, is_readonly: false},
                                   {title: '对应窗口', m_property: m_menu_item.prop_by('m_window_id'), is_display: true, is_readonly: false},
                                   {title: '排序', m_property: m_menu_item.prop_by('seq'), is_display: true, is_readonly: false},
                                   {title: '是否激活', m_property: m_menu_item.prop_by('is_active'), is_display: true, is_readonly: false},
@@ -536,100 +536,11 @@ namespace :fastui do
 
     end
 
-
-    # 权限 人员 角色 测试activerecord many-to-many relations
-    m_rights_person = Fastui::MEntity.create({name: 'Fastui::MPerson', title: '人员', access_level: 'system'}.merge(attr))
-    m_rights_person.m_properties.create([{name: 'id', title: 'ID', m_datatype: v_number},
-                                         {name: 'title', title: '标题', m_datatype: v_text},
-                                         {name: 'print_text', title: '打印文本', m_datatype: v_text},
-                                         {name: 'name', title: '标识', m_datatype: v_text},
-                                         {name: 'access_level', title: '访问级别', m_datatype: access_level},
-                                         {name: 'entity_kind', title: '实体种类', m_datatype: entity_kind},
-                                         {name: 'seq', title: '排序', m_datatype: v_number},
-                                         {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
-                                         {name: 'help', title: '帮助', m_datatype: v_textarea},
-                                         {name: 'note', title: '备注', m_datatype: v_textarea},
-                                         {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
-                                         {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
-                                         {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
-
-    # 角色
-    m_rights_role = Fastui::MEntity.create({name: 'Fastui::MRole', title: '角色', access_level: 'system'}.merge(attr))
-    m_rights_role.m_properties.create([{name: 'id', title: 'ID', m_datatype: v_number},
-                                       {name: 'title', title: '标题', m_datatype: v_text},
-                                       {name: 'print_text', title: '打印文本', m_datatype: v_text},
-                                       {name: 'name', title: '标识', m_datatype: v_text},
-                                       {name: 'person_id', title: '对应人员', m_datatype: multi_relation_person},
-                                       {name: 'entity_kind', title: '实体种类', m_datatype: entity_kind},
-                                       {name: 'seq', title: '排序', m_datatype: v_number},
-                                       {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
-                                       {name: 'help', title: '帮助', m_datatype: v_textarea},
-                                       {name: 'note', title: '备注', m_datatype: v_textarea},
-                                       {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
-                                       {name: 'createdby_id', title: '创建人', m_datatype: m_relation_person},
-                                       {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}].map { |a| a.merge(attr) })
-
-
-    sys_rights = Fastui::MWindow.create({title: '权限', window_kind: 'maintain'}.merge(attr)) do |rights|
-      rights.m_tabs.build({title: '人员', m_entity: m_rights_person, is_readonly: true}.merge(attr)) do |r_person|
-        r_person.m_fields.build([{title: 'ID', m_property: m_rights_person.prop_by('id'), is_display: true, is_readonly: true},
-                                 {title: '标题', m_property: m_rights_person.prop_by('title'), is_display: true, is_readonly: false},
-                                 {title: '打印文本', m_property: m_rights_person.prop_by('print_text'), is_display: true, is_readonly: false},
-                                 {title: '标识', m_property: m_rights_person.prop_by('name'), is_display: true, is_readonly: false},
-                                 {title: '访问级别', m_property: m_rights_person.prop_by('access_level'), is_display: true, is_readonly: false},
-                                 {title: '实体种类', m_property: m_rights_person.prop_by('entity_kind'), is_display: true, is_readonly: false},
-                                 {title: '排序', m_property: m_rights_person.prop_by('seq'), is_display: true, is_readonly: false},
-                                 {title: '是否激活', m_property: m_rights_person.prop_by('is_active'), is_display: true, is_readonly: false},
-                                 {title: '帮助', m_property: m_rights_person.prop_by('help'), is_display: true, is_readonly: false},
-                                 {title: '备注', m_property: m_rights_person.prop_by('note'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
-        r_person.m_columns.build([{title: 'ID', m_property: m_rights_person.prop_by('id'), width: 35},
-                                  {title: '标题', m_property: m_rights_person.prop_by('title'), width: 75},
-                                  {title: '打印文本', m_property: m_rights_person.prop_by('print_text'), width: 75},
-                                  {title: '标识', m_property: m_rights_person.prop_by('name'), width: 75},
-                                  {title: '访问级别', m_property: m_rights_person.prop_by('access_level'), width: 75},
-                                  {title: '实体种类', m_property: m_rights_person.prop_by('entity_kind'), width: 75},
-                                  {title: '排序', m_property: m_rights_person.prop_by('seq'), width: 75},
-                                  {title: '是否激活', m_property: m_rights_person.prop_by('is_active'), width: 75},
-                                  {title: '创建组织', m_property: m_rights_person.prop_by('createdbyorg_id'), width: 75},
-                                  {title: '创建人', m_property: m_rights_person.prop_by('createdby_id'), width: 75},
-                                  {title: '更新人', m_property: m_rights_person.prop_by('updatedby_id'), width: 75},
-                                  {title: '备注', m_property: m_rights_person.prop_by('note'), width: 75}].map { |a| a.merge(attr) })
-      end
-      r_role= rights.m_tabs.build({title: '角色', m_entity: m_rights_role, is_readonly: true}.merge(attr))
-      r_role.m_fields.build([{title: 'ID', m_property: m_rights_role.prop_by('id'), is_display: true, is_readonly: true},
-                             {title: '标题', m_property: m_rights_role.prop_by('title'), is_display: true, is_readonly: false},
-                             {title: '打印文本', m_property: m_rights_role.prop_by('print_text'), is_display: true, is_readonly: false},
-                             {title: '标识', m_property: m_rights_role.prop_by('name'), is_display: true, is_readonly: false},
-                             {title: '对应人员', m_property: m_rights_role.prop_by('person_id'), is_display: true, is_readonly: false},
-                             {title: '实体种类', m_property: m_rights_role.prop_by('entity_kind'), is_display: true, is_readonly: false},
-                             {title: '排序', m_property: m_rights_role.prop_by('seq'), is_display: true, is_readonly: false},
-                             {title: '是否激活', m_property: m_rights_role.prop_by('is_active'), is_display: true, is_readonly: false},
-                             {title: '帮助', m_property: m_rights_role.prop_by('help'), is_display: true, is_readonly: false},
-                             {title: '备注', m_property: m_rights_role.prop_by('note'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
-      r_role.m_columns.build([{title: 'ID', m_property: m_rights_role.prop_by('id'), width: 35},
-                              {title: '标题', m_property: m_rights_role.prop_by('title'), width: 75},
-                              {title: '打印文本', m_property: m_rights_role.prop_by('print_text'), width: 75},
-                              {title: '标识', m_property: m_rights_role.prop_by('name'), width: 75},
-                              {title: '对应人员', m_property: m_rights_role.prop_by('person_id'), width: 75},
-                              {title: '实体种类', m_property: m_rights_role.prop_by('entity_kind'), width: 75},
-                              {title: '排序', m_property: m_rights_role.prop_by('seq'), width: 75},
-                              {title: '是否激活', m_property: m_rights_role.prop_by('is_active'), width: 75},
-                              {title: '创建组织', m_property: m_rights_role.prop_by('createdbyorg_id'), width: 75},
-                              {title: '创建人', m_property: m_rights_role.prop_by('createdby_id'), width: 75},
-                              {title: '更新人', m_property: m_rights_role.prop_by('updatedby_id'), width: 75},
-                              {title: '备注', m_property: m_rights_role.prop_by('note'), width: 75}].map { |a| a.merge(attr) })
-
-
-    end
-
     menu_sys_settings = Fastui::MMenuItem.create({name: 'sys_tools', title: '系统设置', m_menu_id: menu_sys.id, m_window_id: 0}.merge(attr))
     menu_sys_settings_sys_datatype = menu_sys_settings.children.create({name: 'sys_datatype', title: '数据类型', m_window_id: sys_datatype.id, m_menu_id: menu_sys.id}.merge(attr))
     menu_sys_settings_win_entity = menu_sys_settings.children.create({name: 'win_entity', title: '实体', m_window_id: win_entity.id, m_menu_id: menu_sys.id}.merge(attr))
     menu_sys_settings_fastui = menu_sys_settings.children.create({name: 'sys_fastui', title: 'FastUI', m_window_id: win.id, m_menu_id: menu_sys.id}.merge(attr))
     menu_sys_settings_win_menu = menu_sys_settings.children.create({name: 'win_menu', title: '菜单', m_window_id: sys_win_menu.id, m_menu_id: menu_sys.id}.merge(attr))
-
-    # 权限
-    menu_sys_settings_rights = menu_sys_settings.children.create({name: 'rights', title: '权限', m_window_id: sys_rights.id, m_menu_id: menu_sys.id}.merge(attr))
 
   end
 end

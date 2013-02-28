@@ -53,7 +53,7 @@ Ext.define('FastUI.view.VLoginWindow', {
                 clientValidation:true,
                 waitMsg:'请稍后',
                 waitTitle:'正在验证登录',
-                url:'/fastui/m_people/login.json',
+                url:'/fastui/sessions/login.json',
                 success:function (form, action) {
                     win.hide();
                     //Ext.getCmp('SystemMenus').store.load();

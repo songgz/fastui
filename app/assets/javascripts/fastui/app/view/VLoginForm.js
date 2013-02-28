@@ -18,11 +18,43 @@ Ext.define('FastUI.view.VLoginForm', {
     //defaultFocus:'UserName',
     items:[
         {
+            xtype      : 'fieldcontainer',
+            fieldLabel : '用户类型',
+            defaultType: 'radiofield',
+            defaults: {
+                flex: 1
+            },
+            layout: 'hbox',
+            items: [
+                {
+                    boxLabel  : '教师',
+                    name      : 'type',
+                    inputValue: 'Teacher',
+                    id        : 'teacher'
+                }, {
+                    boxLabel  : '学生',
+                    name      : 'type',
+                    inputValue: 'Student',
+                    id        : 'student'
+                }, {
+                    boxLabel  : '家长',
+                    name      : 'type',
+                    inputValue: 'Guardian',
+                    id        : 'guardian'
+                },{
+                    boxLabel  : '管理员',
+                    name      : 'type',
+                    inputValue: 'Fastui::MPerson',
+                    id        : 'person'
+                }
+            ]
+        },
+        {
             xtype:'textfield',
             fieldLabel:'用户名',
             blankText:'用户名不能为空',
-            name:'UserName',
-            id:'UserName',
+            name:'username',
+            id:'username',
             allowBlank:false,
             width:240
         },
@@ -31,8 +63,8 @@ Ext.define('FastUI.view.VLoginForm', {
             fieldLabel:'密　码',
             allowBlank:false,
             blankText:'密码不能为空',
-            name:'PassWord',
-            id:'PassWord',
+            name:'password',
+            id:'password',
             width:240,
             inputType:'password'
         },

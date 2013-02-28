@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.2.9"
   s.add_dependency "awesome_nested_set", "~> 2.1.5"
+  s.add_dependency "bcrypt-ruby"
 
   s.add_development_dependency "mysql2"
 end
