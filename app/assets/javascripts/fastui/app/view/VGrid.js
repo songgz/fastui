@@ -8,8 +8,9 @@ Ext.define('FastUI.view.VGrid', {
     //plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
     initComponent:function () {
         this.title = this.getValue('title');
-        this.columns = this.getGColumns();
         this.store = this.getGStore();
+//        alert(Ext.encode(this.getStore()));
+        this.columns = this.getGColumns();
         this.callParent();
     },
     listeners:{
@@ -36,7 +37,7 @@ Ext.define('FastUI.view.VGrid', {
     },
 
     getGStore:function () {
-        return new Ext.data.JsonStore({
+       return new Ext.data.JsonStore({
             autoLoad:true,
             pageSize:50,
             proxy:{
@@ -44,7 +45,7 @@ Ext.define('FastUI.view.VGrid', {
                 url:this.tab.rest.indexPath(),
                 reader:{
                     type:'json',
-                    root:'',
+                    root:'data',
                     id:"id"
                 }
             },
@@ -78,6 +79,14 @@ Ext.define('FastUI.view.VGrid', {
                         type:'auto'
                     };
                     fields.push(entity);
+                    break;
+                case 'Fastui::MMultiCombobox':
+                    var plur_entity = {
+                        name:column.m_property.name.replace('_id', '').pluralize(),
+                        type:'auto'
+                    };
+                    fields.push(plur_entity);
+                    break;
             }
             fields.push(field);
 
@@ -99,6 +108,15 @@ Ext.define('FastUI.view.VGrid', {
                 case 'Fastui::MRelation':
                     col.xtype = 'templatecolumn';
                     col.tpl = '{' + prop.name.replace('_id', '') + '.title}';
+                    break;
+                case 'Fastui::MMultiCombobox':
+                    col.xtype = 'templatecolumn';
+                    var plur_entity = prop.name.replace('_id','').pluralize();
+                    col.tpl = new Ext.XTemplate(
+                        '<tpl for="'+ plur_entity +'">',
+                        '<p>{title}</p>',
+                        '</tpl>'
+                    );
                     break;
                 case 'Fastui::MList':
                     var list_store = FastUI.store.MListMgr.getStore(prop.m_datatype_id);
