@@ -5,21 +5,22 @@ module Fastui
     respond_to :html, :xml, :json
 
     def index
-      limit = params[:limit].to_i
-      start = params[:start].to_i
-      search = params[:search]
-      if search.blank?
-        @m_people = MPerson.all
-        @records = MPerson.limit(limit).offset(start)
-      else
-        @m_people = MPerson.where("title LIKE :input", {:input => "%#{search}%"})
-        @records = @m_people.limit(limit).offset(start)
-      end
-      data ={
-          :totalCount => @m_people.length,
-          :rows => @records
-      }
-      respond_with(data.to_json)
+      #limit = params[:limit].to_i
+      #start = params[:start].to_i
+      #search = params[:search]
+      #if search.blank?
+      #  @m_people = MPerson.all
+      #  @records = MPerson.limit(limit).offset(start)
+      #else
+      #  @m_people = MPerson.where("title LIKE :input", {:input => "%#{search}%"})
+      #  @records = @m_people.limit(limit).offset(start)
+      #end
+      #data ={
+      #    :totalCount => @m_people.length,
+      #    :rows => @records
+      #}
+      @m_people = MPerson.all
+      respond_with(@m_people.to_json)
     end
 
     def show

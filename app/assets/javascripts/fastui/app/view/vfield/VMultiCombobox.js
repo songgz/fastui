@@ -15,7 +15,7 @@ Ext.define('FastUI.view.vfield.VMultiCombobox', {
 
     initComponent:function () {
         this.fieldLabel = this.getFValue('title');
-        this.name =  this.rest.getTableName() + '[' + this.getFValue('m_property').name + '][]';
+        this.name =  this.rest.getTableName() + '[' + this.getFValue('m_property').name.pluralize()+'][]';
         this.disabled = this.getFValue('is_readonly');
         this.allowBlank = true;
         this.store = this.getStore();
@@ -43,16 +43,4 @@ Ext.define('FastUI.view.vfield.VMultiCombobox', {
     getFValue:function (key) {
         return this.valueObject[key];
     }
-    ,
-    setValue:function (value) {
-        if(value && value.name && value.title){
-            this.setValue(value.name);
-        }else{
-//            if(value){
-//                alert(typeof(value));
-//            }
-            this.callParent(arguments);
-        }
-    }
-
 });
