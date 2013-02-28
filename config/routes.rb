@@ -24,6 +24,7 @@ Fastui::Engine.routes.draw do
   resources :m_list_items
   resources :m_orgs
   resources :m_people
+  resources :m_roles
   resources :m_menus
   resources :m_menu_items
 
