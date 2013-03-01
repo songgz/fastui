@@ -5,6 +5,7 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_menus = MMenu.all
+      #data = paginate(MMenu)
       respond_with(@m_menus.to_json(:include => [:m_menu_items,:createdbyorg, :createdby, :updatedby]))
     end
 

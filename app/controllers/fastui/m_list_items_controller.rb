@@ -4,19 +4,9 @@ module Fastui
   class MListItemsController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      #conditions = {}
-      #unless params[:filter].blank?
-      #JSON.parse(params[:filter]).each do |filter|
-      #  conditions[filter['property']] = filter['value']
-      #end
-      #end
-      #unless params[:m_glossary_id].blank?
-      #  conditions[:m_glossary_id] = params[:m_glossary_id]
-      #end
-      #
-      #@m_list_items = MListItem.where(conditions)
       @m_list_items = MListItem.where({:m_list_id => params[:m_list_id]}.delete_if {|k, v| v.blank? })
-      respond_with(@m_list_items.to_json(:include =>[:m_list,:createdbyorg,:createdby,:updatedby]))
+      data = paginate(@m_list_items)
+      respond_with(data.to_json(:include =>[:m_list,:createdbyorg,:createdby,:updatedby]))
     end
 
     def show

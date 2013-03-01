@@ -5,7 +5,8 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_properties = MProperty.where({:m_entity_id => params[:m_entity_id]}.delete_if {|k, v| v.blank? })
-      respond_with(@m_properties.to_json(:include => [:m_entity,:m_datatype,:createdbyorg, :createdby, :updatedby]))
+      data = paginate(@m_properties)
+      respond_with(data.to_json(:include => [:m_entity,:m_datatype,:createdbyorg, :createdby, :updatedby]))
     end
 
     def show

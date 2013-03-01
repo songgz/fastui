@@ -11,7 +11,18 @@ Ext.define('FastUI.view.VGrid', {
         this.store = this.getGStore();
 //        alert(Ext.encode(this.getStore()));
         this.columns = this.getGColumns();
+        this.bbar = this.pageBar();
         this.callParent();
+    },
+    pageBar:function () {
+        this.bar = Ext.create('Ext.toolbar.Paging', {
+            store:this.store,
+            displayInfo:true,
+            beforePageText:'第',
+            afterPageText:'页共 {0}页',
+            displayMsg:'显示第{0} 条到第 {1} 条记录，总共{2}条记录'
+        }, this);
+        return this.bar;
     },
     listeners:{
         itemclick:function (view, record, item, index, e, eOpts) {
@@ -39,14 +50,14 @@ Ext.define('FastUI.view.VGrid', {
     getGStore:function () {
        return new Ext.data.JsonStore({
             autoLoad:true,
-            pageSize:50,
+            pageSize:5,
             proxy:{
                 type:'ajax',
                 url:this.tab.rest.indexPath(),
                 reader:{
                     type:'json',
-                    root:'data',
-                    id:"id"
+                    root:'rows',
+                    totalProperty:"totalCount"
                 }
             },
             fields:this.getGFields(),

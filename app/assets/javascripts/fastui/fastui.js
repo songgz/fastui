@@ -33,10 +33,10 @@ Ext.application({
     autoCreateViewport:true,
     launch: function() {
 
-        var win;
-        if(!win){
-            win = Ext.create('FastUI.view.VLoginWindow').show();
-        }
+//        var win;
+//        if(!win){
+//            win = Ext.create('FastUI.view.VLoginWindow').show();
+//        }
 
 //        var store = Ext.create('Ext.data.Store', {
 //            model: 'FastUI.model.MWindow'

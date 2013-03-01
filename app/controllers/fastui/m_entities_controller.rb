@@ -6,7 +6,8 @@ module Fastui
 
     def index
       @m_entities = MEntity.all
-      respond_with(@m_entities.to_json(:include => [:m_properties,:createdbyorg, :createdby, :updatedby]))
+      data = paginate(MEntity)
+      respond_with(data.to_json(:include => [:m_properties,:createdbyorg, :createdby, :updatedby]))
     end
 
     def show

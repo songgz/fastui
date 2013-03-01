@@ -20,7 +20,8 @@ module Fastui
       #    :rows => @records
       #}
       @m_people = MPerson.all
-      respond_with(@m_people.to_json)
+      data = paginate(MPerson)
+      respond_with(data.to_json)
     end
 
     def show

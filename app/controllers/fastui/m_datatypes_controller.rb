@@ -5,7 +5,8 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_datatypes = MDatatype.all
-      respond_with(@m_datatypes.to_json(:include => [:m_entity,:createdbyorg, :createdby, :updatedby]))
+      data = paginate(MDatatype)
+      respond_with(data.to_json(:include => [:m_entity,:createdbyorg, :createdby, :updatedby]))
     end
 
     def show

@@ -6,7 +6,8 @@ module Fastui
 
     def index
       @m_windows = MWindow.all
-      respond_with(@m_windows.to_json(:include => [:createdbyorg, :createdby, :updatedby]))
+      data = paginate(MWindow)
+      respond_with(data.to_json(:include => [:createdbyorg, :createdby, :updatedby]))
     end
 
     def show

@@ -5,7 +5,8 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_orgs = MOrg.all
-      respond_with(@m_orgs)
+      data = paginate(MOrg)
+      respond_with(data)
     end
 
     def show

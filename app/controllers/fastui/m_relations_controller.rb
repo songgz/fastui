@@ -5,7 +5,8 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_relations = MRelation.all
-      respond_with(@m_relations.to_json(:include => [:m_entity,:createdbyorg, :createdby, :updatedby]))
+      data = paginate(MRelation)
+      respond_with(data.to_json(:include => [:m_entity,:createdbyorg, :createdby, :updatedby]))
     end
 
     def show

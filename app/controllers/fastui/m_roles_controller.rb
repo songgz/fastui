@@ -6,7 +6,8 @@ module Fastui
 
     def index        
       @m_roles = MRole.all
-      respond_with(@m_roles.to_json({:include => :people,:methods => :person_ids}))
+      data = paginate(MRole)
+      respond_with(data.to_json({:include => :people,:methods => :person_ids}))
     end
 
     def show

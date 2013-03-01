@@ -5,7 +5,8 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_lists = MList.all
-      respond_with(@m_lists.to_json(:include => [:m_list_items,:createdbyorg, :createdby, :updatedby]))
+      data = paginate(MList)
+      respond_with(data.to_json(:include => [:m_list_items,:createdbyorg, :createdby, :updatedby]))
     end
 
     def show
