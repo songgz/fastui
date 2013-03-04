@@ -5,8 +5,8 @@ module Fastui
     respond_to :html, :xml, :json
 
     def index
-      @m_windows = MWindow.all
-      data = paginate(MWindow)
+      @m_windows = MWindow.scoped
+      data = paginate(@m_windows)
       respond_with(data.to_json(:include => [:createdbyorg, :createdby, :updatedby]))
     end
 

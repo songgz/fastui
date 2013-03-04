@@ -4,8 +4,8 @@ module Fastui
   class MDatatypesController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_datatypes = MDatatype.all
-      data = paginate(MDatatype)
+      @m_datatypes = MDatatype.scoped
+      data = paginate(@m_datatypes)
       respond_with(data.to_json(:include => [:m_entity,:createdbyorg, :createdby, :updatedby]))
     end
 

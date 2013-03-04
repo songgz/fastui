@@ -4,8 +4,8 @@ module Fastui
   class MRelationsController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_relations = MRelation.all
-      data = paginate(MRelation)
+      @m_relations = MRelation.scoped
+      data = paginate(@m_relations)
       respond_with(data.to_json(:include => [:m_entity,:createdbyorg, :createdby, :updatedby]))
     end
 

@@ -4,8 +4,8 @@ module Fastui
   class MListsController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_lists = MList.all
-      data = paginate(MList)
+      @m_lists = MList.scoped
+      data = paginate(@m_lists)
       respond_with(data.to_json(:include => [:m_list_items,:createdbyorg, :createdby, :updatedby]))
     end
 

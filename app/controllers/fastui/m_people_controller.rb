@@ -19,8 +19,8 @@ module Fastui
       #    :totalCount => @m_people.length,
       #    :rows => @records
       #}
-      @m_people = MPerson.all
-      data = paginate(MPerson)
+      @m_people = MPerson.scoped
+      data = paginate(@m_people)
       respond_with(data.to_json)
     end
 

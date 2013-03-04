@@ -4,8 +4,8 @@ module Fastui
   class MOrgsController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_orgs = MOrg.all
-      data = paginate(MOrg)
+      @m_orgs = MOrg.scoped
+      data = paginate(@m_orgs)
       respond_with(data)
     end
 

@@ -8,7 +8,13 @@ module Fastui
       @m_menu_items = params[:id] == 'root' ? MMenuItem.roots : MMenuItem.where({
                                                                                     :parent_id => params[:id]
                                                                                 }.delete_if { |k, v| v.blank? })
-      #data = paginate(@m_menu_items)
+
+      #if params[:id] == 'root'
+      #  data = MMenuItem.roots
+      #else
+      #  @m_menu_items = MMenuItem.where({:parent_id => params[:id]}.delete_if { |k, v| v.blank?})
+      #  data = paginate(@m_menu_items)
+      #end
       respond_with(@m_menu_items.to_json(:include => [:m_window, :m_menu, :createdbyorg, :createdby, :updatedby], :methods => [:leaf?, :child?]))
     end
 

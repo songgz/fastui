@@ -5,8 +5,8 @@ module Fastui
     respond_to :html, :xml, :json
 
     def index        
-      @m_roles = MRole.all
-      data = paginate(MRole)
+      @m_roles = MRole.scoped
+      data = paginate(@m_roles)
       respond_with(data.to_json({:include => :people,:methods => :person_ids}))
     end
 

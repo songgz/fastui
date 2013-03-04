@@ -3,22 +3,14 @@ module Fastui
 
 
     # 分页方法
-    def paginate(entities)
+    def paginate(record_relation)
       limit = params[:limit].to_i
       start = params[:start].to_i
-      if entities.all.class.eql?(Array)
-        @records = entities.limit(limit).offset(start)
-        data ={
-            :totalCount => entities.all.length,
+      @records = record_relation.limit(limit).offset(start)
+      data ={
+          :totalCount => record_relation.length,
           :rows => @records
-        }
-      else
-        @records = entities.limit(limit).offset(start)
-        data ={
-            :totalCount => entities.length,
-            :rows => @records
-        }
-      end
+      }
       data
     end
   end
