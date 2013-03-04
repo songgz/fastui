@@ -11,7 +11,6 @@ module Fastui
           :totalCount => record_relation.length,
           :rows => @records
       }
-      data
     end
   end
 end

@@ -4,9 +4,9 @@ module Fastui
   class MMenusController < ApplicationController
     respond_to :html, :xml, :json
     def index
-      @m_menus = MMenu.all
-      #data = paginate(MMenu)
-      respond_with(@m_menus.to_json(:include => [:m_menu_items,:createdbyorg, :createdby, :updatedby]))
+      @m_menus = MMenu.scoped
+      data = paginate(@m_menus)
+      respond_with(data.to_json(:include => [:m_menu_items,:createdbyorg, :createdby, :updatedby]))
     end
 
     def show
