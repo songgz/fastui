@@ -6,7 +6,12 @@ module Fastui
     def index
       @m_columns = MColumn.includes(:m_tab, :m_property,:createdbyorg,:createdby,:updatedby).where({
       :m_tab_id => params[:m_tab_id]}.delete_if {|k, v| v.blank? })
-      data = paginate(@m_columns)
+      @records = @m_columns.page(params[:page]).per(params[:limit])
+      data ={
+          :totalCount => @m_columns.length,
+          :rows => @records
+      }
+      #data = paginate(@m_columns)
       respond_with(data.to_json(:include => [:m_tab, :m_property,:createdbyorg,:createdby,:updatedby]))
     end
 

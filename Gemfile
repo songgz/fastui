@@ -19,6 +19,7 @@ end
 gem 'i18n'
 gem 'mysql2'
 gem 'puma'
+gem 'kaminari'
 
 # jquery-rails is used by the dummy application
 # gem "jquery-rails"

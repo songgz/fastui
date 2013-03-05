@@ -47,7 +47,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.5.0)
+    coffee-script-source (1.6.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -55,6 +55,9 @@ GEM
     i18n (0.6.4)
     journey (1.0.4)
     json (1.7.7)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -120,6 +123,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   fastui!
   i18n
+  kaminari
   mysql2
   puma
   sass-rails (~> 3.2.3)
