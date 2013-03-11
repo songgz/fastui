@@ -9,9 +9,10 @@ Ext.define('FastUI.view.VGrid', {
     initComponent:function () {
         this.title = this.getValue('title');
         this.store = this.getGStore();
-//        alert(Ext.encode(this.getStore()));
+//        alert(this.store);
         this.columns = this.getGColumns();
         this.bbar = this.pageBar();
+
         this.callParent();
     },
     pageBar:function () {
@@ -50,7 +51,7 @@ Ext.define('FastUI.view.VGrid', {
     getGStore:function () {
        return new Ext.data.JsonStore({
             autoLoad:true,
-            pageSize:5,
+//            pageSize:5,
             proxy:{
                 type:'ajax',
                 url:this.tab.rest.indexPath(),

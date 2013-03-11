@@ -6,8 +6,9 @@ module Fastui
     def index
       @m_columns = MColumn.includes(:m_tab, :m_property,:createdbyorg,:createdby,:updatedby).where({
       :m_tab_id => params[:m_tab_id]}.delete_if {|k, v| v.blank? })
-      @records = @m_columns.page(params[:page]).per(params[:limit])
+      @records = @m_columns.page(params[:page]).per(6)
       data ={
+          :pageSize => 6,
           :totalCount => @m_columns.length,
           :rows => @records
       }

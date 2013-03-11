@@ -622,6 +622,51 @@ namespace :fastui do
 
     end
 
+    sys_org = Fastui::MWindow.create({title: '组织', window_kind: 'maintain'})
+
+    #ent_subject.m_properties.build([{name: 'id', title: 'ID', m_datatype: v_number},
+    #                                {name: 'title', title: '学科', m_datatype: v_text},
+    #                                {name: 'print_text', title: '打印文本', m_datatype: v_text},
+    #                                {name: 'name', title: '学科编码', m_datatype: v_text},
+    #                                {name: 'subject_type', title: '学科类型', m_datatype: subject_type},
+    #                                {name: 'parent_id', title: '父学科', m_datatype: m_relation_subject},
+    #                                {name: 'entity_kind', title: '实体种类', m_datatype: entity_kind},
+    #                                {name: 'seq', title: '排序', m_datatype: v_number},
+    #                                {name: 'is_active', title: '是否激活', m_datatype: v_yesorno},
+    #                                {name: 'help', title: '帮助', m_datatype: v_textarea},
+    #                                {name: 'note', title: '备注', m_datatype: v_textarea},
+    #                                {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
+    #                                {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}
+    #                               ])
+    #tab_subject = mwin_subject_manage.m_tabs.create({title: '学科', m_entity: ent_subject, is_readonly: true}.merge(attr)) do |subject|
+    #  subject.m_fields.build([{title: 'ID', m_property: ent_subject.prop_by('id'), is_display: true, is_readonly: true},
+    #                          {title: '学科名', m_property: ent_subject.prop_by('title'), is_display: true, is_readonly: false},
+    #                          {title: '打印文本', m_property: ent_subject.prop_by('print_text'), is_display: true, is_readonly: false},
+    #                          {title: '学科编码', m_property: ent_subject.prop_by('name'), is_display: true, is_readonly: false},
+    #                          {title: '学科类型', m_property: ent_subject.prop_by('subject_type'), is_display: true, is_readonly: false},
+    #                          {title: '父学科', m_property: ent_subject.prop_by('parent_id'), is_display: true, is_readonly: false},
+    #                          {title: '实体种类', m_property: ent_subject.prop_by('entity_kind'), is_display: true, is_readonly: false},
+    #                          {title: '排序', m_property: ent_subject.prop_by('seq'), is_display: true, is_readonly: false},
+    #                          {title: '是否激活', m_property: ent_subject.prop_by('is_active'), is_display: true, is_readonly: false},
+    #                          {title: '帮助', m_property: ent_subject.prop_by('help'), is_display: true, is_readonly: false},
+    #                          {title: '备注', m_property: ent_subject.prop_by('note'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
+    #  subject.m_columns.build([{title: 'ID', m_property: ent_subject.prop_by('id'), width: 35},
+    #                           {title: '学科名', m_property: ent_subject.prop_by('title'), width: 75},
+    #                           {title: '打印文本', m_property: ent_subject.prop_by('print_text'), width: 75},
+    #                           {title: '学科编码', m_property: ent_subject.prop_by('name'), width: 75},
+    #                           {title: '学科类型', m_property: ent_subject.prop_by('subject_type'), width: 75},
+    #                           {title: '父学科', m_property: ent_subject.prop_by('parent_id'), width: 75},
+    #                           {title: '实体种类', m_property: ent_subject.prop_by('entity_kind'), width: 75},
+    #                           {title: '排序', m_property: ent_subject.prop_by('seq'), width: 75},
+    #                           {title: '是否激活', m_property: ent_subject.prop_by('is_active'), width: 75},
+    #                           {title: '创建组织', m_property: ent_subject.prop_by('createdbyorg_id'), width: 75},
+    #                           {title: '创建人', m_property: ent_subject.prop_by('updatedby_id'), width: 75},
+    #                           {title: '更新人', m_property: ent_subject.prop_by('updatedby_id'), width: 75},
+    #                           {title: '备注', m_property: ent_subject.prop_by('note'), width: 75}
+    #                          ].map { |a| a.merge(attr) })
+    #end
+
+
     menu_sys_settings = Fastui::MMenuItem.create({name: 'sys_tools', title: '系统设置', m_menu_id: menu_sys.id, m_window_id: 0}.merge(attr))
     menu_sys_settings_sys_datatype = menu_sys_settings.children.create({name: 'sys_datatype', title: '数据类型', m_window_id: sys_datatype.id, m_menu_id: menu_sys.id}.merge(attr))
     menu_sys_settings_win_entity = menu_sys_settings.children.create({name: 'win_entity', title: '实体', m_window_id: win_entity.id, m_menu_id: menu_sys.id}.merge(attr))
@@ -630,6 +675,7 @@ namespace :fastui do
 
     # 权限
     menu_sys_settings_rights = menu_sys_settings.children.create({name: 'rights', title: '权限', m_window_id: sys_rights.id, m_menu_id: menu_sys.id}.merge(attr))
-
+    # 组织
+    org_settings = menu_sys_settings.children.create({name: 'org', title: '组织', m_window_id: sys_org.id, m_menu_id: menu_sys.id}.merge(attr))
   end
 end
