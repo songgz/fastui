@@ -82,8 +82,8 @@ Ext.define('FastUI.view.VSearchWindow', {
     getStore:function () {
         var rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
         return new Ext.data.JsonStore({
-            autoLoad:{start:0, limit:2},
-            pageSize:2, // items per page
+            autoLoad:{start:0, limit:25},
+//            pageSize:2, // items per page
             fields:['id', 'title'],
             proxy:{
                 type:'ajax',

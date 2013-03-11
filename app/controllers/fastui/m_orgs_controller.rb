@@ -6,7 +6,7 @@ module Fastui
     def index
       @m_orgs = MOrg.scoped
       data = paginate(@m_orgs)
-      respond_with(data)
+      respond_with(data.to_json)
     end
 
     def show
