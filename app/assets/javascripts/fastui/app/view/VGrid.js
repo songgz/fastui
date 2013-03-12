@@ -87,7 +87,7 @@ Ext.define('FastUI.view.VGrid', {
             switch (prop.m_datatype.class_name) {
                 case 'Fastui::MRelation':
                     var entity = {
-                        name:column.m_property.name.replace('_id', ''),
+                        name:prop.name.replace('_id', ''),
                         type:'auto'
                     };
                     fields.push(entity);
@@ -119,7 +119,13 @@ Ext.define('FastUI.view.VGrid', {
             switch (prop.m_datatype.class_name) {
                 case 'Fastui::MRelation':
                     col.xtype = 'templatecolumn';
-                    col.tpl = '{' + prop.name.replace('_id', '') + '.title}';
+                    var entity = prop.name.replace('_id', '');
+                    col.tpl = new Ext.XTemplate(
+                        '<tpl for="'+ entity +'">',
+                        '<p>{title}</p>',
+                        '</tpl>'
+                    );
+//                    col.tpl = '{' + prop.name.replace('_id', '') + '.title}';
                     break;
                 case 'Fastui::MMultiCombobox':
                     col.xtype = 'templatecolumn';

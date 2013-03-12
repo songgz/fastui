@@ -6,7 +6,7 @@ module Fastui
     def index
       @m_orgs = MOrg.scoped
       data = paginate(@m_orgs)
-      respond_with(data.to_json)
+      respond_with(data.to_json(:include => [:parent]))
     end
 
     def show
@@ -16,7 +16,7 @@ module Fastui
 
     def edit
       @m_org = MOrg.find(params[:id])
-      respond_with(@m_org)
+      respond_with(@m_org.to_json(:include => [:parent]))
     end
 
     def new

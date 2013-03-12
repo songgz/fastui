@@ -180,14 +180,14 @@ Ext.define('FastUI.view.VTab', {
                 var data = Ext.decode(response.responseText);
                 var k, o = {};
                 for (k in data) {
-                        if (k.match(/_id$/)) {
+                    if (k.match(/_id$/)) {
                         var attr = data[k.replace('_id', '')];
                         var title = data[k];
                         if (attr && attr.title) {
                             title = attr.title
                         }
                         o[this.rest.getTableName() + '[' + k + ']'] = {id: data[k], title: title};
-                        } else if (k.match(/_ids$/)) {
+                    } else if (k.match(/_ids$/)) {
                         o[this.rest.getTableName() + '[' + k + '][]'] = data[k];
                     }
                     else {
