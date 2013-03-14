@@ -3,10 +3,13 @@ require_dependency "fastui/application_controller"
 module Fastui
   class MOrgsController < ApplicationController
     respond_to :html, :xml, :json
+
     def index
-      @m_orgs = MOrg.scoped
-      data = paginate(@m_orgs)
-      respond_with(data.to_json(:include => [:parent]))
+      #@m_orgs = MOrg.scoped
+      @m_orgs = params[:id] == 'root' ? MOrg.roots : MOrg.where({
+                                                                    :parent_id => params[:id]
+                                                                }.delete_if { |k, v| v.blank? })
+      respond_with(@m_orgs.to_json(:include => [:parent]))
     end
 
     def show

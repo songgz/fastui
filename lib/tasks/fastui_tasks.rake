@@ -12,6 +12,7 @@ namespace :fastui do
     v_number = Fastui::MNumber.create({name: 'VNumber', title: '整型'})
     v_date = Fastui::MDate.create({name: 'VDate', title: '日期'})
     v_text = Fastui::MText.create({name: 'VText', title: '字符串'})
+    v_tree = Fastui::MTree.create({name: 'VTree', title: '层级树'})
     v_htmleditor = Fastui::MHtmlEditor.create({name: 'VHtmlEditor', title: '文本编辑器'})
     v_textarea = Fastui::MTextArea.create({name: 'VTextArea', title: '文本'})
     v_checkbox = Fastui::MCheckbox.create({name: 'VCheckbox', title: '选择框'})
@@ -625,7 +626,7 @@ namespace :fastui do
     sys_org = Fastui::MWindow.create({title: '组织', window_kind: 'maintain'})
 
     m_org.m_properties.build([{name: 'id', title: 'ID', m_datatype: v_number},
-                                    {name: 'title', title: '组织', m_datatype: v_text},
+                                    {name: 'title', title: '组织', m_datatype: v_tree},
                                     {name: 'print_text', title: '打印文本', m_datatype: v_text},
                                     {name: 'name', title: '组织编码', m_datatype: v_text},
                                     #{name: 'type', title: '组织类型', m_datatype: subject_type},

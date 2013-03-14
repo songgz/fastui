@@ -6,7 +6,10 @@ module Fastui
     def paginate(record_relation)
       limit = params[:limit].to_i
       start = params[:start].to_i
-      @records = record_relation.limit(limit).offset(start)
+      @records = record_relation
+      if limit != 0
+        @records = record_relation.limit(limit).offset(start)
+      end
       data ={
           :totalCount => record_relation.length,
           :rows => @records

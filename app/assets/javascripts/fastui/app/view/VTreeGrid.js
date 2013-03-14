@@ -7,8 +7,9 @@
  */
 
 Ext.define('FastUI.view.VTreeGrid', {
-    extend:'Ext.tree.Panel',
-    tab:{},
+    extend: 'Ext.tree.Panel',
+    requires: ['FastUI.store.MListMgr'],
+    tab: {},
     width: 500,
     height: 300,
     renderTo: Ext.getBody(),
@@ -17,49 +18,67 @@ Ext.define('FastUI.view.VTreeGrid', {
     rootVisible: false,
     multiSelect: false,
     singleExpand: true,
-    border:true,
-    initComponent:function () {
+    border: true,
+    initComponent: function () {
         this.title = this.getValue('title');
         this.columns = this.getTreeGColumns();
         this.store = this.getTreeGStore();
         this.callParent();
     },
-    getValue:function (key) {
+    listeners:{
+        itemclick:function (view, record, item, index, e, eOpts) {
+            this.tab.winCtx.setWinCtx(this.tab.winId, this.tab.rest.getKey(), record.get('id'));
+            this.tab.winCtx.setWinCtx(this.tab.winId, this.tab.rest.getTitle(), record.get('title'));
+            if (record.get('m_entity_id')) {
+                this.tab.winCtx.setWinCtx(this.tab.winId, 'm_entity_id', record.get('m_entity_id'));
+            }
+            this.tab.getBtn('edit').enable();
+            this.tab.getBtn('del').enable();
+        }
+    },
+    selectedId: function () {
+        var id = 0;
+        var records = this.getSelectionModel().getSelection();
+        if (!Ext.isEmpty(records)) {
+            id = records[0].get('id');
+        }
+        return id;
+    },
+    getValue: function (key) {
         return this.tab.valueObject[key];
     },
 
-    getTreeGStore:function () {
-        return new Ext.data.JsonStore({
-            autoLoad:true,
-            pageSize:50,
-            proxy:{
-                type:'ajax',
-                url:this.tab.rest.indexPath(),
-                reader:{
-                    type:'json',
-                    root:'',
-                    id:"id"
-                }
+    getTreeGStore: function () {
+        return new Ext.data.TreeStore({
+            autoLoad: false,
+            proxy: {
+                type: 'ajax',
+                url: this.tab.rest.indexPath()
             },
-            fields:this.getTreeGFields()
-            })
+            folderSort: true,
+            root: {
+                expanded: true,
+                loaded: true
+            },
+            fields: this.getTreeGFields()
+        })
     },
-    getMColumns:function () {
+    getMColumns: function () {
         return this.tab.valueObject.m_columns;
     },
-    getTreeGFields:function () {
+    getTreeGFields: function () {
         var fields = [];
         Ext.each(this.getMColumns(), function (column) {
             var field = {
-                name:column.m_property.name,
-                type:'auto'
+                name: column.m_property.name,
+                type: 'auto'
             };
             var prop = column.m_property;
             switch (prop.m_datatype.class_name) {
                 case 'Fastui::MRelation':
                     var entity = {
-                        name:column.m_property.name.replace('_id', ''),
-                        type:'auto'
+                        name: column.m_property.name.replace('_id', ''),
+                        type: 'auto'
                     };
                     fields.push(entity);
             }
@@ -67,23 +86,29 @@ Ext.define('FastUI.view.VTreeGrid', {
         }, this);
         return fields;
     },
-    getTreeGColumns:function () {
-        var columns = [Ext.create('Ext.grid.RowNumberer')];
+    getTreeGColumns: function () {
+        var columns = [];
         if (this.getMColumns() <= 0) return columns;
         Ext.each(this.getMColumns(), function (column) {
             var col = {
-                text:column.title,
-                dataIndex:column.m_property.name,
-                width:column.width
+                text: column.title,
+                dataIndex: column.m_property.name,
+                width: column.width
             };
             var prop = column.m_property;
             switch (prop.m_datatype.class_name) {
                 case 'Fastui::MTree':
                     col.xtype = 'treecolumn';
+                    col.flex = 2;
                     break;
                 case 'Fastui::MRelation':
                     col.xtype = 'templatecolumn';
-                    col.tpl = '{' + prop.name.replace('_id', '') + '.title}';
+                    var entity = prop.name.replace('_id', '');
+                    col.tpl = new Ext.XTemplate(
+                        '<tpl for="' + entity + '">',
+                        '<p>{title}</p>',
+                        '</tpl>'
+                    );
                     break;
                 case 'Fastui::MList':
                     var list_store = FastUI.store.MListMgr.getStore(prop.m_datatype_id);
