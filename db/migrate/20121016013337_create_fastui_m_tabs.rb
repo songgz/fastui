@@ -10,6 +10,7 @@ class CreateFastuiMTabs < ActiveRecord::Migration
       t.string :note  , :default => ''
       t.boolean :is_readonly, :default => false
       t.integer :included_tab_id,:default => 0
+      t.string :grid_kind,:default => :grid  # :grid,:treegrid
       t.string :entity_kind,:default => '' #:sys,:app
       t.integer :seq, :default => 0
       t.boolean :is_active, :default => true

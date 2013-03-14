@@ -1,3 +1,4 @@
+# encoding: utf-8
 require_dependency "awesome_nested_set"
 module Fastui
   class MOrg < MObject
@@ -9,5 +10,7 @@ module Fastui
     has_many :actors, :through => :m_relationships, :source => :m_person
 
     belongs_to :parent, :class_name => 'Fastui::MOrg'
+
+
   end
 end

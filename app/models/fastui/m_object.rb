@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Fastui
   class MObject < ActiveRecord::Base
     self.abstract_class = true

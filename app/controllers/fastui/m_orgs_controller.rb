@@ -9,6 +9,7 @@ module Fastui
       @m_orgs = params[:id] == 'root' ? MOrg.roots : MOrg.where({
                                                                     :parent_id => params[:id]
                                                                 }.delete_if { |k, v| v.blank? })
+
       respond_with(@m_orgs.to_json(:include => [:parent]))
     end
 

@@ -8,6 +8,7 @@ Ext.define('FastUI.view.VTab', {
     border: true,
     initComponent: function () {
         this.id = 'tab-' + this.getValue('id');
+        this.grid_kind = this.getValue('grid_kind');
         this.title = this.getValue('level') + this.getValue('title');
         this.rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
@@ -111,10 +112,9 @@ Ext.define('FastUI.view.VTab', {
     },
     getVGrid: function () {
         if (!this.vgrid) {
-//            alert(this.getMEntity().name)
-            if(this.getMEntity().name == 'Fastui::MOrg'){
+            if (this.grid_kind == 'treegrid') {
                 this.vgrid = Ext.create('FastUI.view.VTreeGrid', {tab: this});
-            }else{
+            } else {
                 this.vgrid = Ext.create('FastUI.view.VGrid', {tab: this});
             }
             this.add(this.vgrid);
@@ -140,11 +140,15 @@ Ext.define('FastUI.view.VTab', {
         store.getProxy().extraParams = this.getParams();
         store.reload({
             callback: function (records, operation, success) {
-//                var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
-//                if (rowIndex > -1) {
-//                    this.vgrid.getView().select(rowIndex);
+                if (this.grid_kind == 'treegrid') {
                     this.getBtn('edit').enable();
-//                }
+                } else {
+                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
+                    if (rowIndex > -1) {
+                        this.vgrid.getView().select(rowIndex);
+                        this.getBtn('edit').enable();
+                    }
+                }
             },
             scope: this
         });

@@ -639,7 +639,7 @@ namespace :fastui do
                                     {name: 'createdbyorg_id', title: '创建组织', m_datatype: m_relation_org},
                                     {name: 'updatedby_id', title: '更新人', m_datatype: m_relation_person}
                                    ])
-    tab_org = sys_org.m_tabs.create({title: '组织', m_entity: m_org, is_readonly: true}.merge(attr)) do |org|
+    tab_org = sys_org.m_tabs.create({title: '组织', m_entity: m_org, is_readonly: true, grid_kind:'treegrid'}.merge(attr)) do |org|
       org.m_fields.build([{title: 'ID', m_property: m_org.prop_by('id'), is_display: true, is_readonly: true},
                               {title: '组织名', m_property: m_org.prop_by('title'), is_display: true, is_readonly: false},
                               {title: '打印文本', m_property: m_org.prop_by('print_text'), is_display: true, is_readonly: false},

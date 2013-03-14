@@ -268,12 +268,13 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
   create_table "fastui_m_tabs", :force => true do |t|
     t.integer  "m_window_id"
     t.integer  "m_entity_id"
-    t.string   "title",           :limit => 60,                    :null => false
+    t.string   "title",           :limit => 60,                     :null => false
     t.string   "name",            :limit => 60, :default => ""
     t.string   "print_text",      :limit => 60, :default => ""
     t.string   "note",                          :default => ""
     t.boolean  "is_readonly",                   :default => false
     t.integer  "included_tab_id",               :default => 0
+    t.string   "grid_kind",                     :default => "grid"
     t.string   "entity_kind",                   :default => ""
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
@@ -281,8 +282,8 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
     t.string   "help",                          :default => ""
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   create_table "fastui_m_windows", :force => true do |t|
