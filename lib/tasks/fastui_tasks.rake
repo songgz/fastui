@@ -38,7 +38,7 @@ namespace :fastui do
     m_org = Fastui::MEntity.create({name: 'Fastui::MOrg', title: '组织', access_level: 'system'}.merge(attr))
     mmenu = Fastui::MEntity.create({name: 'Fastui::MMenu', title: '菜单', access_level: 'system'}.merge(attr))
     m_datatype = Fastui::MEntity.create({name: 'Fastui::MDatatype', title: '数据类型', access_level: 'system'}.merge(attr))
-
+    m_comment = Fastui::MEntity.create({name: 'Fastui::MComment', title: '评论', access_level: 'system'}.merge(attr))
 
     m_relation_org = Fastui::MRelation.create({m_entity: m_org, name: 'Fastui::MOrg', title: '组织', access_level: 'system'}.merge(attr))
     m_relation_person = Fastui::MRelation.create({m_entity: m_person, name: 'Fastui::MPerson', title: '人员', access_level: 'system'}.merge(attr))
@@ -667,6 +667,27 @@ namespace :fastui do
                               ].map { |a| a.merge(attr) })
     end
 
+    sys_scale = Fastui::MWindow.create({title: '评定表', :window_kind => 'custom'}.merge(attr))
+    m_comment.m_properties.build([
+                              {name: 'title', title: '名称', m_datatype: v_tree},
+                              {name: 'note', title: '描述', m_datatype: v_textarea},
+                              {name: 'guide', title: '指导', m_datatype: v_text},
+                              {name: 'memo', title: '备注', m_datatype: v_textarea},
+                              {name: 'total', title: '总分', m_datatype: v_number}
+                             ])
+    tab_comment = sys_scale.m_tabs.create({title: '评论', m_entity: m_comment, is_readonly: true}.merge(attr)) do |com|
+      com.m_fields.build([{title: '名称', m_property: m_comment.prop_by('title'), is_display: true, is_readonly: false},
+                          {title: '描述', m_property: m_comment.prop_by('note'), is_display: true, is_readonly: false},
+                          {title: '指导', m_property: m_comment.prop_by('guide'), is_display: true, is_readonly: false},
+                          {title: '备注', m_property: m_comment.prop_by('memo'), is_display: true, is_readonly: false},
+                          {title: '总分', m_property: m_comment.prop_by('total'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
+      com.m_columns.build([{title: '名称', m_property: m_comment.prop_by('title'), width: 35},
+                           {title: '描述', m_property: m_comment.prop_by('note'), width: 75},
+                           {title: '指导', m_property: m_comment.prop_by('guide'), width: 75},
+                           {title: '备注', m_property: m_comment.prop_by('memo'), width: 75},
+                           {title: '总分', m_property: m_comment.prop_by('total'), width: 75}
+                          ].map { |a| a.merge(attr) })
+    end
 
     menu_sys_settings = Fastui::MMenuItem.create({name: 'sys_tools', title: '系统设置', m_menu_id: menu_sys.id, m_window_id: 0}.merge(attr))
     menu_sys_settings_sys_datatype = menu_sys_settings.children.create({name: 'sys_datatype', title: '数据类型', m_window_id: sys_datatype.id, m_menu_id: menu_sys.id}.merge(attr))
@@ -678,5 +699,8 @@ namespace :fastui do
     menu_sys_settings_rights = menu_sys_settings.children.create({name: 'rights', title: '权限', m_window_id: sys_rights.id, m_menu_id: menu_sys.id}.merge(attr))
     # 组织
     org_settings = menu_sys_settings.children.create({name: 'org', title: '组织', m_window_id: sys_org.id, m_menu_id: menu_sys.id}.merge(attr))
+
+
+    scale_settings = menu_sys_settings.children.create({name: 'win_scale', title: '评定表', m_window_id: sys_scale.id, m_menu_id: menu_sys.id}.merge(attr))
   end
 end

@@ -1,4 +1,4 @@
-Ext.Loader.setConfig({
+ Ext.Loader.setConfig({
     enabled:true,
     paths:{
         //'Ext':'/assets/fastui/extjs4/src',
