@@ -28,6 +28,8 @@ Fastui::Engine.routes.draw do
   resources :m_menus
   resources :m_menu_items
 
+  resources :m_comments
+
   resources :sessions do
     collection do
       post 'login'
