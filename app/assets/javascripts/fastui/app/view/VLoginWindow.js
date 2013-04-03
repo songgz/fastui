@@ -56,7 +56,7 @@ Ext.define('FastUI.view.VLoginWindow', {
                 url:'/fastui/sessions/login.json',
                 success:function (form, action) {
                     win.hide();
-                    //Ext.getCmp('SystemMenus').store.load();
+                    Ext.getCmp('SystemMenus').store.load();
                 },
                 failure:function (form, action) {
                     Ext.MessageBox.show({

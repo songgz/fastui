@@ -1,9 +1,19 @@
 Ext.define('FastUI.view.VWindow', {
     extend:'Ext.TabPanel',
     alias:'widget.vwindow',
+    valueObject: {},
+    activeTab:0,
     initComponent:function(){
-        this.title = this.vfactory.getVData().title;
+        this.winCtx = FastUI.Env.getCtx();
+        this.title = this.getValue('title');
+        this.subs = [];
         this.callParent();
+    },
+    getValue:function(key){
+        return this.valueObject[key];
+    },
+    getTabValues:function(){
+        return this.valueObject.m_tabs;
     },
     listeners:{
         beforerender:function (vwindow, opts) {
@@ -11,10 +21,25 @@ Ext.define('FastUI.view.VWindow', {
         }
     },
     loadTabs:function (vwindow, opts) {
-        Ext.each(this.vfactory.getVData().m_tabs,function(mtab){
-            var vTab =  Ext.create('FastUI.view.VTab', {vfactory: Ext.create('FastUI.view.VFactory',mtab)} );
+        //vwindow.getSubTabs(0,'');
+        Ext.each(vwindow.getTabValues(), function (mtab) {
+            var vTab = Ext.create('FastUI.view.VTab', {
+                valueObject: mtab,
+                winId:vwindow.id,
+                winCtx: vwindow.winCtx
+            });
             vwindow.add(vTab);
+            vwindow.setActiveTab(vTab);
         });
+    },
+    getSubTabs:function(pid,level){
+        Ext.each(this.getTabValues(),function(tab){
+            if(tab.included_tab_id == pid){
+                tab.level =  level;
+                this.subs.push(tab);
+                this.getSubTabs(tab.id,level + '　');
+            }
+        },this);
     }
 });
 

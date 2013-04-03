@@ -1,10 +1,7 @@
-/**
- * Created with JetBrains RubyMine.
- * User: Administrator
- * Date: 12-10-12
- * Time: 下午4:16
- * To change this template use File | Settings | File Templates.
- */
+
+
+
+
 
 Ext.define('FastUI.view.Viewport', {
     extend:'Ext.container.Viewport',
@@ -17,6 +14,14 @@ Ext.define('FastUI.view.Viewport', {
             border:false,
             margins:'0 0 5 0'
         },
+//        Ext.create('Ext.tree.Panel', {
+//            region:'west',
+//            title: 'Simple Tree',
+//            width: 200,
+//            height: 150,
+//            store: store,
+//            rootVisible: false
+//        }),
         Ext.create('FastUI.view.VMenu'),
         {
             region:'south',

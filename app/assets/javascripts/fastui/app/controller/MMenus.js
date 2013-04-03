@@ -1,7 +1,7 @@
 Ext.define('FastUI.controller.MMenus', {
     extend:'Ext.app.Controller',
     requires:['FastUI.store.MWindowMgr'],
-    stores:['MMenus'],
+    //stores:['MMenus'],
     //models: [ 'MWindow'],
     views:['VMenu'],
     init:function () {
@@ -20,7 +20,7 @@ Ext.define('FastUI.controller.MMenus', {
                 var winId = 'win-' + id;
                 var win = Ext.getCmp(winId);
                 if (!win) {
-                    win = Ext.create('FastUI.view.VVWindow', {
+                    win = Ext.create('FastUI.view.VWindow', {
                         id: winId,
                         valueObject: obj
                         //vfactory:Ext.create('FastUI.view.VFactory', obj)
