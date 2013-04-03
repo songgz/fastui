@@ -1,7 +1,7 @@
 # encoding: utf-8
 module Fastui
   class MTab < MObject
-    attr_accessible :m_window, :m_window_id, :m_entity, :m_entity_id, :is_readonly,:grid_kind
+    attr_accessible :m_window, :m_window_id, :m_entity, :m_entity_id, :is_readonly,:grid_kind,:form_class
     attr_accessible :included_tab, :included_tab_id
 
     belongs_to :m_window, :class_name => 'Fastui::MWindow'

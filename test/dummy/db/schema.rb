@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217020606) do
+ActiveRecord::Schema.define(:version => 20130401051745) do
 
   create_table "fastui_m_acl_entries", :force => true do |t|
     t.string   "aco_type",        :limit => 60, :default => ""
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.string   "help",                          :default => ""
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
+  end
+
+  create_table "fastui_m_comments", :force => true do |t|
+    t.string   "title",      :limit => 60
+    t.string   "note",                     :default => ""
+    t.string   "guide",                    :default => ""
+    t.string   "memo",                     :default => ""
+    t.integer  "total",                    :default => 0
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "fastui_m_datatypes", :force => true do |t|
@@ -276,6 +286,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.integer  "included_tab_id",               :default => 0
     t.string   "grid_kind",                     :default => "grid"
     t.string   "entity_kind",                   :default => ""
+    t.string   "form_class",                    :default => ""
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.integer  "createdbyorg_id",               :default => 0

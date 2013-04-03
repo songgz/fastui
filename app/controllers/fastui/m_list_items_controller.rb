@@ -5,8 +5,8 @@ module Fastui
     respond_to :html, :xml, :json
     def index
       @m_list_items = MListItem.where({:m_list_id => params[:m_list_id]}.delete_if {|k, v| v.blank? })
-      data = paginate(@m_list_items)
-      respond_with(data.to_json(:include =>[:m_list,:createdbyorg,:createdby,:updatedby]))
+      #data = paginate(@m_list_items)
+      respond_with(@m_list_items.to_json(:include =>[:m_list,:createdbyorg,:createdby,:updatedby]))
     end
 
     def show

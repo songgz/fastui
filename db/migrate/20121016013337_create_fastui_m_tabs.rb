@@ -12,6 +12,7 @@ class CreateFastuiMTabs < ActiveRecord::Migration
       t.integer :included_tab_id,:default => 0
       t.string :grid_kind,:default => :grid  # :grid,:treegrid
       t.string :entity_kind,:default => '' #:sys,:app
+      t.string :form_class,:default => ''  #默认为通用tab
       t.integer :seq, :default => 0
       t.boolean :is_active, :default => true
       t.integer :createdbyorg_id, :default => 0

@@ -1,6 +1,6 @@
-Ext.define('FastUI.view.VTab', {
+Ext.define('FastUI.view.VCustomTab', {
     extend: 'Ext.Panel',
-    alias: 'widget.vtab',
+    alias: 'widget.vcustomtab',
     valueObject: {},
     winId: 0,
     winCtx: {},
@@ -10,7 +10,6 @@ Ext.define('FastUI.view.VTab', {
         this.id = 'tab-' + this.getValue('id');
         this.grid_kind = this.getValue('grid_kind');
         this.title = this.getValue('level') + this.getValue('title');
-        this.form_class = this.getValue('form_class');
         this.rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             id: this.id + 'tbar',
@@ -23,12 +22,7 @@ Ext.define('FastUI.view.VTab', {
                     text: '新建',
                     iconCls: 'fastui-btn-new',
                     handler: function () {
-                        if(this.form_class == ''){
-                            this.cmdCreate();
-                        } else{
-                             this.cmdCustomCreate();
-                        }
-//                        this.cmdCreate();
+                        this.cmdCreate();
                         this.getBtn('save').enable();
                         this.getBtn('edit').disable();
                     },
@@ -90,7 +84,7 @@ Ext.define('FastUI.view.VTab', {
                 }
             ]
         });
-        //FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id',this.id);
+        FastUI.Env.setTabCtx(FastUI.Env.getWinCtx('winNo','win_id'),'tabNo','tab_id',this.id);
         this.callParent();
     },
     getBtn: function (name) {
@@ -160,32 +154,9 @@ Ext.define('FastUI.view.VTab', {
         });
         this.getLayout().setActiveItem(this.vgrid.id);
     },
-    getCustomForm: function () {
-        if (!this.cform) {
-            this.cform = Ext.create('FastUI.view.VCommentForm', {tab: this});
-            this.add(this.cform);
-        }
-        return this.cform.getForm();
-    },
-    cmdCustomCreate:function(){
-        var form = this.getCustomForm();
-        form.url = this.rest.createPath();
-        form.method = 'POST';
-        form.reset();
-        var temp = {};
-        var logic = "";
-        Ext.each(this.getValue('m_fields'), function (mfield) {
-            if (mfield.default_logic.length > 0) {
-                logic = this.winCtx.parseCtx(this.winId, mfield.default_logic);
-                temp[this.rest.getTableName() + '[' + mfield.m_property.name + ']'] = Ext.decode(logic);
-            }
-        }, this);
-        form.setValues(temp);
-        this.getLayout().setActiveItem(this.cform.id);
-    },
     getForm: function () {
         if (!this.vform) {
-            this.vform = Ext.create('FastUI.view.VForm', {tab: this});
+            this.vform = Ext.create('FastUI.view.VCustomForm', {tab: this});
             this.add(this.vform);
         }
         return this.vform.getForm();
@@ -266,29 +237,6 @@ Ext.define('FastUI.view.VTab', {
         if (this.vform) {
             var form = this.getForm();
             if (form.isValid()) {
-//                form.submit({
-//                    scope:this,
-//                    success:function (form, action) {
-//                        Ext.Msg.alert('Success', action.result.msg);
-//                        this.cmdList();
-//                    },
-//                    failure:function (form, action) {
-//                        Ext.Msg.alert('Failed', action.result.msg);
-//                    }
-//                });
-//                Ext.Ajax.request({
-//                    url:form.url,
-//                    method:form.method,
-//                    params:form.getValues(false, false,false),
-//                    success:function () {
-//                        this.cmdList();
-//                        Ext.MessageBox.alert("提示", "操作成功！")
-//                    },
-//                    failure:function () {
-//                        Ext.MessageBox.alert("提示", "操作失败！")
-//                    },
-//                    scope:this
-//                });
                 this.constructAjaxRequest({
                     url: form.url,
                     method: form.method,

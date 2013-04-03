@@ -34,6 +34,23 @@ Ext.define('FastUI.view.VVWindow', {
     loadTabs:function (vwindow, opts) {
         vwindow.getSubTabs(0,'');
         Ext.each(vwindow.subs, function (mtab) {
+            var vTab ;
+//            switch(vwindow.getValue('window_kind')){
+//                case 'maintain':
+//                     vTab = Ext.create('FastUI.view.VTab', {
+//                        valueObject: mtab,
+//                        winId:vwindow.id,
+//                        winCtx: vwindow.winCtx
+//                    });
+//                    break;
+//                case 'custom':
+//                    vTab = Ext.create('FastUI.view.VCustomTab', {
+//                        valueObject: mtab,
+//                        winId:vwindow.id,
+//                        winCtx: vwindow.winCtx
+//                    });
+//                    break;
+//            }
             var vTab = Ext.create('FastUI.view.VTab', {
                 valueObject: mtab,
                 winId:vwindow.id,
