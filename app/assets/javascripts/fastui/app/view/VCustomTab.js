@@ -156,7 +156,7 @@ Ext.define('FastUI.view.VCustomTab', {
     },
     getForm: function () {
         if (!this.vform) {
-            this.vform = Ext.create('FastUI.view.VForm', {tab: this});
+            this.vform = Ext.create('FastUI.view.VCustomForm', {tab: this});
             this.add(this.vform);
         }
         return this.vform.getForm();
@@ -237,29 +237,6 @@ Ext.define('FastUI.view.VCustomTab', {
         if (this.vform) {
             var form = this.getForm();
             if (form.isValid()) {
-//                form.submit({
-//                    scope:this,
-//                    success:function (form, action) {
-//                        Ext.Msg.alert('Success', action.result.msg);
-//                        this.cmdList();
-//                    },
-//                    failure:function (form, action) {
-//                        Ext.Msg.alert('Failed', action.result.msg);
-//                    }
-//                });
-//                Ext.Ajax.request({
-//                    url:form.url,
-//                    method:form.method,
-//                    params:form.getValues(false, false,false),
-//                    success:function () {
-//                        this.cmdList();
-//                        Ext.MessageBox.alert("提示", "操作成功！")
-//                    },
-//                    failure:function () {
-//                        Ext.MessageBox.alert("提示", "操作失败！")
-//                    },
-//                    scope:this
-//                });
                 this.constructAjaxRequest({
                     url: form.url,
                     method: form.method,

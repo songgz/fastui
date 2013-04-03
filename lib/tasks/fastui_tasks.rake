@@ -667,25 +667,26 @@ namespace :fastui do
                               ].map { |a| a.merge(attr) })
     end
 
-    sys_scale = Fastui::MWindow.create({title: '评定表', :window_kind => 'custom'}.merge(attr))
+    sys_scale = Fastui::MWindow.create({title: '评定表', :window_kind => 'maintain'}.merge(attr))
     m_comment.m_properties.build([
                               {name: 'title', title: '名称', m_datatype: v_tree},
                               {name: 'note', title: '描述', m_datatype: v_textarea},
                               {name: 'guide', title: '指导', m_datatype: v_text},
-                              {name: 'memo', title: '备注', m_datatype: v_textarea},
-                              {name: 'total', title: '总分', m_datatype: v_number}
+                              {name: 'total', title: '总分', m_datatype: v_number},
+                              {name: 'memo', title: '备注', m_datatype: v_textarea}
                              ])
-    tab_comment = sys_scale.m_tabs.create({title: '评论', m_entity: m_comment, is_readonly: true}.merge(attr)) do |com|
+    tab_comment = sys_scale.m_tabs.create({title: '评论', m_entity: m_comment,form_class: 'VComment', is_readonly: true}.merge(attr)) do |com|
       com.m_fields.build([{title: '名称', m_property: m_comment.prop_by('title'), is_display: true, is_readonly: false},
                           {title: '描述', m_property: m_comment.prop_by('note'), is_display: true, is_readonly: false},
                           {title: '指导', m_property: m_comment.prop_by('guide'), is_display: true, is_readonly: false},
-                          {title: '备注', m_property: m_comment.prop_by('memo'), is_display: true, is_readonly: false},
-                          {title: '总分', m_property: m_comment.prop_by('total'), is_display: true, is_readonly: false}].map { |a| a.merge(attr) })
+                          {title: '总分', m_property: m_comment.prop_by('total'), is_display: true, is_readonly: false},
+                          {title: '备注', m_property: m_comment.prop_by('memo'), is_display: true, is_readonly: false}
+                          ].map { |a| a.merge(attr) })
       com.m_columns.build([{title: '名称', m_property: m_comment.prop_by('title'), width: 35},
                            {title: '描述', m_property: m_comment.prop_by('note'), width: 75},
                            {title: '指导', m_property: m_comment.prop_by('guide'), width: 75},
-                           {title: '备注', m_property: m_comment.prop_by('memo'), width: 75},
-                           {title: '总分', m_property: m_comment.prop_by('total'), width: 75}
+                           {title: '总分', m_property: m_comment.prop_by('total'), width: 75},
+                           {title: '备注', m_property: m_comment.prop_by('memo'), width: 75}
                           ].map { |a| a.merge(attr) })
     end
 

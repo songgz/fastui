@@ -28,14 +28,6 @@ Ext.define('FastUI.view.VVWindow', {
     },
     listeners:{
         beforerender:function (vwindow, opts) {
-//            alert(vwindow.getValue('window_kind'));   // 设置自定义窗口种类
-//            switch(vwindow.getValue('window_kind')){
-//                case 'maintain':
-//                    this.loadTabs(vwindow,opts);
-//                    break;
-//                case 'custom':
-//                    break;
-//            }
             this.loadTabs(vwindow, opts);
         }
     },
@@ -43,27 +35,27 @@ Ext.define('FastUI.view.VVWindow', {
         vwindow.getSubTabs(0,'');
         Ext.each(vwindow.subs, function (mtab) {
             var vTab ;
-            switch(vwindow.getValue('window_kind')){
-                case 'maintain':
-                     vTab = Ext.create('FastUI.view.VTab', {
-                        valueObject: mtab,
-                        winId:vwindow.id,
-                        winCtx: vwindow.winCtx
-                    });
-                    break;
-                case 'custom':
-                    vTab = Ext.create('FastUI.view.VCustomTab', {
-                        valueObject: mtab,
-                        winId:vwindow.id,
-                        winCtx: vwindow.winCtx
-                    });
-                    break;
-            }
-//            var vTab = Ext.create('FastUI.view.VTab', {
-//                valueObject: mtab,
-//                winId:vwindow.id,
-//                winCtx: vwindow.winCtx
-//            });
+//            switch(vwindow.getValue('window_kind')){
+//                case 'maintain':
+//                     vTab = Ext.create('FastUI.view.VTab', {
+//                        valueObject: mtab,
+//                        winId:vwindow.id,
+//                        winCtx: vwindow.winCtx
+//                    });
+//                    break;
+//                case 'custom':
+//                    vTab = Ext.create('FastUI.view.VCustomTab', {
+//                        valueObject: mtab,
+//                        winId:vwindow.id,
+//                        winCtx: vwindow.winCtx
+//                    });
+//                    break;
+//            }
+            var vTab = Ext.create('FastUI.view.VTab', {
+                valueObject: mtab,
+                winId:vwindow.id,
+                winCtx: vwindow.winCtx
+            });
             vwindow.add(vTab);
         });
     },

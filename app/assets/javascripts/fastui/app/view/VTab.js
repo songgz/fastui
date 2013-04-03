@@ -10,6 +10,7 @@ Ext.define('FastUI.view.VTab', {
         this.id = 'tab-' + this.getValue('id');
         this.grid_kind = this.getValue('grid_kind');
         this.title = this.getValue('level') + this.getValue('title');
+        this.form_class = this.getValue('form_class');
         this.rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             id: this.id + 'tbar',
@@ -22,7 +23,12 @@ Ext.define('FastUI.view.VTab', {
                     text: '新建',
                     iconCls: 'fastui-btn-new',
                     handler: function () {
-                        this.cmdCreate();
+                        if(this.form_class == ''){
+                            this.cmdCreate();
+                        } else{
+                             this.cmdCustomCreate();
+                        }
+//                        this.cmdCreate();
                         this.getBtn('save').enable();
                         this.getBtn('edit').disable();
                     },
@@ -153,6 +159,29 @@ Ext.define('FastUI.view.VTab', {
             scope: this
         });
         this.getLayout().setActiveItem(this.vgrid.id);
+    },
+    getCustomForm: function () {
+        if (!this.cform) {
+            this.cform = Ext.create('FastUI.view.VCommentForm', {tab: this});
+            this.add(this.cform);
+        }
+        return this.cform.getForm();
+    },
+    cmdCustomCreate:function(){
+        var form = this.getCustomForm();
+        form.url = this.rest.createPath();
+        form.method = 'POST';
+        form.reset();
+        var temp = {};
+        var logic = "";
+        Ext.each(this.getValue('m_fields'), function (mfield) {
+            if (mfield.default_logic.length > 0) {
+                logic = this.winCtx.parseCtx(this.winId, mfield.default_logic);
+                temp[this.rest.getTableName() + '[' + mfield.m_property.name + ']'] = Ext.decode(logic);
+            }
+        }, this);
+        form.setValues(temp);
+        this.getLayout().setActiveItem(this.cform.id);
     },
     getForm: function () {
         if (!this.vform) {

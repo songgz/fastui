@@ -5,8 +5,7 @@ class CreateFastuiMWindows < ActiveRecord::Migration
       t.string :print_text,:default => '',:limit => 60
       t.string :note, :default => ''
       t.string :name,:default => '', :limit => 60 # 系统编码
-      t.string :window_kind,:default => ''  #maintain, transaction or query  custom【自定义】
-      t.string :window_class, :default => ''
+      t.string :window_kind,:default => ''  #maintain, transaction or query
       t.string :entity_kind, :default => '' #:sys,:app
       t.integer :seq, :default => 0
       t.boolean :is_active, :default => true

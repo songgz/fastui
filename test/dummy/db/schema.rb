@@ -286,6 +286,7 @@ ActiveRecord::Schema.define(:version => 20130401051745) do
     t.integer  "included_tab_id",               :default => 0
     t.string   "grid_kind",                     :default => "grid"
     t.string   "entity_kind",                   :default => ""
+    t.string   "form_class",                    :default => ""
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.integer  "createdbyorg_id",               :default => 0
@@ -302,7 +303,6 @@ ActiveRecord::Schema.define(:version => 20130401051745) do
     t.string   "note",                          :default => ""
     t.string   "name",            :limit => 60, :default => ""
     t.string   "window_kind",                   :default => ""
-    t.string   "window_class",                  :default => ""
     t.string   "entity_kind",                   :default => ""
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
