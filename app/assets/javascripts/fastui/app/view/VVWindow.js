@@ -34,7 +34,7 @@ Ext.define('FastUI.view.VVWindow', {
     loadTabs:function (vwindow, opts) {
         vwindow.getSubTabs(0,'');
         Ext.each(vwindow.subs, function (mtab) {
-            var vTab ;
+           // var vTab ;
 //            switch(vwindow.getValue('window_kind')){
 //                case 'maintain':
 //                     vTab = Ext.create('FastUI.view.VTab', {

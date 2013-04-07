@@ -26,7 +26,7 @@ Ext.application({
     //requires: ['FastUI.model.MWindow','FastUI.view.VVWindow','FastUI.view.VFactory'],
     //models: ['FastUI.model.MWindow'],
     stores:['MMenus'],
-    //views: ['VMenu'],
+    views: ['VMenu'],
     //controllers: [],
     controllers:['MMenus'],
 

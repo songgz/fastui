@@ -97,7 +97,7 @@ Ext.define('FastUI.view.VTab', {
         return this.getDockedComponent(this.id + 'tbar').items.get(this.id + name);
     },
     getValue: function (key) {
-        return this.valueObject[key];
+        return this.valueObject[key] || '';
     },
     getMEntity: function () {
         return this.valueObject.m_entity;
