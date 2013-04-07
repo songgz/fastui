@@ -4,7 +4,7 @@ Ext.define('FastUI.view.VGrid', {
     tab: {},
     selType: 'rowmodel',
     multiSelect: false,
-    border: true,
+    border: false,
     //plugins: [Ext.create('Ext.grid.plugin.CellEditing', {clicksToEdit: 1})],
     initComponent: function () {
         this.title = this.getValue('title');

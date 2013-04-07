@@ -3,6 +3,9 @@ Ext.define('FastUI.view.VWindow', {
     alias:'widget.vwindow',
     valueObject: {},
     activeTab:0,
+    closable: true,
+    tabPosition : "left",
+    border:true,
     initComponent:function(){
         this.winCtx = FastUI.Env.getCtx();
         this.title = this.getValue('title');
@@ -29,8 +32,8 @@ Ext.define('FastUI.view.VWindow', {
                 winCtx: vwindow.winCtx
             });
             vwindow.add(vTab);
-            vwindow.setActiveTab(vTab);
         });
+        vwindow.setActiveTab(0);
     },
     getSubTabs:function(pid,level){
         Ext.each(this.getTabValues(),function(tab){

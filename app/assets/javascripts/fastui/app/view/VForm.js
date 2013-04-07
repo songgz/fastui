@@ -11,7 +11,7 @@ Ext.define('FastUI.view.VForm', {
         anchor: '60%'
     },
     defaultType:'textfield',
-    border:true,
+    border:false,
     initComponent:function () {
         this.title = this.getValue('title');
         //this.url = this.vfactory.getUrl();

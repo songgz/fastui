@@ -1,14 +1,31 @@
 Ext.define('FastUI.view.VMenu', {
     extend:'Ext.tree.Panel',
     alias: 'widget.vMenu',
-    region:'west',
-    collapsible:true,
     title:'菜单',
-    width:150,
+    //width:150,
+
+
+
+    animate:false,
+    //cls:"navigation",
+    collapseMode:"mini",
+    collapsible:true,
+    iconCls:"fastui-menu",
+    //itemId:"example",
+    lines:false,
+    //region:"west",
+    rootVisible:false,
+    split:true,
+    dockedItems:[{dock:"top",items:[{xtype:"tbfill"},
+        {iconCls:"fastui-tree-expand",tooltip:"Expand All",xtype:"button", listeners:{click:{fn:function (sender ,e ,eOpts) {sender.up().up().expandAll();}}}},
+        {iconCls:"fastui-tree-collapse",tooltip:"Collapse All",xtype:"button", listeners:{click:{fn:function (sender ,e ,eOpts) { sender.up().up().collapseAll(); sender.up().up().getRootNode().expand();}}}}],xtype:"toolbar"}],
+
+
+
 
     //scope: this,
     //store: 'MMenus',
-    rootVisible: false,
+    //rootVisible: false,
 
     initComponent: function(){
       this.store = Ext.create('Ext.data.TreeStore', {

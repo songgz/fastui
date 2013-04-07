@@ -6,8 +6,8 @@ module Fastui
 
     def index
       #@m_orgs = MOrg.scoped
-      @m_orgs = params[:id] == 'root' ? MOrg.roots : MOrg.where({
-                                                                    :parent_id => params[:id]
+      @m_orgs = params[:node] == 'root' ? MOrg.roots : MOrg.where({
+                                                                    :parent_id => params[:node]
                                                                 }.delete_if { |k, v| v.blank? })
 
       respond_with(@m_orgs.to_json(:include => [:parent]))

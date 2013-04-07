@@ -5,7 +5,7 @@ Ext.define('FastUI.view.VTab', {
     winId: 0,
     winCtx: {},
     layout: "card",
-    border: true,
+    border: false,
     initComponent: function () {
         this.id = 'tab-' + this.getValue('id');
         this.grid_kind = this.getValue('grid_kind');

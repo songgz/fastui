@@ -1,28 +1,34 @@
-/**
- * Created with JetBrains RubyMine.
- * User: Administrator
- * Date: 13-2-18
- * Time: 下午3:30
- * To change this template use File | Settings | File Templates.
- */
-
 Ext.define('FastUI.view.VTreeGrid', {
     extend: 'Ext.tree.Panel',
     requires: ['FastUI.store.MListMgr'],
-    tab: {},
-    width: 500,
-    height: 300,
-    renderTo: Ext.getBody(),
     collapsible: true,
     useArrows: true,
     rootVisible: false,
     multiSelect: false,
-    singleExpand: true,
-    border: true,
+    //singleExpand: true,
+    border: false,
     initComponent: function () {
         this.title = this.getValue('title');
         this.columns = this.getTreeGColumns();
-        this.store = this.getTreeGStore();
+        this.store = new Ext.data.TreeStore({
+            autoLoad: false,
+            fields: this.getTreeGFields(),
+            proxy: {
+                type: 'ajax',
+                url: this.tab.rest.indexPath(),
+                reader:{
+                    type:'json',
+                    root:'',
+                    record:''
+                    //successProperty:''
+                }
+            },
+            //folderSort: true,
+            root: {
+                expanded: true,
+                name: 'sss'
+            }
+        });
         this.callParent();
     },
     listeners:{
@@ -48,21 +54,21 @@ Ext.define('FastUI.view.VTreeGrid', {
         return this.tab.valueObject[key];
     },
 
-    getTreeGStore: function () {
-        return new Ext.data.TreeStore({
-            autoLoad: false,
-            proxy: {
-                type: 'ajax',
-                url: this.tab.rest.indexPath()
-            },
-            folderSort: true,
-            root: {
-                expanded: true,
-                loaded: true
-            },
-            fields: this.getTreeGFields()
-        })
-    },
+//    getTreeGStore: function () {
+//        return new Ext.data.TreeStore({
+//            autoLoad: false,
+//            proxy: {
+//                type: 'ajax',
+//                url: this.tab.rest.indexPath()
+//            },
+//            folderSort: true,
+//            root: {
+//                expanded: true,
+//                loaded: true
+//            },
+//            fields: this.getTreeGFields()
+//        })
+//    },
     getMColumns: function () {
         return this.tab.valueObject.m_columns;
     },

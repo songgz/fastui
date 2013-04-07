@@ -1,3 +1,37 @@
+.fastui-header {
+    padding:10px;
+}
+
+.fastui-header span.caption {
+    color:#3e6aaa;
+    font-size: 22px !important;
+    text-shadow: 0 2px 0 white;
+}
+
+.fastui-header span.version {
+    margin-left: 10px;
+    font-size:10px;
+    font-weight: bold;
+    color: black;
+    text-shadow: 0 1px 0 white;
+}
+
+.fastui-home {
+    background-image: url( application/application_home.png ) !important;
+}
+.fastui-menu {
+    background-image: url( application/application_side_tree.png ) !important;
+}
+.fastui-tree-expand {
+    background-image: url( arrow/arrow_divide.png ) !important;
+}
+.fastui-tree-collapse {
+    background-image: url( arrow/arrow_join.png ) !important;
+}
+
+
+
+
 .fastui-login-title {
     background-image: url( locked.png ) !important;
 }
@@ -19,16 +53,16 @@
 
 
 .fastui-btn-new {
-    background-image: url( table/table_add.png ) !important;
+    background-image: url( application/application_form_add.png ) !important;
 }
 .fastui-btn-edit {
-    background-image: url( table/table_edit.png ) !important;
+    background-image: url( application/application_form_edit.png ) !important;
 }
 .fastui-btn-list {
-    background-image: url( table/table.png ) !important;
+    background-image: url( application/application_view_columns.png ) !important;
 }
 .fastui-btn-del {
-    background-image: url( table/table_delete.png ) !important;
+    background-image: url( application/application_form_delete.png ) !important;
 }
 .fastui-btn-save {
     background-image: url( table/table_save.png ) !important;
