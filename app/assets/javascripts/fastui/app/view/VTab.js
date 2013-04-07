@@ -144,20 +144,20 @@ Ext.define('FastUI.view.VTab', {
 
         var id = grid.selectedId();
         store.getProxy().extraParams = this.getParams();
-        store.reload({
-            callback: function (records, operation, success) {
-                if (this.grid_kind == 'treegrid') {
-                    this.getBtn('edit').enable();
-                } else {
-                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
-                    if (rowIndex > -1) {
-                        this.vgrid.getView().select(rowIndex);
-                        this.getBtn('edit').enable();
-                    }
-                }
-            },
-            scope: this
-        });
+//        store.reload({
+//            callback: function (records, operation, success) {
+//                if (this.grid_kind == 'treegrid') {
+//                    this.getBtn('edit').enable();
+//                } else {
+//                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
+//                    if (rowIndex > -1) {
+//                        this.vgrid.getView().select(rowIndex);
+//                        this.getBtn('edit').enable();
+//                    }
+//                }
+//            },
+//            scope: this
+//        });
         this.getLayout().setActiveItem(this.vgrid.id);
     },
     getCustomForm: function () {
