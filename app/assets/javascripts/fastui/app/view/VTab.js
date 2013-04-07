@@ -162,7 +162,8 @@ Ext.define('FastUI.view.VTab', {
     },
     getCustomForm: function () {
         if (!this.cform) {
-            this.cform = Ext.create('FastUI.view.VCommentForm', {tab: this});
+            this.cform = Ext.create('FastUI.view.'+this.form_class, {tab: this});
+
             this.add(this.cform);
         }
         return this.cform.getForm();
