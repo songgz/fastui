@@ -1,31 +1,19 @@
 Ext.define('FastUI.view.VMenu', {
     extend:'Ext.tree.Panel',
+    requires:['FastUI.store.MWindowMgr'],
     alias: 'widget.vMenu',
     title:'菜单',
-    //width:150,
-
-
-
     animate:false,
-    //cls:"navigation",
     collapseMode:"mini",
     collapsible:true,
     iconCls:"fastui-menu",
-    //itemId:"example",
     lines:false,
-    //region:"west",
     rootVisible:false,
     split:true,
     dockedItems:[{dock:"top",items:[{xtype:"tbfill"},
         {iconCls:"fastui-tree-expand",tooltip:"Expand All",xtype:"button", listeners:{click:{fn:function (sender ,e ,eOpts) {sender.up().up().expandAll();}}}},
-        {iconCls:"fastui-tree-collapse",tooltip:"Collapse All",xtype:"button", listeners:{click:{fn:function (sender ,e ,eOpts) { sender.up().up().collapseAll(); sender.up().up().getRootNode().expand();}}}}],xtype:"toolbar"}],
-
-
-
-
-    //scope: this,
-    //store: 'MMenus',
-    //rootVisible: false,
+        {iconCls:"fastui-tree-collapse",tooltip:"Collapse All",xtype:"button", listeners:{click:{fn:function (sender ,e ,eOpts) { sender.up().up().collapseAll(); sender.up().up().getRootNode().expand();}}}}],xtype:"toolbar"}
+    ],
 
     initComponent: function(){
       this.store = Ext.create('Ext.data.TreeStore', {
@@ -41,15 +29,38 @@ Ext.define('FastUI.view.VMenu', {
                   //successProperty:''
               }
           },
-
           root:{
               name:'菜单',
               expanded:true
           }
-
       });
-      //Ext.data.StoreManager.lookup(this.store);
       this.callParent(arguments);
+    },
+
+    listeners:{
+        itemclick:function(self, record, item, index, e, eOpts){
+            this.loadVWindow(self, record, item, index, e, eOpts);
+        }
+    },
+
+    loadVWindow:function (self, record, item, index, e, eOpts) {
+        var id = record.get('m_window_id');
+        if (record.get('leaf')) {
+            FastUI.store.MWindowMgr.load(id, function (obj) {
+                var c = Ext.getCmp('mycenter');
+                var winId = 'win-' + id;
+                var win = Ext.getCmp(winId);
+                if (!win) {
+                    win = Ext.create('FastUI.view.VWindow', {
+                        id: winId,
+                        valueObject: obj
+                        //vfactory:Ext.create('FastUI.view.VFactory', obj)
+                    });
+                    c.add(win);
+                }
+                c.setActiveTab(win);
+            });
+        }
     }
 });
 
