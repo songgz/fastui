@@ -54,6 +54,7 @@ Ext.define('FastUI.view.VTab', {
                         this.cmdList();
                         this.getBtn('save').disable();
                         this.getBtn('new').enable();
+                        this.getBtn('edit').enable();
                     },
                     scope: this
                 },
@@ -137,35 +138,7 @@ Ext.define('FastUI.view.VTab', {
         return this.getVGrid().selectedId();
     },
     cmdList: function () {
-
         var grid = this.getVGrid();
-        //var store = grid.getStore();
-
-
-//        var params1 = store.getProxy().extraParams;
-//        var params2 = this.getParams();
-//        if (Ext.encode(params1) !== Ext.encode(params2)) {
-//            //alert(Ext.encode(params1) + Ext.encode(params2));
-//            store.getProxy().extraParams = params2;
-//            store.reload();
-//        }
-
-//        var id = grid.selectedId();
-//        store.getProxy().extraParams = this.getParams();
-//        store.reload({
-//            callback: function (records, operation, success) {
-//                if (this.grid_kind == 'treegrid') {
-//                    this.getBtn('edit').enable();
-//                } else {
-//                    var rowIndex = store.find('id', id);  //where 'id': the id field of your model, record.getId() is the method automatically created by Extjs. You can replace 'id' with your unique field.. And 'this' is your store.
-//                    if (rowIndex > -1) {
-//                        this.vgrid.getView().select(rowIndex);
-//                        this.getBtn('edit').enable();
-//                    }
-//                }
-//            },
-//            scope: this
-//        });
         this.getLayout().setActiveItem(grid.id);
     },
     getCustomForm: function () {
@@ -245,13 +218,14 @@ Ext.define('FastUI.view.VTab', {
                 form.setValues(o);
             }, scope: this
         });
+
         this.getLayout().setActiveItem(this.vform.id);
     },
     cmdDelete: function () {
         var id = this.getVGrid().selectedId();
         Ext.MessageBox.confirm('提示', '确定要删除此记录吗?', function (btn) {
             if (btn == 'yes') {
-                Ext.Ajax.request({
+                this.constructAjaxRequest({
                     url: this.rest.deletePath(id),
                     method: 'DELETE',
                     success: function () {
@@ -264,8 +238,7 @@ Ext.define('FastUI.view.VTab', {
                     scope: this
                 });
             }
-        }, this)
-
+        }, this);
     },
     cmdHelp: function () {
         var helpWindow = Ext.create('FastUI.view.VHelpWindow', {html: this.getValue('help')});
@@ -275,29 +248,6 @@ Ext.define('FastUI.view.VTab', {
         if (this.vform) {
             var form = this.getForm();
             if (form.isValid()) {
-//                form.submit({
-//                    scope:this,
-//                    success:function (form, action) {
-//                        Ext.Msg.alert('Success', action.result.msg);
-//                        this.cmdList();
-//                    },
-//                    failure:function (form, action) {
-//                        Ext.Msg.alert('Failed', action.result.msg);
-//                    }
-//                });
-//                Ext.Ajax.request({
-//                    url:form.url,
-//                    method:form.method,
-//                    params:form.getValues(false, false,false),
-//                    success:function () {
-//                        this.cmdList();
-//                        Ext.MessageBox.alert("提示", "操作成功！")
-//                    },
-//                    failure:function () {
-//                        Ext.MessageBox.alert("提示", "操作失败！")
-//                    },
-//                    scope:this
-//                });
                 this.constructAjaxRequest({
                     url: form.url,
                     method: form.method,
@@ -310,7 +260,7 @@ Ext.define('FastUI.view.VTab', {
                         Ext.MessageBox.alert("提示", "操作失败！")
                     },
                     scope: this
-                })
+                });
             }
         }
     },
