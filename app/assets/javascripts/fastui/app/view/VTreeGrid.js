@@ -5,13 +5,13 @@ Ext.define('FastUI.view.VTreeGrid', {
     useArrows: true,
     rootVisible: false,
     multiSelect: false,
-    //singleExpand: true,
+    singleExpand: true,
     border: false,
     initComponent: function () {
         this.title = this.getValue('title');
         this.columns = this.getTreeGColumns();
         this.store = new Ext.data.TreeStore({
-            autoLoad: false,
+            autoLoad: true,
             fields: this.getTreeGFields(),
             proxy: {
                 type: 'ajax',
@@ -25,8 +25,7 @@ Ext.define('FastUI.view.VTreeGrid', {
             },
             //folderSort: true,
             root: {
-                expanded: true,
-                name: 'sss'
+                expanded: true
             }
         });
         this.callParent();

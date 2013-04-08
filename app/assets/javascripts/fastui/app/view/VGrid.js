@@ -27,6 +27,7 @@ Ext.define('FastUI.view.VGrid', {
     },
     listeners: {
         itemclick: function (view, record, item, index, e, eOpts) {
+            //alert(this.tab.rest.getKey() + '='+ record.get('id'));
             this.tab.winCtx.setWinCtx(this.tab.winId, this.tab.rest.getKey(), record.get('id'));
             this.tab.winCtx.setWinCtx(this.tab.winId, this.tab.rest.getTitle(), record.get('title'));
             if (record.get('m_entity_id')) {
@@ -50,7 +51,7 @@ Ext.define('FastUI.view.VGrid', {
 
     getGStore: function () {
         var jsonStore = new Ext.data.JsonStore({
-//            autoLoad: true,
+            autoLoad: true,
             proxy: {
                 type: 'ajax',
                 url: this.tab.rest.indexPath(),
@@ -58,19 +59,18 @@ Ext.define('FastUI.view.VGrid', {
                     type: 'json',
                     root: 'rows',
                     totalProperty: "totalCount"
-                }
+                },
+                extraParams: this.tab.getParams()
             },
-            fields: this.getGFields(),
-            listeners: {
-            }
+            fields: this.getGFields()
         });
-        jsonStore.load({
-            scope: this,
-            callback: function(records, operation, success) {
-                console.log(jsonStore.getCount());
-
-            }
-        })
+//        jsonStore.load({
+//            scope: this,
+//            callback: function(records, operation, success) {
+//                console.log(jsonStore.getCount());
+//
+//            }
+//        });
         return jsonStore;
     },
     getMEntity: function () {

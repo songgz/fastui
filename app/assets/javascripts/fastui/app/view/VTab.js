@@ -112,6 +112,7 @@ Ext.define('FastUI.view.VTab', {
         var tab = Ext.getCmp('tab-' + this.getValue('included_tab_id'));
         if (tab) {
             //p[tab.rest.getKey()] = tab.getSelectedId();
+            //alert( tab.rest.getKey());
             p[tab.rest.getKey()] = this.winCtx.getWinCtx(this.winId, tab.rest.getKey());
         }
         return p;
@@ -124,6 +125,11 @@ Ext.define('FastUI.view.VTab', {
                 this.vgrid = Ext.create('FastUI.view.VGrid', {tab: this});
             }
             this.add(this.vgrid);
+        }else{
+            if (this.grid_kind != 'treegrid') {
+                this.vgrid.store.getProxy().extraParams = this.getParams();
+                this.vgrid.store.reload();
+            }
         }
         return this.vgrid;
     },
@@ -131,8 +137,10 @@ Ext.define('FastUI.view.VTab', {
         return this.getVGrid().selectedId();
     },
     cmdList: function () {
+
         var grid = this.getVGrid();
-        var store = grid.getStore();
+        //var store = grid.getStore();
+
 
 //        var params1 = store.getProxy().extraParams;
 //        var params2 = this.getParams();
@@ -142,8 +150,8 @@ Ext.define('FastUI.view.VTab', {
 //            store.reload();
 //        }
 
-        var id = grid.selectedId();
-        store.getProxy().extraParams = this.getParams();
+//        var id = grid.selectedId();
+//        store.getProxy().extraParams = this.getParams();
 //        store.reload({
 //            callback: function (records, operation, success) {
 //                if (this.grid_kind == 'treegrid') {
@@ -158,7 +166,7 @@ Ext.define('FastUI.view.VTab', {
 //            },
 //            scope: this
 //        });
-        this.getLayout().setActiveItem(this.vgrid.id);
+        this.getLayout().setActiveItem(grid.id);
     },
     getCustomForm: function () {
         if (!this.cform) {
