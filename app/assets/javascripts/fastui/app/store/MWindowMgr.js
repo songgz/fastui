@@ -5,8 +5,7 @@ Ext.define('FastUI.store.MWindowMgr', {
         var me = this;
         Ext.Ajax.request({
             url: '/fastui/m_windows/'+id+'.json',
-            async: false,
-            //loadMask: true,
+            //async: true,
             success: function(response, opts) {
                 var obj = Ext.decode(response.responseText);
                 me._windows_[id] = obj;
