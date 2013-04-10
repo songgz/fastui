@@ -25,7 +25,7 @@ Ext.define('FastUI.view.Viewport', {
             region:"south",
             border:false,
             height:28,
-            items:[{xtype:"tbfill"},{style:"font-weight:bold",text:"Copyright 2012-2013 春腾科技.",xtype:"tbtext"}],
+            items:[{xtype:"tbfill"},{style:"font-weight:bold",text:"Copyright 2012-2013 .",xtype:"tbtext"}],
             xtype:"toolbar"
         },
         {
@@ -33,6 +33,7 @@ Ext.define('FastUI.view.Viewport', {
                region: 'center',
                xtype: 'tabpanel', // TabPanel itself has no title
                activeTab: 0,      // First tab active by default
+            //maskOnDisable: false,
 
                items: [{
                    title: '首页',
@@ -42,6 +43,12 @@ Ext.define('FastUI.view.Viewport', {
                    html: 'The first tab\'s content. Others may be added dynamically'
                }]
         }
-    ]
+    ],
+    listeners: {
+        afterrender: function() {
+            var mask = Ext.get('fastui-loading');
+            mask.fadeOut({callback: function(){ mask.destroy(); }});
+        }
+    }
 });
 

@@ -44,23 +44,33 @@ Ext.define('FastUI.view.VMenu', {
     },
 
     loadVWindow:function (self, record, item, index, e, eOpts) {
+        //var myMask = new Ext.LoadMask(Ext.getBody(), {msg:"Please wait..."});
+        //myMask.show();
+        var c = Ext.getCmp('mycenter');
+        c.setLoading(true);
         var id = record.get('m_window_id');
+
+
         if (record.get('leaf')) {
             FastUI.store.MWindowMgr.load(id, function (obj) {
-                var c = Ext.getCmp('mycenter');
                 var winId = 'win-' + id;
                 var win = Ext.getCmp(winId);
                 if (!win) {
                     win = Ext.create('FastUI.view.VWindow', {
                         id: winId,
                         valueObject: obj
-                        //vfactory:Ext.create('FastUI.view.VFactory', obj)
                     });
                     c.add(win);
                 }
+//                setTimeout(function (target) {
+//                    target.setLoading(false);
+//                }, 3000, c); // setTimeout()
+
                 c.setActiveTab(win);
+                c.setLoading(false);
             });
         }
+
     }
 });
 

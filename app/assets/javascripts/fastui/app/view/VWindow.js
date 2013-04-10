@@ -1,5 +1,6 @@
 Ext.define('FastUI.view.VWindow', {
     extend:'Ext.TabPanel',
+    requires:['FastUI.Env'],
     alias:'widget.vwindow',
     valueObject: {},
     activeTab:0,
@@ -19,8 +20,11 @@ Ext.define('FastUI.view.VWindow', {
         return this.valueObject.m_tabs;
     },
     listeners:{
+        afterrender: function(vwindow, opts) {
+
+        },
         beforerender:function (vwindow, opts) {
-            this.loadTabs(vwindow, opts)
+            this.loadTabs(vwindow, opts);
         }
     },
     loadTabs:function (vwindow, opts) {

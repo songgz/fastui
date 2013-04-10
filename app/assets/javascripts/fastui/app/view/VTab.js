@@ -128,8 +128,12 @@ Ext.define('FastUI.view.VTab', {
             this.add(this.vgrid);
         }else{
             if (this.grid_kind != 'treegrid') {
-                this.vgrid.store.getProxy().extraParams = this.getParams();
-                this.vgrid.store.reload();
+                var params1 = this.vgrid.store.getProxy().extraParams;
+                var params2 = this.getParams();
+                if (!Ext.Object.equals(params1,params2)) {
+                    this.vgrid.store.getProxy().extraParams = params2;
+                    this.vgrid.store.reload();
+                }
             }
         }
         return this.vgrid;

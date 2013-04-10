@@ -1,3 +1,26 @@
+#fastui-loading {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    margin-top: -70px
+}
+
+#fastui-loading .title {
+    font-family: "Exo", sans-serif;
+    font-size: 2em;
+    color: gray;
+    text-align: center;
+    white-space: nowrap;
+    display: block
+}
+
+#fastui-loading .logo {
+    background: url(loading.gif) no-repeat center;
+    display: block;
+    height: 120px
+}
+
+
 .fastui-header {
     padding:10px;
 }
