@@ -20,5 +20,22 @@ module Fastui
     #  mo.updatedby_id = Env.ctx.get(:g_person_id) || mo.updatedby_id
     #end
 
+    #opts={name:'',members:'',extends:''}
+
+
+    class << self
+      #def window(opts)
+      #  Fastui::View.instance.window(opts)
+      #end
+      #
+      #def tab(opts)
+      #  Fastui::View.instance.tab(opts)
+      #end
+
+      def ui(&block)
+        Fastui::View.instance.config(&block) if block_given?
+      end
+    end
+
   end
 end

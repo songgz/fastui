@@ -1,3 +1,4 @@
+# encoding: utf-8
 require_dependency "awesome_nested_set"
 module Fastui
   class MMenuItem < MObject
@@ -6,5 +7,7 @@ module Fastui
     acts_as_nested_set
     belongs_to :m_window, :class_name => 'Fastui::MWindow'
     belongs_to :m_menu, :class_name => 'Fastui::MMenu'
+
+
   end
 end

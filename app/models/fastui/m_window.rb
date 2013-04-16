@@ -6,7 +6,9 @@ module Fastui
     has_many :m_tabs, :dependent => :destroy
 
     def tab_by(name)
-      self.m_tabs.detect{|p| p.name == name}
+      self.m_tabs.detect { |p| p.name == name }
     end
+
+
   end
 end

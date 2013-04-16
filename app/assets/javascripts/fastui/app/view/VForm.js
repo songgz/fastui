@@ -14,7 +14,6 @@ Ext.define('FastUI.view.VForm', {
     border:false,
     initComponent:function () {
         this.title = this.getValue('title');
-        //this.url = this.vfactory.getUrl();
         this.items = this.getFFields();
         this.callParent();
     },

@@ -1,4 +1,5 @@
 Fastui::Engine.routes.draw do
+  resources :m_views
 
   resources :m_windows do
     resources :m_tabs

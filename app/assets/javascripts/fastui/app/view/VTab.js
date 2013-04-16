@@ -42,7 +42,6 @@ Ext.define('FastUI.view.VTab', {
                     handler: function () {
                         this.cmdEdit();
                         this.getBtn('save').enable();
-                        this.getBtn('new').disable();
                     },
                     scope: this
                 },
@@ -233,7 +232,8 @@ Ext.define('FastUI.view.VTab', {
                     url: this.rest.deletePath(id),
                     method: 'DELETE',
                     success: function () {
-                        this.cmdList();
+                        this.vgrid.store.reload();
+                        this.getLayout().setActiveItem(this.vgrid.id);
                         Ext.MessageBox.alert("提示", "操作成功！")
                     },
                     failure: function () {
@@ -257,7 +257,8 @@ Ext.define('FastUI.view.VTab', {
                     method: form.method,
                     params: form.getValues(false, false, false),
                     success: function () {
-                        this.cmdList();
+                        this.vgrid.store.reload();
+                        this.getLayout().setActiveItem(this.vgrid.id);
                         Ext.MessageBox.alert("提示", "操作成功！")
                     },
                     failure: function () {

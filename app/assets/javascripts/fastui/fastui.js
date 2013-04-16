@@ -9,7 +9,6 @@ Ext.application({
     // the global namespace
     name:'FastUI',
     appFolder:'/assets/fastui/app',
-   // requires:['FastUI.Env'],
 
 
     launch: function() {
