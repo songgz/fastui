@@ -25,8 +25,12 @@ Ext.define('FastUI.view.VForm', {
     },
     getFFields:function () {
         var fields = [];
-        Ext.each(this.getValue('m_fields'), function (field) {
-            fields.push(FastUI.view.vfield.VFieldFactory.buildField(field,this.tab.winCtx, this.tab.winId,this.tab.rest));
+        Ext.each(this.getValue('members'), function (member) {
+            member.readonly = member.readonly || false;
+            member.display = member.display || 'all';
+            if (member.display == 'all' || member.display == 'form'){
+                fields.push(FastUI.view.vfield.VFieldFactory.buildField(member,this.tab.winCtx, this.tab.winId,this.tab.rest));
+            }
         }, this);
         return fields;
     }

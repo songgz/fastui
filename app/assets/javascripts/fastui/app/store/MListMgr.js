@@ -15,7 +15,7 @@ Ext.define('FastUI.store.MListMgr', {
             fields:['id', 'name', 'title'],
             proxy:{
                 type:'ajax',
-                url:'/fastui/m_lists/' + list_id + '/m_list_items.json',
+                url:'/fastui/m_list_items.json?list_name='+ list_id,
                 reader:{
                     type:'json',
                     root:''

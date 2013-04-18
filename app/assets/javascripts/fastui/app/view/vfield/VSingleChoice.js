@@ -1,4 +1,4 @@
-Ext.define('FastUI.view.vfield.VCombobox', {
+Ext.define('FastUI.view.vfield.VSingleChoice', {
     extend:'Ext.form.field.ComboBox',
     requires:['FastUI.store.MListMgr'],
     valueObject: {},
@@ -15,10 +15,10 @@ Ext.define('FastUI.view.vfield.VCombobox', {
 
     initComponent:function () {
         this.fieldLabel = this.getFValue('title');
-        this.name =  this.rest.getTableName() + '[' + this.getFValue('m_property').name + ']';
-        this.disabled = this.getFValue('is_readonly');
+        this.name =  this.rest.getTableName() + '[' + this.getFValue('name') + ']';
+        this.disabled = this.getFValue('readonly');
         this.allowBlank = true;
-        this.store = FastUI.store.MListMgr.getStore(this.getFValue('m_property').m_datatype_id);
+        this.store = FastUI.store.MListMgr.getStore(this.getFValue('name'));
         this.callParent();
     },
     getFValue:function (key) {

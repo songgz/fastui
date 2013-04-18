@@ -7,11 +7,11 @@ Ext.define('FastUI.view.VTab', {
     layout: "card",
     border: false,
     initComponent: function () {
-        this.id = 'tab-' + this.getValue('id');
+        this.id = 'tab-' + this.getValue('name');
         this.grid_kind = this.getValue('grid_kind');
-        this.title = this.getValue('level') + this.getValue('title');
-        this.form_class = this.getValue('form_class');
-        this.rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
+        this.title = this.getValue('title');
+        this.form_kind = this.getValue('form_kind');
+        this.rest = Ext.create('FastUI.view.Rest', this.getMEntity());
         this.tbar = Ext.create('Ext.toolbar.Toolbar', {
             id: this.id + 'tbar',
             defaults: {
@@ -23,7 +23,7 @@ Ext.define('FastUI.view.VTab', {
                     text: '新建',
                     iconCls: 'fastui-btn-new',
                     handler: function () {
-                        if(this.form_class == ''){
+                        if(this.form_kind == ''){
                             this.cmdCreate();
                         } else{
                              this.cmdCustomCreate();
@@ -100,7 +100,7 @@ Ext.define('FastUI.view.VTab', {
         return this.valueObject[key] || '';
     },
     getMEntity: function () {
-        return this.valueObject.m_entity;
+        return this.valueObject.entity;
     },
     listeners: {
         activate: function (tab, opts) {
@@ -146,7 +146,7 @@ Ext.define('FastUI.view.VTab', {
     },
     getCustomForm: function () {
         if (!this.cform) {
-            this.cform = Ext.create('FastUI.view.'+this.form_class, {tab: this});
+            this.cform = Ext.create('FastUI.view.'+this.form_kind, {tab: this});
 
             this.add(this.cform);
         }
@@ -182,8 +182,8 @@ Ext.define('FastUI.view.VTab', {
         form.reset();
         var temp = {};
         var logic = "";
-        Ext.each(this.getValue('m_fields'), function (mfield) {
-            if (mfield.default_logic.length > 0) {
+        Ext.each(this.getValue('members'), function (mfield) {
+            if (mfield.default_logic && mfield.default_logic.length > 0) {
                 logic = this.winCtx.parseCtx(this.winId, mfield.default_logic);
                 temp[this.rest.getTableName() + '[' + mfield.m_property.name + ']'] = Ext.decode(logic);
             }

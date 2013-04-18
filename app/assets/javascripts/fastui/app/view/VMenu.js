@@ -18,7 +18,7 @@ Ext.define('FastUI.view.VMenu', {
     initComponent: function(){
       this.store = Ext.create('Ext.data.TreeStore', {
           autoLoad:true,
-          fields:['id', {name:'text', mapping:'title'},{name:'leaf',mapping:'leaf?'},{name:'expanded',mapping:'child?'}, 'm_window_id'],
+          fields:['id', {name:'text', mapping:'title'},{name:'leaf',mapping:'leaf?'},{name:'expanded',mapping:'child?'}, 'window'],
           proxy:{
               type:'ajax',
               url:'/fastui/m_menu_items.json',
@@ -44,11 +44,10 @@ Ext.define('FastUI.view.VMenu', {
     },
 
     loadVWindow:function (self, record, item, index, e, eOpts) {
-        //var myMask = new Ext.LoadMask(Ext.getBody(), {msg:"Please wait..."});
-        //myMask.show();
         var c = Ext.getCmp('mycenter');
         c.setLoading(true);
-        var id = record.get('m_window_id');
+        var id = record.get('window');
+        //var id = 'm_list';
 
 
         if (record.get('leaf')) {
@@ -62,10 +61,6 @@ Ext.define('FastUI.view.VMenu', {
                     });
                     c.add(win);
                 }
-//                setTimeout(function (target) {
-//                    target.setLoading(false);
-//                }, 3000, c); // setTimeout()
-
                 c.setActiveTab(win);
                 c.setLoading(false);
             });

@@ -675,7 +675,7 @@ namespace :fastui do
                               {name: 'total', title: '总分', m_datatype: v_number},
                               {name: 'memo', title: '备注', m_datatype: v_textarea}
                              ])
-    tab_comment = sys_scale.m_tabs.create({title: '评论', m_entity: m_comment,form_class: 'VComment', is_readonly: true}.merge(attr)) do |com|
+    tab_comment = sys_scale.m_tabs.create({title: '评论', m_entity: m_comment, form_kind: 'VComment', is_readonly: true}.merge(attr)) do |com|
       com.m_fields.build([{title: '名称', m_property: m_comment.prop_by('title'), is_display: true, is_readonly: false},
                           {title: '描述', m_property: m_comment.prop_by('note'), is_display: true, is_readonly: false},
                           {title: '指导', m_property: m_comment.prop_by('guide'), is_display: true, is_readonly: false},

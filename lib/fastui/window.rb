@@ -11,7 +11,7 @@ module Fastui
       end
     end
 
-    attr_accessor :name, :title, :tabs
+    attr_accessor :name, :title, :window_kind, :tabs
 
     #:opts => {:name => 'm_window', tabs:[:m_window,:m_tab,:m_field]}
     def initialize(name, opts = {}, &block)

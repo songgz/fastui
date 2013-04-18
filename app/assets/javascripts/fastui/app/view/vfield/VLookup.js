@@ -1,4 +1,4 @@
-Ext.define('FastUI.view.vfield.VLookUpWindow', {
+Ext.define('FastUI.view.vfield.VLookup', {
     extend:'Ext.form.field.ComboBox',
     alias:'widget.vlookupwindow',
     valueObject: {},
@@ -11,8 +11,8 @@ Ext.define('FastUI.view.vfield.VLookUpWindow', {
     valueField:'id',
     initComponent:function () {
         this.fieldLabel = this.getFValue('title');
-        this.name =  this.rest.getTableName() + '[' + this.getFValue('m_property').name + ']';
-        this.disabled = this.getFValue('is_readonly');
+        this.name =  this.rest.getTableName() + '[' + this.getFValue('name') + ']';
+        this.disabled = this.getFValue('readonly');
         this.allowBlank = true;
         this.store = Ext.create('Ext.data.ArrayStore', {
             fields:['id', 'title'],

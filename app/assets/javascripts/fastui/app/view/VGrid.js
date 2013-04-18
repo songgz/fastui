@@ -77,93 +77,94 @@ Ext.define('FastUI.view.VGrid', {
         return this.tab.valueObject.m_entity;
     },
     getMColumns: function () {
-        return this.tab.valueObject.m_columns;
+        return this.tab.valueObject.members || [];
     },
     getGFields: function () {
         var fields = [];
         Ext.each(this.getMColumns(), function (column) {
-            var field = {
-                name: column.m_property.name,
+            fields.push({
+                name: column.name,
                 type: 'auto'
-            };
-            var prop = column.m_property;
-            switch (prop.m_datatype.class_name) {
-                case 'Fastui::MRelation':
-                    var entity = {
-                        name: prop.name.replace('_id', ''),
+            });
+
+            switch (column.datatype) {
+                case 'VLookup':
+                    fields.push({
+                        name: column.name.replace('_id', ''),
                         type: 'auto'
-                    };
-                    fields.push(entity);
+                    });
                     break;
-                case 'Fastui::MMultiCombobox':
-                    var plur_entity = {
-                        name: column.m_property.name.replace('_id', '').pluralize(),
+
+                case 'VSingleChoice':
+                    fields.push({
+                        name: column.name.replace('_id', '').pluralize(),
                         type: 'auto'
-                    };
-                    fields.push(plur_entity);
+                    });
+                    break;
+
+                default:
                     break;
             }
-            fields.push(field);
-
         }, this);
         return fields;
     },
     getGColumns: function () {
-        var columns = [Ext.create('Ext.grid.RowNumberer')];
-        if (this.getMColumns() <= 0) return columns;
+        var columns = [];
         Ext.each(this.getMColumns(), function (column) {
-            var col = {
-                text: column.title,
-                dataIndex: column.m_property.name,
-                width: column.width
-                //xtype:''
-            };
-            var prop = column.m_property;
-            switch (prop.m_datatype.class_name) {
-                case 'Fastui::MRelation':
-                    col.xtype = 'templatecolumn';
-                    var entity = prop.name.replace('_id', '');
-                    col.tpl = new Ext.XTemplate(
-                        '<tpl for="' + entity + '">',
-                        '<p>{title}</p>',
-                        '</tpl>'
-                    );
-//                    col.tpl = '{' + prop.name.replace('_id', '') + '.title}';
-                    break;
-                case 'Fastui::MMultiCombobox':
-                    col.xtype = 'templatecolumn';
-                    var plur_entity = prop.name.replace('_id', '').pluralize();
-                    col.tpl = new Ext.XTemplate(
-                        '<tpl for="' + plur_entity + '">',
-                        '<p>{title}</p>',
-                        '</tpl>'
-                    );
-                    break;
-                case 'Fastui::MList':
-                    var list_store = FastUI.store.MListMgr.getStore(prop.m_datatype_id);
-                    col.renderer = function (val) {
-                        var index = list_store.findExact('name', val);
-                        if (index > -1) {
-                            var rs = list_store.getAt(index).data;
-                            return rs.title;
-                        }
-                        return "";
-                    };
-                    break;
-                case 'Fastui::MSexSelect':
-                    col.renderer = function (val) {
-                        return val ? '男' : '女'
-                    };
-                    break;
-                case 'Fastui::MYesOrNo':
-                    col.renderer = function (val) {
-                        return val ? '是' : '否';
-                    };
-                    break;
-                default:
-                    break;
+            column.display = column.display || 'all';
+            if (column.display == 'all' || column.display == 'grid') {
+                var col = {
+                    text: column.title,
+                    dataIndex: column.name
+                    //width: column.column_width || 75
+                    //xtype:''
+                };
+
+                switch (column.datatype) {
+                    case 'VLookup':
+                        col.xtype = 'templatecolumn';
+                        var entity = column.name.replace('_id', '');
+                        col.tpl = new Ext.XTemplate(
+                            '<tpl for="' + entity + '">',
+                            '{title}',
+                            '</tpl>'
+                        );
+                        break;
+                    case 'MultipleChoice':
+                        col.xtype = 'templatecolumn';
+                        var plur_entity = column.name.replace('_ids', '').pluralize();
+                        col.tpl = new Ext.XTemplate(
+                            '<tpl for="' + plur_entity + '">',
+                            '{title}',
+                            '</tpl>'
+                        );
+                        break;
+                    case 'VSingleChoice':
+                        var list_store = FastUI.store.MListMgr.getStore(column.name);
+                        col.renderer = function (val) {
+                            var index = list_store.findExact('name', val);
+                            if (index > -1) {
+                                var rs = list_store.getAt(index).data;
+                                return rs.title;
+                            }
+                            return "";
+                        };
+                        break;
+                    case 'VSexSelect':
+                        col.renderer = function (val) {
+                            return val ? '男' : '女'
+                        };
+                        break;
+                    case 'VYesOrNo':
+                        col.renderer = function (val) {
+                            return val ? '是' : '否';
+                        };
+                        break;
+                    default:
+                        break;
+                }
+                columns.push(col);
             }
-            columns.push(col);
         }, this);
 
         return columns;

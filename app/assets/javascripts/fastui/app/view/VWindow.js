@@ -3,7 +3,7 @@ Ext.define('FastUI.view.VWindow', {
     requires:['FastUI.Env'],
     alias:'widget.vwindow',
     valueObject: {},
-    activeTab:0,
+    activeTab: 0,
     closable: true,
     tabPosition : "left",
     border:true,
@@ -17,7 +17,7 @@ Ext.define('FastUI.view.VWindow', {
         return this.valueObject[key];
     },
     getTabValues:function(){
-        return this.valueObject.m_tabs;
+        return this.valueObject.tabs;
     },
     listeners:{
         afterrender: function(vwindow, opts) {

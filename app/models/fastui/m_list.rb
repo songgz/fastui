@@ -1,5 +1,5 @@
 module Fastui
-  class MList < MDatatype
+  class MList < MObject
 
     has_many :m_list_items, :class_name => 'Fastui::MListItem'
   end

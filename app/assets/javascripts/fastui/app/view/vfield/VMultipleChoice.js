@@ -1,4 +1,4 @@
-Ext.define('FastUI.view.vfield.VMultiCombobox', {
+Ext.define('FastUI.view.vfield.VMultipleChoice', {
     extend:'Ext.form.field.ComboBox',
     valueObject: {},
     winCtx:{},
@@ -16,7 +16,7 @@ Ext.define('FastUI.view.vfield.VMultiCombobox', {
     initComponent:function () {
         this.fieldLabel = this.getFValue('title');
         this.name =  this.rest.getTableName() + '[' + this.getFValue('m_property').name.pluralize()+'][]';
-        this.disabled = this.getFValue('is_readonly');
+        this.disabled = this.getFValue('readonly');
         this.allowBlank = true;
         this.store = this.getStore();
         this.callParent();

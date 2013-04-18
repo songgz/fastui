@@ -69,20 +69,19 @@ Ext.define('FastUI.view.VTreeGrid', {
 //        })
 //    },
     getMColumns: function () {
-        return this.tab.valueObject.m_columns;
+        return this.tab.valueObject.tabs;
     },
     getTreeGFields: function () {
         var fields = [];
         Ext.each(this.getMColumns(), function (column) {
             var field = {
-                name: column.m_property.name,
+                name: column.name,
                 type: 'auto'
             };
-            var prop = column.m_property;
-            switch (prop.m_datatype.class_name) {
-                case 'Fastui::MRelation':
+            switch (column.datatype) {
+                case 'VLookup':
                     var entity = {
-                        name: column.m_property.name.replace('_id', ''),
+                        name: column.name.replace('_id', ''),
                         type: 'auto'
                     };
                     fields.push(entity);
@@ -93,30 +92,29 @@ Ext.define('FastUI.view.VTreeGrid', {
     },
     getTreeGColumns: function () {
         var columns = [];
-        if (this.getMColumns() <= 0) return columns;
         Ext.each(this.getMColumns(), function (column) {
             var col = {
                 text: column.title,
-                dataIndex: column.m_property.name,
+                dataIndex: column.name,
                 width: column.width
             };
-            var prop = column.m_property;
-            switch (prop.m_datatype.class_name) {
-                case 'Fastui::MTree':
+
+            switch (column.datatype) {
+                case 'VTree':
                     col.xtype = 'treecolumn';
                     col.flex = 2;
                     break;
-                case 'Fastui::MRelation':
+                case 'VLookup':
                     col.xtype = 'templatecolumn';
-                    var entity = prop.name.replace('_id', '');
+                    var entity = column.name.replace('_id', '');
                     col.tpl = new Ext.XTemplate(
                         '<tpl for="' + entity + '">',
                         '<p>{title}</p>',
                         '</tpl>'
                     );
                     break;
-                case 'Fastui::MList':
-                    var list_store = FastUI.store.MListMgr.getStore(prop.m_datatype_id);
+                case 'VSingleChoice':
+                    var list_store = FastUI.store.MListMgr.getStore(column.name);
                     col.renderer = function (val) {
                         var index = list_store.findExact('name', val);
                         if (index > -1) {
@@ -126,12 +124,12 @@ Ext.define('FastUI.view.VTreeGrid', {
                         return "";
                     };
                     break;
-                case 'Fastui::MSexSelect':
+                case 'VSexSelect':
                     col.renderer = function (val) {
                         return val ? '男' : '女'
                     };
                     break;
-                case 'Fastui::MYesOrNo':
+                case 'VYesOrNo':
                     col.renderer = function (val) {
                         return val ? '是' : '否';
                     };

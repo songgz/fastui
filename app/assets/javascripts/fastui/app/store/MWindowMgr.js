@@ -4,7 +4,7 @@ Ext.define('FastUI.store.MWindowMgr', {
     request:function(id, callback){
         var me = this;
         Ext.Ajax.request({
-            url: '/fastui/m_windows/'+id+'.json',
+            url: '/fastui/m_views/'+id+'.json',
             //async: true,
             success: function(response, opts) {
                 var obj = Ext.decode(response.responseText);

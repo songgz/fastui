@@ -4,27 +4,9 @@ module Fastui
   class View
     include Singleton
 
-    DATATYPE = {
-        number:'VNumber',
-        date:'VDate',
-        string:'VText',
-        tree:'VTree',
-        editor:'VHtmlEditor',
-        text:'VTextArea',
-        checkbox:'VCheckbox',
-        combobox:'VCombobox',
-        multi_combobox:'VMultiCombobox',
-        file:'VFile',
-        bool:'VYesOrNo',
-        sex:'VSexSelect',
-        list:'VList',
-        table:'VTable'
-    }
-
     def win(name, opts = {}, &block)
       Fastui::Window.new(name, opts, &block)
     end
-
 
     def tab(name, tab)
       Fastui::Tab.new(name, tab)

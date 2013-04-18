@@ -16,7 +16,7 @@ Ext.define('FastUI.view.vfield.VSexSelect',{
     initComponent:function(){
         this.fieldLabel = this.getFValue('title');
         this.name =  this.rest.getTableName() + '[' + this.getFValue('m_property').name + ']';
-        this.disabled = this.getFValue('is_readonly');
+        this.disabled = this.getFValue('readonly');
         this.allowBlank = true;
         this.store = Ext.create('Ext.data.ArrayStore',{
             fields: ["name","sex_bool"],

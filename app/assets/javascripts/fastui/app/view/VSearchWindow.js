@@ -33,10 +33,10 @@ Ext.define('FastUI.view.VSearchWindow', {
         this.callParent();
     },
     getValue:function (key) {
-        return this.vlookup.valueObject.m_property.m_datatype[key];
+        return this.vlookup.valueObject[key];
     },
     getMEntity:function(){
-        return this.vlookup.valueObject.m_property.m_datatype.m_entity;
+        return this.vlookup.valueObject.ref.entity;
     },
 
 //    getDataType:function(){
@@ -80,14 +80,14 @@ Ext.define('FastUI.view.VSearchWindow', {
         return Ext.decode(s);
     },
     getStore:function () {
-        var rest = Ext.create('FastUI.view.Rest', this.getMEntity().name);
+        var rest = Ext.create('FastUI.view.Rest', this.getMEntity());
         return new Ext.data.JsonStore({
             autoLoad:{start:0, limit:25},
 //            pageSize:2, // items per page
             fields:['id', 'title'],
             proxy:{
                 type:'ajax',
-                extraParams:this.getParams(),
+               // extraParams:this.getParams(),
                 url:rest.indexPath(), //+ '?' + this.getParams(),
                 reader:{
                     type:'json',
