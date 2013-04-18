@@ -6,6 +6,7 @@ class CreateFastuiMPeople < ActiveRecord::Migration
       t.string :name,:default => '',:limit => 60
       t.string :username,:default => '',:limit => 60
       t.string :password_digest
+      t.string :access_level, :default => 'org',:limit => 60
       t.string :type
 
       t.string :entity_kind, :default => 'app'                   #:sys,:app

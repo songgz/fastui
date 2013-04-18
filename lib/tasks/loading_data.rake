@@ -3,7 +3,7 @@ namespace :fastui do
   desc "loading fastui 'system' data"
   task :init => :environment do
     system = Fastui::MOrg.create({name: 'system', title: '系统组织', entity_kind:'sys', seq:1, is_active:true})
-    administrator = Fastui::MPerson.create({name:'administrator', title:'系统管理员', username:'admin', password:'admin', entity_kind:'sys', seq:1, is_active:true, createdbyorg:system,})
+    administrator = Fastui::MPerson.create({name:'administrator', title:'系统管理员', username:'admin', password:'admin', access_level:'org', entity_kind:'sys', seq:1, is_active:true, createdbyorg:system,})
     attr = {entity_kind:'sys', seq:1, is_active:true, createdbyorg:system, createdby:administrator, updatedby:administrator}
 
     Fastui::MList.create({name: 'access_level', title: '访问级别'}.merge(attr)) do |al|

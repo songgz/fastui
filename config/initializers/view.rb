@@ -24,7 +24,7 @@ Fastui::View.instance.config do |conf|
         {name:'print_text', title: '打印文本', datatype:'VText'},
         {name:'name', title: '标识', datatype:'VText'},
         {name:'m_menu_id', title: '对应菜单', datatype:'VLookup', ref:{entity:'Fastui::MMenu'}, default_logic: "{id:${m_menu_id},title:'${m_menu_title}'}"},
-        {name:'m_window_id', title: '对应窗口', datatype:'VText'}
+        {name:'window', title: '对应窗口', datatype:'VText'}
     ] + default
   end
 
