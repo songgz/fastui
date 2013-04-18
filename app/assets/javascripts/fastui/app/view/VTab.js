@@ -154,12 +154,11 @@ Ext.define('FastUI.view.VTab', {
     cmdCreate: function () {
         var form = this.getForm();
         form.url = this.rest.createPath();
+        alert(form.url);
         form.method = 'POST';
         form.reset();
         if(this.form_class == ''){
-
-        }else{
-           this.setAutoFields(form);
+            this.setAutoFields(form);
         }
         this.getLayout().setActiveItem(this.vform.id);
     },
@@ -178,8 +177,14 @@ Ext.define('FastUI.view.VTab', {
         var id = this.getVGrid().selectedId();
         var form = this.getForm();
         form.url = this.rest.updatePath(id);
+        alert(form.url);
         form.method = 'PUT';
-
+        if(this.form_class == ''){
+            this.setEditValues(id,form);
+        }
+        this.getLayout().setActiveItem(this.vform.id);
+    },
+    setEditValues:function(id,form){
         Ext.Ajax.request({
             url: this.rest.editPath(id),
             success: function (response) {
@@ -204,8 +209,6 @@ Ext.define('FastUI.view.VTab', {
                 form.setValues(o);
             }, scope: this
         });
-
-        this.getLayout().setActiveItem(this.vform.id);
     },
     cmdDelete: function () {
         var id = this.getVGrid().selectedId();
