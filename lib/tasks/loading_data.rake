@@ -17,11 +17,11 @@ namespace :fastui do
     end
 
     Fastui::MMenu.create({name: 'sys_menu', title: '系统菜单'}.merge(attr)) do |sm|
-      sm.m_menu_items.build({name: 'app_option', title: '应用设置', m_menu_id: sm.id}.merge(attr)) do |so|
-        so.children.build({name: 'app_menu', title: '菜单', window:'m_menu', m_menu_id: sm.id}.merge(attr))
-        so.children.build({name: 'app_org', title: '组织', window:'m_org', m_menu_id: sm.id}.merge(attr))
-        so.children.build({name: 'app_person', title: '人员', window:'m_person', m_menu_id: sm.id}.merge(attr))
-        so.children.build({name: 'app_data', title: '数据字典', window: 'm_list', m_menu_id: sm.id}.merge(attr))
+      sm.m_menu_items.build({name: 'app_option', title: '应用设置', m_menu: sm}.merge(attr)) do |so|
+        so.children.build({name: 'app_menu', title: '菜单', window:'m_menu', m_menu: sm}.merge(attr))
+        so.children.build({name: 'app_org', title: '组织', window:'m_org', m_menu: sm}.merge(attr))
+        so.children.build({name: 'app_person', title: '人员', window:'m_person', m_menu: sm}.merge(attr))
+        so.children.build({name: 'app_data', title: '数据字典', window: 'm_list', m_menu: sm}.merge(attr))
       end
     end
   end

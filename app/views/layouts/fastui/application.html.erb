@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fastui</title>
+  <title><%= Fastui::View.instance.project %></title>
   <%= stylesheet_link_tag    "fastui/application", :media => "all" %>
   <%= javascript_include_tag "fastui/application" %>
+  <script type='text/javascript'>
+      var app_project = '<%= Fastui::View.instance.project %>';
+      var app_version = '<%= Fastui::View.instance.version %>';
+      var app_copyright = '<%= Fastui::View.instance.copyright %>';
+      var fastui_version = '<%= Fastui::VERSION %>';
+  </script>
   <%= csrf_meta_tags %>
 </head>
 <body>

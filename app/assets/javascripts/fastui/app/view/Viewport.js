@@ -5,10 +5,10 @@ Ext.define('FastUI.view.Viewport', {
     items:[
         {
             height:43,
-            html:"<div class=\'fastui-header\'><span class=\'caption\'>Fastui Rapid Development Framework</span><span class=\'version\'>(version 0.5 built on ExtJS 4.2.0)</span></div>",
+            html:"<div class=\'fastui-header\'><span class=\'caption\'>"+ app_project +"</span><span class=\'version\'>(version "+ app_version +" built on FastUI "+fastui_version+")</span></div>",
             region:"north",
             split:true,
-            xtype:"container"
+            xtype:"component"
         },
         {
             region:"west",
@@ -25,7 +25,7 @@ Ext.define('FastUI.view.Viewport', {
             region:"south",
             border:false,
             height:28,
-            items:[{xtype:"tbfill"},{style:"font-weight:bold",text:"Copyright 2012-2013 .",xtype:"tbtext"}],
+            items:[{xtype:"tbfill"},{style:"font-weight:bold",text:app_copyright ,xtype:"tbtext"}],
             xtype:"toolbar"
         },
         {
