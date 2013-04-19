@@ -10,22 +10,22 @@ Fastui generates a user interface from the model.
 For example, the syntax for view like this:
 By default your view is configured in the file config/initializers/view.rb.
 
-Fastui::View.instance.config do |conf|
-  conf.win :m_list, title: '数据字典', window_kind: 'maintain' do |w|
-    w.tab :m_list, title: '枚举', entity:'Fastui::MList', members:[
+  Fastui::View.instance.config do |conf|
+    conf.win :m_list, title: '数据字典', window_kind: 'maintain' do |w|
+      w.tab :m_list, title: '枚举', entity:'Fastui::MList', members:[
         {name:'id', title: 'ID', datatype:'VNumber', readonly: true},
         {name:'title', title: '标题', datatype:'VText'},
         {name:'print_text', title: '打印文本', datatype:'VText'},
         {name:'name', title: '标识', datatype:'VText'}
-    ] + default
-    w.tab :m_list_item, title:'枚举项', entity:'Fastui::MListItem', included_tab_id: 'm_list', members:[
+      ] + default
+      w.tab :m_list_item, title:'枚举项', entity:'Fastui::MListItem', included_tab_id: 'm_list', members:[
         {name:'id', title: 'ID', datatype:'VNumber', readonly: true},
         {name:'title', title: '标题', datatype:'VText'},
         {name:'print_text', title: '打印文本', datatype:'VText'},
         {name:'name', title: '标识', datatype:'VText'}
-    ] + default
+      ] + default
+    end
   end
-end
 
 Generates a view that looks like this:
 
