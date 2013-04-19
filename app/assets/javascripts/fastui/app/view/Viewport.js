@@ -5,7 +5,7 @@ Ext.define('FastUI.view.Viewport', {
     items:[
         {
             height:43,
-            html:"<div class=\'fastui-header\'><span class=\'caption\'>"+ app_project +"</span><span class=\'version\'>(version "+ app_version +" built on FastUI "+fastui_version+")</span></div>",
+            html:"<div class=\'fastui-header\'><span class=\'caption\'>"+ app_project +"</span><span class=\'version\'>("+ app_version +")</span></div>",
             region:"north",
             split:true,
             xtype:"component"
