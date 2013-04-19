@@ -74,7 +74,7 @@ Ext.define('FastUI.view.VGrid', {
         return jsonStore;
     },
     getMEntity: function () {
-        return this.tab.valueObject.m_entity;
+        return this.tab.valueObject.entity;
     },
     getMColumns: function () {
         return this.tab.valueObject.members || [];
