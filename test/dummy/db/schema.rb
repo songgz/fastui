@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.string   "name",            :limit => 60, :default => ""
     t.string   "username",        :limit => 60, :default => ""
     t.string   "password_digest"
-    t.string   "access_level",    :limit => 60, :default => ""
+    t.string   "access_level",    :limit => 60, :default => "org"
     t.string   "type"
     t.string   "entity_kind",                   :default => "app"
     t.integer  "seq",                           :default => 0
