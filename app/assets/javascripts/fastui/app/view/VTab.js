@@ -23,12 +23,7 @@ Ext.define('FastUI.view.VTab', {
                     text: '新建',
                     iconCls: 'fastui-btn-new',
                     handler: function () {
-                        if(this.form_kind == ''){
-                            this.cmdCreate();
-                        } else{
-                             this.cmdCustomCreate();
-                        }
-//                        this.cmdCreate();
+                        this.cmdCreate();
                         this.getBtn('save').enable();
                         this.getBtn('edit').disable();
                     },
@@ -144,33 +139,13 @@ Ext.define('FastUI.view.VTab', {
         var grid = this.getVGrid();
         this.getLayout().setActiveItem(grid.id);
     },
-    getCustomForm: function () {
-        if (!this.cform) {
-            this.cform = Ext.create('FastUI.view.'+this.form_kind, {tab: this});
-
-            this.add(this.cform);
-        }
-        return this.cform.getForm();
-    },
-    cmdCustomCreate:function(){
-        var form = this.getCustomForm();
-        form.url = this.rest.createPath();
-        form.method = 'POST';
-        form.reset();
-        var temp = {};
-        var logic = "";
-        Ext.each(this.getValue('m_fields'), function (mfield) {
-            if (mfield.default_logic.length > 0) {
-                logic = this.winCtx.parseCtx(this.winId, mfield.default_logic);
-                temp[this.rest.getTableName() + '[' + mfield.m_property.name + ']'] = Ext.decode(logic);
-            }
-        }, this);
-        form.setValues(temp);
-        this.getLayout().setActiveItem(this.cform.id);
-    },
     getForm: function () {
         if (!this.vform) {
-            this.vform = Ext.create('FastUI.view.VForm', {tab: this});
+            if(this.form_kind == ''){
+                this.vform = Ext.create('FastUI.view.VForm', {tab: this});
+            }else{
+                this.vform = Ext.create('FastUI.view.'+this.form_kind, {tab: this});
+            }
             this.add(this.vform);
         }
         return this.vform.getForm();
@@ -180,23 +155,34 @@ Ext.define('FastUI.view.VTab', {
         form.url = this.rest.createPath();
         form.method = 'POST';
         form.reset();
+        if(this.form_kind == ''){
+            this.setAutoFields(form);
+        }
+        this.getLayout().setActiveItem(this.vform.id);
+    },
+    setAutoFields:function(form){
         var temp = {};
         var logic = "";
-        Ext.each(this.getValue('members'), function (mfield) {
-            if (mfield.default_logic && mfield.default_logic.length > 0) {
+        Ext.each(this.getValue('m_fields'), function (mfield) {
+            if (mfield.default_logic.length > 0) {
                 logic = this.winCtx.parseCtx(this.winId, mfield.default_logic);
                 temp[this.rest.getTableName() + '[' + mfield.m_property.name + ']'] = Ext.decode(logic);
             }
         }, this);
         form.setValues(temp);
-        this.getLayout().setActiveItem(this.vform.id);
     },
     cmdEdit: function () {
         var id = this.getVGrid().selectedId();
         var form = this.getForm();
         form.url = this.rest.updatePath(id);
+        alert(form.url);
         form.method = 'PUT';
-
+        if(this.form_kind == ''){
+            this.setEditValues(id,form);
+        }
+        this.getLayout().setActiveItem(this.vform.id);
+    },
+    setEditValues:function(id,form){
         Ext.Ajax.request({
             url: this.rest.editPath(id),
             success: function (response) {
@@ -221,8 +207,6 @@ Ext.define('FastUI.view.VTab', {
                 form.setValues(o);
             }, scope: this
         });
-
-        this.getLayout().setActiveItem(this.vform.id);
     },
     cmdDelete: function () {
         var id = this.getVGrid().selectedId();
