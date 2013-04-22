@@ -175,7 +175,6 @@ Ext.define('FastUI.view.VTab', {
         var id = this.getVGrid().selectedId();
         var form = this.getForm();
         form.url = this.rest.updatePath(id);
-        alert(form.url);
         form.method = 'PUT';
         if(this.form_kind == ''){
             this.setEditValues(id,form);

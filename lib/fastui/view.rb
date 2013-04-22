@@ -7,7 +7,7 @@ module Fastui
 
     def initialize
       @project = 'Fastui Rapid Development Framework'
-      @version = '2.0.0'
+      @version = 'version 0.1.0 built on ExtJS 4.2.0'
       @copyright = 'Copyright 2007-2013 ChunTeng Co., Ltd.'
     end
 
