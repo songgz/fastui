@@ -139,7 +139,7 @@ Ext.define('FastUI.view.VTab', {
         var grid = this.getVGrid();
         this.getLayout().setActiveItem(grid.id);
     },
-    getForm: function () {
+    getCustForm: function () {
         if (!this.vform) {
             if(this.form_kind == ''){
                 this.vform = Ext.create('FastUI.view.VForm', {tab: this});
@@ -151,7 +151,7 @@ Ext.define('FastUI.view.VTab', {
         return this.vform.getForm();
     },
     cmdCreate: function () {
-        var form = this.getForm();
+        var form = this.getCustForm();
         form.url = this.rest.createPath();
         form.method = 'POST';
         form.reset();
