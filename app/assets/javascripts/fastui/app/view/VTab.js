@@ -139,7 +139,7 @@ Ext.define('FastUI.view.VTab', {
         var grid = this.getVGrid();
         this.getLayout().setActiveItem(grid.id);
     },
-    getCustForm: function () {
+    getForm: function () {
         if (!this.vform) {
             if(this.form_kind == ''){
                 this.vform = Ext.create('FastUI.view.VForm', {tab: this});
@@ -151,7 +151,7 @@ Ext.define('FastUI.view.VTab', {
         return this.vform.getForm();
     },
     cmdCreate: function () {
-        var form = this.getCustForm();
+        var form = this.getForm();
         form.url = this.rest.createPath();
         form.method = 'POST';
         form.reset();
@@ -178,6 +178,14 @@ Ext.define('FastUI.view.VTab', {
         form.method = 'PUT';
         if(this.form_kind == ''){
             this.setEditValues(id,form);
+        }else{
+            Ext.Ajax.request({
+                url: this.rest.editPath(id),
+                success: function (response) {
+                    form = Ext.create('FastUI.view.'+this.form_kind, {tab: response.responseText});
+
+                }.bind(this)
+            });
         }
         this.getLayout().setActiveItem(this.vform.id);
     },
