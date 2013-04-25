@@ -17,13 +17,13 @@ By default your view is configured in the file config/initializers/fastui_config
         {name:'title', title: '标题', datatype:'VText'},
         {name:'print_text', title: '打印文本', datatype:'VText'},
         {name:'name', title: '标识', datatype:'VText'}
-      ] + default
+      ]
       w.tab :m_list_item, title:'枚举项', entity:'Fastui::MListItem', included_tab_id: 'm_list', members:[
         {name:'id', title: 'ID', datatype:'VNumber', readonly: true},
         {name:'title', title: '标题', datatype:'VText'},
         {name:'print_text', title: '打印文本', datatype:'VText'},
         {name:'name', title: '标识', datatype:'VText'}
-      ] + default
+      ]
     end
   end
 ```
