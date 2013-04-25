@@ -29,6 +29,9 @@ By default your view is configured in the file config/initializers/view.rb.
 
 Generates a view that looks like this:
 
+![Image Alt](https://github.com/songgz/fastui/raw/master/doc/fastui_grid.jpg)
+
+![Image Alt](https://github.com/songgz/fastui/raw/master/doc/fastui_form.jpg)
 
 == Getting Started
 
