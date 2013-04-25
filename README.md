@@ -49,4 +49,6 @@ After updating your bundle, run the installer
 
 Visit http://localhost:3000/fastui and log in using:
 
-Voila! You're on your brand new FastUI main window.
+Voila! You're on your brand new FastUI main window.]
+
+ok
