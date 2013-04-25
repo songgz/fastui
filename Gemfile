@@ -1,4 +1,5 @@
 source "http://rubygems.org"
+#source 'http://gems.github.com'
 
 
 # Declare your gem's dependencies in fastui.gemspec.

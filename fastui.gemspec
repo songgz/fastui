@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Fastui::VERSION
   s.authors     = ["sgzhe"]
   s.email       = ["sgzhe@163.com"]
-  s.homepage    = ""
-  s.summary     = "Fastui generates a UI from model."
-  s.description = "Fastui generates a UI from model."
+  s.homepage    = "https://github.com/songgz/fastui/wiki"
+  s.summary     = "Fastui generates a UI from model for Rails."
+  s.description = "FastUI is a framework for creating enterprise-level application style interfaces. Fastui is released as a Ruby Gem. The gem is to be installed within a Ruby on Rails 3 application."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
