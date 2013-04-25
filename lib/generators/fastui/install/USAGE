@@ -2,7 +2,7 @@ Description:
     Explain the generator
 
 Example:
-    rails generate config Thing
+    rails generate install Thing
 
     This will create:
         what/will/it/create
