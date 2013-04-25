@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Fastui generates a UI from model."
   s.description = "Fastui generates a UI from model."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.9"
