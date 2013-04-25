@@ -29,11 +29,7 @@ By default your view is configured in the file config/initializers/view.rb.
 
 Generates a view that looks like this:
 
-![Image Alt](https://github.com/songgz/fastui/raw/master/doc/fastui_grid.jpg)
-{<img src="https://github.com/songgz/fastui/raw/master/doc/fastui_grid.jpg">}
-![Alt text](https://github.com/songgz/fastui/raw/master/doc/fastui_grid.jpg).
-<img src="https://github.com/songgz/fastui/raw/master/doc/fastui_grid.jpg">
-![Image Alt](https://github.com/songgz/fastui/raw/master/doc/fastui_form.jpg)
+  nice looking UI (see https://github.com/songgz/fastui/wiki/Quick-Setup-Guide for some screenshots)
 
 == Getting Started
 
