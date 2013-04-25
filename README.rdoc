@@ -29,7 +29,9 @@ By default your view is configured in the file config/initializers/view.rb.
 
 Generates a view that looks like this:
 
-  nice looking UI (see https://github.com/songgz/fastui/wiki/Quick-Setup-Guide for some screenshots)
+  ![fastui view](https://github.com/songgz/fastui/raw/master/doc/fastui_grid.jpg "fastui view")
+
+  ![fastui view](https://github.com/songgz/fastui/raw/master/doc/fastui_form.jpg "fastui view")
 
 == Getting Started
 
