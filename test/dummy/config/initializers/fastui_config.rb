@@ -1,5 +1,9 @@
 # encoding: utf-8
 Fastui::View.instance.config do |conf|
+  conf.project = 'Fastui Rapid Development Framework'
+  conf.version = 'version 0.1.0 built on ExtJS 4.2.0'
+  conf.copyright = 'Copyright 2007-2013 ChunTeng Co., Ltd.'
+
   default = [
       {name: 'entity_kind', title: '实体种类', datatype: 'VSingleChoice'},
       {name: 'seq', title: '排序', datatype: 'VNumber'},
