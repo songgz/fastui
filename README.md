@@ -8,7 +8,7 @@ Fastui generates a user interface from the model.
 ## Configuration
 
 For example, the syntax for view like this:
-By default your view is configured in the file config/initializers/view.rb.
+By default your view is configured in the file config/initializers/fastui_config.rb.
 ```ruby
   Fastui::View.instance.config do |conf|
     conf.win :m_list, title: '数据字典', window_kind: 'maintain' do |w|
