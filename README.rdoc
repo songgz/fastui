@@ -39,7 +39,7 @@ on Rails 3 application. To install, simply add the following to your Gemfile:
 
 After updating your bundle, run the installer
 
-  $> rake fastui:install:migrations
+  $> rails generate fastui:install -s
   $> rake db:migrate
   $> rails generate fastui:init
   $> rails server
