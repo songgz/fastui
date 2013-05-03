@@ -1,0 +1,21 @@
+Description:
+    The Fastui Engine has been correctly installed in your Rails application.
+
+        1. Edit the main config files:
+            - config/initializers/fastui_config.rb
+            - config/database.yml
+            - config/routes.rb
+
+          2. Launch the server:
+            > bundle exec rails s
+
+          3. Open your browser:
+            > open localhost:8080
+
+          4. Follow the installation wizard steps
+
+          5. Enjoy !
+
+Example:
+    ./script/generate generator fastui:install
+
