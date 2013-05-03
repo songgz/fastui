@@ -41,7 +41,7 @@ Ext.define('FastUI.view.VWindow', {
     },
     getSubTabs:function(pid,level){
         Ext.each(this.getTabValues(),function(tab){
-            if(tab.included_tab_id == pid){
+            if(tab.included_tab == pid){
                 tab.level =  level;
                 this.subs.push(tab);
                 this.getSubTabs(tab.id,level + '　');

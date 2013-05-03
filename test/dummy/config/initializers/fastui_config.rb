@@ -1,7 +1,7 @@
 # encoding: utf-8
 Fastui::View.instance.config do |conf|
   conf.project = 'Fastui Rapid Development Framework'
-  conf.version = 'version 0.1.0 built on ExtJS 4.2.0'
+  conf.version = "version #{Fastui::VERSION} built on ExtJS 4.2.0"
   conf.copyright = 'Copyright 2007-2013 ChunTeng Co., Ltd.'
 
   default = [
@@ -22,7 +22,7 @@ Fastui::View.instance.config do |conf|
         {name: 'print_text', title: '打印文本', datatype: 'VText'},
         {name: 'name', title: '标识', datatype: 'VText'}
     ] + default
-    w.tab :m_menu_item, title: '菜单项', entity: 'Fastui::MMenuItem', included_tab_id: 'm_menu', members: [
+    w.tab :m_menu_item, title: '菜单项', entity: 'Fastui::MMenuItem', included_tab: 'm_menu', members: [
         {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
         {name: 'title', title: '标题', datatype: 'VText'},
         {name: 'print_text', title: '打印文本', datatype: 'VText'},
@@ -33,8 +33,8 @@ Fastui::View.instance.config do |conf|
   end
 
   conf.win :m_org, title: '组织', window_kind: 'maintain' do |w|
-    w.tab :m_org, title: '组织', entity: 'Fastui::MOrg', grid_kind: 'treegrid', members: [
-        {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
+    w.tab :m_org, title: '组织', entity: 'Fastui::MOrg', grid_kind: 'VTreeGrid', members: [
+        {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true, },
         {name: 'title', title: '名称', datatype: 'VTree'},
         {name: 'print_text', title: '打印文本', datatype: 'VText'},
         {name: 'name', title: '标识', datatype: 'VText'},
@@ -50,7 +50,7 @@ Fastui::View.instance.config do |conf|
         {name: 'name', title: '标识', datatype: 'VText'},
         {name: 'access_level', title: '访问级别', datatype: 'VSingleChoice'}
     ] + default
-    w.tab :m_role, title: '角色', entity: 'Fastui::MRole', members: [
+    w.tab :m_role, title: '角色', entity: 'Fastui::MRole', included_tab: 'm_person', members: [
         {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
         {name: 'title', title: '标题', datatype: 'VText'},
         {name: 'print_text', title: '打印文本', datatype: 'VText'},
@@ -65,7 +65,7 @@ Fastui::View.instance.config do |conf|
         {name: 'print_text', title: '打印文本', datatype: 'VText'},
         {name: 'name', title: '标识', datatype: 'VText'}
     ] + default
-    w.tab :m_list_item, title: '枚举项', entity: 'Fastui::MListItem', included_tab_id: 'm_list', members: [
+    w.tab :m_list_item, title: '枚举项', entity: 'Fastui::MListItem', included_tab: 'm_list', members: [
         {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
         {name: 'title', title: '标题', datatype: 'VText'},
         {name: 'print_text', title: '打印文本', datatype: 'VText'},

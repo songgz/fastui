@@ -11,7 +11,7 @@ module Fastui
       end
     end
 
-    attr_accessor :name, :title, :entity, :readonly, :included_tab_id, :grid_kind, :form_kind, :members
+    attr_accessor :name, :title, :entity, :readonly, :included_tab, :grid_kind, :form_kind, :members
 
     #:opts => {members:[{:member => :title, :title => '标题'  },:note,:m_tabs]}
     def initialize(name,opts = {})

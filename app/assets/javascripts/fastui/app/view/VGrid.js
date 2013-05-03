@@ -46,7 +46,7 @@ Ext.define('FastUI.view.VGrid', {
         return id;
     },
     getValue: function (key) {
-        return this.tab.valueObject[key];
+        return this.tab.valueObject[key] || '';
     },
 
     getGStore: function () {
