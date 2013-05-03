@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "FastUI is a framework for creating enterprise-level application style interfaces. Fastui is released as a Ruby Gem. The gem is to be installed within a Ruby on Rails 3 application."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
-  s.test_files = Dir["test/**/*"]
+  #s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.9"
   s.add_dependency "awesome_nested_set", "~> 2.1.5"
