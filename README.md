@@ -1,9 +1,9 @@
 # FastUI
 
-FastUI is a framework for creating enterprise-level application style interfaces.
-This project rocks and uses MIT-LICENSE.
+FastUI is a Ajax Ruby framework for Rapid Development enterprise-level Web application style interfaces.
+In Fastui you only have to write the domain classes in plain Ruby to get a web application ready for production.
 
-Fastui generates a user interface from the model.
+This project rocks and uses MIT-LICENSE.
 
 ## Configuration
 

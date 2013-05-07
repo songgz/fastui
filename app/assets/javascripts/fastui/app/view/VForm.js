@@ -6,9 +6,10 @@ Ext.define('FastUI.view.VForm', {
     bodyPadding:5,
     layout:'anchor',
     fieldDefaults: {
-        labelAlign: 'left',
-        labelWidth: 90,
-        anchor: '60%'
+        labelAlign: 'right',
+        labelWidth: 100,
+       // anchor: '60%'
+        width: 400
     },
     defaultType:'textfield',
     border:false,

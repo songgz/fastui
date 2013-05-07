@@ -22,56 +22,87 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
     },
 
     buildField: function (field, winCtx, winId, rest) {
-        var dt = field.datatype;
+        field.datatype = field.datatype || '';
         switch (field.datatype) {
             case 'VText':
                 return Ext.create('FastUI.view.vfield.VText', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VTree':
                 return Ext.create('FastUI.view.vfield.VTree', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VDate':
                 return Ext.create('FastUI.view.vfield.VDate', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VHtmlEditor':
                 return Ext.create('FastUI.view.vfield.VHtmlEditor', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VSingleChoice':
                 return Ext.create('FastUI.view.vfield.VSingleChoice', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VMultipleChoice':
                 return Ext.create('FastUI.view.vfield.VMultipleChoice', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case this.VType.VLongCombobox:
                 return Ext.create('FastUI.view.vfield.VLongCombobox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VTextArea':
                 return Ext.create('FastUI.view.vfield.VTextArea', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VNumber':
                 return Ext.create('FastUI.view.vfield.VNumber', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VCheckbox':
                 return Ext.create('FastUI.view.vfield.VCheckbox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VCheckboxGroup':
                 return Ext.create('FastUI.view.vfield.VCheckboxGroup', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VSexSelect':
                 return Ext.create('FastUI.view.vfield.VSexSelect', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VFile':
                 return Ext.create('FastUI.view.vfield.VFile', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VYesOrNo':
                 return Ext.create('FastUI.view.vfield.VYesOrNo', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VList':
                 return Ext.create('FastUI.view.vfield.VCombobox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
             case 'VLookup':
                 return Ext.create('FastUI.view.vfield.VLookup', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-                break;
+
+            case 'VGroup':
+                var box = Ext.create('Ext.form.FieldSet',{
+                    title: field.title,
+                    collapsible: true,
+                    defaults: {
+                        labelWidth: 89,
+                        layout: {
+                            type: 'hbox',
+                            defaultMargins: {top: 0, right: 0, bottom: 5, left: 0}
+                        }
+                    },
+                    defaultType: 'textfield'
+                });
+                Ext.each(field.members, function(member){
+                    box.add(this.buildField(member, winCtx, winId, rest));
+                },this);
+                return box;
+
+            default:
+                if(Array.isArray(field)){
+                    var line = Ext.create('Ext.container.Container', {
+                        layout: 'hbox',
+                        margin: '0 0 5 0',
+                        defaultType: 'textfield'
+                    });
+                    Ext.each(field, function(f){
+                        line.add(this.buildField(f, winCtx, winId, rest));
+                    },this);
+                    return line;
+                }
+
         }
     }
 });
