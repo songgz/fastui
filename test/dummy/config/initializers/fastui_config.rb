@@ -9,7 +9,7 @@ Fastui::View.instance.config do |conf|
       {name: 'seq', title: '排序', datatype: 'VNumber'},
       {name: 'is_active', title: '是否激活', datatype: 'VBool'},
       {name: 'note', title: '备注', datatype: 'VTextArea'},
-      {name: 'help', title: '帮助', datatype: 'VTextArea', display: 'form'},
+      {name: 'help', title: '帮助', datatype: 'VHtmlEditor', display: 'form'},
       {name: 'createdbyorg_id', title: '创建组织', datatype: 'VLookup', ref: {entity: 'Fastui::MOrg'}, display: 'grid'},
       {name: 'createdby_id', title: '创建人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'},
       {name: 'updatedby_id', title: '更新人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'}

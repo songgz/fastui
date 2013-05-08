@@ -2,14 +2,14 @@ Ext.define('FastUI.view.VForm', {
     extend:'Ext.form.Panel',
     requires: ['FastUI.view.vfield.VFieldFactory'],
     tab:{},
-    title:'Simple Form',
     bodyPadding:5,
     layout:'anchor',
+
     fieldDefaults: {
         labelAlign: 'right',
         labelWidth: 100,
-       // anchor: '60%'
-        width: 400
+        //anchor: '60%'
+        width: 650
     },
     defaultType:'textfield',
     border:false,
