@@ -42,8 +42,8 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             case 'VMultipleChoice':
                 return Ext.create('FastUI.view.vfield.VMultipleChoice', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
-            case this.VType.VLongCombobox:
-                return Ext.create('FastUI.view.vfield.VLongCombobox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+            case 'VRadio':
+                return Ext.create('FastUI.view.vfield.VRadio', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VTextArea':
                 return Ext.create('FastUI.view.vfield.VTextArea', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
@@ -51,11 +51,11 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             case 'VNumber':
                 return Ext.create('FastUI.view.vfield.VNumber', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
+            case 'VBool':
+                return Ext.create('FastUI.view.vfield.VBool', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+
             case 'VCheckbox':
                 return Ext.create('FastUI.view.vfield.VCheckbox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
-
-            case 'VCheckboxGroup':
-                return Ext.create('FastUI.view.vfield.VCheckboxGroup', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VSexSelect':
                 return Ext.create('FastUI.view.vfield.VSexSelect', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});

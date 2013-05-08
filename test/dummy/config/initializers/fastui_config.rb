@@ -5,9 +5,9 @@ Fastui::View.instance.config do |conf|
   conf.copyright = 'Copyright 2007-2013 ChunTeng Co., Ltd.'
 
   default = [
-      {name: 'entity_kind', title: '实体种类', datatype: 'VSingleChoice'},
+      {name: 'entity_kind', title: '实体种类', datatype: 'VRadio'},
       {name: 'seq', title: '排序', datatype: 'VNumber'},
-      {name: 'is_active', title: '是否激活', datatype: 'VYesOrNo'},
+      {name: 'is_active', title: '是否激活', datatype: 'VBool'},
       {name: 'note', title: '备注', datatype: 'VTextArea'},
       {name: 'help', title: '帮助', datatype: 'VTextArea', display: 'form'},
       {name: 'createdbyorg_id', title: '创建组织', datatype: 'VLookup', ref: {entity: 'Fastui::MOrg'}, display: 'grid'},

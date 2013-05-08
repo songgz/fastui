@@ -1,6 +1,5 @@
-Ext.define('FastUI.view.vfield.VCheckbox',{
-    extend: 'Ext.form.CheckboxGroup',
-
+Ext.define('FastUI.view.vfield.VRadio',{
+    extend: 'Ext.form.RadioGroup',
     valueObject: {},
     winCtx:{},
     winId:0,
@@ -15,7 +14,7 @@ Ext.define('FastUI.view.vfield.VCheckbox',{
         this.callParent();
     },
     getFValue:function (key) {
-        return this.valueObject[key];
+        return this.valueObject[key] || '';
     },
     getFFields:function(){
         var fields = [];
@@ -32,3 +31,4 @@ Ext.define('FastUI.view.vfield.VCheckbox',{
     }
 
 });
+
