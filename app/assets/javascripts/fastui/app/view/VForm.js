@@ -16,7 +16,6 @@ Ext.define('FastUI.view.VForm', {
     initComponent:function () {
         this.title = this.getValue('title');
         this.items = this.getFFields();
-        this.rest = Ext.create('FastUI.view.Rest', this.getMEntity());
         this.callParent();
     },
     getValue:function(key){
@@ -38,7 +37,7 @@ Ext.define('FastUI.view.VForm', {
     },
     cmdCreate: function () {
         var form = this.getForm();
-        form.url = this.rest.createPath();
+        form.url = this.tab.rest.createPath();
         form.method = 'POST';
         form.reset();
         this.setAutoFields(form);  //  有数据时要进行测试
@@ -49,7 +48,7 @@ Ext.define('FastUI.view.VForm', {
         Ext.each(this.getValue('m_fields'), function (mfield) {
             if (mfield.default_logic && mfield.default_logic.length > 0) {
                 logic = this.winCtx.parseCtx(this.winId, mfield.default_logic);
-                temp[this.rest.getTableName() + '[' + mfield.m_property.name + ']'] = Ext.decode(logic);
+                temp[this.tab.rest.getTableName() + '[' + mfield.m_property.name + ']'] = Ext.decode(logic);
             }
         }, this);
         form.setValues(temp);
@@ -57,13 +56,13 @@ Ext.define('FastUI.view.VForm', {
     cmdEdit: function () {
         var id = this.tab.getVGrid().selectedId();
         var form = this.getForm();
-        form.url = this.rest.updatePath(id);
+        form.url = this.tab.rest.updatePath(id);
         form.method = 'PUT';
         this.setEditValues(id, form);
     },
     setEditValues: function (id, form) {
         Ext.Ajax.request({
-            url: this.rest.editPath(id),
+            url: this.tab.rest.editPath(id),
             success: function (response) {
                 var data = Ext.decode(response.responseText);
                 var k, o = {};
@@ -74,12 +73,12 @@ Ext.define('FastUI.view.VForm', {
                         if (attr && attr.title) {
                             title = attr.title
                         }
-                        o[this.rest.getTableName() + '[' + k + ']'] = {id: data[k], title: title};
+                        o[this.tab.rest.getTableName() + '[' + k + ']'] = {id: data[k], title: title};
                     } else if (k.match(/_ids$/)) {
-                        o[this.rest.getTableName() + '[' + k + '][]'] = data[k];
+                        o[this.tab.rest.getTableName() + '[' + k + '][]'] = data[k];
                     }
                     else {
-                        o[this.rest.getTableName() + '[' + k + ']'] = data[k];
+                        o[this.tab.rest.getTableName() + '[' + k + ']'] = data[k];
                     }
                 }
 //                alert(Ext.encode(o));

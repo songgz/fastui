@@ -16,7 +16,7 @@ Fastui::View.instance.config do |conf|
   ]
 
   conf.win :m_menu, title: '菜单', window_kind: 'maintain' do |w|
-    w.tab :m_menu, title: '菜单', entity: 'Fastui::MMenu', readonly: true, members: [
+    w.tab :m_menu, title: '菜单', entity: 'Fastui::MMenu',form_kind:'VCustomForm', readonly: true, members: [
         {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
         {name: 'title', title: '标题', datatype: 'VText'},
         {name: 'print_text', title: '打印文本', datatype: 'VText'},
