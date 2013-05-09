@@ -10,7 +10,7 @@ module Fastui
                                                                     :parent_id => params[:node]
                                                                 }.delete_if { |k, v| v.blank? })
 
-      respond_with(@m_orgs.to_json(:include => [:parent]))
+      respond_with(@m_orgs.to_json(:include => [:parent], :methods => [:leaf?, :child?]))
     end
 
     def show

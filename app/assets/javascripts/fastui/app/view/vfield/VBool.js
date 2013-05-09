@@ -1,12 +1,12 @@
-Ext.define('FastUI.view.vfield.VHtmlEditor',{
-    extend: 'Ext.form.field.HtmlEditor',
-
+Ext.define('FastUI.view.vfield.VBool',{
+    extend: 'Ext.form.field.Checkbox',
     valueObject: {},
     winCtx:{},
     winId:0,
     rest:{},
-    width:650,
 
+    inputValue: 'true',
+    uncheckedValue: 'false',
     initComponent:function(){
         this.fieldLabel = this.getFValue('title');
         this.name =  this.rest.getTableName() + '[' + this.getFValue('name') + ']';
@@ -15,6 +15,6 @@ Ext.define('FastUI.view.vfield.VHtmlEditor',{
         this.callParent();
     },
     getFValue:function (key) {
-        return this.valueObject[key];
+        return this.valueObject[key] || '';
     }
 });

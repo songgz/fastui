@@ -10,7 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require ./extjs4/ext-all
+// require ./extjs4/ext-all
 //= require ./extjs4/locale/ext-lang-zh_CN
 //= require ./app/inflection
 //= require ./fastui

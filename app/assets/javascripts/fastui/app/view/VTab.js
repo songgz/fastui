@@ -117,7 +117,7 @@ Ext.define('FastUI.view.VTab', {
     },
     getParams: function () {
         var p = {};
-        var tab = Ext.getCmp('tab-' + this.getValue('included_tab_id'));
+        var tab = Ext.getCmp('tab-' + this.getValue('included_tab'));
         if (tab) {
             //p[tab.rest.getKey()] = tab.getSelectedId();
             //alert( tab.rest.getKey());
@@ -127,14 +127,14 @@ Ext.define('FastUI.view.VTab', {
     },
     getVGrid: function () {
         if (!this.vgrid) {
-            if (this.grid_kind == 'treegrid') {
+            if (this.grid_kind == 'VTreeGrid') {
                 this.vgrid = Ext.create('FastUI.view.VTreeGrid', {tab: this});
             } else {
                 this.vgrid = Ext.create('FastUI.view.VGrid', {tab: this});
             }
             this.add(this.vgrid);
         } else {
-            if (this.grid_kind != 'treegrid') {
+            if (this.grid_kind != 'VTreeGrid') {
                 var params1 = this.vgrid.store.getProxy().extraParams;
                 var params2 = this.getParams();
                 if (!Ext.Object.equals(params1, params2)) {

@@ -6,6 +6,7 @@ Ext.define('FastUI.view.vfield.VLookup', {
     winId:0,
     rest:{},
 
+    triggerCls: Ext.baseCSSPrefix + 'form-search-trigger',
     editable:false,
     displayField:'title',
     valueField:'id',

@@ -10,24 +10,7 @@ Ext.define('FastUI.view.VTreeGrid', {
     initComponent: function () {
         this.title = this.getValue('title');
         this.columns = this.getTreeGColumns();
-        this.store = new Ext.data.TreeStore({
-            autoLoad: true,
-            fields: this.getTreeGFields(),
-            proxy: {
-                type: 'ajax',
-                url: this.tab.rest.indexPath(),
-                reader:{
-                    type:'json',
-                    root:'',
-                    record:''
-                    //successProperty:''
-                }
-            },
-            //folderSort: true,
-            root: {
-                expanded: true
-            }
-        });
+        this.store = this.getTreeGStore();
         this.callParent();
     },
     listeners:{
@@ -50,26 +33,31 @@ Ext.define('FastUI.view.VTreeGrid', {
         return id;
     },
     getValue: function (key) {
-        return this.tab.valueObject[key];
+        return this.tab.valueObject[key] || '';
     },
 
-//    getTreeGStore: function () {
-//        return new Ext.data.TreeStore({
-//            autoLoad: false,
-//            proxy: {
-//                type: 'ajax',
-//                url: this.tab.rest.indexPath()
-//            },
-//            folderSort: true,
-//            root: {
-//                expanded: true,
-//                loaded: true
-//            },
-//            fields: this.getTreeGFields()
-//        })
-//    },
+    getTreeGStore: function () {
+        return new Ext.data.TreeStore({
+            autoLoad: true,
+            proxy:{
+                type: 'ajax',
+                url: this.tab.rest.indexPath(),
+                reader:{
+                    type:'json',
+                    root:'',
+                    record:''
+                    //successProperty:''
+                }
+            },
+            root: {
+                name:'Root',
+                expanded: true
+            },
+            fields: this.getTreeGFields()
+        })
+    },
     getMColumns: function () {
-        return this.tab.valueObject.tabs;
+        return this.tab.valueObject.members || [];
     },
     getTreeGFields: function () {
         var fields = [];
@@ -93,53 +81,75 @@ Ext.define('FastUI.view.VTreeGrid', {
     getTreeGColumns: function () {
         var columns = [];
         Ext.each(this.getMColumns(), function (column) {
-            var col = {
-                text: column.title,
-                dataIndex: column.name,
-                width: column.width
-            };
-
             switch (column.datatype) {
                 case 'VTree':
-                    col.xtype = 'treecolumn';
-                    col.flex = 2;
+                    columns.push({
+                        text: column.title,
+                        xtype: 'treecolumn',
+                        flex: 2.5,
+                        dataIndex: column.name
+                    });
                     break;
+
                 case 'VLookup':
-                    col.xtype = 'templatecolumn';
                     var entity = column.name.replace('_id', '');
-                    col.tpl = new Ext.XTemplate(
+                    columns.push({
+                        text: column.title,
+                        xtype: 'templatecolumn',
+                        dataIndex: column.name,
+                        tpl: new Ext.XTemplate(
                         '<tpl for="' + entity + '">',
-                        '<p>{title}</p>',
+                        '{title}',
                         '</tpl>'
-                    );
+                        )
+                    });
                     break;
+
                 case 'VSingleChoice':
                     var list_store = FastUI.store.MListMgr.getStore(column.name);
-                    col.renderer = function (val) {
+                    columns.push({
+                        text: column.title,
+                        dataIndex: column.name,
+                        renderer: function (val) {
                         var index = list_store.findExact('name', val);
                         if (index > -1) {
                             var rs = list_store.getAt(index).data;
                             return rs.title;
                         }
                         return "";
-                    };
+                        }
+                    });
                     break;
+
                 case 'VSexSelect':
-                    col.renderer = function (val) {
+                    columns.push({
+                        text: column.title,
+                        dataIndex: column.name,
+                        renderer: function (val) {
                         return val ? '男' : '女'
-                    };
+                        }
+                    });
                     break;
+
                 case 'VYesOrNo':
-                    col.renderer = function (val) {
+                    columns.push({
+                        text: column.title,
+                        dataIndex: column.name,
+                        renderer: function (val) {
                         return val ? '是' : '否';
-                    };
+                        }
+                    });
                     break;
+
                 default:
+                    columns.push({
+                        text: column.title,
+                        dataIndex: column.name
+                    });
                     break;
             }
-            columns.push(col);
-        }, this);
 
+        }, this);
         return columns;
     }
 });
