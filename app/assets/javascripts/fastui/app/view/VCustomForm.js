@@ -1,5 +1,5 @@
 Ext.define('FastUI.view.VCustomForm', {
-    extend:'Ext.form.Panel',
+    extend:'Ext.Panel',
     tab:{},
     url: 'fastui',
     method: 'POST',
