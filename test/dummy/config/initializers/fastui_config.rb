@@ -67,10 +67,12 @@ Fastui::View.instance.config do |conf|
     ] + default
     w.tab :m_list_item, title: '枚举项', entity: 'Fastui::MListItem', included_tab: 'm_list', members: [
         {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
-        {name: 'title', title: '标题', datatype: 'VText'},
-        {name: 'print_text', title: '打印文本', datatype: 'VText'},
+        {title:'描述', datatype:'VGroup', members:[
+            {name:'title', title: '标题', datatype:'VText'},
+            {name:'print_text', title: '打印文本', datatype:'VText'}
+        ]},
         {name: 'name', title: '标识', datatype: 'VText'}
-    ] + default
+    ]
   end
 
 end
