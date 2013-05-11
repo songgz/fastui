@@ -164,6 +164,23 @@ Ext.define('FastUI.view.VGrid', {
                 });
                 break;
 
+            case 'VRadio':
+                columns.push({
+                    text: column.title,
+                    dataIndex: column.name,
+                    display: column.display || 'all',
+                    renderer: function(val) {
+                        var list_store = FastUI.store.MListMgr.getStore(column.name);
+                        var index = list_store.findExact('name', val);
+                        if (index > -1) {
+                            var rs = list_store.getAt(index).data;
+                            return rs.title;
+                        }
+                        return "";
+                    }
+                });
+                break;
+
             case 'VSexSelect':
                 columns.push({
                     text: column.title,
@@ -171,6 +188,17 @@ Ext.define('FastUI.view.VGrid', {
                     display: column.display || 'all',
                     renderer: function (val) {
                         return val ? '男' : '女'
+                    }
+                });
+                break;
+
+            case 'VBool':
+                columns.push({
+                    text: column.title,
+                    dataIndex: column.name,
+                    display: column.display || 'all',
+                    renderer: function (val) {
+                        return val ? '√' : '×';
                     }
                 });
                 break;
