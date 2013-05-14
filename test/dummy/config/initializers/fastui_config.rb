@@ -46,7 +46,7 @@ Fastui::View.instance.config do |conf|
     w.tab :m_person, title: '人员', entity: 'Fastui::MPerson', members: [
         {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
         {name: 'title', title: '标题', datatype: 'VText'},
-        {name: 'print_text', title: '打印文本', datatype: 'VText'},
+        {name: 'print_text', title: '打印文本', datatype: 'VText', vtype:'url'},
         {name: 'name', title: '标识', datatype: 'VText'},
         {name: 'access_level', title: '访问级别', datatype: 'VSingleChoice'}
     ] + default

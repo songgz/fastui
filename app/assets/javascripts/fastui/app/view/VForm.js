@@ -1,36 +1,41 @@
 Ext.define('FastUI.view.VForm', {
-    extend:'Ext.form.Panel',
+    extend: 'Ext.form.Panel',
     requires: ['FastUI.view.vfield.VFieldFactory'],
-    tab:{},
-    bodyPadding:5,
-    layout:'anchor',
+    tab: {},
+    successText:'Success',
+    failureText:'Failed',
+    invalidText:'Invalid',
 
+    bodyPadding: 5,
+    layout: 'anchor',
     fieldDefaults: {
         labelAlign: 'right',
         labelWidth: 100,
         //anchor: '60%'
         width: 650
     },
-    defaultType:'textfield',
-    border:false,
-    initComponent:function () {
+    defaultType: 'textfield',
+    border: false,
+    initComponent: function () {
         this.title = this.getValue('title');
         this.items = this.getFFields();
         this.callParent();
     },
-    getValue:function(key){
+    getValue: function (key) {
         return this.tab.valueObject[key];
     },
-    getMEntity:function(){
+    getMEntity: function () {
         return this.tab.valueObject.entity;
     },
-    getFFields:function () {
+    getFFields: function () {
         var fields = [];
         Ext.each(this.getValue('members'), function (member) {
             member.readonly = member.readonly || false;
             member.display = member.display || 'all';
-            if (member.display == 'all' || member.display == 'form'){
-                fields.push(FastUI.view.vfield.VFieldFactory.buildField(member,this.tab.winCtx, this.tab.winId,this.tab.rest));
+            member.vtype = member.vtype || '';
+
+            if (member.display == 'all' || member.display == 'form') {
+                fields.push(FastUI.view.vfield.VFieldFactory.buildField(member, this.tab.winCtx, this.tab.winId, this.tab.rest));
             }
         }, this);
         return fields;
@@ -83,35 +88,27 @@ Ext.define('FastUI.view.VForm', {
                 }
 //                alert(Ext.encode(o));
                 form.setValues(o);
-            }, scope: this
+            },
+            failure: function (response,action) {
+                Ext.Msg.alert(this.failureText, action.result.msg);
+            },
+            scope: this
         });
     },
     cmdSave: function () {
-            var form = this.getForm();
-            if (form.isValid()) {
-                this.constructAjaxRequest({
-                    url: form.url,
-                    method: form.method,
-                    params: form.getValues(false, false, false),
-                    success: function () {
-                        Ext.MessageBox.alert("提示", "操作成功！")
-                    },
-                    failure: function () {
-                        Ext.MessageBox.alert("提示", "操作失败！")
-                    },
-                    scope: this
-                });
-            }
-    },
-    constructAjaxRequest: function (options) {
-        return Ext.Ajax.request({
-            url: options.url,
-            method: options.method,
-            params: options.params,
-            success: options.success,
-            failure: options.failure,
-            scope: options.scope
-        });
+        var form = this.getForm();
+        if (form.isValid()) { // make sure the form contains valid data before submitting
+            form.submit({
+                success: function (form, action) {
+                    Ext.Msg.alert(this.successText, action.result.msg);
+                },
+                failure: function (form, action) {
+                    Ext.Msg.alert(this.failureText, action.result.msg);
+                },
+                scope: this
+            });
+        } else { // display error alert if the data is invalid
+            Ext.Msg.alert(this.invalidText, 'Please correct form errors.')
+        }
     }
-
 });

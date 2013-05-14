@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 // require ./extjs4/ext-all
+//= require ./app/view/vfield/VType
 //= require ./extjs4/locale/ext-lang-zh_CN
 //= require ./app/inflection
 //= require ./fastui

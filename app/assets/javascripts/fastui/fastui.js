@@ -11,6 +11,8 @@ Ext.application({
     appFolder:'/assets/fastui/app',
 
 
+
+
     launch: function() {
 
         //Ext.Viewport.setMasked(false);
