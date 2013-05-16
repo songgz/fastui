@@ -50,10 +50,10 @@ Ext.define('FastUI.view.VForm', {
     setAutoFields: function (form) {
         var temp = {};
         var logic = "";
-        Ext.each(this.getValue('m_fields'), function (mfield) {
-            if (mfield.default_logic && mfield.default_logic.length > 0) {
-                logic = this.winCtx.parseCtx(this.winId, mfield.default_logic);
-                temp[this.tab.rest.getTableName() + '[' + mfield.m_property.name + ']'] = Ext.decode(logic);
+        Ext.each(this.getValue('members'), function (member) {
+            if (member.default_logic) {
+                logic = this.tab.winCtx.parseCtx(this.tab.winId, member.default_logic);
+                temp[this.tab.rest.getTableName() + '[' + member.name + ']'] = Ext.decode(logic);
             }
         }, this);
         form.setValues(temp);

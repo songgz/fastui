@@ -6,7 +6,7 @@ module Fastui
 
     def index
       #@m_orgs = MOrg.scoped
-      @m_orgs = params[:node] == 'root' ? MOrg.roots : MOrg.where({
+      @m_orgs = params[:node] == '' ? MOrg.roots : MOrg.where({
                                                                     :parent_id => params[:node]
                                                                 }.delete_if { |k, v| v.blank? })
 

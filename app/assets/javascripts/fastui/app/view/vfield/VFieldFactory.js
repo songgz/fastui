@@ -71,6 +71,8 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
 
             case 'VLookup':
                 return Ext.create('FastUI.view.vfield.VLookup', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+            case 'VTreeCombobox':
+                return Ext.create('FastUI.view.vfield.VTreeCombobox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VGroup':
                 var box = Ext.create('Ext.form.FieldSet',{

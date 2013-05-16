@@ -38,7 +38,7 @@ Fastui::View.instance.config do |conf|
         {name: 'title', title: '名称', datatype: 'VTree'},
         {name: 'print_text', title: '打印文本', datatype: 'VText'},
         {name: 'name', title: '标识', datatype: 'VText'},
-        {name: 'parent_id', title: '上级组织', datatype: 'VLookup', ref: {entity: 'Fastui::MOrg'}}
+        {name: 'parent_id', title: '上级组织', datatype: 'VTreeCombobox', ref: {entity: 'Fastui::MOrg'}, default_logic: "{id:${m_org_id},title:'${m_org_title}'}"}
     ] + default
   end
 

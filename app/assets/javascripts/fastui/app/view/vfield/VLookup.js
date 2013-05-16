@@ -1,6 +1,6 @@
 Ext.define('FastUI.view.vfield.VLookup', {
     extend:'Ext.form.field.ComboBox',
-    alias:'widget.vlookupwindow',
+    alias:'widget.vlookup',
     valueObject: {},
     winCtx:{},
     winId:0,
@@ -40,7 +40,7 @@ Ext.define('FastUI.view.vfield.VLookup', {
         this.loadWindow();
     },
     loadWindow:function () {
-        this.window = Ext.create('FastUI.view.VSearchWindow',{vlookup:this});
+        this.window = Ext.create('FastUI.view.VSearchWindow',{lookup:this});
         this.window.show();
     }
 });

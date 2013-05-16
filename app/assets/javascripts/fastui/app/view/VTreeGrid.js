@@ -50,7 +50,8 @@ Ext.define('FastUI.view.VTreeGrid', {
                 }
             },
             root: {
-                name:'Root',
+                text:'Root',
+                id:'',
                 expanded: true
             },
             fields: this.getTreeGFields()

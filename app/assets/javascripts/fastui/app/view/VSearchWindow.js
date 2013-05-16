@@ -4,10 +4,9 @@ Ext.define('FastUI.view.VSearchWindow', {
     height:300,
     width:600,
     layout:'fit',
-    vlookup:{},
+    lookup:{},
 
     initComponent:function () {
-
         this.title = this.getValue('title');
         this.items = {
             xtype: 'grid',
@@ -16,14 +15,14 @@ Ext.define('FastUI.view.VSearchWindow', {
                 {header:'ID', dataIndex:'id'},
                 {header:'Title', dataIndex:'title'}
             ],
-            store: this.getStore(), // A dummy empty data store
+            store: this.getStore(),
             listeners:{
                 itemclick:function (grid, record, item, index, e, eOpts) {
                     var id = record.get('id');
-                    if (!this.vlookup.store.getById(id)){
-                        this.vlookup.store.add({id:id,title:record.get('title')});
+                    if (!this.lookup.store.getById(id)){
+                        this.lookup.store.add({id:id,title:record.get('title')});
                     }
-                    this.vlookup.setValue(id);
+                    this.lookup.setValue(id);
                 },
                 scope:this
             }
@@ -33,14 +32,14 @@ Ext.define('FastUI.view.VSearchWindow', {
         this.callParent();
     },
     getValue:function (key) {
-        return this.vlookup.valueObject[key];
+        return this.lookup.valueObject[key];
     },
     getMEntity:function(){
-        return this.vlookup.valueObject.ref.entity;
+        return this.lookup.valueObject.ref.entity;
     },
 
 //    getDataType:function(){
-//        return this.this.vlookup.valueObject.class_name
+//        return this.this.lookup.valueObject.class_name
 //    },
 
     searchPanel:function () {
@@ -76,7 +75,7 @@ Ext.define('FastUI.view.VSearchWindow', {
 //        var s = "{m_window_id:${m_window_id}}";
         var s = this.getValue('filter');
         if(s == '') return '';
-        s = this.vlookup.winCtx.parseCtx(this.vlookup.winId,s);
+        s = this.lookup.winCtx.parseCtx(this.lookup.winId,s);
         return Ext.decode(s);
     },
     getStore:function () {
