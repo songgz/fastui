@@ -7,7 +7,7 @@ Ext.define('FastUI.view.VSearchWindow', {
     lookup:{},
 
     initComponent:function () {
-        this.title = this.getValue('title');
+        this.title = this.lookup.getTitle();
         this.items = {
             xtype: 'grid',
             border: false,
@@ -27,8 +27,8 @@ Ext.define('FastUI.view.VSearchWindow', {
                 scope:this
             }
         };
-        this.tbar = this.searchPanel();
-        this.bbar = this.pageBar();
+       // this.tbar = this.searchPanel();
+       // this.bbar = this.pageBar();
         this.callParent();
     },
     getValue:function (key) {
@@ -79,7 +79,7 @@ Ext.define('FastUI.view.VSearchWindow', {
         return Ext.decode(s);
     },
     getStore:function () {
-        var rest = Ext.create('FastUI.view.Rest', this.getMEntity());
+        var rest = Ext.create('FastUI.view.Rest', this.lookup.getRef().entity);
         return new Ext.data.JsonStore({
             autoLoad:{start:0, limit:25},
 //            pageSize:2, // items per page
@@ -87,7 +87,7 @@ Ext.define('FastUI.view.VSearchWindow', {
             proxy:{
                 type:'ajax',
                // extraParams:this.getParams(),
-                url:rest.indexPath(), //+ '?' + this.getParams(),
+                url: rest.indexPath(), //+ '?' + this.getParams(),
                 reader:{
                     type:'json',
                     root:'rows',

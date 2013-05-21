@@ -1,6 +1,6 @@
 Ext.define('FastUI.view.VGrid', {
     extend: 'Ext.grid.Panel',
-    requires: ['FastUI.store.MListMgr'],
+    requires: ['FastUI.store.MListMgr', 'FastUI.view.vfield.VFieldFactory','FastUI.view.DataFieldFactory', 'FastUI.view.GridColumnFactory'],
     tab: {},
     selType: 'rowmodel',
     multiSelect: false,
@@ -30,8 +30,8 @@ Ext.define('FastUI.view.VGrid', {
             //alert(this.tab.rest.getKey() + '='+ record.get('id'));
             this.tab.winCtx.setWinCtx(this.tab.winId, this.tab.rest.getKey(), record.get('id'));
             this.tab.winCtx.setWinCtx(this.tab.winId, this.tab.rest.getTitle(), record.get('title'));
-            if (record.get('m_entity_id')) {
-                this.tab.winCtx.setWinCtx(this.tab.winId, 'm_entity_id', record.get('m_entity_id'));
+            if (record.get('entity')) {
+                this.tab.winCtx.setWinCtx(this.tab.winId, 'entity', record.get('entity'));
             }
             this.tab.getBtn('edit').enable();
             this.tab.getBtn('del').enable();
@@ -79,165 +79,24 @@ Ext.define('FastUI.view.VGrid', {
     getMColumns: function () {
         return this.tab.valueObject.members || [];
     },
-    buildField:function(fields, field){
-        field.datatype = field.datatype || '';
-        switch (field.datatype) {
-            case 'VLookup':
-                fields.push({
-                    name: field.name.replace('_id', ''),
-                    type: 'auto'
-                });
-                break;
 
-            case 'VSingleChoice':
-                fields.push({
-                    name: field.name.replace('_id', ''),
-                    type: 'auto'
-                });
-                break;
-
-            case 'VGroup':
-                Ext.each(field.members, function(member){
-                    this.buildField(fields,member);
-                },this);
-                break;
-
-            default:
-                if(Array.isArray(field)){
-                    Ext.each(field, function(f){
-                        this.buildField(fields,f);
-                    },this);
-                }else{
-                    fields.push({
-                        name: field.name,
-                        type: 'auto'
-                    });
-                }
-        }
-    },
     getGFields: function () {
         var fields = [];
         Ext.each(this.getMColumns(), function (column) {
-            this.buildField(fields, column);
+            //this.buildField(fields, column);
+            FastUI.view.DataFieldFactory.buildField(fields,column);
+            //fields.push(FastUI.view.vfield.VFieldFactory.buildField(column, this.tab.winCtx, this.tab.winId, this.tab.rest).data());
         }, this);
         return fields;
     },
-    buildColumn: function(columns, column){
-        column.datatype = column.datatype || '';
-        switch (column.datatype) {
-            case 'VLookup':
-                var entity = column.name.replace('_id', '');
-                columns.push({
-                    text: column.title,
-                    dataIndex: column.name,
-                    display: column.display || 'all',
-                    xtype:  'templatecolumn',
-                    tpl: new Ext.XTemplate('<tpl for="' + entity + '">', '{title}', '</tpl>')
-                });
-                break;
 
-            case 'MultipleChoice':
-                var plur_entity = column.name.replace('_ids', '').pluralize();
-                columns.push({
-                    text: column.title,
-                    dataIndex: column.name,
-                    display: column.display || 'all',
-                    xtype:  'templatecolumn',
-                    tpl: new Ext.XTemplate('<tpl for="' + plur_entity + '">', '{title}', '</tpl>')
-                });
-                break;
-
-            case 'VSingleChoice':
-                columns.push({
-                    text: column.title,
-                    dataIndex: column.name,
-                    display: column.display || 'all',
-                    renderer: function(val) {
-                        var list_store = FastUI.store.MListMgr.getStore(column.name);
-                        var index = list_store.findExact('name', val);
-                        if (index > -1) {
-                            var rs = list_store.getAt(index).data;
-                            return rs.title;
-                        }
-                        return "";
-                    }
-                });
-                break;
-
-            case 'VRadio':
-                columns.push({
-                    text: column.title,
-                    dataIndex: column.name,
-                    display: column.display || 'all',
-                    renderer: function(val) {
-                        var list_store = FastUI.store.MListMgr.getStore(column.name);
-                        var index = list_store.findExact('name', val);
-                        if (index > -1) {
-                            var rs = list_store.getAt(index).data;
-                            return rs.title;
-                        }
-                        return "";
-                    }
-                });
-                break;
-
-            case 'VSexSelect':
-                columns.push({
-                    text: column.title,
-                    dataIndex: column.name,
-                    display: column.display || 'all',
-                    renderer: function (val) {
-                        return val ? '男' : '女'
-                    }
-                });
-                break;
-
-            case 'VBool':
-                columns.push({
-                    text: column.title,
-                    dataIndex: column.name,
-                    display: column.display || 'all',
-                    renderer: function (val) {
-                        return val ? '√' : '×';
-                    }
-                });
-                break;
-
-            case 'VYesOrNo':
-                columns.push({
-                    text: column.title,
-                    dataIndex: column.name,
-                    display: column.display || 'all',
-                    renderer: function (val) {
-                        return val ? '是' : '否';
-                    }
-                });
-                break;
-
-            case 'VGroup':
-                Ext.each(column.members, function (member) {
-                    this.buildColumn(columns, member);
-                },this);
-                break;
-
-            default:
-                if(Array.isArray(column)){
-                    Ext.each(column, function(c){
-                        this.buildColumn(columns, c);
-                    },this);
-                }else{
-                    columns.push({
-                        text: column.title,
-                        dataIndex: column.name,
-                        display: column.display || 'all'
-                    });
-                }
-        }
-    },
     getGColumns: function () {
         var columns = [];
         Ext.each(this.getMColumns(), function (column) {
-            this.buildColumn(columns,column);
+            //this.buildColumn(columns,column);
+            FastUI.view.GridColumnFactory.buildColumn(columns, column);
+            //alert('ss');
+            //columns.push(FastUI.view.vfield.VFieldFactory.buildField(column, this.tab.winCtx, this.tab.winId, this.tab.rest).column());
         }, this);
         return columns;
     }

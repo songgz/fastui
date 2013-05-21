@@ -11,6 +11,9 @@ module Fastui
 
     belongs_to :parent, :class_name => 'Fastui::MOrg'
 
+    alias :leaf :leaf?
+    alias :expanded :child?
+
 
   end
 end

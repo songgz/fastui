@@ -18,7 +18,7 @@ Ext.define('FastUI.view.VMenu', {
     initComponent: function(){
       this.store = Ext.create('Ext.data.TreeStore', {
           autoLoad:true,
-          fields:['id', {name:'text', mapping:'title'},{name:'leaf',mapping:'leaf?'},{name:'expanded',mapping:'child?'}, 'window'],
+          fields:['id', {name:'text', mapping:'title'},'leaf','expanded', 'window'],
           proxy:{
               type:'ajax',
               url:'/fastui/m_menu_items.json',

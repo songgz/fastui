@@ -16,7 +16,7 @@ module Fastui
       #  @m_menu_items = MMenuItem.where({:parent_id => params[:id]}.delete_if { |k, v| v.blank?})
         #@m_menu_items = paginate(@items)
       #end
-      respond_with(@m_menu_items.to_json(:include => [:m_menu, :createdbyorg, :createdby, :updatedby], :methods => [:leaf?, :child?]))
+      respond_with(@m_menu_items.to_json(:include => [:m_menu, :createdbyorg, :createdby, :updatedby], :methods => [:leaf, :expanded]))
     end
 
     def show

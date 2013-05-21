@@ -23,6 +23,7 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
 
     buildField: function (field, winCtx, winId, rest) {
         field.datatype = field.datatype || '';
+        //field.rest = rest;
         switch (field.datatype) {
             case 'VText':
                 return Ext.create('FastUI.view.vfield.VText', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
@@ -33,8 +34,8 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             case 'VDate':
                 return Ext.create('FastUI.view.vfield.VDate', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
-            case 'VHtmlEditor':
-                return Ext.create('FastUI.view.vfield.VHtmlEditor', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+            case 'VHtml':
+                return Ext.create('FastUI.view.vfield.VHtml', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VSingleChoice':
                 return Ext.create('FastUI.view.vfield.VSingleChoice', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
@@ -51,8 +52,8 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             case 'VNumber':
                 return Ext.create('FastUI.view.vfield.VNumber', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
-            case 'VBool':
-                return Ext.create('FastUI.view.vfield.VBool', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+            case 'VBoolean':
+                return Ext.create('FastUI.view.vfield.VBoolean', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VCheckbox':
                 return Ext.create('FastUI.view.vfield.VCheckbox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
@@ -67,10 +68,11 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
                 return Ext.create('FastUI.view.vfield.VYesOrNo', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VList':
-                return Ext.create('FastUI.view.vfield.VCombobox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+                return Ext.create('FastUI.view.vfield.VList', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VLookup':
                 return Ext.create('FastUI.view.vfield.VLookup', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+
             case 'VTreeCombobox':
                 return Ext.create('FastUI.view.vfield.VTreeCombobox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 

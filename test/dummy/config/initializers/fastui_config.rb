@@ -7,12 +7,12 @@ Fastui::View.instance.config do |conf|
   default = [
       {name: 'entity_kind', title: '实体种类', datatype: 'VRadio'},
       {name: 'seq', title: '排序', datatype: 'VNumber'},
-      {name: 'is_active', title: '是否激活', datatype: 'VBool'},
+      {name: 'is_active', title: '是否激活', datatype: 'VBoolean'},
       {name: 'note', title: '备注', datatype: 'VTextArea'},
-      {name: 'help', title: '帮助', datatype: 'VHtmlEditor', display: 'form'},
-      {name: 'createdbyorg_id', title: '创建组织', datatype: 'VLookup', ref: {entity: 'Fastui::MOrg'}, display: 'grid'},
-      {name: 'createdby_id', title: '创建人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'},
-      {name: 'updatedby_id', title: '更新人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'}
+      {name: 'help', title: '帮助', datatype: 'VHtml', display: 'form'}
+      #{name: 'createdbyorg_id', title: '创建组织', datatype: 'VLookup', ref: {entity: 'Fastui::MOrg'}, display: 'grid'},
+      #{name: 'createdby_id', title: '创建人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'},
+      #{name: 'updatedby_id', title: '更新人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'}
   ]
 
   conf.win :m_menu, title: '菜单', window_kind: 'maintain' do |w|
@@ -48,7 +48,7 @@ Fastui::View.instance.config do |conf|
         {name: 'title', title: '标题', datatype: 'VText'},
         {name: 'print_text', title: '打印文本', datatype: 'VText', vtype:'url'},
         {name: 'name', title: '标识', datatype: 'VText'},
-        {name: 'access_level', title: '访问级别', datatype: 'VSingleChoice'}
+        {name: 'access_level', title: '访问级别', datatype: 'VList'}
     ] + default
     w.tab :m_role, title: '角色', entity: 'Fastui::MRole', included_tab: 'm_person', members: [
         {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
@@ -69,7 +69,8 @@ Fastui::View.instance.config do |conf|
         {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
         {name:'title', title: '标题', datatype:'VText'},
         {name:'print_text', title: '打印文本', datatype:'VText'},
-        {name: 'name', title: '标识', datatype: 'VText'}
+        {name: 'name', title: '标识', datatype: 'VText'},
+        {name: 'm_list_id', title: '所属枚举', datatype: 'VLookup', ref: {entity: 'Fastui::MList'}}
     ] + default
   end
 

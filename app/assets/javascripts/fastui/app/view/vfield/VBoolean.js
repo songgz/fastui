@@ -1,4 +1,4 @@
-Ext.define('FastUI.view.vfield.VBool',{
+Ext.define('FastUI.view.vfield.VBoolean',{
     extend: 'Ext.form.field.Checkbox',
     valueObject: {},
     winCtx:{},

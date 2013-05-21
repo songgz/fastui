@@ -1,4 +1,4 @@
-Ext.define('FastUI.view.vfield.VHtmlEditor',{
+Ext.define('FastUI.view.vfield.VHtml',{
     extend: 'Ext.form.field.HtmlEditor',
 
     valueObject: {},

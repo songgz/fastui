@@ -7,5 +7,8 @@ module Fastui
 
     belongs_to :m_menu, :class_name => 'Fastui::MMenu'
 
+    alias :leaf :leaf?
+    alias :expanded :child?
+
   end
 end
