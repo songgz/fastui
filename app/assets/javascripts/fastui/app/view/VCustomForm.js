@@ -47,6 +47,7 @@ Ext.define('FastUI.view.VCustomForm', {
             method : this.method,
             form : this.id,
             success: function () {
+                this.tab.vgrid.store.reload();
                 Ext.MessageBox.alert("提示", "操作成功！")
             },
             failure: function () {

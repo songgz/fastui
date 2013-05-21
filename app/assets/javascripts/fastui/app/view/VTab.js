@@ -70,7 +70,7 @@ Ext.define('FastUI.view.VTab', {
 //                        this.cmdSave();
                         this.getForm();
                         this.vform.cmdSave();
-                        this.vgrid.store.reload();
+
                         this.getLayout().setActiveItem(this.vgrid.id);
                         this.getBtn('save').disable();
                     },
