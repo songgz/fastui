@@ -13,20 +13,20 @@ By default your view is configured in the file config/initializers/fastui_config
   Fastui::View.instance.config do |conf|
     conf.win :m_list, title: '数据字典', window_kind: 'maintain' do |w|
       w.tab :m_list, title: '枚举', entity:'Fastui::MList', members:[
-        {name:'id', title: 'ID', datatype:'VNumber', readonly: true},
-        {name:'title', title: '标题', datatype:'VText'},
+        {name:'id', title: 'ID', datatype:'VInteger', readonly: true},
+        {name:'title', title: '标题', datatype:'VString'},
         {name:'print_text', title: '打印文本', datatype:'VText'},
-        {name:'name', title: '标识', datatype:'VText'},
+        {name:'name', title: '标识', datatype:'VString'},
         {name: 'entity_kind', title: '实体种类', datatype: 'VRadio'},
-        {name: 'seq', title: '排序', datatype: 'VNumber'},
+        {name: 'seq', title: '排序', datatype: 'VInteger'},
         {name: 'is_active', title: '是否激活', datatype: 'VBool'},
-        {name: 'note', title: '备注', datatype: 'VTextArea'},
-        {name: 'help', title: '帮助', datatype: 'VHtmlEditor', display: 'form'}
+        {name: 'note', title: '备注', datatype: 'VText'},
+        {name: 'help', title: '帮助', datatype: 'VHtml', display: 'form'}
       ]
       w.tab :m_list_item, title:'枚举项', entity:'Fastui::MListItem', included_tab: 'm_list', members:[
-        {name:'id', title: 'ID', datatype:'VNumber', readonly: true},
-        {name:'title', title: '标题', datatype:'VText'},
-        {name:'print_text', title: '打印文本', datatype:'VText'},
+        {name:'id', title: 'ID', datatype:'VInteger', readonly: true},
+        {name:'title', title: '标题', datatype:'VString'},
+        {name:'print_text', title: '打印文本', datatype:'VString'},
         {name:'name', title: '标识', datatype:'VText'}
       ]
     end

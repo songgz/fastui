@@ -25,8 +25,8 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
         field.datatype = field.datatype || '';
         //field.rest = rest;
         switch (field.datatype) {
-            case 'VText':
-                return Ext.create('FastUI.view.vfield.VText', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+            case 'VString':
+                return Ext.create('FastUI.view.vfield.VString', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VTree':
                 return Ext.create('FastUI.view.vfield.VTree', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
@@ -46,8 +46,8 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             case 'VRadio':
                 return Ext.create('FastUI.view.vfield.VRadio', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
-            case 'VTextArea':
-                return Ext.create('FastUI.view.vfield.VTextArea', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+            case 'VText':
+                return Ext.create('FastUI.view.vfield.VText', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VNumber':
                 return Ext.create('FastUI.view.vfield.VNumber', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});

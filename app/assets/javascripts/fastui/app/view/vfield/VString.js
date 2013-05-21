@@ -1,11 +1,9 @@
-Ext.define('FastUI.view.vfield.VTextArea',{
-    extend: 'Ext.form.field.TextArea',
-
+Ext.define('FastUI.view.vfield.VString',{
+    extend: 'Ext.form.field.Text',
     valueObject: {},
     winCtx:{},
     winId:0,
     rest:{},
-
     initComponent:function(){
         this.fieldLabel = this.getFValue('title');
         this.name =  this.rest.getTableName() + '[' + this.getFValue('name') + ']';
