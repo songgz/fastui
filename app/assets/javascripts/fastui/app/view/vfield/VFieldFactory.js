@@ -52,6 +52,9 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             case 'VNumber':
                 return Ext.create('FastUI.view.vfield.VNumber', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
+            case 'VInteger':
+                return Ext.create('FastUI.view.vfield.VInteger', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+
             case 'VBoolean':
                 return Ext.create('FastUI.view.vfield.VBoolean', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
@@ -72,6 +75,9 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
 
             case 'VLookup':
                 return Ext.create('FastUI.view.vfield.VLookup', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+
+            case 'VTable':
+                return Ext.create('FastUI.view.vfield.VTable', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VTreeCombobox':
                 return Ext.create('FastUI.view.vfield.VTreeCombobox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});

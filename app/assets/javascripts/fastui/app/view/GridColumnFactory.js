@@ -24,6 +24,17 @@ Ext.define('FastUI.view.GridColumnFactory', {
                 });
                 break;
 
+            case 'VTable':
+                var entity = column.name.replace('_id', '');
+                columns.push({
+                    text: column.title,
+                    dataIndex: column.name,
+                    display: column.display || 'all',
+                    xtype:  'templatecolumn',
+                    tpl: new Ext.XTemplate('<tpl for="' + entity + '">', '{title}', '</tpl>')
+                });
+                break;
+
             case 'VLookup':
                 var entity = column.name.replace('_id', '');
                 columns.push({

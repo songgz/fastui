@@ -6,11 +6,11 @@ Fastui::View.instance.config do |conf|
 
   default = [
       {name: 'entity_kind', title: '实体种类', datatype: 'VRadio'},
-      {name: 'seq', title: '排序', datatype: 'VNumber'},
+      {name: 'seq', title: '排序', datatype: 'VInteger'},
       {name: 'is_active', title: '是否激活', datatype: 'VBoolean'},
       {name: 'note', title: '备注', datatype: 'VTextArea'},
       {name: 'help', title: '帮助', datatype: 'VHtml', display: 'form'},
-      {name: 'createdbyorg_id', title: '创建组织', datatype: 'VLookup', ref: {entity: 'Fastui::MOrg'}, display: 'grid'},
+      {name: 'createdbyorg_id', title: '创建组织', datatype: 'VTable', ref: {entity: 'Fastui::MOrg'},display: 'grid'},
       {name: 'createdby_id', title: '创建人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'},
       {name: 'updatedby_id', title: '更新人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'}
   ]

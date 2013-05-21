@@ -73,12 +73,8 @@ Ext.define('FastUI.view.VForm', {
                 var k, o = {};
                 for (k in data) {
                     if (k.match(/_id$/)) {
-                        var attr = data[k.replace('_id', '')];
-                        var title = data[k];
-                        if (attr && attr.title) {
-                            title = attr.title
-                        }
-                        o[this.tab.rest.getTableName() + '[' + k + ']'] = {id: data[k], title: title};
+                        var attr = data[k.replace('_id', '')] || data[k];
+                        o[this.tab.rest.getTableName() + '[' + k + ']'] = attr;
                     } else if (k.match(/_ids$/)) {
                         o[this.tab.rest.getTableName() + '[' + k + '][]'] = data[k];
                     }

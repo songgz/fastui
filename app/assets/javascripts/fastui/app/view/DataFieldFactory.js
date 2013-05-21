@@ -10,6 +10,13 @@ Ext.define('FastUI.view.DataFieldFactory', {
                 });
                 break;
 
+            case 'VTable':
+                fields.push({
+                    name: field.name.replace('_id', ''),
+                    type: 'auto'
+                });
+                break;
+
             case 'VLookup':
                 fields.push({
                     name: field.name.replace('_id', ''),
