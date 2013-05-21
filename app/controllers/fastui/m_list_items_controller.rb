@@ -22,7 +22,7 @@ module Fastui
 
     def edit
       @m_list_item = MListItem.find(params[:id])
-      respond_with(@m_list_item)
+      respond_with(@m_list_item.to_json(:include => [:m_list]))
     end
 
     def new
