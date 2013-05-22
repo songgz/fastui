@@ -96,7 +96,7 @@ Ext.define('FastUI.view.VForm', {
         if (form.isValid()) { // make sure the form contains valid data before submitting
             form.submit({
                 success: function (form, action) {
-                    this.tab.vgrid.store.reload();
+                    this.tab.vgrid.refresh();
                     Ext.Msg.alert(this.successText, action.result.msg);
                 },
                 failure: function (form, action) {

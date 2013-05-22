@@ -38,7 +38,7 @@ Ext.define('FastUI.view.VTreeGrid', {
 
     getTreeGStore: function () {
         return new Ext.data.TreeStore({
-            autoLoad: true,
+            //autoLoad: true,
             //autoSync: true,
             proxy:{
                 type: 'ajax',
@@ -74,6 +74,10 @@ Ext.define('FastUI.view.VTreeGrid', {
             FastUI.view.GridColumnFactory.buildColumn(columns,column);
         }, this);
         return columns;
+    },
+
+    refresh: function(){
+        this.store.load();
     }
 });
 

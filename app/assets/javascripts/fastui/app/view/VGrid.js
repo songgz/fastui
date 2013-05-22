@@ -99,5 +99,11 @@ Ext.define('FastUI.view.VGrid', {
             //columns.push(FastUI.view.vfield.VFieldFactory.buildField(column, this.tab.winCtx, this.tab.winId, this.tab.rest).column());
         }, this);
         return columns;
+    },
+
+    refresh:function(){
+        this.store.reload();
     }
+
+
 });

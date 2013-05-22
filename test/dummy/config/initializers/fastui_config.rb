@@ -35,10 +35,10 @@ Fastui::View.instance.config do |conf|
   conf.win :m_org, title: '组织', window_kind: 'maintain' do |w|
     w.tab :m_org, title: '组织', entity: 'Fastui::MOrg', grid_kind: 'VTreeGrid', members: [
         {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true, },
-        {name: 'title', title: '名称', datatype: 'VTree'},
+        {name: 'title', title: '名称', datatype: 'VTreeText'},
         {name: 'print_text', title: '打印文本', datatype: 'VString'},
         {name: 'name', title: '标识', datatype: 'VString'},
-        {name: 'parent_id', title: '上级组织', datatype: 'VTreeCombobox', ref: {entity: 'Fastui::MOrg'}, default_logic: "{id:${m_org_id},title:'${m_org_title}'}"}
+        {name: 'parent_id', title: '上级组织', datatype: 'VTree', ref: {entity: 'Fastui::MOrg'}, default_logic: "{id:${m_org_id},title:'${m_org_title}'}"}
     ] + default
   end
 

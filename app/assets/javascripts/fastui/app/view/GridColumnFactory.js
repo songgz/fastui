@@ -4,7 +4,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
     buildColumn: function(columns, column){
         column.datatype = column.datatype || '';
         switch (column.datatype) {
-            case 'VTree':
+            case 'VTreeText':
                 columns.push({
                     text: column.title,
                     dataIndex: column.name,
@@ -13,7 +13,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                 });
                 break;
 
-            case 'VTreeCombobox':
+            case 'VTree':
                 var entity = column.name.replace('_id', '');
                 columns.push({
                     text: column.title,

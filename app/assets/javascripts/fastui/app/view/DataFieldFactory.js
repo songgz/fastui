@@ -3,7 +3,7 @@ Ext.define('FastUI.view.DataFieldFactory', {
 
     buildField:function(fields, field){
         switch (field.datatype) {
-            case 'VTreeCombobox':
+            case 'VTree':
                 fields.push({
                     name: field.name.replace('_id', ''),
                     type: 'auto'

@@ -28,8 +28,8 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             case 'VString':
                 return Ext.create('FastUI.view.vfield.VString', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
-            case 'VTree':
-                return Ext.create('FastUI.view.vfield.VTree', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+            case 'VTreeText':
+                return Ext.create('FastUI.view.vfield.VTreeText', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VDate':
                 return Ext.create('FastUI.view.vfield.VDate', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
@@ -79,8 +79,8 @@ Ext.define('FastUI.view.vfield.VFieldFactory', {
             case 'VTable':
                 return Ext.create('FastUI.view.vfield.VTable', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
-            case 'VTreeCombobox':
-                return Ext.create('FastUI.view.vfield.VTreeCombobox', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
+            case 'VTree':
+                return Ext.create('FastUI.view.vfield.VTree', {valueObject: field, winCtx: winCtx, winId: winId, rest: rest});
 
             case 'VGroup':
                 var box = Ext.create('Ext.form.FieldSet',{
