@@ -7,6 +7,12 @@ Ext.define('FastUI.view.VTab', {
     winCtx: {},
     layout: "card",
     border: false,
+    newText: 'New',
+    editText: 'Edit',
+    listText: 'List',
+    saveText: 'Save',
+    deleteText: 'Delete',
+    helpText: 'Help',
     initComponent: function () {
         this.id = 'tab-' + this.getValue('name');
         this.grid_kind = this.getValue('grid_kind');
@@ -21,7 +27,7 @@ Ext.define('FastUI.view.VTab', {
             items: [
                 {
                     id: this.id + 'new',
-                    text: '新建',
+                    text: this.newText,
                     iconCls: 'fastui-btn-new',
                     handler: function () {
 //                        this.cmdCreate();
@@ -36,7 +42,7 @@ Ext.define('FastUI.view.VTab', {
                 },
                 {
                     id: this.id + 'edit',
-                    text: '编辑',
+                    text: this.editText,
                     disabled: true,
                     iconCls: 'fastui-btn-edit',
                     handler: function () {
@@ -51,7 +57,7 @@ Ext.define('FastUI.view.VTab', {
                 },
                 {
                     id: this.id + 'list',
-                    text: '列表',
+                    text: this.listText,
                     iconCls: 'fastui-btn-list',
                     handler: function () {
                         this.cmdList();
@@ -63,7 +69,7 @@ Ext.define('FastUI.view.VTab', {
                 },
                 {
                     id: this.id + 'save',
-                    text: '保存',
+                    text: this.saveText,
                     disabled: true,
                     iconCls: 'fastui-btn-save',
                     handler: function () {
@@ -78,7 +84,7 @@ Ext.define('FastUI.view.VTab', {
                 },
                 {
                     id: this.id + 'del',
-                    text: '删除',
+                    text: this.deleteText,
                     disabled: true,
                     iconCls: 'fastui-btn-del',
                     handler: function () {
@@ -89,7 +95,7 @@ Ext.define('FastUI.view.VTab', {
                 },
                 {
                     id: this.id + 'help',
-                    text: '帮助',
+                    text: this.helpText,
                     iconCls: 'fastui-btn-help',
                     handler: function () {
                         this.cmdHelp();

@@ -277,8 +277,30 @@ Ext.define("Ext.locale.zh_CN.VForm", {
     invalidText:'无效'
 });
 
-// This is needed until we can refactor all of the locales into individual files
-Ext.define("Ext.locale.zh_CN.Component", {	
-    override: "Ext.Component"
+Ext.define("Ext.locale.zh_CN.VCustomForm", {
+    override: "FastUI.view.VCustomForm",
+    successText:'成功',
+    failureText:'失败',
+    invalidText:'无效'
 });
+
+Ext.define("Ext.locale.zh_CN.VMenu", {
+    override: "FastUI.view.VMenu",
+    title:'菜单'
+});
+
+Ext.define("Ext.locale.zh_CN.VTab", {
+    override: "FastUI.view.VTab",
+    newText: '新建',
+    editText: '编缉',
+    listText: '列表',
+    saveText: '保存',
+    deleteText: '删除',
+    helpText: '帮助'
+});
+
+// This is needed until we can refactor all of the locales into individual files
+//Ext.define("Ext.locale.zh_CN.Component", {
+//    override: "Ext.Component"
+//});
 

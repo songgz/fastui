@@ -2,6 +2,7 @@ Ext.define('FastUI.view.Viewport', {
     extend:'Ext.container.Viewport',
     id:'port',
     layout:'border',
+
     items:[
         {
             height:43,
@@ -18,7 +19,7 @@ Ext.define('FastUI.view.Viewport', {
             split:true,
             width:295,
             defaults:{border:false},
-            items:[Ext.create('FastUI.view.VMenu'),{title:'帮助',iconCls:'fastui-btn-help'}],
+            items:[Ext.create('FastUI.view.VMenu'),{title:'Help',iconCls:'fastui-btn-help'}],
             xtype:"tabpanel"
         },
         {
@@ -36,7 +37,7 @@ Ext.define('FastUI.view.Viewport', {
             //maskOnDisable: false,
 
                items: [{
-                   title: '首页',
+                   title: 'Home',
                    iconCls:'fastui-home',
                    border:false,
 

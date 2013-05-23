@@ -16,25 +16,26 @@ Fastui::View.instance.config do |conf|
   ]
 
   conf.win :m_menu, title: '菜单', window_kind: 'maintain' do |w|
-    w.tab :m_menu, title: '菜单', entity: 'Fastui::MMenu',form_kind:'VCustomForm', readonly: true, members: [
-        {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
+    w.tab :m_menu, title: '菜单', entity: 'Fastui::MMenu', readonly: true, members: [
+        {name: 'id', title: 'ID', datatype: 'VInter', readonly: true},
         {name: 'title', title: '标题', datatype: 'VString'},
         {name: 'print_text', title: '打印文本', datatype: 'VString'},
         {name: 'name', title: '标识', datatype: 'VString'}
     ] + default
-    w.tab :m_menu_item, title: '菜单项', entity: 'Fastui::MMenuItem', included_tab: 'm_menu', members: [
-        {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
-        {name: 'title', title: '标题', datatype: 'VString'},
+    w.tab :m_menu_item, title: '菜单项', entity: 'Fastui::MMenuItem', included_tab: 'm_menu', grid_kind: 'VTreeGrid', members: [
+        {name: 'id', title: 'ID', datatype: 'VInter', readonly: true},
+        {name: 'title', title: '标题', datatype: 'VTreeText'},
         {name: 'print_text', title: '打印文本', datatype: 'VString'},
         {name: 'name', title: '标识', datatype: 'VString'},
         {name: 'm_menu_id', title: '对应菜单', datatype: 'VLookup', ref: {entity: 'Fastui::MMenu'}, default_logic: "{id:${m_menu_id},title:'${m_menu_title}'}"},
-        {name: 'window', title: '对应窗口', datatype: 'VString'}
+        {name: 'window', title: '对应窗口', datatype: 'VString'},
+        {name: 'parent_id', title: '上级组织', datatype: 'VTree', ref: {entity: 'Fastui::MMenuItem'}}
     ] + default
   end
 
   conf.win :m_org, title: '组织', window_kind: 'maintain' do |w|
     w.tab :m_org, title: '组织', entity: 'Fastui::MOrg', grid_kind: 'VTreeGrid', members: [
-        {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true, },
+        {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true, },
         {name: 'title', title: '名称', datatype: 'VTreeText'},
         {name: 'print_text', title: '打印文本', datatype: 'VString'},
         {name: 'name', title: '标识', datatype: 'VString'},
@@ -44,14 +45,14 @@ Fastui::View.instance.config do |conf|
 
   conf.win :m_person, title: '人员', window_kind: 'maintain' do |w|
     w.tab :m_person, title: '人员', entity: 'Fastui::MPerson', members: [
-        {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
+        {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
         {name: 'title', title: '标题', datatype: 'VString'},
         {name: 'print_text', title: '打印文本', datatype: 'VString', vtype:'url'},
         {name: 'name', title: '标识', datatype: 'VString'},
         {name: 'access_level', title: '访问级别', datatype: 'VList'}
     ] + default
     w.tab :m_role, title: '角色', entity: 'Fastui::MRole', included_tab: 'm_person', members: [
-        {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
+        {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
         {name: 'title', title: '标题', datatype: 'VString'},
         {name: 'print_text', title: '打印文本', datatype: 'VString'},
         {name: 'name', title: '标识', datatype: 'VString'}
@@ -60,13 +61,13 @@ Fastui::View.instance.config do |conf|
 
   conf.win :m_list, title: '数据字典', window_kind: 'maintain' do |w|
     w.tab :m_list, title: '枚举', entity: 'Fastui::MList', members: [
-        {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
+        {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
         {name: 'title', title: '标题', datatype: 'VString'},
         {name: 'print_text', title: '打印文本', datatype: 'VString'},
         {name: 'name', title: '标识', datatype: 'VString'}
     ] + default
     w.tab :m_list_item, title: '枚举项', entity: 'Fastui::MListItem', included_tab: 'm_list', members: [
-        {name: 'id', title: 'ID', datatype: 'VNumber', readonly: true},
+        {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
         {name:'title', title: '标题', datatype:'VString'},
         {name:'print_text', title: '打印文本', datatype:'VString'},
         {name: 'name', title: '标识', datatype: 'VString'},

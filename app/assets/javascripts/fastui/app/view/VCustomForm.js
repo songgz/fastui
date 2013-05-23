@@ -1,5 +1,10 @@
 Ext.define('FastUI.view.VCustomForm', {
     extend:'Ext.Panel',
+
+    successText:'Success',
+    failureText:'Failed',
+    invalidText:'Invalid',
+
     tab:{},
     url: 'fastui',
     method: 'POST',
@@ -31,7 +36,7 @@ Ext.define('FastUI.view.VCustomForm', {
                 this.setValues(data);
             },
             failure: function () {
-                Ext.MessageBox.alert("提示", "操作失败！")
+                Ext.MessageBox.alert(this.failureText, "操作失败！")
             },
             scope: this
         });
@@ -48,10 +53,10 @@ Ext.define('FastUI.view.VCustomForm', {
             form : this.id,
             success: function () {
                 this.tab.vgrid.refresh();
-                Ext.MessageBox.alert("提示", "操作成功！")
+                Ext.MessageBox.alert(this.successText, "操作成功！")
             },
             failure: function () {
-                Ext.MessageBox.alert("提示", "操作失败！")
+                Ext.MessageBox.alert(this.failureText, "操作失败！")
             },
             scope: this
         });

@@ -6,7 +6,7 @@ module Fastui
     respond_to :html, :xml, :json
 
     def index
-      @m_menu_items = params[:node] == 'root' ? MMenuItem.roots : MMenuItem.where({
+      @m_menu_items = params[:node] == '' ? MMenuItem.roots : MMenuItem.where({
                                                                                     :parent_id => params[:node]
                                                                                 }.delete_if { |k, v| v.blank? })
 

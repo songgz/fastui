@@ -2,7 +2,7 @@ Ext.define('FastUI.view.VMenu', {
     extend:'Ext.tree.Panel',
     requires:['FastUI.store.MWindowMgr'],
     alias: 'widget.vMenu',
-    title:'菜单',
+    title:'Menu',
     animate:false,
     collapseMode:"mini",
     collapsible:true,
@@ -30,7 +30,8 @@ Ext.define('FastUI.view.VMenu', {
               }
           },
           root:{
-              name:'菜单',
+              name:this.title,
+              id:'',
               expanded:true
           }
       });
