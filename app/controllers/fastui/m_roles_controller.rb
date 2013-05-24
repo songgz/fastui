@@ -7,7 +7,7 @@ module Fastui
     def index        
       @m_roles = MRole.scoped
       data = paginate(@m_roles)
-      respond_with(data.to_json({:include => :people,:methods => :person_ids}))
+      respond_with(data.to_json({:include => :m_people,:methods => :m_person_ids}))
     end
 
     def show
@@ -17,7 +17,7 @@ module Fastui
 
     def edit
       @m_role = MRole.find(params[:id])
-      respond_with(@m_role.to_json({:include => :people,:methods => :person_ids}))
+      respond_with(@m_role.to_json({:include => :m_people,:methods => :m_person_ids}))
     end
 
     def new

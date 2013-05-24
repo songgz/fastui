@@ -54,15 +54,13 @@ Fastui::View.instance.config do |conf|
 
   end
 
-  conf.win :m_role, title:'角色' do |w|
+  conf.win :m_role, title:'角色', window_kind: 'maintain' do |w|
     w.tab :m_role, title: '角色', entity: 'Fastui::MRole', members: [
         {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
         {name: 'title', title: '标题', datatype: 'VString'},
         {name: 'print_text', title: '打印文本', datatype: 'VString'},
         {name: 'name', title: '标识', datatype: 'VString'}
     ] + default
-
-
   end
 
   conf.win :m_list, title: '数据字典', window_kind: 'maintain' do |w|
