@@ -1,3 +1,4 @@
+require "fastui/version"
 require "fastui/tab"
 require "fastui/window"
 require "fastui/view"
