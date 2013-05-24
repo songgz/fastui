@@ -51,12 +51,18 @@ Fastui::View.instance.config do |conf|
         {name: 'name', title: '标识', datatype: 'VString'},
         {name: 'access_level', title: '访问级别', datatype: 'VList'}
     ] + default
-    w.tab :m_role, title: '角色', entity: 'Fastui::MRole', included_tab: 'm_person', members: [
+
+  end
+
+  conf.win :m_role, title:'角色' do |w|
+    w.tab :m_role, title: '角色', entity: 'Fastui::MRole', members: [
         {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
         {name: 'title', title: '标题', datatype: 'VString'},
         {name: 'print_text', title: '打印文本', datatype: 'VString'},
         {name: 'name', title: '标识', datatype: 'VString'}
     ] + default
+
+
   end
 
   conf.win :m_list, title: '数据字典', window_kind: 'maintain' do |w|

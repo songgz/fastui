@@ -2,15 +2,14 @@
 require_dependency "awesome_nested_set"
 module Fastui
   class MOrg < MObject
-    attr_accessible :parent_id, :parent
     acts_as_nested_set
 
-    has_many :m_relationships, :foreign_key => 'm_org_id', :class_name => 'Fastui::MRelationship'
-    has_many :act_roles, :through => :m_relationships, :source => :m_role
-    has_many :actors, :through => :m_relationships, :source => :m_person
+    attr_accessible :parent_id, :parent
+
+    has_many :m_org_accesses, :foreign_key => 'm_org_id', :class_name => 'Fastui::MOrgAccess'
+    has_many :m_roles, :through => :m_org_accesses, :source => :m_role
 
     belongs_to :parent, :class_name => 'Fastui::MOrg'
-
     alias :leaf :leaf?
     alias :expanded :child?
 

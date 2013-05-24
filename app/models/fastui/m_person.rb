@@ -3,13 +3,11 @@ require 'bcrypt'
 module Fastui
   class MPerson < MObject
     attr_accessible :username, :password, :access_level
-    has_many :m_relationships, :foreign_key => 'm_person_id', :class_name => 'Fastui::MRelationship'
-    has_many :act_roles, :through => :m_relationships, :source => :m_role
-    has_many :join_orgs, :through => :m_relationships, :source => :m_org
+    has_many :m_role_assignments, :foreign_key => 'm_person_id', :class_name => 'Fastui::MRoleAssignment'
+    has_many :m_roles, :through => :m_role_assignments, :source => :m_role
 
     # users.password_digest in the database is a :string
     include BCrypt
-
     def password
       @password ||= Password.new(self.password_digest)
     end

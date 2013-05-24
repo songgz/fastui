@@ -1,14 +1,12 @@
-class CreateFastuiMRelationships < ActiveRecord::Migration
+class CreateFastuiMOrgAccesses < ActiveRecord::Migration
   def change
-    create_table :fastui_m_relationships do |t|
-      t.references :m_person
-      t.references :m_org
+    create_table :fastui_m_org_accesses do |t|
       t.references :m_role
+      t.references :m_org
 
       t.string :title, :limit => 60
       t.string :print_text,:default => '',:limit => 60
-      t.string :name, :default => '', :limit => 60          #
-      t.string :type
+      t.string :name, :default => '', :limit => 60
 
       t.string :entity_kind, :default => 'app' #:sys,:app
       t.integer :seq, :default => 0

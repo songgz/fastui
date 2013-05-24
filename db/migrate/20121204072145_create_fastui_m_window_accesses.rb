@@ -1,12 +1,12 @@
-class CreateFastuiMRoles < ActiveRecord::Migration
+class CreateFastuiMWindowAccesses < ActiveRecord::Migration
   def change
-    create_table :fastui_m_roles do |t|
-      t.references :m_menu
-      t.string :title, :limit => 60, :null => false
+    create_table :fastui_m_window_accesses do |t|
+      t.references :m_role
+      t.string :window
+
+      t.string :title, :limit => 60
       t.string :print_text,:default => '',:limit => 60
-      t.string :name, :default => '', :limit => 60 # 系统标识
-      t.string :access_level , :default => 'org'        #:system,:org,:dept
-      t.string :type
+      t.string :name, :default => '', :limit => 60
 
       t.string :entity_kind, :default => 'app' #:sys,:app
       t.integer :seq, :default => 0
