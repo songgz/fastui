@@ -105,6 +105,24 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.datetime "updated_at",                                       :null => false
   end
 
+  create_table "fastui_m_org_accesses", :force => true do |t|
+    t.integer  "m_role_id"
+    t.integer  "m_org_id"
+    t.string   "title",           :limit => 60
+    t.string   "print_text",      :limit => 60, :default => ""
+    t.string   "name",            :limit => 60, :default => ""
+    t.string   "entity_kind",                   :default => "app"
+    t.integer  "seq",                           :default => 0
+    t.boolean  "is_active",                     :default => true
+    t.string   "note",                          :default => ""
+    t.string   "help",                          :default => ""
+    t.integer  "createdbyorg_id",               :default => 0
+    t.integer  "createdby_id",                  :default => 0
+    t.integer  "updatedby_id",                  :default => 0
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
+
   create_table "fastui_m_orgs", :force => true do |t|
     t.string   "title",           :limit => 60,                    :null => false
     t.string   "print_text",      :limit => 60, :default => ""
@@ -146,14 +164,12 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.datetime "updated_at",                                       :null => false
   end
 
-  create_table "fastui_m_relationships", :force => true do |t|
+  create_table "fastui_m_role_assignments", :force => true do |t|
     t.integer  "m_person_id"
-    t.integer  "m_org_id"
     t.integer  "m_role_id"
     t.string   "title",           :limit => 60
     t.string   "print_text",      :limit => 60, :default => ""
     t.string   "name",            :limit => 60, :default => ""
-    t.string   "type"
     t.string   "entity_kind",                   :default => "app"
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
@@ -167,11 +183,30 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
   end
 
   create_table "fastui_m_roles", :force => true do |t|
+    t.integer  "m_menu_id"
     t.string   "title",           :limit => 60,                    :null => false
     t.string   "print_text",      :limit => 60, :default => ""
     t.string   "name",            :limit => 60, :default => ""
     t.string   "access_level",                  :default => "org"
     t.string   "type"
+    t.string   "entity_kind",                   :default => "app"
+    t.integer  "seq",                           :default => 0
+    t.boolean  "is_active",                     :default => true
+    t.string   "note",                          :default => ""
+    t.string   "help",                          :default => ""
+    t.integer  "createdbyorg_id",               :default => 0
+    t.integer  "createdby_id",                  :default => 0
+    t.integer  "updatedby_id",                  :default => 0
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
+
+  create_table "fastui_m_window_accesses", :force => true do |t|
+    t.integer  "m_role_id"
+    t.string   "window"
+    t.string   "title",           :limit => 60
+    t.string   "print_text",      :limit => 60, :default => ""
+    t.string   "name",            :limit => 60, :default => ""
     t.string   "entity_kind",                   :default => "app"
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
