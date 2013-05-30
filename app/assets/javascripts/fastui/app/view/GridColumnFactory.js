@@ -10,7 +10,8 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     text: column.title,
                     dataIndex: column.name,
                     display: column.display || 'all',
-                    width: column.column_width || 100
+                    width: column.column_width || 100,
+                    format:'0'
                 });
                 break;
 
