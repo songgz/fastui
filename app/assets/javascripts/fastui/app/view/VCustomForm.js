@@ -42,9 +42,9 @@ Ext.define('FastUI.view.VCustomForm', {
         });
     },
     cmdCreate:function(){
+        this.getChildCreate();
         this.url = this.tab.rest.createPath();
         this.method = 'POST';
-        this.getEl().dom.reset();
     },
     cmdSave:function(){
         Ext.Ajax.request( {
@@ -53,7 +53,7 @@ Ext.define('FastUI.view.VCustomForm', {
             form : this.id,
             success: function () {
                 this.tab.vgrid.refresh();
-                Ext.MessageBox.alert(this.successText, "操作成功！")
+                Ext.MessageBox.alert(this.successText, "操作成功！");
             },
             failure: function () {
                 Ext.MessageBox.alert(this.failureText, "操作失败！")
@@ -62,6 +62,9 @@ Ext.define('FastUI.view.VCustomForm', {
         });
     },
     setValues: function (opt) {
+
+    },
+    getChildCreate:function(){
 
     }
 
