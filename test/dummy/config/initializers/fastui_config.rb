@@ -46,7 +46,7 @@ Fastui::View.instance.config do |conf|
   conf.win :m_person, title: '人员', window_kind: 'maintain' do |w|
     w.tab :m_person, title: '人员', entity: 'Fastui::MPerson', members: [
         {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
-        {name: 'title', title: '标题', datatype: 'VString'},
+        {name: 'title', title: '标题', datatype: 'VString', column_width: 200, field_width: 200},
         {name: 'print_text', title: '打印文本', datatype: 'VString', vtype:'url'},
         {name: 'name', title: '标识', datatype: 'VString'},
         {name: 'access_level', title: '访问级别', datatype: 'VList'}
