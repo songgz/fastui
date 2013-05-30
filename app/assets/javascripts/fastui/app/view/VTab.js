@@ -31,8 +31,8 @@ Ext.define('FastUI.view.VTab', {
                     iconCls: 'fastui-btn-new',
                     handler: function () {
 //                        this.cmdCreate();
-                        this.getForm();
-                        this.vform.cmdCreate();
+//                        this.getForm();
+                        this.getForm().cmdCreate();
                         this.getLayout().setActiveItem(this.vform.id);
 
                         this.getBtn('save').enable();
@@ -46,8 +46,8 @@ Ext.define('FastUI.view.VTab', {
                     disabled: true,
                     iconCls: 'fastui-btn-edit',
                     handler: function () {
-                        this.getForm();
-                        this.vform.cmdEdit();
+//                        this.getForm();
+                        this.getForm().cmdEdit();
                         this.getLayout().setActiveItem(this.vform.id);
 
 //                        this.cmdEdit();
@@ -74,8 +74,8 @@ Ext.define('FastUI.view.VTab', {
                     iconCls: 'fastui-btn-save',
                     handler: function () {
 //                        this.cmdSave();
-                        this.getForm();
-                        this.vform.cmdSave();
+//                        this.getForm();
+                        this.getForm().cmdSave();
 
                         this.getLayout().setActiveItem(this.vgrid.id);
                         this.getBtn('save').disable();
