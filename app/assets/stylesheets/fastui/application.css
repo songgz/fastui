@@ -11,4 +11,5 @@
 
  * require ./extjs4/resources/css/ext-all
  *= require ./admin
+ *= require_tree .
  */
