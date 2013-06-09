@@ -1,3 +1,4 @@
+# encoding: utf-8
 require_dependency "fastui/application_controller"
 
 module Fastui

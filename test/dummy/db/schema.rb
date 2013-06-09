@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217020606) do
+ActiveRecord::Schema.define(:version => 20130607070156) do
 
   create_table "fastui_m_acl_entries", :force => true do |t|
     t.string   "aco_type",        :limit => 60, :default => ""
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(:version => 20121217020606) do
     t.datetime "updated_at",                                       :null => false
   end
 
-  create_table "fastui_m_role_assignments", :force => true do |t|
+  create_table "fastui_m_person_roles", :force => true do |t|
     t.integer  "m_person_id"
     t.integer  "m_role_id"
     t.string   "title",           :limit => 60

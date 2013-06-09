@@ -6,6 +6,7 @@ Ext.define('FastUI.view.VForm', {
     failureText:'Failed',
     invalidText:'Invalid',
 
+    autoScroll: true,
     bodyPadding: 5,
     layout: 'anchor',
     fieldDefaults: {

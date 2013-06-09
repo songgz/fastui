@@ -1,6 +1,5 @@
 Ext.define('FastUI.view.vfield.VTable', {
     extend:'Ext.form.field.ComboBox',
-    requires:['FastUI.store.MListMgr'],
     valueObject: {},
     winCtx:{},
     winId:0,
@@ -47,6 +46,14 @@ Ext.define('FastUI.view.vfield.VTable', {
                 }
             }
         });
+    },
+
+    setValue:function (value) {
+        if(value && value.id && value.title){
+            this.setValue(value.id);
+        }else{
+            this.callParent(arguments);
+        }
     }
 
 });

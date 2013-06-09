@@ -1,3 +1,4 @@
+# encoding: utf-8
 require_dependency "fastui/application_controller"
 
 module Fastui
@@ -7,7 +8,7 @@ module Fastui
     def index        
       @m_roles = MRole.scoped
       data = paginate(@m_roles)
-      respond_with(data.to_json({:include => :m_people,:methods => :m_person_ids}))
+      respond_with(data.to_json({:include => [:m_people, :m_menu],:methods => :m_person_ids}))
     end
 
     def show

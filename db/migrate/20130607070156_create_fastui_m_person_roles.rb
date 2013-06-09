@@ -1,6 +1,6 @@
-class CreateFastuiMRoleAssignments < ActiveRecord::Migration
+class CreateFastuiMPersonRoles < ActiveRecord::Migration
   def change
-    create_table :fastui_m_role_assignments do |t|
+    create_table :fastui_m_person_roles do |t|
       t.references :m_person
       t.references :m_role
 

@@ -8,6 +8,7 @@ Ext.define('FastUI.view.VCustomForm', {
     tab:{},
     url: 'fastui',
     method: 'POST',
+    autoScroll: true,
     autoEl: {tag: 'form'},
     title:'Custom Form',
     bodyPadding:5,

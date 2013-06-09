@@ -59,7 +59,34 @@ Fastui::View.instance.config do |conf|
         {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
         {name: 'title', title: '标题', datatype: 'VString'},
         {name: 'print_text', title: '打印文本', datatype: 'VString'},
-        {name: 'name', title: '标识', datatype: 'VString'}
+        {name: 'name', title: '标识', datatype: 'VString'},
+        {name: 'access_level', title: '访问级别', datatype: 'VList'},
+        {name: 'm_menu_id', title: '菜单', datatype: 'VTable', ref: {entity: 'Fastui::MMenu'}}
+
+    ] + default
+    w.tab :m_person_role, title: '角色分配', entity: 'Fastui::MPersonRole', included_tab: 'm_role', members: [
+        {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
+        {name: 'title', title: '标题', datatype: 'VString'},
+        {name: 'print_text', title: '打印文本', datatype: 'VString'},
+        {name: 'name', title: '标识', datatype: 'VString'},
+        {name: 'm_person_id', title: '人员', datatype: 'VLookup',  ref: {entity: 'Fastui::MPerson'}},
+        {name: 'm_role_id', title: '角色', datatype: 'VTable', ref: {entity: 'Fastui::MRole'}}
+    ] + default
+    w.tab :m_org_access, title: '组织访问', entity: 'Fastui::MOrgAccess', included_tab: 'm_role', members: [
+        {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
+        {name: 'title', title: '标题', datatype: 'VString'},
+        {name: 'print_text', title: '打印文本', datatype: 'VString'},
+        {name: 'name', title: '标识', datatype: 'VString'},
+        {name: 'm_org_id', title: '组织', datatype: 'VLookup', ref: {entity: 'Fastui::MOrg'}},
+        {name: 'm_role_id', title: '角色', datatype: 'VTable', ref: {entity: 'Fastui::MRole'}}
+    ] + default
+    w.tab :m_window_access, title: '窗口访问', entity: 'Fastui::MWindowAccess', included_tab: 'm_role', members: [
+        {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
+        {name: 'title', title: '标题', datatype: 'VString'},
+        {name: 'print_text', title: '打印文本', datatype: 'VString'},
+        {name: 'name', title: '标识', datatype: 'VString'},
+        {name: 'window', title: '窗口', datatype: 'VString'},
+        {name: 'm_role_id', title: '角色', datatype: 'VTable', ref: {entity: 'Fastui::MRole'}}
     ] + default
   end
 
