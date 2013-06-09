@@ -9,7 +9,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     xtype: 'numbercolumn',
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     format:'0'
                 });
@@ -20,7 +20,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     xtype: 'numbercolumn',
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100
                 });
                 break;
@@ -30,7 +30,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     xtype: 'treecolumn',
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     flex: 2.5
                 });
@@ -42,7 +42,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     xtype:  'templatecolumn',
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     tpl: new Ext.XTemplate('<tpl for="' + entity + '">', '{title}', '</tpl>')
                 });
@@ -54,7 +54,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     xtype:  'templatecolumn',
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     tpl: new Ext.XTemplate('<tpl for="' + entity + '">', '{title}', '</tpl>')
                 });
@@ -66,7 +66,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     xtype:  'templatecolumn',
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     tpl: new Ext.XTemplate('<tpl for="' + entity + '">', '{title}', '</tpl>')
                 });
@@ -78,7 +78,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     xtype:  'templatecolumn',
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     tpl: new Ext.XTemplate('<tpl for="' + plur_entity + '">', '{title}', '</tpl>')
                 });
@@ -88,7 +88,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                 columns.push({
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     renderer: function(val) {
                         var list_store = FastUI.store.MListMgr.getStore(column.name);
@@ -106,7 +106,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                 columns.push({
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     renderer: function(val) {
                         var list_store = FastUI.store.MListMgr.getStore(column.name);
@@ -124,7 +124,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                 columns.push({
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     renderer: function(val) {
                         var list_store = FastUI.store.MListMgr.getStore(column.name);
@@ -142,7 +142,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                 columns.push({
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     renderer: function (val) {
                         return val ? '男' : '女'
                     }
@@ -154,7 +154,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     xtype: 'booleancolumn',
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     width: column.column_width || 100,
                     trueText: '√',
                     falseText: '×'
@@ -165,7 +165,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                 columns.push({
                     text: column.title,
                     dataIndex: column.name,
-                    display: column.display || 'all',
+                    hidden: column.display == 'form' || false,
                     renderer: function (val) {
                         return val ? '是' : '否';
                     }
@@ -187,7 +187,7 @@ Ext.define('FastUI.view.GridColumnFactory', {
                     columns.push({
                         text: column.title,
                         dataIndex: column.name,
-                        display: column.display || 'all',
+                        hidden: column.display == 'form' || false,
                         width: column.column_width || 100
                     });
                 }

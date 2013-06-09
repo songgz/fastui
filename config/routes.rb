@@ -12,6 +12,7 @@ Fastui::Engine.routes.draw do
   resources :m_window_accesses
   resources :m_menus
   resources :m_menu_items
+  resources :m_helps
   resources :sessions do
     collection do
       post 'login'

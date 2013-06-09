@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Fastui
   class MListItem < MObject
     attr_accessible :m_list,:m_list_id

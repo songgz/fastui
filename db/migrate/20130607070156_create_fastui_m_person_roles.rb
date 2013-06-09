@@ -12,7 +12,6 @@ class CreateFastuiMPersonRoles < ActiveRecord::Migration
       t.integer :seq, :default => 0
       t.boolean :is_active, :default => true
       t.string :note, :default => ''
-      t.string :help, :default => ''
       t.integer :createdbyorg_id, :default => 0
       t.integer :createdby_id, :default => 0
       t.integer :updatedby_id, :default => 0

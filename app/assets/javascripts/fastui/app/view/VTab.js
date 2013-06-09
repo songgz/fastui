@@ -262,8 +262,19 @@ Ext.define('FastUI.view.VTab', {
         }, this);
     },
     cmdHelp: function () {
-        var helpWindow = Ext.create('FastUI.view.VHelpWindow', {html: this.getValue('help')});
-        helpWindow.show();
+        Ext.Ajax.request({
+            url: '/fastui/m_helps.json?name=' + (this.getValue('help') || this.getValue('name')),
+            success: function (response) {
+                var data = Ext.decode(response.responseText);
+                var helpWindow = Ext.create('FastUI.view.VHelpWindow', {title: this.getValue('title') + '指导', html: data.rows[0] && data.rows[0].desc});
+                helpWindow.show();
+            },
+            failure: function (response,action) {
+                Ext.Msg.alert(this.failureText, action.result.msg);
+            },
+            scope: this
+        });
+
     },
 //    cmdSave: function () {
 //        if (this.vform) {

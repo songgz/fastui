@@ -14,7 +14,6 @@ class CreateFastuiMAclEntries < ActiveRecord::Migration
       t.integer :createdbyorg_id, :default => 0
       t.integer :createdby_id, :default => 0
       t.integer :updatedby_id, :default => 0
-      t.string :help, :default => ''
 
       t.timestamps
     end

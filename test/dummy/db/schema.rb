@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130607070156) do
+ActiveRecord::Schema.define(:version => 20130609012906) do
 
   create_table "fastui_m_acl_entries", :force => true do |t|
     t.string   "aco_type",        :limit => 60, :default => ""
@@ -26,9 +26,24 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
-    t.string   "help",                          :default => ""
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
+  end
+
+  create_table "fastui_m_helps", :force => true do |t|
+    t.string   "title",           :limit => 60,                    :null => false
+    t.string   "print_text",      :limit => 60, :default => ""
+    t.string   "name",            :limit => 60, :default => ""
+    t.string   "desc",                          :default => ""
+    t.string   "entity_kind",                   :default => "app"
+    t.integer  "seq",                           :default => 0
+    t.boolean  "is_active",                     :default => true
+    t.string   "note",                          :default => ""
+    t.integer  "createdbyorg_id",               :default => 0
+    t.integer  "createdby_id",                  :default => 0
+    t.integer  "updatedby_id",                  :default => 0
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
   end
 
   create_table "fastui_m_list_items", :force => true do |t|
@@ -40,7 +55,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -59,7 +73,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -81,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -97,7 +109,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -115,7 +126,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -136,7 +146,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -156,7 +165,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -174,7 +182,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -193,7 +200,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0
@@ -211,7 +217,6 @@ ActiveRecord::Schema.define(:version => 20130607070156) do
     t.integer  "seq",                           :default => 0
     t.boolean  "is_active",                     :default => true
     t.string   "note",                          :default => ""
-    t.string   "help",                          :default => ""
     t.integer  "createdbyorg_id",               :default => 0
     t.integer  "createdby_id",                  :default => 0
     t.integer  "updatedby_id",                  :default => 0

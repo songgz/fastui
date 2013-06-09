@@ -23,6 +23,7 @@ namespace :fastui do
         so.children.build({name: 'app_person', title: '人员', window:'m_person', m_menu: sm}.merge(attr))
         so.children.build({name: 'app_role', title: '角色', window:'m_role', m_menu: sm}.merge(attr))
         so.children.build({name: 'app_data', title: '数据字典', window: 'm_list', m_menu: sm}.merge(attr))
+        so.children.build({name: 'app_help', title: '帮助', window:'m_help', m_menu: sm}.merge(attr))
       end
     end
   end

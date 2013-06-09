@@ -3,7 +3,7 @@ module Fastui
   class MObject < ActiveRecord::Base
     self.abstract_class = true
 
-    attr_accessible :id, :name, :title, :print_text, :note, :entity_kind, :is_active, :seq, :help
+    attr_accessible :id, :name, :title, :print_text, :note, :entity_kind, :is_active, :seq
     attr_accessible :createdbyorg_id,:createdbyorg, :createdby_id,:createdby,:updatedby_id,:updatedby
 
     belongs_to :createdbyorg, :class_name => 'Fastui::MOrg'

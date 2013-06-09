@@ -9,7 +9,6 @@ Fastui::View.instance.config do |conf|
       {name: 'seq', title: '排序', datatype: 'VInteger'},
       {name: 'is_active', title: '是否激活', datatype: 'VBoolean'},
       {name: 'note', title: '备注', datatype: 'VText'},
-      {name: 'help', title: '帮助', datatype: 'VHtml', display: 'form'},
       {name: 'createdbyorg_id', title: '创建组织', datatype: 'VTable', ref: {entity: 'Fastui::MOrg'},display: 'grid'},
       {name: 'createdby_id', title: '创建人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'},
       {name: 'updatedby_id', title: '更新人', datatype: 'VLookup', ref: {entity: 'Fastui::MPerson'}, display: 'grid'}
@@ -51,7 +50,6 @@ Fastui::View.instance.config do |conf|
         {name: 'name', title: '标识', datatype: 'VString'},
         {name: 'access_level', title: '访问级别', datatype: 'VList'}
     ] + default
-
   end
 
   conf.win :m_role, title:'角色', window_kind: 'maintain' do |w|
@@ -103,6 +101,16 @@ Fastui::View.instance.config do |conf|
         {name:'print_text', title: '打印文本', datatype:'VString'},
         {name: 'name', title: '标识', datatype: 'VString'},
         {name: 'm_list_id', title: '所属枚举', datatype: 'VLookup', ref: {entity: 'Fastui::MList'}}
+    ] + default
+  end
+
+  conf.win :m_help, title: '帮助', window_kind: 'maintain' do |w|
+    w.tab :m_help, title: '帮助', entity: 'Fastui::MHelp', members: [
+        {name: 'id', title: 'ID', datatype: 'VInteger', readonly: true},
+        {name: 'title', title: '标题', datatype: 'VString', column_width: 200, field_width: 200},
+        {name: 'print_text', title: '打印文本', datatype: 'VString', vtype:'url'},
+        {name: 'name', title: '标识', datatype: 'VString'},
+        {name: 'desc', title: '描述', datatype: 'VHtml', display: 'form'}
     ] + default
   end
 
