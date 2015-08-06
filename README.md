@@ -56,3 +56,5 @@ After updating your bundle, run the installer
 Visit http://localhost:3000/fastui and log in using:
 
 Voila! You're on your brand new FastUI main window.
+
+new project is moved to https://github.com/songgz/fast_ext
